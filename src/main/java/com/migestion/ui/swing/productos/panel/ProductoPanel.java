@@ -517,4 +517,5 @@ public class ProductoPanel extends JPanel implements ISkinForm,Serializable, IDi
 		this.setBackground(bg);
 	}
 	
+
 }

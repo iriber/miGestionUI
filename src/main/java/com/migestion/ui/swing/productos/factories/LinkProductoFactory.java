@@ -77,7 +77,7 @@ public class LinkProductoFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowProductoFactory.getWindowList(), I18nMessages.PRODUCTO_ACCION_LISTAR, I18nImages.PRODUCTOS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}
 	

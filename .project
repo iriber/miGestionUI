@@ -3,6 +3,8 @@
 	<name>miGestionUI</name>
 	<comment></comment>
 	<projects>
+		<project>miGestionModel</project>
+		<project>miGestionSwing</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

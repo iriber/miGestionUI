@@ -6,15 +6,31 @@
 
 package com.migestion.ui.swing;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
+
 import com.migestion.model.EstadoCaja;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.ComboModel;
+import com.migestion.swing.factories.MenuFactory;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.Link;
+import com.migestion.swing.navigation.LinkListCollection;
+import com.migestion.swing.navigation.LinkSystemExit;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UICajaCriteria;
 import com.migestion.ui.criteria.UISucursalCriteria;
 import com.migestion.ui.criteria.UIVendedorCriteria;
 import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFactory;
+import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
+import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
+import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
+import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
+import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
+import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
 
 /**
  *
@@ -28,10 +44,68 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
     public PanelMenuToolbar() {
         initComponents();
         
+        initMenuInicio();
+        
         loadCombos();
     }
 
-    private void loadCombos() {
+    private void initMenuInicio() {
+		// TODO Auto-generated method stub
+		
+    	// link productos.
+    	LinkListCollection linkProductos = LinkProductoFactory.getLinkList();
+    			
+    			
+    	// link categorías de producto.
+    	LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory.getLinkList();
+    	
+		
+		// link clientes.
+		LinkListCollection linkClientes = LinkClienteFactory.getLinkList();
+		
+		// link vendedores.
+		LinkListCollection linkVendedores = LinkVendedorFactory.getLinkList();
+
+		// link ventas.
+		LinkListCollection linkVentas = LinkVentaFactory.getLinkList();
+
+		// link pagos.
+		LinkListCollection linkPagos = LinkPagoFactory.getLinkList();
+
+		// link movimientos de caja.
+		LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory.getLinkList();
+
+		// link exit.
+		Link linkExit = new LinkSystemExit();
+
+    	
+    	
+    	menuInicioPopup = new JPopupMenu();
+    	
+		JMenu menuCuentas = new JMenu("Ingresos/Egresos");
+		
+
+		menuInicioPopup.add( MenuFactory.getJMenuItem(linkProductos) );
+		
+		menuInicioPopup.add( MenuFactory.getJMenuItem(linkCategoriasProducto));
+		menuInicioPopup.add( MenuFactory.getJMenuItem(linkClientes));
+		menuInicioPopup.add( MenuFactory.getJMenuItem(linkVendedores));
+		
+		
+		menuInicioPopup.addSeparator();
+		
+		menuCuentas.add( MenuFactory.getJMenuItem(linkVentas));
+		menuCuentas.add( MenuFactory.getJMenuItem(linkPagos));
+		menuCuentas.add( MenuFactory.getJMenuItem(linkMovimientosCaja));
+		menuInicioPopup.add(menuCuentas);
+		
+		menuInicioPopup.addSeparator();
+		menuInicioPopup.add( MenuFactory.getJMenuItem(linkExit));
+
+		
+	}
+
+	private void loadCombos() {
 		try {
 
 			UISucursalCriteria criteria = new UISucursalCriteria();
@@ -126,6 +200,7 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 
         panelInicio.setLayout(new java.awt.BorderLayout());
 
+        btnInicio.setMnemonic(java.awt.event.KeyEvent.VK_I);
         btnInicio.setText("Inicio");
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +214,11 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
+ 
+         JPopupMenu popup = getMenuInicioPopup();
+         popup.show(btnInicio, btnInicio.getX(), btnInicio.getY());
+         
+        
     }//GEN-LAST:event_btnInicioActionPerformed
 
 
@@ -153,4 +233,21 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
     private javax.swing.JPanel panelCombos;
     private javax.swing.JPanel panelInicio;
     // End of variables declaration//GEN-END:variables
+
+    private JPopupMenu menuInicioPopup;
+    
+    /**
+	 * @return the rightClickPopup
+	 */
+	public JPopupMenu getMenuInicioPopup() {
+		return menuInicioPopup;
+	}
+
+	/**
+	 * @param rightClickPopup the rightClickPopup to set
+	 */
+	public void setMenuInicioPopup(JPopupMenu rightClickPopup) {
+		this.menuInicioPopup = rightClickPopup;
+	}
+
 }

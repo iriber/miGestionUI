@@ -5,8 +5,10 @@ import java.awt.Component;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.model.Caja;
+import com.migestion.model.CategoriaProducto;
 import com.migestion.model.Cliente;
 import com.migestion.model.Sucursal;
+import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
 import com.migestion.model.Venta;
 import com.migestion.swing.context.ContextObserver;
@@ -32,6 +34,15 @@ import com.migestion.ui.service.UIServiceFactory;
 public class AppContext {
 
 	
+	public CategoriaProducto getCategoriaProductoDefault() {
+		return categoriaProductoDefault;
+	}
+
+	public void setCategoriaProductoDefault(
+			CategoriaProducto categoriaProductoDefault) {
+		this.categoriaProductoDefault = categoriaProductoDefault;
+	}
+
 	//singleton.
 	private static AppContext instance;
 
@@ -58,6 +69,7 @@ public class AppContext {
 	
 	private Cliente clienteDefault;
 	
+	private CategoriaProducto categoriaProductoDefault;
 	
 	/**
 	 * vendedor, sucursal y caja deberíamos
@@ -98,7 +110,7 @@ public class AppContext {
 		try {
 			//sucursal default
 			Sucursal sucursal = new Sucursal();
-			sucursal.setOid(1L);
+			sucursal.setOid(ValoresPredefinidos.SUCURSAL_CASA_MATRIZ);
 			setSucursalDefault( (Sucursal) UIServiceFactory.getUISucursalService().getObject(sucursal));
 		} catch (ControllerException e) {
 			e.printStackTrace();
@@ -113,6 +125,14 @@ public class AppContext {
 			e.printStackTrace();
 		}
 
+		try {
+			//categoría producto default
+			CategoriaProducto categoriaProducto = new CategoriaProducto();
+			categoriaProducto.setOid(ValoresPredefinidos.CATEGORIA_PRODUCTO_GENERAL);
+			setCategoriaProductoDefault( (CategoriaProducto) UIServiceFactory.getUICategoriaProductoService().getObject(categoriaProducto));
+		} catch (ControllerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static AppContext getInstance(){
