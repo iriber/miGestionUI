@@ -2,6 +2,10 @@ package com.migestion.ui.context;
 
 
 import java.awt.Component;
+import java.awt.EventQueue;
+
+import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.model.Caja;
@@ -15,6 +19,7 @@ import com.migestion.swing.context.ContextObserver;
 import com.migestion.swing.context.IContextListener;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowList;
+import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.service.UIServiceFactory;
 
@@ -86,53 +91,17 @@ public class AppContext {
 		ventaObserver = new ContextObserver<Venta>();
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
-		
-		PersistenceContext.getInstance().getEntityManager();
+
+//		try {
+//			//caja default
+//			Caja caja = new Caja();
+//			caja.setOid(1L);
+//			setCajaDefault( (Caja) UIServiceFactory.getUICajaService().getObject(caja));
+//		} catch (ControllerException e) {
+//			e.printStackTrace();
+//		}
 
 		
-		//TODO tomar datos default desde algún archivo de configuración
-		
-		//vendedor default.		
-		try {
-			setVendedorDefault( (Vendedor) UIServiceFactory.getUIVendedorService().getVendedorTitularComercio() );
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			//cliente default
-			setClienteDefault( (Cliente) UIServiceFactory.getUIClienteService().getClienteMostrador());
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			//sucursal default
-			Sucursal sucursal = new Sucursal();
-			sucursal.setOid(ValoresPredefinidos.SUCURSAL_CASA_MATRIZ);
-			setSucursalDefault( (Sucursal) UIServiceFactory.getUISucursalService().getObject(sucursal));
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			//caja default
-			Caja caja = new Caja();
-			caja.setOid(1L);
-			setCajaDefault( (Caja) UIServiceFactory.getUICajaService().getObject(caja));
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			//categoría producto default
-			CategoriaProducto categoriaProducto = new CategoriaProducto();
-			categoriaProducto.setOid(ValoresPredefinidos.CATEGORIA_PRODUCTO_GENERAL);
-			setCategoriaProductoDefault( (CategoriaProducto) UIServiceFactory.getUICategoriaProductoService().getObject(categoriaProducto));
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public static AppContext getInstance(){

@@ -4,7 +4,9 @@ package com.migestion.ui.swing;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
@@ -15,23 +17,36 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jdesktop.swingx.JXTaskPane;
 
+import com.migestion.dao.PersistenceContext;
 import com.migestion.model.Caja;
+import com.migestion.model.CategoriaProducto;
+import com.migestion.model.Cliente;
+import com.migestion.model.EstadoCaja;
+import com.migestion.model.Sucursal;
+import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
 import com.migestion.swing.custom.JFindObjectPanel;
 import com.migestion.swing.factories.MenuFactory;
 import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
+import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkListCollection;
 import com.migestion.swing.navigation.LinkSystemExit;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
+import com.migestion.swing.utils.UbicacionVentana;
+import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.context.AppContext;
+import com.migestion.ui.criteria.UICajaCriteria;
+import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.cajas.dialog.DialogSeleccionarCaja;
 import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFactory;
 import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
@@ -67,104 +82,149 @@ public class FrameMenuInicial extends JFrameContainer {
 	private void inicializar() {
 
 		AppContext.getInstance().setMainContainer(this);
-
-		// link productos.
-		LinkListCollection linkProductos = LinkProductoFactory.getLinkList();
 		
-		
-		// link categorías de producto.
-		LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory.getLinkList();
-		
-		
-		// link clientes.
-		LinkListCollection linkClientes = LinkClienteFactory.getLinkList();
-		
-		// link vendedores.
-		LinkListCollection linkVendedores = LinkVendedorFactory.getLinkList();
+//		EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//                } catch (Exception ex) {
+//                }
+//
+//                SwingWorker worker = new SwingWorker() {
+//                    @Override
+//                    protected Object doInBackground() throws Exception {
+//                        //for (int index = 0; index < 100; index++) {
+//                            //Thread.sleep(50);
+//                    		int index = 0;
+//                    		// link productos.
+//                    		LinkListCollection linkProductos = LinkProductoFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                    		
+//                    		// link categorías de producto.
+//                    		LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                    		
+//                    		// link clientes.
+//                    		LinkListCollection linkClientes = LinkClienteFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                    		// link vendedores.
+//                    		LinkListCollection linkVendedores = LinkVendedorFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                    		// link ventas.
+//                    		LinkListCollection linkVentas = LinkVentaFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                    		// link pagos.
+//                    		LinkListCollection linkPagos = LinkPagoFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                    		// link movimientos de caja.
+//                    		LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory.getLinkList();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                    		// link exit.
+//                    		Link linkExit = new LinkSystemExit();
+//                    		index += 10;
+//                            setProgress(index);
+//                            
+//                            
+//                            JXTaskPane taskpaneAdmin = new JXTaskPane();
+//                    		taskpaneAdmin.setTitle( I18nMessages.MENU_ADMIN );
+//                    		//taskpane.setIcon(new ImageIcon(PropertiesImages.ADMIN_SMALL_ICON) );
+//                    		
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkProductos));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkCategoriasProducto));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkClientes));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkVendedores));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkVentas));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkPagos));
+//                    		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkMovimientosCaja));
+//                    		
+//                    		
+//                    		taskpaneAdmin.setCollapsed( false );
+//                    		SkinDecorator.getInstance().decorate(taskpaneAdmin);
+//                    		
+//                    		taskpanecontainer.add(taskpaneAdmin);
+//                    		
+//                    		
+//                    		JXTaskPane taskpaneContable = new JXTaskPane();
+//                    		taskpaneContable.setTitle(I18nMessages.MENU_CONTABLE );
+//                    		
+//                    		taskpaneContable.setCollapsed( false );
+//                    		SkinDecorator.getInstance().decorate(taskpaneContable);
+//                    		taskpanecontainer.add(taskpaneContable);
+//                    		
+//                    		
+//                    		JXTaskPane taskpaneSession = new JXTaskPane();
+//                    		taskpaneSession.setTitle(I18nMessages.MENU_SESION );
+//                    		//taskpane.setIcon(new ImageIcon(PropertiesImages.SESION_SMALL_ICON) );
+//                    		taskpaneSession.add(linkExit);
+//                    		
+//                    		
+//                    		taskpaneSession.setCollapsed( false );
+//                    		SkinDecorator.getInstance().decorate(taskpaneSession);
+//                    		taskpanecontainer.add(taskpaneSession);
+//                            setProgress(100);
+//                       // }
+//                        
+//                        
+//                        return null;
+//                    }
+//
+//                };
+//
+//                ProgressDialog.showProgress(null, worker, "Inicializando las ventanas...", "Espere unos segundos");
+//
+//                //System.exit(0);
+//
+//                
+//            }
+//
+//        });
+//		
+//		
 
-		// link ventas.
-		LinkListCollection linkVentas = LinkVentaFactory.getLinkList();
-
-		// link pagos.
-		LinkListCollection linkPagos = LinkPagoFactory.getLinkList();
-
-		// link movimientos de caja.
-		LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory.getLinkList();
-
-		// link exit.
-		Link linkExit = new LinkSystemExit();
+		
 
 		
 		setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
 
-//		// vamos a crear una barra de men�.
-//		JMenuBar menuBar = new JMenuBar();
-//
-//		JMenu menuCuentas = new JMenu("Ingresos/Egresos");
+//		//inicializamos la toolbar.
 //		
-//		JMenu menuAdministracion = new JMenu("Administración");
-//		menuAdministracion.add(linkClientes);
-//		menuAdministracion.add(((CRUDFrame) linkClientes.getDialog()).getLinkAdd());
-//		menuAdministracion.addSeparator();
-//		menuAdministracion.add(linkProductos);
-//		//menuAdministracion.add(((CRUDFrame) linkProductos.getDialog()).getLinkAdd());
-//		menuAdministracion.addSeparator();		
-//
-//		JMenu menuVentas = new JMenu("Ventas/Pagos");
-//		menuVentas.add(linkVentas);
-//		//menuVentas.add(((CRUDFrame) linkVentas.getDialog()).getLinkAdd());
-//		menuVentas.addSeparator();
-//		menuVentas.addSeparator();
-//		menuVentas.add(linkPagos);
-//		//menuVentas.add(((CRUDFrame) linkPagos.getDialog()).getLinkAdd());
+//	    toolbar.setLayout(new GridLayout());
 //		
-//		JMenu menuFinalizar = new JMenu("Finalizar");
-//		menuFinalizar.add(linkExit);
-//
-//		menuBar.add(menuAdministracion);
-//		menuBar.add(menuCuentas);
-//		menuBar.add(menuVentas);
-//		menuBar.add(menuFinalizar);
-//
-//		this.setJMenuBar(menuBar);
+//	    JButton btnMenu = new JButton("Inicio");
+//	    btnMenu.setFont(new Font("Dialog", Font.PLAIN, 10));
+//	    btnMenu.setMinimumSize(new Dimension(100, 23));
+//	    btnMenu.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);
+//		
+//		//btnOk.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
+//	    btnMenu.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
+//		
+//	    btnMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//	    //btnMenu.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);
+//	    btnMenu.addActionListener(new java.awt.event.ActionListener() {
+//	        public void actionPerformed(ActionEvent e) {
+//	             toogleTaskPane();
+//	            
+//	          }
+//	        });
 
-		//inicializamos la toolbar.
-		
-	    toolbar.setLayout(new GridLayout());
-//	    addLink(linkProductos);
-//	    addLink(linkClientes);
-//		this.toolbar.addSeparator();
-////		addLink(linkBalances);
-////		this.toolbar.addSeparator();
-////		addLink( linkVentas );
-////		this.toolbar.addSeparator();
-//		addLink( linkVentas );
-//		addLink( linkPagos );
-		
-		
-	    JButton btnMenu = new JButton("Inicio");
-	    btnMenu.setFont(new Font("Dialog", Font.PLAIN, 10));
-	    btnMenu.setMinimumSize(new Dimension(100, 23));
-	    btnMenu.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);
-		
-		//btnOk.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
-	    btnMenu.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
-		
-	    btnMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-	    //btnMenu.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);
-	    btnMenu.addActionListener(new java.awt.event.ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	             toogleTaskPane();
-	            
-	          }
-	        });
-
-	    this.toolbar.add( btnMenu );
+//	    this.toolbar.add( btnMenu );
 	    //this.toolbar.addSeparator();
 	    
 	    //this.toolbar.add(getPanelSucursal() );
-	    this.toolbar.add(getPanelCaja() );
-		this.toolbar.add(getPanelVendedor());
+//	    this.toolbar.add(getPanelCaja() );
+//		this.toolbar.add(getPanelVendedor());
 
 		
 		this.replaceToolbar( new PanelMenuToolbar() );
@@ -175,42 +235,7 @@ public class FrameMenuInicial extends JFrameContainer {
 //		taskpanecontainer.setLayout(new GridLayout());
 		
 		
-		JXTaskPane taskpaneAdmin = new JXTaskPane();
-		taskpaneAdmin.setTitle( I18nMessages.MENU_ADMIN );
-		//taskpane.setIcon(new ImageIcon(PropertiesImages.ADMIN_SMALL_ICON) );
 		
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkProductos));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkCategoriasProducto));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkClientes));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkVendedores));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkVentas));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkPagos));
-		taskpaneAdmin.add( MenuFactory.getJMenuItem(linkMovimientosCaja));
-		
-		
-		taskpaneAdmin.setCollapsed( false );
-		SkinDecorator.getInstance().decorate(taskpaneAdmin);
-		
-		taskpanecontainer.add(taskpaneAdmin);
-		
-		
-		JXTaskPane taskpaneContable = new JXTaskPane();
-		taskpaneContable.setTitle(I18nMessages.MENU_CONTABLE );
-		
-		taskpaneContable.setCollapsed( false );
-		SkinDecorator.getInstance().decorate(taskpaneContable);
-		taskpanecontainer.add(taskpaneContable);
-		
-		
-		JXTaskPane taskpaneSession = new JXTaskPane();
-		taskpaneSession.setTitle(I18nMessages.MENU_SESION );
-		//taskpane.setIcon(new ImageIcon(PropertiesImages.SESION_SMALL_ICON) );
-		taskpaneSession.add(linkExit);
-		
-		
-		taskpaneSession.setCollapsed( false );
-		SkinDecorator.getInstance().decorate(taskpaneSession);
-		taskpanecontainer.add(taskpaneSession);
 
 		toogleTaskPane();
 		

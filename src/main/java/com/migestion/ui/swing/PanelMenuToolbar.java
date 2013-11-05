@@ -6,12 +6,16 @@
 
 package com.migestion.ui.swing;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
-import javax.swing.KeyStroke;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JMenu;
+import javax.swing.JPopupMenu;
+
+import com.migestion.model.Caja;
 import com.migestion.model.EstadoCaja;
+import com.migestion.model.Sucursal;
+import com.migestion.model.Vendedor;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.factories.MenuFactory;
@@ -28,6 +32,7 @@ import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFact
 import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
+import com.migestion.ui.swing.operaciones.ventas.links.LinkAddVenta;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
@@ -68,6 +73,8 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 
 		// link ventas.
 		LinkListCollection linkVentas = LinkVentaFactory.getLinkList();
+		// link add venta.
+		LinkAddVenta linkAddVenta = LinkVentaFactory.getLinkAddVenta();
 
 		// link pagos.
 		LinkListCollection linkPagos = LinkPagoFactory.getLinkList();
@@ -95,6 +102,7 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 		menuInicioPopup.addSeparator();
 		
 		menuCuentas.add( MenuFactory.getJMenuItem(linkVentas));
+		//menuCuentas.add( MenuFactory.getJMenuItem(linkAddVenta));
 		menuCuentas.add( MenuFactory.getJMenuItem(linkPagos));
 		menuCuentas.add( MenuFactory.getJMenuItem(linkMovimientosCaja));
 		menuInicioPopup.add(menuCuentas);
@@ -106,46 +114,63 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 	}
 
 	private void loadCombos() {
-		try {
+//		try {
 
-			UISucursalCriteria criteria = new UISucursalCriteria();
-			UICollection sucursales = UIServiceFactory.getUISucursalService().list( criteria );
+			//UISucursalCriteria criteria = new UISucursalCriteria();
+			//UICollection sucursales = UIServiceFactory.getUISucursalService().list( criteria );
 			ComboModel model = new ComboModel();
-	        model.setElementos(sucursales.getElements());
+	       // model.setElementos(sucursales.getElements());
+			List<Sucursal> elements = new ArrayList<Sucursal>();
+			elements.add(AppContext.getInstance().getSucursalDefault());
+			model.setElementos(elements);
 	        cmbSucursal.setModel(model);
-	        cmbSucursal.setSelectedItem( AppContext.getInstance().getSucursalDefault() );
+	        cmbSucursal.setSelectedIndex(0);
 	        
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
+//		} catch (ControllerException e) {
+//			e.printStackTrace();
+//		}
 		
-		try {
+//		try {
+//
+//			UIVendedorCriteria criteria = new UIVendedorCriteria();
+//			UICollection vendedores = UIServiceFactory.getUIVendedorService().list( criteria );
+//			ComboModel model = new ComboModel();
+//	        model.setElementos(vendedores.getElements());
+//	        cmbVendedor.setModel(model);
+//	        cmbVendedor.setSelectedItem( AppContext.getInstance().getVendedorDefault() );
+//	        
+//		} catch (ControllerException e) {
+//			e.printStackTrace();
+//		}
+	    model = new ComboModel();
+		List<Vendedor> modelVendedores = new ArrayList<Vendedor>();
+		modelVendedores.add(AppContext.getInstance().getVendedorDefault());
+		model.setElementos(modelVendedores);
+        cmbVendedor.setModel(model);
+	    cmbVendedor.setSelectedIndex(0);
+	
+//	    try {
+//
+//			UICajaCriteria criteria = new UICajaCriteria();
+//			criteria.addEstado( EstadoCaja.ABIERTA );
+//			UICollection cajasAbiertas = UIServiceFactory.getUICajaService().list( criteria );
+//			ComboModel model = new ComboModel();
+//	        model.setElementos(cajasAbiertas.getElements());
+//	        cmbCaja.setModel(model);
+//	        cmbCaja.setSelectedItem( AppContext.getInstance().getCajaDefault() );
+//	        
+//		} catch (ControllerException e) {
+//			e.printStackTrace();
+//		}
 
-			UIVendedorCriteria criteria = new UIVendedorCriteria();
-			UICollection vendedores = UIServiceFactory.getUIVendedorService().list( criteria );
-			ComboModel model = new ComboModel();
-	        model.setElementos(vendedores.getElements());
-	        cmbVendedor.setModel(model);
-	        cmbVendedor.setSelectedItem( AppContext.getInstance().getVendedorDefault() );
-	        
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-
-		try {
-
-			UICajaCriteria criteria = new UICajaCriteria();
-			criteria.addEstado( EstadoCaja.ABIERTA );
-			UICollection cajasAbiertas = UIServiceFactory.getUICajaService().list( criteria );
-			ComboModel model = new ComboModel();
-	        model.setElementos(cajasAbiertas.getElements());
-	        cmbCaja.setModel(model);
-	        cmbCaja.setSelectedItem( AppContext.getInstance().getCajaDefault() );
-	        
-		} catch (ControllerException e) {
-			e.printStackTrace();
-		}
-
+	    model = new ComboModel();
+		List<Caja> modelCajas = new ArrayList<Caja>();
+		modelCajas.add(AppContext.getInstance().getCajaDefault());
+		model.setElementos(modelCajas);
+        cmbCaja.setModel(model);
+	    cmbCaja.setSelectedIndex(0);
+	
+	    
 	}
 
     
@@ -178,6 +203,11 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
         panelCombos.add(jLabel1, new java.awt.GridBagConstraints());
 
         cmbCaja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCaja.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbCajaPropertyChange(evt);
+            }
+        });
         panelCombos.add(cmbCaja, new java.awt.GridBagConstraints());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -186,6 +216,16 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
         panelCombos.add(jLabel2, new java.awt.GridBagConstraints());
 
         cmbVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVendedorActionPerformed(evt);
+            }
+        });
+        cmbVendedor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbVendedorPropertyChange(evt);
+            }
+        });
         panelCombos.add(cmbVendedor, new java.awt.GridBagConstraints());
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -194,6 +234,11 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
         panelCombos.add(jLabel3, new java.awt.GridBagConstraints());
 
         cmbSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSucursal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbSucursalPropertyChange(evt);
+            }
+        });
         panelCombos.add(cmbSucursal, new java.awt.GridBagConstraints());
 
         add(panelCombos, java.awt.BorderLayout.LINE_END);
@@ -220,6 +265,23 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
          
         
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void cmbCajaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbCajaPropertyChange
+        // TODO add your handling code here:
+        AppContext.getInstance().setCajaDefault( (Caja)cmbCaja.getSelectedItem() );
+    }//GEN-LAST:event_cmbCajaPropertyChange
+
+    private void cmbVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbVendedorActionPerformed
+
+    private void cmbVendedorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbVendedorPropertyChange
+        AppContext.getInstance().setVendedorDefault( (Vendedor)cmbVendedor.getSelectedItem() );
+    }//GEN-LAST:event_cmbVendedorPropertyChange
+
+    private void cmbSucursalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cmbSucursalPropertyChange
+        AppContext.getInstance().setSucursalDefault( (Sucursal)cmbSucursal.getSelectedItem() );
+    }//GEN-LAST:event_cmbSucursalPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
