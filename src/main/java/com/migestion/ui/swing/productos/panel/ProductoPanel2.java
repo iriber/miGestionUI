@@ -64,7 +64,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 //		SkinDecorator.getInstance().decorate(this);
 		
 		initValidators();
-		
+
     }
 
     

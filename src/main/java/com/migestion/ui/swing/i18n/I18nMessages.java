@@ -409,7 +409,20 @@ public class I18nMessages implements I18nLocale{
 	public static String CAJA_SALDO = properties.getString("caja.saldo");
 	public static String CAJA_SALDO_INICIAL = properties.getString("caja.saldoInicial");
 	
+	
+	public static String CAJA_FRAME_TITULO = properties.getString("caja.frame.titulo");
+	public static String CAJA_FRAME_MENUADMIN = properties.getString("caja.frame.menuadmin");
+	
+	public static String CAJA_DIALOG_AGREGAR_TITULO = properties.getString("caja.dialog.agregar.titulo");
+	public static String CAJA_DIALOG_MODIFICAR_TITULO = properties.getString("caja.dialog.modificar.titulo");
+	public static String CAJA_DIALOG_ELIMINAR_TITULO = properties.getString("caja.dialog.eliminar.titulo");
 	public static String CAJA_DIALOG_BUSCAR_TITULO = properties.getString("caja.dialog.buscar.titulo");
+	
+	public static String CAJA_ACCION_LISTAR = properties.getString("caja.accion.listar");
+	public static String CAJA_ACCION_AGREGAR = properties.getString("caja.accion.agregar");
+	public static String CAJA_ACCION_MODIFICAR = properties.getString("caja.accion.modificar");
+	public static String CAJA_ACCION_ELIMINAR = properties.getString("caja.accion.eliminar");
+	public static String CAJA_ACCION_BUSCAR = properties.getString("caja.accion.buscar");
 	
 	/**
 	 * conceptos de movimientos

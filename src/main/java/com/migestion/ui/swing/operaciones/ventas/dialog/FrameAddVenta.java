@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -42,18 +42,17 @@ import com.migestion.model.Cliente;
 import com.migestion.model.DetalleVenta;
 import com.migestion.model.Producto;
 import com.migestion.model.Sucursal;
-import com.migestion.model.TipoDocumento;
 import com.migestion.model.Vendedor;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.exception.ControllerException;
-import com.migestion.swing.custom.ComboEnumElement;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.exception.LinkException;
 import com.migestion.swing.navigation.listeners.LinkAddListener;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
-import com.migestion.swing.utils.FormatUtils;
+import com.migestion.swing.utils.UbicacionVentana;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.exceptions.ViewException;
 import com.migestion.swing.view.inputs.InputRequiredValidator;
@@ -68,8 +67,11 @@ import com.migestion.ui.swing.finder.FinderFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.UIDetalleVentaCollection;
 import com.migestion.ui.swing.operaciones.ventas.panel.detalles.DetalleVentaTableController;
+import com.migestion.ui.swing.pagos.dialog.DialogSeleccionarFormaPago;
+import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
+import com.migestion.ui.swing.pagos.links.LinkAddPago;
+import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
 import com.migestion.ui.swing.skin.ISkinForm;
-import com.migestion.ui.swing.skin.SkinDecorator;
 
 /**
  * Ventana para agregar una venta.
@@ -114,7 +116,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
     	
     	initValidators();
          
-        SkinDecorator.getInstance().decorate(this);
+        //SkinDecorator.getInstance().decorate(this);
         
  		loadCombos();
  		
@@ -124,6 +126,8 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
  		//setExtendedState(JFrame.MAXIMIZED_BOTH);
  		
  		this.listeners = new Vector();
+ 		
+ 		pack();
     }
 
     /**
@@ -162,8 +166,6 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblObservaciones = new javax.swing.JLabel();
         scrollObservaciones = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
-        panelTitulo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         panelFooter = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JLabel();
@@ -194,13 +196,11 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblCliente.setText("Cliente");
 
         findCliente.setMinimumSize(new java.awt.Dimension(71, 28));
-        findCliente.setPreferredSize(new java.awt.Dimension(75, 28));
 
         lblVendedor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVendedor.setText("Vendedor");
 
         findVendedor.setMinimumSize(new java.awt.Dimension(16, 28));
-        findVendedor.setPreferredSize(new java.awt.Dimension(75, 28));
 
         lblFormaEntrega.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFormaEntrega.setText("Forma entrega");
@@ -231,8 +231,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                     .addComponent(lblFecha)
                     .addComponent(lblObservaciones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosVentaLayout.createSequentialGroup()
                         .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
@@ -241,25 +240,29 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                         .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblFormaEntrega)
                             .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbSucursal, 0, 120, Short.MAX_VALUE)
-                            .addComponent(cmbFormaEntrega, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbFormaEntrega, 0, 191, Short.MAX_VALUE)
+                            .addComponent(cmbSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelDatosVentaLayout.createSequentialGroup()
+                        .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(scrollObservaciones))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelDatosVentaLayout.setVerticalGroup(
             panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosVentaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pickerFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(5, 5, 5)
-                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblFormaEntrega)
-                        .addComponent(cmbFormaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbFormaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -267,8 +270,8 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                     .addComponent(findVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(cmbSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosVentaLayout.createSequentialGroup()
                         .addComponent(lblObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
@@ -277,28 +280,6 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         );
 
         panelHeader.add(panelDatosVenta, java.awt.BorderLayout.CENTER);
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setText("Nueva venta");
-
-        javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
-        panelTitulo.setLayout(panelTituloLayout);
-        panelTituloLayout.setHorizontalGroup(
-            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(619, Short.MAX_VALUE))
-        );
-        panelTituloLayout.setVerticalGroup(
-            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        panelHeader.add(panelTitulo, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -370,30 +351,30 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         panelAddProductoLayout.setHorizontalGroup(
             panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddProductoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAddProductoLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addComponent(lblAgregarProducto)
-                        .addGap(18, 18, 18)
-                        .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(findProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregar))
                     .addGroup(panelAddProductoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblProductos)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addComponent(lblProductos)
+                        .addGap(0, 640, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelAddProductoLayout.setVerticalGroup(
             panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblProductos)
-                .addGap(18, 18, 18)
-                .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(findProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelCenter.add(panelAddProducto, java.awt.BorderLayout.PAGE_START);
@@ -510,7 +491,6 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
     private com.migestion.swing.custom.JFindObjectPanel findCliente;
     private com.migestion.swing.custom.JFindObjectPanel findProducto;
     private com.migestion.swing.custom.JFindObjectPanel findVendedor;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAgregarProducto;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblFecha;
@@ -526,7 +506,6 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
     private javax.swing.JPanel panelDatosVenta;
     private javax.swing.JPanel panelFooter;
     private javax.swing.JPanel panelHeader;
-    private javax.swing.JPanel panelTitulo;
     private com.toedter.calendar.JDateChooser pickerFecha;
     private javax.swing.JScrollPane scrollDetalles;
     private javax.swing.JScrollPane scrollObservaciones;
@@ -572,12 +551,27 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 			alertListeners();
 			
 			setVisible(false);
+
+			//preguntamos si quiere registrar el pago.
+			DialogAddVentaRegistrarPago dialogRegistrarPago = new DialogAddVentaRegistrarPago(new Frame(), true);
+			UbicacionVentana.centrar(dialogRegistrarPago, false);
+		    dialogRegistrarPago.setVisible(true);
+			
+		    if( dialogRegistrarPago.getReturnStatus() == DialogSeleccionarFormaPago.RET_OK ){
+		    	
+		    	LinkPagarVenta link = LinkPagoFactory.getLinkPagarVenta();
+		    	link.setRelatedObject( venta );
+		    	link.doExecute();
+		    	
+		    }
 			//this.dispose();
 		}catch(ViewException ex){
 			//se informa del error al usuario
 			DialogMessage.showErrorMessage(getTitle(), ex.getMessage());			
 		} catch (ControllerException e) {
 			//se informa del error al usuario
+			DialogMessage.showErrorMessage(getTitle(), e.getMessage());
+		} catch (LinkException e) {
 			DialogMessage.showErrorMessage(getTitle(), e.getMessage());
 		}
 	}
@@ -752,7 +746,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 		panelCenter.setBackground(bg);
 		panelAddProducto.setBackground(bg);
     	panelHeader.setBackground(bg);
-    	panelTitulo.setBackground(bg);
+    	//panelTitulo.setBackground(bg);
     	
 	}
 

@@ -89,6 +89,8 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
     private Venta ventaPagar;
     
+    private Float montoRestaPagar;
+    
     private DetalleFormaPagoTableController detallesController;
     private UIDetalleFormaPagoCollection detallesModel;	
 
@@ -120,6 +122,8 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
  		//setExtendedState(JFrame.MAXIMIZED_BOTH);
  		
  		this.listeners = new Vector();
+ 		
+ 		pack();
     }
 
     private void initTableDetalles() {
@@ -248,24 +252,13 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
         panelCenter = new javax.swing.JPanel();
         panelTable = new javax.swing.JPanel();
-        panelFooter = new javax.swing.JPanel();
-        btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        lblTotalPagar = new javax.swing.JLabel();
-        txtTotalPagar = new javax.swing.JLabel();
         scrollDetallesFormaPago = new javax.swing.JScrollPane();
         tableDetallesFormaPago = new javax.swing.JTable();
-        panelBoton = new javax.swing.JPanel();
-        btnAgregarFormaPago = new javax.swing.JButton();
-        panelHeader = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         pickerFecha = new com.toedter.calendar.JDateChooser();
-        cmbSucursal = new javax.swing.JComboBox();
         lblSucursal = new javax.swing.JLabel();
-        lblObservaciones = new javax.swing.JLabel();
-        scrollObservaciones = new javax.swing.JScrollPane();
-        txtObservaciones = new javax.swing.JTextArea();
+        cmbSucursal = new javax.swing.JComboBox();
+        lblVenta = new javax.swing.JLabel();
         findVenta = FinderFactory.getFindVendedor(new LinkFindObjectListener() {
 
             public void objectFound(Object objectFinded) {
@@ -273,15 +266,24 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
                 //venta.setVendedor( (Vendedor) objectFinded);
             }
         });
-        lblVenta = new javax.swing.JLabel();
         lblCliente = new javax.swing.JLabel();
         txtCliente = new javax.swing.JTextField();
         lblTotalVenta = new javax.swing.JLabel();
-        lblPagado = new javax.swing.JLabel();
-        txtPagado = new javax.swing.JLabel();
-        txtDebe = new javax.swing.JLabel();
-        lblDebe = new javax.swing.JLabel();
         txtTotalVenta = new javax.swing.JLabel();
+        txtPagado = new javax.swing.JLabel();
+        lblPagado = new javax.swing.JLabel();
+        lblDebe = new javax.swing.JLabel();
+        txtDebe = new javax.swing.JLabel();
+        scrollObservaciones = new javax.swing.JScrollPane();
+        txtObservaciones = new javax.swing.JTextArea();
+        lblObservaciones = new javax.swing.JLabel();
+        btnAgregarFormaPago = new javax.swing.JButton();
+        lblTotalPagar = new javax.swing.JLabel();
+        txtTotalPagar = new javax.swing.JLabel();
+        btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnAgregarEfectivo = new javax.swing.JButton();
+        btnAgregarCheque = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -290,6 +292,80 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
         panelTable.setLayout(new java.awt.BorderLayout());
         panelCenter.add(panelTable, java.awt.BorderLayout.CENTER);
+
+        tableDetallesFormaPago.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrollDetallesFormaPago.setViewportView(tableDetallesFormaPago);
+
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFecha.setText("Fecha");
+
+        lblSucursal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSucursal.setText("Sucursal");
+
+        cmbSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVenta.setText("Venta");
+
+        findVenta.setMinimumSize(new java.awt.Dimension(16, 28));
+
+        lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCliente.setText("Cliente");
+
+        txtCliente.setText("jTextField1");
+
+        lblTotalVenta.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblTotalVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalVenta.setText("Total Venta");
+
+        txtTotalVenta.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        txtTotalVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtTotalVenta.setText("0.00");
+
+        txtPagado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtPagado.setText("0.00");
+
+        lblPagado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPagado.setText("Pagado");
+
+        lblDebe.setForeground(new java.awt.Color(226, 37, 37));
+        lblDebe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDebe.setText("Debe");
+
+        txtDebe.setForeground(new java.awt.Color(225, 25, 27));
+        txtDebe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtDebe.setText("0.00");
+
+        txtObservaciones.setColumns(20);
+        txtObservaciones.setRows(5);
+        scrollObservaciones.setViewportView(txtObservaciones);
+
+        lblObservaciones.setText("Observaciones");
+
+        btnAgregarFormaPago.setText("Agregar forma de pago");
+        btnAgregarFormaPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarFormaPagoActionPerformed(evt);
+            }
+        });
+
+        lblTotalPagar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblTotalPagar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalPagar.setText("Total a pagar");
+
+        txtTotalPagar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        txtTotalPagar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtTotalPagar.setText("0.00");
 
         btnAceptar.setText(ButtonLabelsBundle.btn_Ok);
         btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 10));
@@ -320,249 +396,159 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
             }
         });
 
-        lblTotalPagar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        lblTotalPagar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalPagar.setText("Total a pagar");
-
-        txtTotalPagar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        txtTotalPagar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtTotalPagar.setText("0.00");
-
-        javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
-        panelFooter.setLayout(panelFooterLayout);
-        panelFooterLayout.setHorizontalGroup(
-            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFooterLayout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addComponent(btnAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFooterLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-        panelFooterLayout.setVerticalGroup(
-            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFooterLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTotalPagar)
-                    .addComponent(txtTotalPagar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCancelar)))
-        );
-
-        tableDetallesFormaPago.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scrollDetallesFormaPago.setViewportView(tableDetallesFormaPago);
-
-        btnAgregarFormaPago.setText("Agregar forma de pago");
-        btnAgregarFormaPago.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarEfectivo.setText("Efectivo");
+        btnAgregarEfectivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarFormaPagoActionPerformed(evt);
+                btnAgregarEfectivoActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jLabel1.setText("Registrar pago");
-
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFecha.setText("Fecha");
-
-        cmbSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        lblSucursal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSucursal.setText("Sucursal");
-
-        lblObservaciones.setText("Observaciones");
-
-        txtObservaciones.setColumns(20);
-        txtObservaciones.setRows(5);
-        scrollObservaciones.setViewportView(txtObservaciones);
-
-        findVenta.setMinimumSize(new java.awt.Dimension(16, 28));
-        findVenta.setPreferredSize(new java.awt.Dimension(75, 28));
-
-        lblVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblVenta.setText("Venta");
-
-        lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCliente.setText("Cliente");
-
-        txtCliente.setText("jTextField1");
-
-        lblTotalVenta.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        lblTotalVenta.setText("Total Venta");
-
-        lblPagado.setText("Pagado");
-
-        txtPagado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtPagado.setText("0.00");
-
-        txtDebe.setForeground(new java.awt.Color(225, 25, 27));
-        txtDebe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtDebe.setText("0.00");
-
-        lblDebe.setForeground(new java.awt.Color(226, 37, 37));
-        lblDebe.setText("Debe");
-
-        txtTotalVenta.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        txtTotalVenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtTotalVenta.setText("0.00");
-
-        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
-        panelHeader.setLayout(panelHeaderLayout);
-        panelHeaderLayout.setHorizontalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVenta)
-                    .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblObservaciones))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(findVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(cmbSucursal, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTotalVenta)
-                            .addComponent(lblPagado)
-                            .addComponent(lblDebe))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtTotalVenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(txtPagado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDebe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(scrollObservaciones))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        panelHeaderLayout.setVerticalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTotalVenta)
-                    .addComponent(txtTotalVenta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(findVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPagado)
-                            .addComponent(lblPagado))
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelHeaderLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lblDebe))
-                            .addGroup(panelHeaderLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDebe)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblObservaciones)
-                    .addComponent(scrollObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout panelBotonLayout = new javax.swing.GroupLayout(panelBoton);
-        panelBoton.setLayout(panelBotonLayout);
-        panelBotonLayout.setHorizontalGroup(
-            panelBotonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBotonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarFormaPago)
-                    .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelBotonLayout.setVerticalGroup(
-            panelBotonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAgregarFormaPago))
-        );
+        btnAgregarCheque.setText("Ingresar Cheque");
+        btnAgregarCheque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarChequeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblObservaciones)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(scrollObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(panelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(139, 139, 139)
+                                                .addComponent(lblDebe)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtDebe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cmbSucursal, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblPagado)
+                                            .addComponent(lblTotalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtTotalVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                            .addComponent(txtPagado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(findVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtCliente))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregarEfectivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAgregarCheque)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarFormaPago)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(panelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblFecha)
+                    .addComponent(pickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSucursal)
+                    .addComponent(cmbSucursal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCliente)
+                    .addComponent(findVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVenta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTotalVenta)
+                            .addComponent(txtTotalVenta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPagado)
+                            .addComponent(txtPagado))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(panelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(142, 142, 142))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblDebe)
+                                    .addComponent(txtDebe))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblObservaciones)
+                            .addComponent(scrollObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregarFormaPago)
+                            .addComponent(btnAgregarEfectivo)
+                            .addComponent(btnAgregarCheque))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTotalPagar)
+                    .addComponent(lblTotalPagar))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAceptar)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFormaPagoActionPerformed
-        // TODO add your handling code here:
-         // TODO add your handling code here:
-        //TODO llamar al diálogo para seleccionar una forma de pago
+       
+    	
+    	if( this.montoRestaPagar <= 0 ){
+    		
+    		DialogMessage.showInformationMessage("Agregar forma de pago", "Las formas de pago ingresadas ya cubren el total de la deuda");
+    		return;
+    	}
+    	
+    	//TODO llamar al diálogo para seleccionar una forma de pago
         //y luego abrir la ventana de acuerdo a la forma de pago
         //que sea modal así a la vuelta tengo el detalle creado
         //para agregar al listado.
@@ -575,21 +561,14 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
            FormaPago formaPago = dialogFormaPago.getFormaPago();
            
            DetalleFormaPago detalle = null;
-           ConceptoMovimiento conceptoVentas = null;
            
-           try {
-        	   conceptoVentas = UIServiceFactory.getUIConceptoMovimientoService().getConceptoVentas();
-           } catch (ControllerException e) {
-        	   // TODO mostrar mensaje
-        	   e.printStackTrace();
-           }
            
            //vemos a cuál ventana llamar.
            if( formaPago.equals( FormaPago.EFECTIVO) ){
            
-               //creamos la forma de pago efectivo con el monto total
+               //creamos la forma de pago efectivo con el monto que resta a pagar.
                detalle = new DetalleFormaPagoEfectivo();
-               detalle.setMonto( 30F );
+               detalle.setMonto( montoRestaPagar );
                ((DetalleFormaPagoEfectivo)detalle).setCaja( AppContext.getInstance().getCajaDefault() );
                
            }else if( formaPago.equals( FormaPago.CHEQUE) ){
@@ -616,7 +595,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
            if( detalle != null ){
 
         	   Float monto = detalle.getMonto();
-        	   detalle.buildMovimiento(conceptoVentas, monto);
+        	   detalle.buildMovimiento( AppContext.getInstance().getConceptoVenta(), monto);
         	   detallesController.addElement(detalle);
            }
            
@@ -634,6 +613,39 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
         // TODO add your handling code here:
         doCancelar();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAgregarChequeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarChequeActionPerformed
+    	
+    	
+    	if( this.montoRestaPagar <= 0 ){
+    		
+    		DialogMessage.showInformationMessage("Agregar forma de pago", "Las formas de pago ingresadas ya cubren el total de la deuda");
+    		return;
+    	}
+
+    	DialogAddFormaPagoCheque dialogFormaPagoCheque = new DialogAddFormaPagoCheque(new Frame(), true);
+        UbicacionVentana.centrar(dialogFormaPagoCheque, false);
+        dialogFormaPagoCheque.setVisible( true );               
+        if( dialogFormaPagoCheque.getReturnStatus() == DialogAddFormaPagoCheque.RET_OK ){
+        
+        	DetalleFormaPago detalle = dialogFormaPagoCheque.getDetalleFormaPago();
+        	Float monto = detalle.getMonto();
+     	    detalle.buildMovimiento(AppContext.getInstance().getConceptoVenta(), monto);
+     	    detallesController.addElement(detalle);
+         		   
+        }
+    }//GEN-LAST:event_btnAgregarChequeActionPerformed
+
+    private void btnAgregarEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEfectivoActionPerformed
+        
+    	if( this.montoRestaPagar <= 0 ){
+    		
+    		DialogMessage.showInformationMessage("Agregar forma de pago", "Las formas de pago ingresadas ya cubren el total de la deuda");
+    		return;
+    	}
+    	
+    	agregarPagoEfectivoPorTotalDeuda();
+    }//GEN-LAST:event_btnAgregarEfectivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -672,11 +684,12 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAgregarCheque;
+    private javax.swing.JButton btnAgregarEfectivo;
     private javax.swing.JButton btnAgregarFormaPago;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox cmbSucursal;
     private com.migestion.swing.custom.JFindObjectPanel findVenta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDebe;
     private javax.swing.JLabel lblFecha;
@@ -686,10 +699,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     private javax.swing.JLabel lblTotalPagar;
     private javax.swing.JLabel lblTotalVenta;
     private javax.swing.JLabel lblVenta;
-    private javax.swing.JPanel panelBoton;
     private javax.swing.JPanel panelCenter;
-    private javax.swing.JPanel panelFooter;
-    private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelTable;
     private com.toedter.calendar.JDateChooser pickerFecha;
     private javax.swing.JScrollPane scrollDetallesFormaPago;
@@ -740,6 +750,8 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
 	public void tableChanged(TableModelEvent arg0) {
 		
+		montoRestaPagar = ventaPagar.getMontoDebe();
+		
 		//actualizamos el monto a pagar con el total de las formas de pago.
 		Float montoPagar = 0F;
 		for (Object item : detallesModel.getElements() ) {
@@ -750,6 +762,10 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 		txtTotalPagar.setText( AppUtils.formatMoneda( montoPagar ) );
 		
 		//si total pagar es mayor a lo que se debe en la venta, avisamos con un mensajes.
+		
+		
+		//actualizo el monto que restaría pagar.
+		montoRestaPagar -= montoPagar;
 		
 		
 	}
@@ -767,6 +783,8 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 	public void open(Object relatedObject) {
 		
 		this.ventaPagar = (Venta)relatedObject;
+		
+		this.montoRestaPagar = ventaPagar.getMontoDebe();
 		
 		clearInputs();
 		
@@ -968,4 +986,19 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 	public void setPago(Pago pago) {
 		this.pago = pago;
 	}
+	
+
+	public void agregarPagoEfectivoPorTotalDeuda(){
+       
+       DetalleFormaPagoEfectivo detalle = new DetalleFormaPagoEfectivo();
+       
+       detalle.setMonto( montoRestaPagar );
+       detalle.setCaja( AppContext.getInstance().getCajaDefault() );
+
+   	   Float monto = detalle.getMonto();
+   	   detalle.buildMovimiento(AppContext.getInstance().getConceptoVenta(), monto);
+   	   detallesController.addElement(detalle);
+   	   
+    }
+
 }

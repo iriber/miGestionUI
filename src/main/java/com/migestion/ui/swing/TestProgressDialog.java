@@ -6,6 +6,7 @@ import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 import com.migestion.swing.view.dialogs.ProgressDialog;
+import com.migestion.ui.swing.i18n.I18nMessages;
 
 public class TestProgressDialog {
 
@@ -33,7 +34,7 @@ public class TestProgressDialog {
 
                 };
 
-                ProgressDialog.showProgress(null, worker, "Inicializando el sistema", "Espere unos minutos");
+                ProgressDialog.showProgress(null, worker, I18nMessages.TITULO_MAIN,  "Inicializando el sistema", "Espere unos minutos");
 
                 System.exit(0);
 

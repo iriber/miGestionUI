@@ -21,6 +21,7 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UICajaCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.cajas.dialog.DialogSeleccionarCaja;
+import com.migestion.ui.swing.i18n.I18nMessages;
 
 public class MiGestionApp {
 
@@ -30,10 +31,10 @@ public class MiGestionApp {
 	public static void main(String[] args) {
 		 EventQueue.invokeLater(new Runnable() {
 	            public void run() {
-	                try {
-	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-	                } catch (Exception ex) {
-	                }
+//	                try {
+//	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//	                } catch (Exception ex) {
+//	                }
 
 	                SwingWorker worker = new SwingWorker() {
 	                    @Override
@@ -77,6 +78,9 @@ public class MiGestionApp {
 	                            index += 10;
 	                            setProgress(index);
 
+	                            AppContext.getInstance().setConceptoVenta( UIServiceFactory.getUIConceptoMovimientoService().getConceptoVentas() );
+	                            index += 10;
+	                            setProgress(index);
 	                            setProgress(100);
 	                       // }
 	                        
@@ -86,7 +90,7 @@ public class MiGestionApp {
 
 	                };
 
-	                ProgressDialog.showProgress(null, worker, "Inicializando el sistema...", "Espere unos segundos");
+	                ProgressDialog.showProgress(null, worker,I18nMessages.TITULO_MAIN, "Inicializando el sistema...", "Espere unos segundos");
 
 	                //System.exit(0);
 
@@ -96,101 +100,7 @@ public class MiGestionApp {
 	            }
 
 	        });
-//
-//		EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//                } catch (Exception ex) {
-//                }
-//
-//                SwingWorker worker = new SwingWorker() {
-//                    @Override
-//                    protected Object doInBackground() throws Exception {
-////                        for (int index = 0; index < 100; index++) {
-////                            Thread.sleep(50);
-////                            
-////                        }
-////                        
-//                    	   for (int index = 0; index < 100; index++) {
-//                               Thread.sleep(50);
-//                               setProgress(index);
-//                           }
-////                           return null;
-////                           
-////                    	int index = 0;
-////                    	setProgress(index);
-////                    	
-////                        PersistenceContext.getInstance().getEntityManager();
-////                        index += 50;
-////                    	setProgress(index);
-////                        
-////                		//vendedor default.		
-////                		try {
-////                			AppContext.getInstance().setVendedorDefault( (Vendedor) UIServiceFactory.getUIVendedorService().getVendedorTitularComercio() );
-////                			index += 10;
-////                        	setProgress(index);
-////                		} catch (ControllerException e) {
-////                			e.printStackTrace();
-////                		}
-////
-////                		try {
-////                			//cliente default
-////                			AppContext.getInstance().setClienteDefault( (Cliente) UIServiceFactory.getUIClienteService().getClienteMostrador());
-////                			index += 10;
-////                        	setProgress(index);
-////                		} catch (ControllerException e) {
-////                			e.printStackTrace();
-////                		}
-////                		
-////                		try {
-////                			//sucursal default
-////                			Sucursal sucursal = new Sucursal();
-////                			sucursal.setOid(ValoresPredefinidos.SUCURSAL_CASA_MATRIZ);
-////                			AppContext.getInstance().setSucursalDefault( (Sucursal) UIServiceFactory.getUISucursalService().getObject(sucursal));
-////                			index += 10;
-////                        	setProgress(index);
-////
-////                		} catch (ControllerException e) {
-////                			e.printStackTrace();
-////                		}
-////
-////                		try {
-////                			//categoría producto default
-////                			CategoriaProducto categoriaProducto = new CategoriaProducto();
-////                			categoriaProducto.setOid(ValoresPredefinidos.CATEGORIA_PRODUCTO_GENERAL);
-////                			AppContext.getInstance().setCategoriaProductoDefault( (CategoriaProducto) UIServiceFactory.getUICategoriaProductoService().getObject(categoriaProducto));
-////                			index += 10;
-////                        	setProgress(index);
-////                		} catch (ControllerException e) {
-////                			e.printStackTrace();
-////                		}
-////                		
-////                		index = 100;
-////                    	setProgress(index);
-////                        
-////                        Locale.setDefault( Locale.ROOT);
-////                		Locale locale = Locale.getDefault();
-//                				
-//                		DialogSeleccionarCaja dialogCaja = new DialogSeleccionarCaja(new Frame(), true);
-//                		UbicacionVentana.centrar(dialogCaja, false);
-//                		dialogCaja.setVisible(true);
-//
-//                		return null;
-//                    }
-//
-//                };
-//
-//                ProgressDialog.showProgress(null, worker, "Inicializando el sistema", "Espere unos minutos");
-//                
-//                
-//
-//            }
-//
-//        });
-//
-//		
-	       
+
 	   
 		
 	}

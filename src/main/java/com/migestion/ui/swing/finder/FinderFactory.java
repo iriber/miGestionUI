@@ -13,6 +13,7 @@ import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.IFinderObjectByCode;
 import com.migestion.swing.custom.IObjectFoundInspector;
 import com.migestion.swing.custom.JFindObjectPanel;
+import com.migestion.swing.custom.JFindObjectPanel2;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.cajas.factories.WindowCajaFactory;
@@ -71,7 +72,7 @@ public class FinderFactory {
             }
         });
         
-        findobject.setTextWidth(200);
+        //findobject.setTextWidth(200);
         findobject.setWindowFindObject(WindowCategoriaProductoFactory.getWindowFind());
         findobject.setListener( listener );
 

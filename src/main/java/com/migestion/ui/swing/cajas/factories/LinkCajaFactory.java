@@ -4,18 +4,14 @@ import javax.swing.KeyStroke;
 
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkExportCollectionToExcel;
 import com.migestion.swing.navigation.LinkListCollection;
-import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.productos.links.LinkActivarProducto;
-import com.migestion.ui.swing.productos.links.LinkDesactivarProducto;
 
 
 /**
- * Proporciona métodos para la construcción de links para productos.
+ * Proporciona métodos para la construcción de links para cajas.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
  * @since 10/10/2013
@@ -23,69 +19,69 @@ import com.migestion.ui.swing.productos.links.LinkDesactivarProducto;
  */
 public class LinkCajaFactory {
 
+
+	/**
+	 * link para agregar una caja.
+	 */
+	public static LinkAddObject getLinkAdd(){			    
+		//return LinkAddCuenta.getInstance();
+		LinkAddObject link =  new LinkAddObject(WindowCajaFactory.getWindowAdd(), I18nMessages.CAJA_ACCION_AGREGAR);
+		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		return link;
+		
+	}
 //
 //	/**
-//	 * link para agregar un producto.
+//	 * link para activar un caja.
 //	 */
-//	public static LinkAddObject getLinkAdd(){			    
-//		//return LinkAddCuenta.getInstance();
-//		LinkAddObject link =  new LinkAddObject(WindowCajaFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//		
-//	}
-//
-//	/**
-//	 * link para activar un producto.
-//	 */
-//	public static LinkUpdateObject getLinkActivarProducto(){			    
-//		LinkUpdateObject link = new LinkActivarProducto(WindowCajaFactory.getWindowActivar(), I18nMessages.PRODUCTO_ACCION_ACTIVAR);
+//	public static LinkUpdateObject getLinkActivarCaja(){			    
+//		LinkUpdateObject link = new LinkActivarCaja(WindowCajaFactory.getWindowActivar(), I18nMessages.CAJA_ACCION_ACTIVAR);
 //		return link;
 //	}	
 //
 //	/**
-//	 * link para desactivar un producto.
+//	 * link para desactivar un caja.
 //	 */
-//	public static LinkUpdateObject getLinkDesactivarProducto(){			    
-//		LinkUpdateObject link = new LinkDesactivarProducto(WindowCajaFactory.getWindowDesactivar(), I18nMessages.PRODUCTO_ACCION_DESACTIVAR);
+//	public static LinkUpdateObject getLinkDesactivarCaja(){			    
+//		LinkUpdateObject link = new LinkDesactivarCaja(WindowCajaFactory.getWindowDesactivar(), I18nMessages.CAJA_ACCION_DESACTIVAR);
 //		return link;
 //	}	
 //
-//	/**
-//	 * link para modificar un producto.
-//	 */
-//	public static LinkUpdateObject getLinkUpdate(){			    
-//		LinkUpdateObject link = new LinkUpdateObject(WindowCajaFactory.getWindowUpdate(), I18nMessages.PRODUCTO_ACCION_MODIFICAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//	}	
+	/**
+	 * link para modificar un caja.
+	 */
+	public static LinkUpdateObject getLinkUpdate(){			    
+		LinkUpdateObject link = new LinkUpdateObject(WindowCajaFactory.getWindowUpdate(), I18nMessages.CAJA_ACCION_MODIFICAR);
+		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		return link;
+	}	
+	
+	/**
+	 * link para eliminar un caja.
+	 */
+	public static LinkDeleteObject getLinkDelete(){			    
+		LinkDeleteObject link =  new LinkDeleteObject(WindowCajaFactory.getWindowDelete(), I18nMessages.CAJA_ACCION_ELIMINAR);
+		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		return link;
+	}
+	
+	
+	/**
+	 * link para listar cajas.
+	 * @return
+	 */
+	public static LinkListCollection getLinkList(){
+		LinkListCollection link = new LinkListCollection(WindowCajaFactory.getWindowList(), I18nMessages.CAJA_ACCION_LISTAR, I18nImages.PRODUCTOS_ICON);
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		return link;
+	}
 //	
 //	/**
-//	 * link para eliminar un producto.
-//	 */
-//	public static LinkDeleteObject getLinkDelete(){			    
-//		LinkDeleteObject link =  new LinkDeleteObject(WindowCajaFactory.getWindowDelete(), I18nMessages.PRODUCTO_ACCION_ELIMINAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
-//		return link;
-//	}
-//	
-//	
-//	/**
-//	 * link para listar productos.
-//	 * @return
-//	 */
-//	public static LinkListCollection getLinkList(){
-//		LinkListCollection link = new LinkListCollection(WindowCajaFactory.getWindowList(), I18nMessages.PRODUCTO_ACCION_LISTAR, I18nImages.PRODUCTOS_ICON);
-//		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK));
-//		return link;
-//	}
-//	
-//	/**
-//	 * link para ingresar el criterio de búsqueda de productos.
+//	 * link para ingresar el criterio de búsqueda de cajas.
 //	 *
 //	public static LinkCreateCriteria getLinkCreateCriteria(){			    
-//		LinkCreateCriteria link = new LinkCreateCriteria(WindowProductoFactory.getWindowCreateCriteria(), I18nMessages.PRODUCTO_ACCION_BUSCAR);
+//		LinkCreateCriteria link = new LinkCreateCriteria(WindowCajaFactory.getWindowCreateCriteria(), I18nMessages.CAJA_ACCION_BUSCAR);
 //	    return link;
 //	}*/
 //	

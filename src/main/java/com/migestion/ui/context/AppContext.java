@@ -11,6 +11,7 @@ import com.migestion.dao.PersistenceContext;
 import com.migestion.model.Caja;
 import com.migestion.model.CategoriaProducto;
 import com.migestion.model.Cliente;
+import com.migestion.model.ConceptoMovimiento;
 import com.migestion.model.Sucursal;
 import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
@@ -75,6 +76,8 @@ public class AppContext {
 	private Cliente clienteDefault;
 	
 	private CategoriaProducto categoriaProductoDefault;
+
+	private ConceptoMovimiento conceptoVenta;
 	
 	/**
 	 * vendedor, sucursal y caja deberíamos
@@ -255,6 +258,20 @@ public class AppContext {
 	 */
 	public void setCajaDefault(Caja cajaDefault) {
 		this.cajaDefault = cajaDefault;
+	}
+
+	/**
+	 * @return the conceptoVenta
+	 */
+	public ConceptoMovimiento getConceptoVenta() {
+		return conceptoVenta;
+	}
+
+	/**
+	 * @param conceptoVenta the conceptoVenta to set
+	 */
+	public void setConceptoVenta(ConceptoMovimiento conceptoVenta) {
+		this.conceptoVenta = conceptoVenta;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.migestion.ui.criteria;
 
 import com.migestion.model.Caja;
+import com.migestion.services.criteria.Criteria;
 import com.migestion.services.criteria.MovimientoCajaCriteria;
 import com.migestion.ui.AppUtils;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -42,6 +43,9 @@ public class UIMovimientoCajaCriteria extends UICustomCriteria{
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
 		criteria.setCaja(getCaja());
+		
+		criteria.orderByFechaHora( Criteria.ORDER_DESC );
+		
 		return criteria;
 	}
 

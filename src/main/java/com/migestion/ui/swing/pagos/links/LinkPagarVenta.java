@@ -5,7 +5,9 @@ import java.net.URL;
 import com.migestion.model.EstadoVenta;
 import com.migestion.model.Venta;
 import com.migestion.swing.navigation.LinkAddRelatedObject;
+import com.migestion.swing.navigation.exception.LinkException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowAddRelated;
+import com.migestion.ui.swing.pagos.dialog.FrameAddPagoVenta;
 
 /**
  * Link para pagar una venta.
@@ -14,8 +16,7 @@ import com.migestion.swing.navigation.interfaces.ILinkWindowAddRelated;
  *
  */
 public class LinkPagarVenta extends LinkAddRelatedObject{
-
-
+	
 	public LinkPagarVenta(ILinkWindowAddRelated dialog) {
 		super(dialog);
 	}
@@ -30,12 +31,11 @@ public class LinkPagarVenta extends LinkAddRelatedObject{
 		setRelatedObject(selectedObject);
 		if( selectedObject!=null && selectedObject instanceof Venta){
 			
-			
-			
 			EstadoVenta estado = ((Venta)selectedObject).getEstadoVenta();
 			setEnabled(estado.equals(EstadoVenta.PAGADA_PARCIALMENTE) || estado.equals(EstadoVenta.IMPAGA));
 			
 		}
 		
 	}
+
 }

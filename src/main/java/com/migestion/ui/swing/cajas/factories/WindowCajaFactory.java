@@ -1,7 +1,22 @@
 package com.migestion.ui.swing.cajas.factories;
 
 
+import javax.swing.ImageIcon;
+
+import com.migestion.swing.i18n.links.LinkImagesBundle;
+import com.migestion.swing.navigation.interfaces.ILinkWindowList;
+import com.migestion.swing.view.dialogs.DialogAddObject;
+import com.migestion.swing.view.dialogs.DialogDeleteObject;
+import com.migestion.swing.view.dialogs.DialogUpdateObject;
+import com.migestion.swing.view.dialogs.adapters.DialogAddAdapter;
+import com.migestion.swing.view.dialogs.adapters.DialogDeleteAdapter;
+import com.migestion.swing.view.dialogs.adapters.DialogUpdateAdapter;
+import com.migestion.swing.view.frames.CRUDFrame;
+import com.migestion.ui.context.AppContext;
+import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.cajas.CajasCRUDFrame;
 import com.migestion.ui.swing.cajas.dialog.DialogFindCaja;
+import com.migestion.ui.swing.cajas.panel.CajaPanel;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
@@ -22,56 +37,56 @@ public class WindowCajaFactory {
 		return dialog;
 	}
 	
-//	/**
-//	 * ventana para agregar un producto.
-//	 */
-//	public static DialogAddObject getWindowAdd(){			    
-//
-//		DialogAddObject dialog = new DialogAddAdapter(I18nMessages.PRODUCTO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel() );
-//		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Add ).getImage() );
-//		return dialog;
-//	}
-//
-//	/**
-//	 * ventana para modificar un producto.
-//	 */
-//	public static DialogUpdateObject getWindowUpdate(){			    
-//
-//		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PRODUCTO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel() );
-//		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
-//		return dialog;
-//
-//	}
-//		
-//	/**
-//	 * ventana para eliminar un producto.
-//	 */
-//	public static DialogDeleteObject getWindowDelete(){			    
-//		
-//		
-//		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PRODUCTO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel());
-//		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
-//		return dialog;
-//		
-//	}
-//
-//	/**
-//	 * ventana para listar productos.
-//	 * @return
-//	 */
-//	public static CRUDFrame getWindowList(){
-//		CRUDFrame frame = new CRUDFrame(I18nMessages.PRODUCTO_FRAME_TITULO, UIServiceFactory.getUIProductoService(), new ProductosCRUDFrame());
-//		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
-//		return frame;
-//	}
-//	
-//
+	/**
+	 * ventana para agregar un producto.
+	 */
+	public static DialogAddObject getWindowAdd(){			    
+
+		DialogAddObject dialog = new DialogAddAdapter(I18nMessages.CAJA_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUICajaService(), new CajaPanel() );
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Add ).getImage() );
+		return dialog;
+	}
+
+	/**
+	 * ventana para modificar una caja.
+	 */
+	public static DialogUpdateObject getWindowUpdate(){			    
+
+		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.CAJA_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUICajaService(), new CajaPanel() );
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
+		return dialog;
+
+	}
+		
+	/**
+	 * ventana para eliminar una caja.
+	 */
+	public static DialogDeleteObject getWindowDelete(){			    
+		
+		
+		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.CAJA_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUICajaService(), new CajaPanel());
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
+		return dialog;
+		
+	}
+
+	/**
+	 * ventana para listar cajas.
+	 * @return
+	 */
+	public static CRUDFrame getWindowList(){
+		CRUDFrame frame = new CRUDFrame(I18nMessages.CAJA_FRAME_TITULO, UIServiceFactory.getUICajaService(), new CajasCRUDFrame());
+		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		return frame;
+	}
+	
+
 //	/**
 //	 * ventana para activar un producto.
 //	 */
-//	public static DialogActivarProducto getWindowActivar(){			    
+//	public static DialogActivarCaja getWindowActivar(){			    
 //
-//		DialogActivarProducto dialog = new DialogActivarProducto(I18nMessages.PRODUCTO_DIALOG_ACTIVAR_TITULO);
+//		DialogActivarCaja dialog = new DialogActivarCaja(I18nMessages.CAJA_DIALOG_ACTIVAR_TITULO);
 //		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 //		return dialog;
 //
@@ -80,9 +95,9 @@ public class WindowCajaFactory {
 //	/**
 //	 * ventana para desactivar un producto.
 //	 */
-//	public static DialogDesactivarProducto getWindowDesactivar(){			    
+//	public static DialogDesactivarCaja getWindowDesactivar(){			    
 //
-//		DialogDesactivarProducto dialog = new DialogDesactivarProducto(I18nMessages.PRODUCTO_DIALOG_DESACTIVAR_TITULO);
+//		DialogDesactivarCaja dialog = new DialogDesactivarCaja(I18nMessages.CAJA_DIALOG_DESACTIVAR_TITULO);
 //		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 //		return dialog;
 //

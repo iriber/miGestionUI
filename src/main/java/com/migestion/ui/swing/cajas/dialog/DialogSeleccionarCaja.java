@@ -87,6 +87,7 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
 
     private void initCustom() {
     	 
+    	setTitle( I18nMessages.TITULO_MAIN );
     	initValidators();
          
     	loadCombos();
@@ -95,6 +96,8 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
     	
     	txtNumero.setText("1");
     	txtSaldoInicial.setText( ValoresPredefinidos.CAJA_SALDO_INICIAL +"");
+    	
+    	pack();
          
 	}
 
