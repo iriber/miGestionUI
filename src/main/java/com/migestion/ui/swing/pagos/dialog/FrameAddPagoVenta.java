@@ -123,6 +123,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
  		
  		this.listeners = new Vector();
  		
+ 		this.repaint();
  		pack();
     }
 
@@ -284,6 +285,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
         btnCancelar = new javax.swing.JButton();
         btnAgregarEfectivo = new javax.swing.JButton();
         btnAgregarCheque = new javax.swing.JButton();
+        btnTarjeta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -403,10 +405,17 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
             }
         });
 
-        btnAgregarCheque.setText("Ingresar Cheque");
+        btnAgregarCheque.setText("Cheque");
         btnAgregarCheque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarChequeActionPerformed(evt);
+            }
+        });
+
+        btnTarjeta.setText("Tarjeta");
+        btnTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTarjetaActionPerformed(evt);
             }
         });
 
@@ -417,11 +426,6 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -467,16 +471,24 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
                                 .addGap(10, 10, 10)
                                 .addComponent(txtCliente))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregarEfectivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAgregarCheque)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTarjeta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregarFormaPago)))
+                        .addComponent(btnAgregarFormaPago))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelar)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -520,20 +532,23 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
                             .addComponent(lblObservaciones)
                             .addComponent(scrollObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgregarFormaPago)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAgregarEfectivo)
-                            .addComponent(btnAgregarCheque))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnAgregarFormaPago)
+                                .addComponent(btnAgregarCheque)
+                                .addComponent(btnTarjeta)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollDetallesFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTotalPagar)
                     .addComponent(lblTotalPagar))
-                .addGap(34, 34, 34)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnAceptar)))
+                    .addComponent(btnAceptar))
+                .addContainerGap())
         );
 
         pack();
@@ -647,6 +662,27 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     	agregarPagoEfectivoPorTotalDeuda();
     }//GEN-LAST:event_btnAgregarEfectivoActionPerformed
 
+    private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
+       
+        if( this.montoRestaPagar <= 0 ){
+    		
+    		DialogMessage.showInformationMessage("Agregar forma de pago", "Las formas de pago ingresadas ya cubren el total de la deuda");
+    		return;
+    	}
+
+    	DialogAddFormaPagoTarjeta dialogFormaPagoTarjeta = new DialogAddFormaPagoTarjeta(new Frame(), true);
+        UbicacionVentana.centrar(dialogFormaPagoTarjeta, false);
+        dialogFormaPagoTarjeta.setVisible( true );               
+        if( dialogFormaPagoTarjeta.getReturnStatus() == DialogAddFormaPagoCheque.RET_OK ){
+        
+            DetalleFormaPago detalle = dialogFormaPagoTarjeta.getDetalleFormaPago();
+            Float monto = detalle.getMonto();
+     	    detalle.buildMovimiento(AppContext.getInstance().getConceptoVenta(), monto);
+     	    detallesController.addElement(detalle);
+         		   
+        }
+    }//GEN-LAST:event_btnTarjetaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -688,6 +724,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     private javax.swing.JButton btnAgregarEfectivo;
     private javax.swing.JButton btnAgregarFormaPago;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnTarjeta;
     private javax.swing.JComboBox cmbSucursal;
     private com.migestion.swing.custom.JFindObjectPanel findVenta;
     private javax.swing.JLabel lblCliente;
@@ -971,6 +1008,9 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 			LinkAddListener element = (LinkAddListener) iter.next();
 			element.objectCreated( getPago() );			
 		}
+		
+		AppContext.getInstance().pagoVentaChange( pago );
+		
 	}
 
 	/**

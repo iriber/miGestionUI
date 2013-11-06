@@ -6,18 +6,6 @@
 
 package com.migestion.ui.swing.pagos.dialog;
 
-import com.migestion.model.Cheque;
-import com.migestion.model.DetalleFormaPago;
-import com.migestion.model.DetalleFormaPagoCheque;
-import com.migestion.swing.view.dialogs.DialogMessage;
-import com.migestion.swing.view.exceptions.ViewException;
-import com.migestion.swing.view.inputs.InputRequiredValidator;
-import com.migestion.swing.view.inputs.InputValidator;
-import com.migestion.swing.view.inputs.JDateChooserInspector;
-import com.migestion.swing.view.inputs.JFindObjectInspector;
-import com.migestion.swing.view.inputs.JTextFieldInspector;
-import com.migestion.ui.swing.i18n.I18nMessages;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -29,11 +17,29 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import com.migestion.model.CuentaBancaria;
+import com.migestion.model.DetalleFormaPago;
+import com.migestion.model.DetalleFormaPagoTarjeta;
+import com.migestion.swing.controller.exception.ControllerException;
+import com.migestion.swing.custom.ComboModel;
+import com.migestion.swing.model.UICollection;
+import com.migestion.swing.view.dialogs.DialogMessage;
+import com.migestion.swing.view.exceptions.ViewException;
+import com.migestion.swing.view.inputs.InputRequiredValidator;
+import com.migestion.swing.view.inputs.InputValidator;
+import com.migestion.swing.view.inputs.JComboBoxInspector;
+import com.migestion.swing.view.inputs.JDateChooserInspector;
+import com.migestion.swing.view.inputs.JTextFieldInspector;
+import com.migestion.ui.context.AppContext;
+import com.migestion.ui.criteria.UICuentaBancariaCriteria;
+import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.i18n.I18nMessages;
+
 /**
  *
  * @author bernardo
  */
-public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
+public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
 
 	private InputRequiredValidator required;
 	
@@ -52,7 +58,7 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
     /**
      * Creates new form DialogAddFormaPagoCheque
      */
-    public DialogAddFormaPagoCheque(java.awt.Frame parent, boolean modal) {
+    public DialogAddFormaPagoTarjeta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -67,18 +73,41 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
             }
         });
         
-        setTitle("Agregar información del cheque");
+        setTitle("Agregar información de tarjeta");
         
         clearInputs();
         
         initValidators();
+        
+        loadCombos();
+        
     }
 
-    private void clearInputs() {
+    private void loadCombos() {
+    	try {
+
+			UICollection cuentas = UIServiceFactory.getUICuentaBancariaService().list(new UICuentaBancariaCriteria());
+			ComboModel model = new ComboModel();
+	        model.setElementos(cuentas.getElements());
+	        cmbDestino.setModel(model);
+	        //TODO tener una cuenta bancaria por default para tarjeta.
+	        //cmbDestino.setSelectedItem( AppContext.getInstance().getSucursalDefault() );
+	        
+		} catch (ControllerException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void clearInputs() {
 		txtMonto.setText("");
 		txtNumero.setText("");
 		txtBanco.setText("");
 		txtObservaciones.setText("");
+		txtTitular.setText("");
+		txtTarjeta.setText("");
+		cmbDestino.setSelectedIndex(0);
+		pickerFechaVencimiento.setDate(null);
+		
 	}
 
 	/**
@@ -103,13 +132,19 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
         txtBanco = new javax.swing.JTextField();
         lblNumero = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
-        lblMonto = new javax.swing.JLabel();
         lblFechaVencimiento = new javax.swing.JLabel();
+        lblTitular = new javax.swing.JLabel();
         pickerFechaVencimiento = new com.toedter.calendar.JDateChooser();
         lblObservaciones = new javax.swing.JLabel();
         scrollObservaciones = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
+        txtTarjeta = new javax.swing.JTextField();
+        lblTarjeta = new javax.swing.JLabel();
+        txtTitular = new javax.swing.JTextField();
+        lblMonto = new javax.swing.JLabel();
         txtMonto = new javax.swing.JFormattedTextField();
+        lblDestino = new javax.swing.JLabel();
+        cmbDestino = new javax.swing.JComboBox();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -137,11 +172,11 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
         lblNumero.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNumero.setText("Número");
 
-        lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMonto.setText("Monto");
-
         lblFechaVencimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFechaVencimiento.setText("F.Vencimiento");
+        lblFechaVencimiento.setText("Fecha Vencimiento");
+
+        lblTitular.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTitular.setText("Titular");
 
         lblObservaciones.setText("Observaciones");
 
@@ -149,37 +184,53 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
         txtObservaciones.setRows(5);
         scrollObservaciones.setViewportView(txtObservaciones);
 
+        lblTarjeta.setText("Tarjeta");
+
+        lblMonto.setText("Monto");
+
+        txtMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lblDestino.setText("Destino");
+
+        cmbDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblFechaVencimiento)
-                                    .addComponent(lblMonto)
-                                    .addComponent(lblNumero)
-                                    .addComponent(lblBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblObservaciones)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblFechaVencimiento)
+                                .addComponent(lblTitular)
+                                .addComponent(lblObservaciones))
+                            .addComponent(lblTarjeta, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblBanco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMonto, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDestino, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTarjeta)
                             .addComponent(txtBanco)
                             .addComponent(txtNumero)
-                            .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scrollObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addComponent(txtMonto))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(scrollObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(txtTitular)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtMonto))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(cmbDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelButton)))
                 .addContainerGap())
         );
 
@@ -188,29 +239,42 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTarjeta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBanco)
-                    .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumero)
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitular)
+                    .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblFechaVencimiento))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblMonto)
                     .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDestino)
+                    .addComponent(cmbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservaciones)
                     .addComponent(scrollObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
@@ -229,15 +293,16 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
 			
     		validateInput();
 		
-    		Cheque cheque = new Cheque();
-            cheque.setBanco( txtBanco.getText() );
-            cheque.setNumero( txtNumero.getText() );
-            cheque.setFechaVencimiento( pickerFechaVencimiento.getDate() );
-            cheque.setObservaciones( txtObservaciones.getText() );
-            cheque.setMonto( Float.parseFloat( txtMonto.getText() ) );
-            DetalleFormaPagoCheque detalle = new DetalleFormaPagoCheque();
-            detalle.setMonto( cheque.getMonto() );
-            detalle.setCheque(cheque);
+            DetalleFormaPagoTarjeta detalle = new DetalleFormaPagoTarjeta();
+            
+            detalle.setTarjeta( txtTarjeta.getText() );
+            detalle.setBanco( txtBanco.getText() );
+            detalle.setNumero( txtNumero.getText() );
+            detalle.setTitular( txtTitular.getText() );
+            detalle.setFechaVencimiento( pickerFechaVencimiento.getDate() );
+            detalle.setMonto( Float.parseFloat( txtMonto.getText() ) );
+            detalle.setDestino( (CuentaBancaria)cmbDestino.getSelectedItem() );
+            detalle.setObservaciones( txtObservaciones.getText() );
             
             setDetalleFormaPago(detalle);
             
@@ -286,20 +351,20 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogAddFormaPagoCheque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogAddFormaPagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogAddFormaPagoCheque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogAddFormaPagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogAddFormaPagoCheque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogAddFormaPagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogAddFormaPagoCheque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogAddFormaPagoTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogAddFormaPagoCheque dialog = new DialogAddFormaPagoCheque(new javax.swing.JFrame(), true);
+                DialogAddFormaPagoTarjeta dialog = new DialogAddFormaPagoTarjeta(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -313,11 +378,15 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox cmbDestino;
     private javax.swing.JLabel lblBanco;
+    private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblFechaVencimiento;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblObservaciones;
+    private javax.swing.JLabel lblTarjeta;
+    private javax.swing.JLabel lblTitular;
     private javax.swing.JButton okButton;
     private com.toedter.calendar.JDateChooser pickerFechaVencimiento;
     private javax.swing.JScrollPane scrollObservaciones;
@@ -325,6 +394,8 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtMonto;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextArea txtObservaciones;
+    private javax.swing.JTextField txtTarjeta;
+    private javax.swing.JTextField txtTitular;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
@@ -347,10 +418,13 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
 	private void initValidators() {
 		
 		required = new InputRequiredValidator(); 
-		required.put(lblFechaVencimiento, pickerFechaVencimiento, new JDateChooserInspector());
+		required.put(lblTitular, pickerFechaVencimiento, new JDateChooserInspector());
 		required.put(lblBanco, txtBanco, new JTextFieldInspector());
+		required.put(lblTarjeta, txtTarjeta, new JTextFieldInspector());
 		required.put(lblNumero, txtNumero, new JTextFieldInspector());
 		required.put(lblMonto, txtMonto, new JTextFieldInspector());
+		required.put(lblDestino, cmbDestino, new JComboBoxInspector());
+		required.put(lblFechaVencimiento, txtMonto, new JTextFieldInspector());
 		required.setMessage(I18nMessages.INGRESE_REQUERIDOS);
 		required.initialize();
 		

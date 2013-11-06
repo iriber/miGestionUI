@@ -144,21 +144,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblFecha = new javax.swing.JLabel();
         pickerFecha = new com.toedter.calendar.JDateChooser();
         lblCliente = new javax.swing.JLabel();
-        findCliente = FinderFactory.getFindCliente( new LinkFindObjectListener() {
-
-            public void objectFound(Object objectFinded) {
-
-                venta.setCliente( (Cliente)objectFinded );
-            }
-        });
         lblVendedor = new javax.swing.JLabel();
-        findVendedor = FinderFactory.getFindVendedor(new LinkFindObjectListener() {
-
-            public void objectFound(Object objectFinded) {
-
-                venta.setVendedor( (Vendedor) objectFinded);
-            }
-        });
         lblFormaEntrega = new javax.swing.JLabel();
         lblSucursal = new javax.swing.JLabel();
         cmbSucursal = new javax.swing.JComboBox();
@@ -166,6 +152,20 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblObservaciones = new javax.swing.JLabel();
         scrollObservaciones = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
+        findCliente = FinderFactory.getFindCliente(new LinkFindObjectListener() {
+
+            public void objectFound(Object objectFinded) {
+
+                venta.setCliente( (Cliente) objectFinded);
+            }
+        });
+        findVendedor = FinderFactory.getFindVendedor(new LinkFindObjectListener() {
+
+            public void objectFound(Object objectFinded) {
+
+                venta.setVendedor( (Vendedor) objectFinded);
+            }
+        });
         panelFooter = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JLabel();
@@ -175,14 +175,14 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         panelCenter = new javax.swing.JPanel();
         panelAddProducto = new javax.swing.JPanel();
         lblProductos = new javax.swing.JLabel();
+        lblAgregarProducto = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
         findProducto = FinderFactory.getFindProducto(new LinkFindObjectListener() {
 
             public void objectFound(Object objectFinded) {
 
             }
         });
-        lblAgregarProducto = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
         scrollDetalles = new javax.swing.JScrollPane();
         tableDetalles = new javax.swing.JTable();
 
@@ -195,12 +195,8 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCliente.setText("Cliente");
 
-        findCliente.setMinimumSize(new java.awt.Dimension(71, 28));
-
         lblVendedor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVendedor.setText("Vendedor");
-
-        findVendedor.setMinimumSize(new java.awt.Dimension(16, 28));
 
         lblFormaEntrega.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFormaEntrega.setText("Forma entrega");
@@ -233,21 +229,24 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosVentaLayout.createSequentialGroup()
-                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(findVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblFormaEntrega)
-                            .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbFormaEntrega, 0, 191, Short.MAX_VALUE)
-                            .addComponent(cmbSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelDatosVentaLayout.createSequentialGroup()
                         .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrollObservaciones))
+                    .addComponent(scrollObservaciones)
+                    .addGroup(panelDatosVentaLayout.createSequentialGroup()
+                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                            .addComponent(findVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelDatosVentaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbSucursal, 0, 302, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosVentaLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(lblFormaEntrega)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbFormaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         panelDatosVentaLayout.setVerticalGroup(
@@ -258,19 +257,21 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                     .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblFormaEntrega)
-                        .addComponent(cmbFormaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFormaEntrega)
+                            .addComponent(cmbFormaEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(findCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(findVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmbSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(findVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosVentaLayout.createSequentialGroup()
@@ -346,6 +347,10 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
             }
         });
 
+        findProducto.setPreferredSize(new Dimension(400,28));
+        findProducto.repaint();
+        findProducto.objectFound(null);
+
         javax.swing.GroupLayout panelAddProductoLayout = new javax.swing.GroupLayout(panelAddProducto);
         panelAddProducto.setLayout(panelAddProductoLayout);
         panelAddProductoLayout.setHorizontalGroup(
@@ -354,26 +359,28 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                 .addContainerGap()
                 .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAddProductoLayout.createSequentialGroup()
+                        .addComponent(lblProductos)
+                        .addContainerGap(868, Short.MAX_VALUE))
+                    .addGroup(panelAddProductoLayout.createSequentialGroup()
                         .addComponent(lblAgregarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(findProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregar))
-                    .addGroup(panelAddProductoLayout.createSequentialGroup()
-                        .addComponent(lblProductos)
-                        .addGap(0, 640, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAgregar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelAddProductoLayout.setVerticalGroup(
             panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddProductoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblProductos)
-                .addGap(4, 4, 4)
-                .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar))
+                .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelAddProductoLayout.createSequentialGroup()
+                        .addComponent(lblProductos)
+                        .addGap(4, 4, 4)
+                        .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -413,7 +420,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
 
-        setBounds(0, 0, 768, 530);
+        setBounds(0, 0, 984, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed

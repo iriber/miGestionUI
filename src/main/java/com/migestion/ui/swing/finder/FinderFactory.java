@@ -75,7 +75,7 @@ public class FinderFactory {
         //findobject.setTextWidth(200);
         findobject.setWindowFindObject(WindowCategoriaProductoFactory.getWindowFind());
         findobject.setListener( listener );
-
+        findobject.repaint();
         return findobject;
 	}
 	
@@ -122,7 +122,7 @@ public class FinderFactory {
         findobject.setTextWidth(200);
         findobject.setWindowFindObject(WindowProductoFactory.getWindowFind());
         findobject.setListener( listener );
-
+        findobject.repaint();
         return findobject;
 	}
 	

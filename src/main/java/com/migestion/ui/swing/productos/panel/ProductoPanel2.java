@@ -162,6 +162,8 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
         lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCategoria.setText("Categoría");
 
+        findCategoria.objectFound( AppContext.getInstance().getCategoriaProductoDefault());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,7 +210,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
                                 .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(findCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,7 +282,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 
 	private void initProducto() {
 		this.producto = new Producto();
-		this.producto.setCategoria( AppContext.getInstance().getCategoriaProductoDefault());
+		
 	}
 
 

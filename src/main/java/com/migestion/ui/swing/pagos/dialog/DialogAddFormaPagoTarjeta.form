@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -24,38 +24,43 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="okButton" linkSize="1" min="-2" pref="67" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cancelButton" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblFechaVencimiento" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMonto" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblBanco" min="-2" pref="56" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="lblFechaVencimiento" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTitular" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblObservaciones" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblTarjeta" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBanco" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
+                          <Component id="lblNumero" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMonto" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDestino" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtBanco" max="32767" attributes="0"/>
-                          <Component id="txtNumero" max="32767" attributes="0"/>
-                          <Component id="pickerFechaVencimiento" min="-2" max="-2" attributes="0"/>
-                          <Component id="scrollObservaciones" pref="311" max="32767" attributes="0"/>
-                          <Component id="txtMonto" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtTarjeta" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBanco" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNumero" alignment="0" max="32767" attributes="0"/>
+                          <Component id="scrollObservaciones" alignment="0" pref="360" max="32767" attributes="0"/>
+                          <Component id="txtTitular" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pickerFechaVencimiento" max="32767" attributes="0"/>
+                                  <Component id="txtMonto" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="cmbDestino" max="32767" attributes="0"/>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="okButton" linkSize="1" min="-2" pref="67" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cancelButton" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -65,10 +70,15 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblBanco" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtBanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBanco" alignment="3" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -77,23 +87,35 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblMonto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTitular" alignment="3" max="-2" attributes="0"/>
+                  <Component id="txtTitular" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="pickerFechaVencimiento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="lblFechaVencimiento" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="lblFechaVencimiento" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pickerFechaVencimiento" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="lblMonto" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMonto" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbDestino" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
                   <Component id="scrollObservaciones" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -139,16 +161,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNumero">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMonto">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Monto"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblFechaVencimiento">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="F.Vencimiento"/>
+        <Property name="text" type="java.lang.String" value="Fecha Vencimiento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTitular">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Titular"/>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="pickerFechaVencimiento">
@@ -170,7 +192,44 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="txtTarjeta">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTarjeta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tarjeta"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTitular">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMonto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Monto"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtMonto">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="0" type="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDestino">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Destino"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbDestino">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

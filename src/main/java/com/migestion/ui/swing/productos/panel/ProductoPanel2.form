@@ -68,7 +68,7 @@
                               <Component id="findCategoria" min="-2" pref="492" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -254,7 +254,8 @@
     </Component>
     <Component class="com.migestion.swing.custom.JFindObjectPanel" name="findCategoria">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="FinderFactory.getFindCategoriaProducto( new LinkFindObjectListener() {&#xa;&#x9;&#x9;&#x9;&#xa;&#x9;&#x9;&#x9;public void objectFound(Object objectFinded) {&#xa;&#x9;&#x9;&#x9;&#x9;if( objectFinded != null ){&#xa;&#x9;&#x9;&#x9;&#x9;&#x9;producto.setCategoria((CategoriaProducto)objectFinded);&#xa;&#x9;&#x9;&#x9;&#x9;}&#xa;&#x9;&#x9;&#x9;}&#xa;&#x9;&#x9;})"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="FinderFactory.getFindCategoriaProducto( new LinkFindObjectListener() {&#xa;&#xa;    public void objectFound(Object objectFinded) {&#xa;        if( objectFinded != null ){&#xa;            producto.setCategoria((CategoriaProducto)objectFinded);&#xa;        }&#xa;    }&#xa;})"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="findCategoria.objectFound( AppContext.getInstance().getCategoriaProductoDefault());"/>
       </AuxValues>
     </Component>
   </SubComponents>

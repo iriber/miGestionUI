@@ -2,6 +2,7 @@ package com.migestion.ui.criteria;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.migestion.services.criteria.Criteria;
 import com.migestion.services.criteria.CuentaBancariaCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -56,6 +57,7 @@ public class UICuentaBancariaCriteria extends UICustomCriteria{
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
 		criteria.setNombre(getNombre());
+		criteria.orderByNombre(Criteria.ORDER_ASC);
 		return criteria;
 	}	
 }

@@ -64,35 +64,35 @@ public class SkinDecorator {
 	
 	
 	protected void skinPanel(ISkinForm form){
-		form.setFormBackground(BACKGOUNDCOLOR);
+		//form.setFormBackground(BACKGOUNDCOLOR);
 	}
 	
 	protected void skinFormLabels(ISkinForm form){
-		List<JComponent> labels = form.getFormLabels();
-		Insets padding = new Insets(0, 10, 0, 10);	
-		for (JComponent label : labels) {
-			label.setFont(LABEL_FONT);
-			label.setForeground(LABEL_FOREGROUND);
-			label.setBackground(LABEL_BACKGOUNDCOLOR);
-			form.setPadding(label, padding);
-		}
+//		List<JComponent> labels = form.getFormLabels();
+//		Insets padding = new Insets(0, 10, 0, 10);	
+//		for (JComponent label : labels) {
+//			label.setFont(LABEL_FONT);
+//			label.setForeground(LABEL_FOREGROUND);
+//			label.setBackground(LABEL_BACKGOUNDCOLOR);
+//			form.setPadding(label, padding);
+//		}
 	}
 	
 	protected void skinFormInputs(ISkinForm form){
-		List<JComponent> inputs = form.getFormInputs();
-		Insets padding = new Insets(0, 10, 0, 10);	
-		for (JComponent input : inputs) {
-			input.setFont(INPUT_FONT);
-			input.setForeground(INPUT_FOREGROUND);
-			input.setBackground(INPUT_BACKGOUNDCOLOR);
-			form.setPadding(input, padding);
-		}
+//		List<JComponent> inputs = form.getFormInputs();
+//		Insets padding = new Insets(0, 10, 0, 10);	
+//		for (JComponent input : inputs) {
+//			input.setFont(INPUT_FONT);
+//			input.setForeground(INPUT_FOREGROUND);
+//			input.setBackground(INPUT_BACKGOUNDCOLOR);
+//			form.setPadding(input, padding);
+//		}
 	}
 
 	public void decorate(JXTaskPane taskpane) {
-		taskpane.setFont(MENU_FONT);
-		taskpane.setBackground( MENU_BACKGOUNDCOLOR );
-		taskpane.setForeground( MENU_FOREGROUND );
+//		taskpane.setFont(MENU_FONT);
+//		taskpane.setBackground( MENU_BACKGOUNDCOLOR );
+//		taskpane.setForeground( MENU_FOREGROUND );
 	}
 
 }

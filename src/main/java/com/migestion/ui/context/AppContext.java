@@ -12,6 +12,7 @@ import com.migestion.model.Caja;
 import com.migestion.model.CategoriaProducto;
 import com.migestion.model.Cliente;
 import com.migestion.model.ConceptoMovimiento;
+import com.migestion.model.Pago;
 import com.migestion.model.Sucursal;
 import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
@@ -55,7 +56,7 @@ public class AppContext {
 	/**
 	 * observer para ventas.
 	 */
-	private ContextObserver<Venta> ventaObserver;
+	private VentaObserver ventaObserver;
 
 //	/**
 //	 * observer para cliente.
@@ -91,7 +92,7 @@ public class AppContext {
 
 	private AppContext(){
 		//inicializamos los listeners
-		ventaObserver = new ContextObserver<Venta>();
+		ventaObserver = new VentaObserver();
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
 
@@ -129,58 +130,11 @@ public class AppContext {
 	 * se agrega un listener para ventas.
 	 * @param listener
 	 */
-	public void addVentaListener(IContextListener<Venta> listener  ){
+	public void addVentaListener(IVentaListener listener  ){
 		
 		ventaObserver.addListener( listener );
 		
 	}
-//
-//	/**
-//	 * se agrega un listener para clientes.
-//	 * @param listener
-//	 */
-//	public void addClienteListener(IContextListener<ICliente> listener  ){
-//		
-//		clienteObserver.addListener( listener );
-//		
-//	}
-//	
-	/**
-	 * @return the ventaObserver
-	 */
-	public ContextObserver<Venta> getVentaObserver() {
-		return ventaObserver;
-	}
-
-	/**
-	 * @param ventaObserver the ventaObserver to set
-	 */
-	public void setVentaObserver(ContextObserver<Venta> ventaObserver) {
-		this.ventaObserver = ventaObserver;
-	}
-//
-//	/**
-//	 * @return the clienteObserver
-//	 */
-//	public ContextObserver<ICliente> getClienteObserver() {
-//		return clienteObserver;
-//	}
-//
-//	/**
-//	 * @param clienteObserver the clienteObserver to set
-//	 */
-//	public void setClienteObserver(ContextObserver<ICliente> clienteObserver) {
-//		this.clienteObserver = clienteObserver;
-//	}
-//	
-//	public IUsuario getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(IUsuario usuario) {
-//		this.usuario = usuario;
-//	}
-//	
 
 	/**
 	 * @return the mainContainer
@@ -272,6 +226,12 @@ public class AppContext {
 	 */
 	public void setConceptoVenta(ConceptoMovimiento conceptoVenta) {
 		this.conceptoVenta = conceptoVenta;
+	}
+
+	public void pagoVentaChange(Pago pago) {
+		
+		//le aviso a quienes escuchen cambios sobre pagos y sobre ventas.
+		ventaObserver.objectUpdated( pago );
 	}
 
 

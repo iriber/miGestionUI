@@ -14,6 +14,7 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.VentasCRUDFrame;
+import com.migestion.ui.swing.operaciones.ventas.VentasFrame;
 import com.migestion.ui.swing.operaciones.ventas.dialog.DialogAnularVenta;
 import com.migestion.ui.swing.operaciones.ventas.dialog.DialogFindVenta;
 import com.migestion.ui.swing.operaciones.ventas.dialog.FrameAddVenta;
@@ -82,10 +83,10 @@ public class WindowVentaFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.VENTA_FRAME_TITULO, UIServiceFactory.getUIVentaService(), new VentasCRUDFrame());
+		VentasFrame frame = new VentasFrame(I18nMessages.VENTA_FRAME_TITULO, UIServiceFactory.getUIVentaService(), new VentasCRUDFrame());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
-		//AppContext.getInstance().addVentaListener( frame );
+		AppContext.getInstance().addVentaListener( frame );
 		
 		return frame;
 	}

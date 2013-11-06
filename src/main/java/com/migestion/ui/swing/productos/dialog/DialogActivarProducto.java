@@ -10,6 +10,7 @@ import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.dialogs.DialogOkCancel;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.productos.panel.ProductoPanel;
+import com.migestion.ui.swing.productos.panel.ProductoPanel2;
 
 /**
  * Diálogo para activar un producto
@@ -23,7 +24,7 @@ public class DialogActivarProducto extends DialogOkCancel implements ILinkWindow
 	//producto que será activado
 	protected Producto producto = null;
 
-	private ProductoPanel panel;
+	private ProductoPanel2 panel;
 	
 	//----------------
 	// CONSTRUCTORES
@@ -84,7 +85,7 @@ public class DialogActivarProducto extends DialogOkCancel implements ILinkWindow
 	 */
 	protected Container createInfoPanel(){
 		
-		panel = new ProductoPanel();
+		panel = new ProductoPanel2();
 		return panel.getViewPanel();
 
 	}
