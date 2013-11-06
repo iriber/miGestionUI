@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
@@ -26,28 +27,27 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 15/10/2013
  *
  */
-public class VendedoresCRUDFrame implements ICRUDFrame{
+public class VendedoresCRUDFrame extends CRUDFrame{
 
-	private UIVendedorCriteriaPanel buscarPanel;
-	
-	public VendedoresCRUDFrame(){
-		buscarPanel = new UIVendedorCriteriaPanel();
+	public VendedoresCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
+		
 	}
 	
-
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UIVendedorCriteriaPanel();
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public void initLinks() {
 		
 		LinkUpdateObject linkUpdate  = LinkVendedorFactory.getLinkUpdate();
 		LinkAddObject linkAdd  = LinkVendedorFactory.getLinkAdd();
 		LinkDeleteObject linkDelete  = LinkVendedorFactory.getLinkDelete();
 		
-		frame.setLinkAdd( linkAdd, 0 );
-		frame.setLinkUpdate( linkUpdate, 1 );
-		frame.setLinkDelete( linkDelete, 2 );
+		this.setLinkAdd( linkAdd, 0 );
+		this.setLinkUpdate( linkUpdate, 1 );
+		this.setLinkDelete( linkDelete, 2 );
 		
 		
 		JPopupMenu rightClick = new JPopupMenu();
@@ -55,7 +55,7 @@ public class VendedoresCRUDFrame implements ICRUDFrame{
 		rightClick.add(linkUpdate);
 		rightClick.add(linkDelete);
 		
-		frame.setRightClickPopup(rightClick);
+		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {

@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Pago;
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddRelatedObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
@@ -15,6 +17,7 @@ import com.migestion.swing.navigation.LinkViewObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.swing.view.frames.ICRUDFrame;
+import com.migestion.ui.context.IVentaListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
@@ -30,46 +33,45 @@ import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
  * @since 17/10/2013
  *
  */
-public class VentasCRUDFrame implements ICRUDFrame{
+public class VentasCRUDFrame extends CRUDFrame implements IVentaListener{
 
-	private UIVentaCriteriaPanel buscarPanel;
-	
-	public VentasCRUDFrame(){
-		buscarPanel = new UIVentaCriteriaPanel();
-	}
-	
-
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public VentasCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
+		
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UIVentaCriteriaPanel();
+	}
+
+	public void initLinks() {
 		
 		//LinkUpdateObject linkUpdate  = LinkVentaFactory.getLinkUpdate();
 		
 		LinkAddVenta linkAdd  = LinkVentaFactory.getLinkAddVenta();
-		linkAdd.addListener( frame );
+		//linkAdd.addListener( this );
 		
 		LinkViewObject linkView = LinkVentaFactory.getLinkView();
 
 		LinkPagarVenta linkPagarVenta = LinkPagoFactory.getLinkPagarVenta();
-		frame.addElementsListener(linkPagarVenta);
-		linkPagarVenta.addListener(frame);
+		this.addElementsListener(linkPagarVenta);
+		linkPagarVenta.addListener(this);
 
 		LinkUpdateObject linkAnular = LinkVentaFactory.getLinkAnularVenta();
 
 		LinkDeleteObject linkDelete  = LinkVentaFactory.getLinkDelete();
 		
-		frame.addLinkToDefaultMenu(linkAdd, 0 );
-		frame.setLinkView( linkView, 1 );
+		this.addLinkToDefaultMenu(linkAdd, 0 );
+		this.setLinkView( linkView, 1 );
 
-		frame.addElementsListener(linkAnular);
-		linkAnular.addListener(frame);
-		frame.addLinkToDefaultMenu( linkAnular, 2 );
+		this.addElementsListener(linkAnular);
+		linkAnular.addListener(this);
+		this.addLinkToDefaultMenu( linkAnular, 2 );
 		
-		frame.setLinkDelete( linkDelete, 3 );
+		this.setLinkDelete( linkDelete, 3 );
 		
-		frame.addLinkToDefaultMenu(linkPagarVenta, 4 );
+		this.addLinkToDefaultMenu(linkPagarVenta, 4 );
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		
@@ -78,7 +80,7 @@ public class VentasCRUDFrame implements ICRUDFrame{
 		rightClick.add(linkAnular);
 		rightClick.add(linkDelete);
 		
-		frame.setRightClickPopup(rightClick);
+		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {
@@ -100,4 +102,7 @@ public class VentasCRUDFrame implements ICRUDFrame{
 		return lblFooter;
 	}
 
+	public void pagoVentaCreado(Pago pago) {
+		refreshTable();
+	}
 }

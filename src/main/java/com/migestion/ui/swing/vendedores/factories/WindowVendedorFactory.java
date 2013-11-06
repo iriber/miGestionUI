@@ -67,7 +67,7 @@ public class WindowVendedorFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.VENDEDOR_FRAME_TITULO, UIServiceFactory.getUIVendedorService(), new VendedoresCRUDFrame());
+		CRUDFrame frame = new VendedoresCRUDFrame(I18nMessages.VENDEDOR_FRAME_TITULO, UIServiceFactory.getUIVendedorService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}

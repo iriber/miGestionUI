@@ -68,7 +68,7 @@ public class WindowCategoriaProductoFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.CATEGORIA_PRODUCTO_FRAME_TITULO, UIServiceFactory.getUICategoriaProductoService(), new CategoriasProductoCRUDFrame());
+		CRUDFrame frame = new CategoriasProductoCRUDFrame(I18nMessages.CATEGORIA_PRODUCTO_FRAME_TITULO, UIServiceFactory.getUICategoriaProductoService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}

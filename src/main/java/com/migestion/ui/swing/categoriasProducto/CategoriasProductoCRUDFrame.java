@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
@@ -28,28 +29,29 @@ import com.migestion.ui.swing.productos.panel.UIProductoCriteriaPanel;
  * @since 11/10/2013
  *
  */
-public class CategoriasProductoCRUDFrame implements ICRUDFrame{
+public class CategoriasProductoCRUDFrame extends CRUDFrame{
 
-	private UICategoriaProductoCriteriaPanel buscarPanel;
 	
-	public CategoriasProductoCRUDFrame(){
-		buscarPanel = new UICategoriaProductoCriteriaPanel();
+	public CategoriasProductoCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
+		
 	}
 	
 
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UICategoriaProductoCriteriaPanel();
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public void initLinks() {
 		
 		LinkUpdateObject linkUpdate  = LinkCategoriaProductoFactory.getLinkUpdate();
 		LinkAddObject linkAdd  = LinkCategoriaProductoFactory.getLinkAdd();
 		LinkDeleteObject linkDelete  = LinkCategoriaProductoFactory.getLinkDelete();
 		
-		frame.setLinkAdd( linkAdd, 0 );
-		frame.setLinkUpdate( linkUpdate, 1 );
-		frame.setLinkDelete( linkDelete, 2 );
+		this.setLinkAdd( linkAdd, 0 );
+		this.setLinkUpdate( linkUpdate, 1 );
+		this.setLinkDelete( linkDelete, 2 );
 		
 		
 		
@@ -58,7 +60,7 @@ public class CategoriasProductoCRUDFrame implements ICRUDFrame{
 		rightClick.add(linkUpdate);
 		rightClick.add(linkDelete);
 		
-		frame.setRightClickPopup(rightClick);
+		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {

@@ -14,12 +14,10 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.VentasCRUDFrame;
-import com.migestion.ui.swing.operaciones.ventas.VentasFrame;
 import com.migestion.ui.swing.operaciones.ventas.dialog.DialogAnularVenta;
 import com.migestion.ui.swing.operaciones.ventas.dialog.DialogFindVenta;
 import com.migestion.ui.swing.operaciones.ventas.dialog.FrameAddVenta;
 import com.migestion.ui.swing.operaciones.ventas.panel.VentaPanel;
-import com.migestion.ui.swing.productos.dialog.DialogActivarProducto;
 
 /**
  * Proporciona métodos para la creación de ventanas para ventas.
@@ -83,10 +81,10 @@ public class WindowVentaFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		VentasFrame frame = new VentasFrame(I18nMessages.VENTA_FRAME_TITULO, UIServiceFactory.getUIVentaService(), new VentasCRUDFrame());
+		VentasCRUDFrame frame = new VentasCRUDFrame(I18nMessages.VENTA_FRAME_TITULO, UIServiceFactory.getUIVentaService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
-		AppContext.getInstance().addVentaListener( frame );
+		AppContext.getInstance().getVentaObserver().addListener( frame );
 		
 		return frame;
 	}

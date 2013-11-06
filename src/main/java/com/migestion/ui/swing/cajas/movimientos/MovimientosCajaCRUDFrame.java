@@ -7,9 +7,9 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
 import com.migestion.ui.swing.cajas.movimientos.panel.UIMovimientoCajaCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -21,20 +21,20 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 30/10/2013
  *
  */
-public class MovimientosCajaCRUDFrame implements ICRUDFrame{
+public class MovimientosCajaCRUDFrame extends CRUDFrame{
 
-	private UIMovimientoCajaCriteriaPanel buscarPanel;
 	
-	public MovimientosCajaCRUDFrame(){
-		buscarPanel = new UIMovimientoCajaCriteriaPanel();
+	public MovimientosCajaCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
 	}
 	
 
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UIMovimientoCajaCriteriaPanel();
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public void initLinks() {
 		
 //		LinkUpdateObject linkUpdate  = LinkClienteFactory.getLinkUpdate();
 //		LinkAddObject linkAdd  = LinkClienteFactory.getLinkAdd();

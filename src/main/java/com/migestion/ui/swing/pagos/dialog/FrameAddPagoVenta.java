@@ -1009,8 +1009,6 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 			element.objectCreated( getPago() );			
 		}
 		
-		AppContext.getInstance().pagoVentaChange( pago );
-		
 	}
 
 	/**

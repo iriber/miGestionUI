@@ -21,7 +21,7 @@ import com.migestion.ui.swing.operaciones.ventas.dialog.FrameAddVenta;
  * @author Bernardo Iribarne
  *
  */
-public class LinkAddVenta extends Link implements LinkAddListener{
+public class LinkAddVenta extends Link {
 
 	//ventana para crear la venta
 	protected FrameAddVenta dialog;
@@ -47,7 +47,7 @@ public class LinkAddVenta extends Link implements LinkAddListener{
 	
 		
 		//el link se hace oyente de la ventana y ante un update aviso a sus propios listeners.
-		dialog.addListener( this );
+//		dialog.addListener( this );
 	}
 	
 	
@@ -69,42 +69,42 @@ public class LinkAddVenta extends Link implements LinkAddListener{
 		getDialog().open();
 		
 	}
-
-	/**
-	 * se agrega un listener para avisarle y darle
-	 * el objeto creado.
-	 * 
-	 * @param listener
-	 */
-	public void addListener(LinkAddListener listener){
-		this.listeners.add(listener);
-	}
-	
-	/*
-	 * se avisa a los listener que el objeto
-	 * fue creado.  
-	 */
-	private void alertListeners(Object objectCreated){
-		Iterator iter = listeners.iterator();
-		while (iter.hasNext()) {
-			//le avisamos a cada listener
-			LinkAddListener element = (LinkAddListener) iter.next();
-			element.objectCreated( objectCreated );			
-		}
-	}
+//
+//	/**
+//	 * se agrega un listener para avisarle y darle
+//	 * el objeto creado.
+//	 * 
+//	 * @param listener
+//	 */
+//	public void addListener(LinkAddListener listener){
+//		this.listeners.add(listener);
+//	}
+//	
+//	/*
+//	 * se avisa a los listener que el objeto
+//	 * fue creado.  
+//	 */
+//	private void alertListeners(Object objectCreated){
+//		Iterator iter = listeners.iterator();
+//		while (iter.hasNext()) {
+//			//le avisamos a cada listener
+//			LinkAddListener element = (LinkAddListener) iter.next();
+//			element.objectCreated( objectCreated );			
+//		}
+//	}
 	
 	protected FrameAddVenta getDialog(){
 		return this.dialog;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.migestion.swing.navigation.listeners.LinkAddListener#objectCreated(java.lang.Object)
-	 */
-	public void objectCreated(Object objectCreated) {
-		
-		this.alertListeners(objectCreated);
-		
-	}
+//
+//	/*
+//	 * (non-Javadoc)
+//	 * @see com.migestion.swing.navigation.listeners.LinkAddListener#objectCreated(java.lang.Object)
+//	 */
+//	public void objectCreated(Object objectCreated) {
+//		
+//		this.alertListeners(objectCreated);
+//		
+//	}
 }

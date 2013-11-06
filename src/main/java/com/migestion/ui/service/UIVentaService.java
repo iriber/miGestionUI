@@ -18,6 +18,7 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UIVentaCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.UIVentaCollection;
@@ -105,6 +106,10 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
+			AppContext.getInstance().getVentaObserver().objectCreated( object );
+			
+			AppContext.getInstance().getProductoObserver().ventaChange( (Venta)object );
+			
 		} catch (ServiceException e) {
 			
 			PersistenceContext.getInstance().rollback();
@@ -127,6 +132,8 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
+			AppContext.getInstance().getVentaObserver().objectUpdated( object );
+			
 		} catch (ServiceException e) {
 
 			PersistenceContext.getInstance().rollback();
@@ -148,6 +155,8 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			ServiceFactory.getVentaService().delete( ((Venta)object).getOid() );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getVentaObserver().objectDeleted( object );
 			
 		} catch (ServiceException e) {
 			
@@ -218,6 +227,8 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			ServiceFactory.getVentaService().anularVenta( venta.getOid() );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getVentaObserver().objectUpdated( venta );
 			
 		} catch (ServiceException e) {
 			

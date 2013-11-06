@@ -57,11 +57,11 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
-				} catch (Exception ex) {
-				}
+//				try {
+//					UIManager.setLookAndFeel(UIManager
+//							.getSystemLookAndFeelClassName());
+//				} catch (Exception ex) {
+//				}
 
 				SwingWorker worker = new SwingWorker() {
 					@Override

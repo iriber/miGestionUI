@@ -75,7 +75,7 @@ public class WindowCajaFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.CAJA_FRAME_TITULO, UIServiceFactory.getUICajaService(), new CajasCRUDFrame());
+		CRUDFrame frame = new CajasCRUDFrame(I18nMessages.CAJA_FRAME_TITULO, UIServiceFactory.getUICajaService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}

@@ -2,10 +2,12 @@ package com.migestion.ui.swing.productos.factories;
 
 import javax.swing.KeyStroke;
 
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkExportCollectionToExcel;
 import com.migestion.swing.navigation.LinkListCollection;
+import com.migestion.swing.navigation.LinkOpenWindow;
 import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.ui.swing.i18n.I18nImages;
@@ -27,6 +29,18 @@ public class LinkProductoFactory {
 	/**
 	 * link para agregar un producto.
 	 */
+	public static Link getLinkAddProducto(){			    
+		//return LinkAddCuenta.getInstance();
+		Link link =  new LinkOpenWindow(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
+		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		return link;
+		
+	}
+
+
+	/**
+	 * link para agregar un producto.
+	 */
 	public static LinkAddObject getLinkAdd(){			    
 		//return LinkAddCuenta.getInstance();
 		LinkAddObject link =  new LinkAddObject(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
@@ -34,7 +48,6 @@ public class LinkProductoFactory {
 		return link;
 		
 	}
-
 	/**
 	 * link para activar un producto.
 	 */

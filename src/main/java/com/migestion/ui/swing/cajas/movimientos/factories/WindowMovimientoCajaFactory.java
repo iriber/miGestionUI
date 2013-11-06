@@ -24,7 +24,7 @@ public class WindowMovimientoCajaFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.MOVIMIENTOS_CAJA, UIServiceFactory.getUIMovimientoCajaService(), new MovimientosCajaCRUDFrame());
+		CRUDFrame frame = new MovimientosCajaCRUDFrame(I18nMessages.MOVIMIENTOS_CAJA, UIServiceFactory.getUIMovimientoCajaService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
 		//AppContext.getInstance().addPagoListener( frame );

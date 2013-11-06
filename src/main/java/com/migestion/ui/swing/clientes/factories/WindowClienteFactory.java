@@ -74,7 +74,7 @@ public class WindowClienteFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.CLIENTE_FRAME_TITULO, UIServiceFactory.getUIClienteService(), new ClientesCRUDFrame());
+		CRUDFrame frame = new ClientesCRUDFrame(I18nMessages.CLIENTE_FRAME_TITULO, UIServiceFactory.getUIClienteService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}

@@ -8,14 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
+import com.migestion.ui.swing.cajas.panel.UICajaCriteriaPanel;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
-import com.migestion.ui.swing.clientes.panel.UIClienteCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -26,28 +26,28 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 04/11/2013
  *
  */
-public class CajasCRUDFrame implements ICRUDFrame{
+public class CajasCRUDFrame extends CRUDFrame{
 
-	private UIClienteCriteriaPanel buscarPanel;
-	
-	public CajasCRUDFrame(){
-		buscarPanel = new UIClienteCriteriaPanel();
+	public CajasCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
+		
 	}
 	
 
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UICajaCriteriaPanel();
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public void initLinks() {
 		
 		LinkUpdateObject linkUpdate  = LinkClienteFactory.getLinkUpdate();
 		LinkAddObject linkAdd  = LinkClienteFactory.getLinkAdd();
 		LinkDeleteObject linkDelete  = LinkClienteFactory.getLinkDelete();
 		
-		frame.setLinkAdd( linkAdd, 0 );
-		frame.setLinkUpdate( linkUpdate, 1 );
-		frame.setLinkDelete( linkDelete, 2 );
+		this.setLinkAdd( linkAdd, 0 );
+		this.setLinkUpdate( linkUpdate, 1 );
+		this.setLinkDelete( linkDelete, 2 );
 		
 		
 		JPopupMenu rightClick = new JPopupMenu();
@@ -55,7 +55,7 @@ public class CajasCRUDFrame implements ICRUDFrame{
 		rightClick.add(linkUpdate);
 		rightClick.add(linkDelete);
 		
-		frame.setRightClickPopup(rightClick);
+		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {

@@ -18,6 +18,7 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UIPagoCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.UIPagoCollection;
@@ -105,6 +106,10 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
+			//TODO avisar pagoobserver
+			AppContext.getInstance().getPagoObserver().objectCreated(object);
+			AppContext.getInstance().getVentaObserver().pagoVentaCreado((Pago)object);
+			
 		} catch (ServiceException e) {
 			
 			PersistenceContext.getInstance().rollback();
@@ -126,6 +131,8 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			ServiceFactory.getPagoService().update( (Pago)object );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getPagoObserver().objectUpdated(object);
 			
 		} catch (ServiceException e) {
 
@@ -149,6 +156,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
+			AppContext.getInstance().getPagoObserver().objectDeleted(object);
 		} catch (ServiceException e) {
 			
 			PersistenceContext.getInstance().rollback();
@@ -218,6 +226,8 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			ServiceFactory.getPagoService().anularPago( pago.getOid() );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getPagoObserver().objectUpdated(pago);
 			
 		} catch (ServiceException e) {
 			

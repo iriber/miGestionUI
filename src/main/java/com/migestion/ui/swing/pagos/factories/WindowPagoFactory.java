@@ -95,8 +95,10 @@ public class WindowPagoFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoService(), new PagosCRUDFrame());
+		PagosCRUDFrame frame = new PagosCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		
+		//AppContext.getInstance().getPagoObserver().addListener( frame );
 		
 		//AppContext.getInstance().addPagoListener( frame );
 		

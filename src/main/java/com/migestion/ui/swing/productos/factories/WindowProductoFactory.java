@@ -30,7 +30,7 @@ import com.migestion.ui.swing.productos.panel.ProductoPanel2;
  */
 public class WindowProductoFactory {
 
-	
+
 	/**
 	 * ventana para agregar un producto.
 	 */
@@ -69,8 +69,11 @@ public class WindowProductoFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		CRUDFrame frame = new CRUDFrame(I18nMessages.PRODUCTO_FRAME_TITULO, UIServiceFactory.getUIProductoService(), new ProductosCRUDFrame());
+		ProductosCRUDFrame frame = new ProductosCRUDFrame(I18nMessages.PRODUCTO_FRAME_TITULO, UIServiceFactory.getUIProductoService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		
+		AppContext.getInstance().getProductoObserver().addListener( frame );
+		
 		return frame;
 	}
 	

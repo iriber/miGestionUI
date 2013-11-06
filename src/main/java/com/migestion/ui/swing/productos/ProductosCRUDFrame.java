@@ -8,12 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Venta;
+import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
+import com.migestion.ui.context.IProductoListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
@@ -26,20 +28,21 @@ import com.migestion.ui.swing.productos.panel.UIProductoCriteriaPanel;
  * @since 10/10/2013
  *
  */
-public class ProductosCRUDFrame implements ICRUDFrame{
+public class ProductosCRUDFrame extends CRUDFrame implements IProductoListener{
 
-	private UIProductoCriteriaPanel buscarPanel;
 	
-	public ProductosCRUDFrame(){
-		buscarPanel = new UIProductoCriteriaPanel();
+	public ProductosCRUDFrame(String title, IControllerList controller){
+		
+		super(title, controller);
+		
 	}
 	
 
-	public ICriteriaPanel getUICriteriaPanel() {
-		return buscarPanel;
+	public ICriteriaPanel buildUICriteriaPanel() {
+		return new UIProductoCriteriaPanel();
 	}
 
-	public void setLinks(CRUDFrame frame) {
+	public void initLinks() {
 		
 		LinkUpdateObject linkUpdate  = LinkProductoFactory.getLinkUpdate();
 		LinkAddObject linkAdd  = LinkProductoFactory.getLinkAdd();
@@ -47,18 +50,18 @@ public class ProductosCRUDFrame implements ICRUDFrame{
 		LinkUpdateObject linkActivar = LinkProductoFactory.getLinkActivarProducto();
 		LinkUpdateObject linkDesactivar = LinkProductoFactory.getLinkDesactivarProducto();
 		
-		frame.setLinkAdd( linkAdd, 0 );
-		frame.setLinkUpdate( linkUpdate, 1 );
-		frame.setLinkDelete( linkDelete, 2 );
+		this.setLinkAdd( linkAdd, 0 );
+		this.setLinkUpdate( linkUpdate, 1 );
+		this.setLinkDelete( linkDelete, 2 );
 		
 		
-		frame.addElementsListener(linkActivar);
-		linkActivar.addListener(frame);
-		frame.addLinkToDefaultMenu( linkActivar, 3 );
+		this.addElementsListener(linkActivar);
+		linkActivar.addListener(this);
+		this.addLinkToDefaultMenu( linkActivar, 3 );
 		
-		frame.addElementsListener(linkDesactivar);
-		linkDesactivar.addListener(frame);
-		frame.addLinkToDefaultMenu( linkDesactivar, 4 );
+		this.addElementsListener(linkDesactivar);
+		linkDesactivar.addListener(this);
+		this.addLinkToDefaultMenu( linkDesactivar, 4 );
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		
@@ -67,7 +70,7 @@ public class ProductosCRUDFrame implements ICRUDFrame{
 		rightClick.add(linkUpdate);
 		rightClick.add(linkDelete);
 		
-		frame.setRightClickPopup(rightClick);
+		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {
@@ -87,6 +90,11 @@ public class ProductosCRUDFrame implements ICRUDFrame{
 		lblFooter.setFont(new Font("Arial",1,11));
 		lblFooter.setHorizontalAlignment(SwingConstants.RIGHT);		
 		return lblFooter;
+	}
+
+
+	public void ventaChange(Venta venta) {
+		refreshTable();
 	}
 
 }

@@ -58,6 +58,10 @@ public class AppContext {
 	 */
 	private VentaObserver ventaObserver;
 
+	private PagoObserver pagoObserver;
+	
+	private ProductoObserver productoObserver;
+	
 //	/**
 //	 * observer para cliente.
 //	 */
@@ -93,6 +97,9 @@ public class AppContext {
 	private AppContext(){
 		//inicializamos los listeners
 		ventaObserver = new VentaObserver();
+		pagoObserver = new PagoObserver();
+		productoObserver = new ProductoObserver();
+		
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
 
@@ -108,6 +115,14 @@ public class AppContext {
 		
 	}
 	
+	public ProductoObserver getProductoObserver() {
+		return productoObserver;
+	}
+
+	public PagoObserver getPagoObserver() {
+		return pagoObserver;
+	}
+
 	public static AppContext getInstance(){
 		if(instance==null)
 			instance = new AppContext();
@@ -126,15 +141,7 @@ public class AppContext {
 //		}
 //	}
 //	
-	/**
-	 * se agrega un listener para ventas.
-	 * @param listener
-	 */
-	public void addVentaListener(IVentaListener listener  ){
-		
-		ventaObserver.addListener( listener );
-		
-	}
+
 
 	/**
 	 * @return the mainContainer
@@ -228,11 +235,10 @@ public class AppContext {
 		this.conceptoVenta = conceptoVenta;
 	}
 
-	public void pagoVentaChange(Pago pago) {
-		
-		//le aviso a quienes escuchen cambios sobre pagos y sobre ventas.
-		ventaObserver.objectUpdated( pago );
+	public VentaObserver getVentaObserver() {
+		return ventaObserver;
 	}
+
 
 
 }
