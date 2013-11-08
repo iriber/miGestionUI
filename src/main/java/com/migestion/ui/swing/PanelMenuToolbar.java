@@ -48,7 +48,7 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 	public PanelMenuToolbar() {
 		initComponents();
 
-		initMenuInicio();
+		//initMenuInicio();
 
 		loadCombos();
 	}
@@ -238,98 +238,73 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		panelCombos = new javax.swing.JPanel();
-		jLabel1 = new javax.swing.JLabel();
-		cmbCaja = new javax.swing.JComboBox();
-		jLabel2 = new javax.swing.JLabel();
-		cmbVendedor = new javax.swing.JComboBox();
-		jLabel3 = new javax.swing.JLabel();
-		cmbSucursal = new javax.swing.JComboBox();
-		panelInicio = new javax.swing.JPanel();
-		btnInicio = new javax.swing.JButton();
+        panelCombos = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        cmbCaja = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        cmbVendedor = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        cmbSucursal = new javax.swing.JComboBox();
+        panelInicio = new javax.swing.JPanel();
 
-		setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout());
 
-		panelCombos.setLayout(new java.awt.GridBagLayout());
+        panelCombos.setLayout(new java.awt.GridBagLayout());
 
-		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		jLabel1.setText("Caja");
-		jLabel1.setPreferredSize(new java.awt.Dimension(50, 18));
-		panelCombos.add(jLabel1, new java.awt.GridBagConstraints());
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Caja");
+        jLabel1.setPreferredSize(new java.awt.Dimension(50, 18));
+        panelCombos.add(jLabel1, new java.awt.GridBagConstraints());
 
-		cmbCaja.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
-		cmbCaja.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-			public void propertyChange(java.beans.PropertyChangeEvent evt) {
-				cmbCajaPropertyChange(evt);
-			}
-		});
-		panelCombos.add(cmbCaja, new java.awt.GridBagConstraints());
+        cmbCaja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCaja.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbCajaPropertyChange(evt);
+            }
+        });
+        panelCombos.add(cmbCaja, new java.awt.GridBagConstraints());
 
-		jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		jLabel2.setText("Vendedor");
-		jLabel2.setPreferredSize(new java.awt.Dimension(90, 18));
-		panelCombos.add(jLabel2, new java.awt.GridBagConstraints());
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Vendedor");
+        jLabel2.setPreferredSize(new java.awt.Dimension(90, 18));
+        panelCombos.add(jLabel2, new java.awt.GridBagConstraints());
 
-		cmbVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
-		cmbVendedor.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				cmbVendedorActionPerformed(evt);
-			}
-		});
-		cmbVendedor
-				.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-					public void propertyChange(
-							java.beans.PropertyChangeEvent evt) {
-						cmbVendedorPropertyChange(evt);
-					}
-				});
-		panelCombos.add(cmbVendedor, new java.awt.GridBagConstraints());
+        cmbVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVendedorActionPerformed(evt);
+            }
+        });
+        cmbVendedor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbVendedorPropertyChange(evt);
+            }
+        });
+        panelCombos.add(cmbVendedor, new java.awt.GridBagConstraints());
 
-		jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-		jLabel3.setText("Sucursal");
-		jLabel3.setPreferredSize(new java.awt.Dimension(80, 18));
-		panelCombos.add(jLabel3, new java.awt.GridBagConstraints());
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Sucursal");
+        jLabel3.setPreferredSize(new java.awt.Dimension(80, 18));
+        panelCombos.add(jLabel3, new java.awt.GridBagConstraints());
 
-		cmbSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Item 1", "Item 2", "Item 3", "Item 4" }));
-		cmbSucursal
-				.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-					public void propertyChange(
-							java.beans.PropertyChangeEvent evt) {
-						cmbSucursalPropertyChange(evt);
-					}
-				});
-		panelCombos.add(cmbSucursal, new java.awt.GridBagConstraints());
+        cmbSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSucursal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cmbSucursalPropertyChange(evt);
+            }
+        });
+        panelCombos.add(cmbSucursal, new java.awt.GridBagConstraints());
 
-		add(panelCombos, java.awt.BorderLayout.LINE_END);
+        add(panelCombos, java.awt.BorderLayout.LINE_END);
 
-		panelInicio.setLayout(new java.awt.BorderLayout());
+        panelInicio.setLayout(new java.awt.BorderLayout());
+        add(panelInicio, java.awt.BorderLayout.LINE_START);
+    }// </editor-fold>//GEN-END:initComponents
 
-		btnInicio.setMnemonic(java.awt.event.KeyEvent.VK_I);
-		btnInicio.setText("Inicio");
-		btnInicio.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnInicioActionPerformed(evt);
-			}
-		});
-		panelInicio.add(btnInicio, java.awt.BorderLayout.CENTER);
-
-		add(panelInicio, java.awt.BorderLayout.LINE_START);
-	}// </editor-fold>//GEN-END:initComponents
-
-	private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInicioActionPerformed
-		// TODO add your handling code here:
-
-		JPopupMenu popup = getMenuInicioPopup();
-		popup.show(btnInicio, btnInicio.getX(), btnInicio.getY());
-
-	}// GEN-LAST:event_btnInicioActionPerformed
-
+	
 	private void cmbCajaPropertyChange(java.beans.PropertyChangeEvent evt) {// GEN-FIRST:event_cmbCajaPropertyChange
 		// TODO add your handling code here:
 		AppContext.getInstance().setCajaDefault(
@@ -350,17 +325,16 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 				(Sucursal) cmbSucursal.getSelectedItem());
 	}// GEN-LAST:event_cmbSucursalPropertyChange
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnInicio;
-	private javax.swing.JComboBox cmbCaja;
-	private javax.swing.JComboBox cmbSucursal;
-	private javax.swing.JComboBox cmbVendedor;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JPanel panelCombos;
-	private javax.swing.JPanel panelInicio;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbCaja;
+    private javax.swing.JComboBox cmbSucursal;
+    private javax.swing.JComboBox cmbVendedor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel panelCombos;
+    private javax.swing.JPanel panelInicio;
+    // End of variables declaration//GEN-END:variables
 
 	private JPopupMenu menuInicioPopup;
 

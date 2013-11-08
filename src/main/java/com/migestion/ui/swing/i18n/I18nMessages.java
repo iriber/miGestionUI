@@ -26,7 +26,7 @@ public class I18nMessages implements I18nLocale{
 
 	private static ResourceBundle properties = ResourceBundle.getBundle( I18nMessages.class.getName() );
 	
-	public static String EMPRESA_NOMBRE =properties.getString("empresa");
+	public static String EMPRESA_NOMBRE =locale("empresa");
 	public static String TITULO_MAIN = properties.getString("titulo");
 	public static String FRAME_MENUADMIN = properties.getString("frame.menuadmin");
 	
@@ -372,7 +372,9 @@ public class I18nMessages implements I18nLocale{
 	public static String DETALLE_FORMA_PAGO_OBSERVACIONES = properties.getString("pago.detalleFormaPago.observaciones");
 	public static String DETALLE_FORMA_PAGO_FORMAPAGO = properties.getString("pago.detalleFormaPago.formaPago");
 	
+
 	public static String CHEQUES = properties.getString("cheques");
+	public static String CHEQUE_CODIGO = properties.getString("cheque.codigo");
 	public static String CHEQUE_BANCO = properties.getString("cheque.banco");
 	public static String CHEQUE_MONTO = properties.getString("cheque.monto");
 	public static String CHEQUE_FECHA_VENCIMIENTO = properties.getString("cheque.fechaVencimiento");
@@ -398,6 +400,16 @@ public class I18nMessages implements I18nLocale{
 	public static String DEPOSITO_CUENTA_BANCARIA = properties.getString("deposito.cuentaBancaria");
 	
 
+	/**
+	 * cheques
+	 */
+	public static String CHEQUE_FRAME_TITULO = properties.getString("cheque.frame.titulo");
+	public static String CHEQUE_FRAME_MENUADMIN = properties.getString("cheque.frame.menuadmin");
+	
+	public static String CHEQUE_DIALOG_VER_TITULO = properties.getString("cheque.dialog.ver.titulo");
+	public static String CHEQUE_ACCION_VER = properties.getString("cheque.accion.ver");
+	public static String CHEQUE_ACCION_LISTAR = properties.getString("cheque.accion.listar");
+	
 	/**
 	 * cajas
 	 */		
@@ -465,6 +477,33 @@ public class I18nMessages implements I18nLocale{
 	public static String MOVIMIENTO_CUENTA_HABER = properties.getString("movimientoCuenta.haber");
 	public static String MOVIMIENTO_CUENTA_SALDO = properties.getString("movimientoCuenta.saldo");
 	
+
+	/**
+	 * balances
+	 */		
+	public static String BALANCE_DIARIO_DIALOG_VER_TITULO = properties.getString("balance.diario.dialog.ver.titulo");
+	public static String BALANCE_DIARIO_ACCION_CONSULTAR = properties.getString("balance.diario.accion.consultar");
+
+
+	/**
+	 * notas de crédito
+	 */
+	public static String NOTAS_CREDITO = properties.getString("notasCredito");
+	public static String NOTA_CREDITO_CODIGO = properties.getString("notaCredito.codigo");
+	public static String NOTA_CREDITO_FECHA = properties.getString("notaCredito.fecha");
+	public static String NOTA_CREDITO_MONTO = properties.getString("notaCredito.monto");
+	public static String NOTA_CREDITO_FECHA_VENCIMIENTO = properties.getString("notaCredito.fechaVencimiento");
+	public static String NOTA_CREDITO_NUMERO = properties.getString("notaCredito.numero");
+	public static String NOTA_CREDITO_OBSERVACIONES = properties.getString("notaCredito.observaciones");
+	public static String NOTA_CREDITO_CLIENTE = properties.getString("notaCredito.cliente");
+	public static String NOTA_CREDITO_SUCURSAL = properties.getString("notaCredito.sucursal");
+	public static String NOTA_CREDITO_VENDEDOR = properties.getString("notaCredito.vendedor");
 	
+	public static String NOTA_CREDITO_FRAME_TITULO = properties.getString("notaCredito.frame.titulo");
+	public static String NOTA_CREDITO_FRAME_MENUADMIN = properties.getString("notaCredito.frame.menuadmin");
+	
+	public static String NOTA_CREDITO_DIALOG_VER_TITULO = properties.getString("notaCredito.dialog.ver.titulo");
+	public static String NOTA_CREDITO_ACCION_VER = properties.getString("notaCredito.accion.ver");
+	public static String NOTA_CREDITO_ACCION_LISTAR = properties.getString("notaCredito.accion.listar");
 
 }

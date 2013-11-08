@@ -76,8 +76,6 @@ public class UIConceptoMovimientoCollection extends UICollection{
     }
 
     /**
-     * redefinimos para que no haga nada, ya que
-     * las cuentas se borran l�gicamente.
      * @param fila
      */
     public void deleteElement (Object element){

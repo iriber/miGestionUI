@@ -96,4 +96,28 @@ public class UIServiceFactory {
 	public static UIMovimientoCajaService getUIMovimientoCajaService(){
 		return UIMovimientoCajaService.getInstance();
 	}
+	
+	/**
+	 * servicio para balances
+	 * @return
+	 */
+	public static UIBalanceService getUIBalanceService(){
+		return UIBalanceService.getInstance();
+	}
+	
+	/**
+	 * servicio para cheques
+	 * @return
+	 */
+	public static UIChequeService getUIChequeService(){
+		return UIChequeService.getInstance();
+	}
+	
+	/**
+	 * servicio para notas de crédito
+	 * @return
+	 */
+	public static UINotaCreditoService getUINotaCreditoService(){
+		return UINotaCreditoService.getInstance();
+	}
 }

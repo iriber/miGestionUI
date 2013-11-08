@@ -99,7 +99,7 @@ public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
 	}
 
 	private void clearInputs() {
-		txtMonto.setText("");
+		txtMonto.setValue(null);
 		txtNumero.setText("");
 		txtBanco.setText("");
 		txtObservaciones.setText("");
@@ -188,7 +188,7 @@ public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
 
         lblMonto.setText("Monto");
 
-        txtMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         txtMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblDestino.setText("Destino");
@@ -220,12 +220,9 @@ public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
                             .addComponent(txtNumero)
                             .addComponent(scrollObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                             .addComponent(txtTitular)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtMonto))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(cmbDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmbDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMonto)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,7 +297,7 @@ public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
             detalle.setNumero( txtNumero.getText() );
             detalle.setTitular( txtTitular.getText() );
             detalle.setFechaVencimiento( pickerFechaVencimiento.getDate() );
-            detalle.setMonto( Float.parseFloat( txtMonto.getText() ) );
+            detalle.setMonto( ((Number)txtMonto.getValue()).floatValue() );
             detalle.setDestino( (CuentaBancaria)cmbDestino.getSelectedItem() );
             detalle.setObservaciones( txtObservaciones.getText() );
             

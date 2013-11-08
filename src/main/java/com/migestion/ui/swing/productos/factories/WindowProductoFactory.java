@@ -46,7 +46,7 @@ public class WindowProductoFactory {
 	 */
 	public static DialogUpdateObject getWindowUpdate(){			    
 
-		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PRODUCTO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel2() );
+		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PRODUCTO_DIALOG_MODIFICAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel2() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 		return dialog;
 
@@ -72,6 +72,7 @@ public class WindowProductoFactory {
 		ProductosCRUDFrame frame = new ProductosCRUDFrame(I18nMessages.PRODUCTO_FRAME_TITULO, UIServiceFactory.getUIProductoService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
+		//escuchará cambios sobre los productos.
 		AppContext.getInstance().getProductoObserver().addListener( frame );
 		
 		return frame;

@@ -103,8 +103,20 @@ public class I18nImages {
 			+ properties.getString("cuentasbancarias.small.icon") );
   
   
+  //cheques
+  public static URL CHEQUES_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("facturas.icon") );
+		
+  public static URL CHEQUES_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("facturas.small.icon") );
   
   
+  //notas de crédito
+  public static URL NOTAS_CREDITO_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("facturas.icon") );
+		
+  public static URL NOTAS_CREDITO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("facturas.small.icon") );
   
   
   
@@ -139,6 +151,10 @@ public class I18nImages {
 		
   public static URL FORMAS_PAGO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
 			+ properties.getString("formaspago.small.icon") );
+  
+  
+  //balances
+  public static URL BALANCE_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("balance.icon") );
   
   //frame gastos.
   /*

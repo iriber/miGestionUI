@@ -10,8 +10,11 @@ import javax.swing.SwingConstants;
 
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
+import com.migestion.swing.navigation.LinkOpenDialog;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
@@ -44,24 +47,37 @@ public class ProductosCRUDFrame extends CRUDFrame implements IProductoListener{
 
 	public void initLinks() {
 		
-		LinkUpdateObject linkUpdate  = LinkProductoFactory.getLinkUpdate();
-		LinkAddObject linkAdd  = LinkProductoFactory.getLinkAdd();
-		LinkDeleteObject linkDelete  = LinkProductoFactory.getLinkDelete();
-		LinkUpdateObject linkActivar = LinkProductoFactory.getLinkActivarProducto();
-		LinkUpdateObject linkDesactivar = LinkProductoFactory.getLinkDesactivarProducto();
+		//LinkUpdateObject linkUpdate  = LinkProductoFactory.getLinkUpdate();
+		//LinkAddObject linkAdd  = LinkProductoFactory.getLinkAdd();
+//		LinkDeleteObject linkDelete  = LinkProductoFactory.getLinkDelete();
+//		LinkUpdateObject linkActivar = LinkProductoFactory.getLinkActivarProducto();
+//		LinkUpdateObject linkDesactivar = LinkProductoFactory.getLinkDesactivarProducto();
 		
-		this.setLinkAdd( linkAdd, 0 );
-		this.setLinkUpdate( linkUpdate, 1 );
-		this.setLinkDelete( linkDelete, 2 );
+		Link linkAdd  = LinkProductoFactory.getLinkAdd();
 		
+		LinkOpenDialogWithSelected linkUpdate  = LinkProductoFactory.getLinkUpdate();
+		this.addElementsListener(linkUpdate);
 		
+		LinkOpenDialogWithSelected linkActivar = LinkProductoFactory.getLinkActivarProducto();
 		this.addElementsListener(linkActivar);
-		linkActivar.addListener(this);
-		this.addLinkToDefaultMenu( linkActivar, 3 );
-		
+
+		LinkOpenDialogWithSelected linkDesactivar = LinkProductoFactory.getLinkDesactivarProducto();
 		this.addElementsListener(linkDesactivar);
-		linkDesactivar.addListener(this);
-		this.addLinkToDefaultMenu( linkDesactivar, 4 );
+		
+		LinkOpenDialogWithSelected linkDelete  = LinkProductoFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
+		
+		//this.setLinkAdd( linkAdd, 0 );
+		//this.setLinkUpdate( linkUpdate, 1 );
+		
+		this.addLinkToDefaultMenu( linkAdd, 0 );
+		this.addLinkToDefaultMenu( linkUpdate, 1 );
+		this.addLinkToDefaultMenu( linkActivar, 2 );
+		this.addLinkToDefaultMenu( linkDesactivar, 3 );
+		this.addLinkToDefaultMenu( linkDelete, 4 );
+		
+		
+		
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		
@@ -94,6 +110,7 @@ public class ProductosCRUDFrame extends CRUDFrame implements IProductoListener{
 
 
 	public void ventaChange(Venta venta) {
+		if( isVisible() )
 		refreshTable();
 	}
 

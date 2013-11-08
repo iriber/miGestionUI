@@ -46,14 +46,9 @@
                           <Component id="txtNumero" alignment="0" max="32767" attributes="0"/>
                           <Component id="scrollObservaciones" alignment="0" pref="360" max="32767" attributes="0"/>
                           <Component id="txtTitular" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="pickerFechaVencimiento" max="32767" attributes="0"/>
-                                  <Component id="txtMonto" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="cmbDestino" max="32767" attributes="0"/>
+                          <Component id="pickerFechaVencimiento" max="32767" attributes="0"/>
+                          <Component id="txtMonto" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -209,7 +204,7 @@
     <Component class="javax.swing.JFormattedTextField" name="txtMonto">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="0" type="0"/>
+          <Format format="#0.00" subtype="-1" type="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
       </Properties>

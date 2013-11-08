@@ -2,14 +2,19 @@ package com.migestion.ui.swing.productos.factories;
 
 import javax.swing.KeyStroke;
 
+import com.migestion.swing.i18n.links.LinkImagesBundle;
+import com.migestion.swing.i18n.links.LinkLabelsBundle;
 import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkExportCollectionToExcel;
 import com.migestion.swing.navigation.LinkListCollection;
-import com.migestion.swing.navigation.LinkOpenWindow;
+import com.migestion.swing.navigation.LinkOpenDialog;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.LinkUpdateObject;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
+import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.links.LinkActivarProducto;
@@ -29,60 +34,126 @@ public class LinkProductoFactory {
 	/**
 	 * link para agregar un producto.
 	 */
-	public static Link getLinkAddProducto(){			    
+	public static Link getLinkAdd(){			    
 		//return LinkAddCuenta.getInstance();
-		Link link =  new LinkOpenWindow(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		Link link =  new LinkOpenDialog(I18nMessages.PRODUCTO_ACCION_AGREGAR,LinkImagesBundle.link_Add, LinkLabelsBundle.link_Add_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowOpen getDialog() {
+				
+				return WindowProductoFactory.getWindowAdd();
+			}
+			
+		};
 		return link;
 		
 	}
 
 
 	/**
-	 * link para agregar un producto.
+	 * link para modificar un producto.
 	 */
-	public static LinkAddObject getLinkAdd(){			    
+	public static LinkOpenDialogWithSelected getLinkUpdate(){			    
 		//return LinkAddCuenta.getInstance();
-		LinkAddObject link =  new LinkAddObject(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PRODUCTO_ACCION_MODIFICAR,LinkImagesBundle.link_Update, LinkLabelsBundle.link_Update_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowProductoFactory.getWindowUpdate();
+			}
+			
+		};
 		return link;
 		
 	}
+	
 	/**
 	 * link para activar un producto.
 	 */
-	public static LinkUpdateObject getLinkActivarProducto(){			    
-		LinkUpdateObject link = new LinkActivarProducto(WindowProductoFactory.getWindowActivar(), I18nMessages.PRODUCTO_ACCION_ACTIVAR);
+	public static LinkOpenDialogWithSelected getLinkActivarProducto(){			    
+		LinkOpenDialogWithSelected link = new LinkActivarProducto();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}	
 
 	/**
 	 * link para desactivar un producto.
 	 */
-	public static LinkUpdateObject getLinkDesactivarProducto(){			    
-		LinkUpdateObject link = new LinkDesactivarProducto(WindowProductoFactory.getWindowDesactivar(), I18nMessages.PRODUCTO_ACCION_DESACTIVAR);
+	public static LinkOpenDialogWithSelected getLinkDesactivarProducto(){			    
+		LinkOpenDialogWithSelected link = new LinkDesactivarProducto();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}	
 
-	/**
-	 * link para modificar un producto.
-	 */
-	public static LinkUpdateObject getLinkUpdate(){			    
-		LinkUpdateObject link = new LinkUpdateObject(WindowProductoFactory.getWindowUpdate(), I18nMessages.PRODUCTO_ACCION_MODIFICAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
-		return link;
-	}	
-	
+
 	/**
 	 * link para eliminar un producto.
 	 */
-	public static LinkDeleteObject getLinkDelete(){			    
-		LinkDeleteObject link =  new LinkDeleteObject(WindowProductoFactory.getWindowDelete(), I18nMessages.PRODUCTO_ACCION_ELIMINAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+	public static LinkOpenDialogWithSelected getLinkDelete(){			    
+		
+		
+		//return LinkAddCuenta.getInstance();
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PRODUCTO_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowProductoFactory.getWindowDelete();
+			}
+			
+		};
 		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
 		return link;
+		
 	}
 	
+//
+//	/**
+//	 * link para agregar un producto.
+//	 */
+//	public static LinkAddObject getLinkAdd(){			    
+//		//return LinkAddCuenta.getInstance();
+//		LinkAddObject link =  new LinkAddObject(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
+//		//link.addListener(AppContext.getInstance().getCuentaObserver());
+//		return link;
+//		
+//	}
+//	/**
+//	 * link para activar un producto.
+//	 */
+//	public static LinkUpdateObject getLinkActivarProducto(){			    
+//		LinkUpdateObject link = new LinkActivarProducto(WindowProductoFactory.getWindowActivar(), I18nMessages.PRODUCTO_ACCION_ACTIVAR);
+//		return link;
+//	}	
+//
+//	/**
+//	 * link para desactivar un producto.
+//	 */
+//	public static LinkUpdateObject getLinkDesactivarProducto(){			    
+//		LinkUpdateObject link = new LinkDesactivarProducto(WindowProductoFactory.getWindowDesactivar(), I18nMessages.PRODUCTO_ACCION_DESACTIVAR);
+//		return link;
+//	}	
+//
+//	/**
+//	 * link para modificar un producto.
+//	 */
+//	public static LinkUpdateObject getLinkUpdate(){			    
+//		LinkUpdateObject link = new LinkUpdateObject(WindowProductoFactory.getWindowUpdate(), I18nMessages.PRODUCTO_ACCION_MODIFICAR);
+//		//link.addListener(AppContext.getInstance().getCuentaObserver());
+//		return link;
+//	}	
+	
+//	/**
+//	 * link para eliminar un producto.
+//	 */
+//	public static LinkDeleteObject getLinkDelete(){			    
+//		LinkDeleteObject link =  new LinkDeleteObject(WindowProductoFactory.getWindowDelete(), I18nMessages.PRODUCTO_ACCION_ELIMINAR);
+//		//link.addListener(AppContext.getInstance().getCuentaObserver());
+//		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+//		return link;
+//	}
+//	
 	
 	/**
 	 * link para listar productos.

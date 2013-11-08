@@ -1,23 +1,19 @@
 package com.migestion.ui.swing.productos;
 
 
-import java.text.DecimalFormat;
 import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import com.migestion.model.CategoriaProducto;
+import com.migestion.model.NotaCredito;
 import com.migestion.model.Producto;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
-import com.migestion.swing.utils.FormatUtils;
 import com.migestion.swing.view.dialogs.DialogMessage;
-import com.migestion.swing.view.editors.FloatEditor;
-import com.migestion.swing.view.editors.IntegerEditor;
-import com.migestion.swing.view.renderers.MontoTableRenderer;
+import com.migestion.ui.AppUtils;
 import com.migestion.ui.service.UIServiceFactory;
-import com.migestion.ui.swing.editors.CategoriaProductoEditor;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.i18n.utils.EnumUtils;
 
@@ -77,6 +73,21 @@ public class UIProductoCollection extends UICollection{
         	return I18nMessages.PRODUCTO_CATEGORIA;
 		default:
 			return "";
+        }
+    }
+
+	public Object getValueAtShow(int rowIndex, int columnIndex) {
+        
+		// Se obtiene el dato de la fila indicada
+		Producto producto = (Producto)(getElements().get(rowIndex));
+
+        // Se obtiene el campo apropiado según el valor de columnIndex
+        switch (columnIndex)
+        {
+        	case 2:
+        		return AppUtils.formatMoneda( producto.getPrecio() );
+            default:
+                return getValueAt(rowIndex, columnIndex);
         }
     }
 
@@ -258,17 +269,8 @@ public class UIProductoCollection extends UICollection{
     }
     
     public void initCellEditorsRenderers(JTable table){
-		
-		table.setDefaultEditor( Integer.class,  new IntegerEditor(0, 100000));
-		table.setDefaultEditor( Float.class,  new FloatEditor(0,null, new DecimalFormat( I18nMessages.FORMATO_MONTO )));
-		table.setDefaultEditor( CategoriaProducto.class,  new CategoriaProductoEditor());
+		super.initCellEditorsRenderers(table);
+		//table.setDefaultEditor( CategoriaProducto.class,  new CategoriaProductoEditor());
 	}
     
-    public void initCellRenderers(JTable table){
-		
-		super.initCellRenderers(table);
-		
-		table.setDefaultRenderer( Float.class, new MontoTableRenderer(I18nMessages.FORMATO_MONTO) );
-				
-	}   
 }

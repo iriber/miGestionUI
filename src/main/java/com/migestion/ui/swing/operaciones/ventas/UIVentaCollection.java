@@ -1,11 +1,9 @@
 package com.migestion.ui.swing.operaciones.ventas;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
@@ -13,11 +11,7 @@ import com.migestion.model.EstadisticaVenta;
 import com.migestion.model.Venta;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.model.UIFooterCollection;
-import com.migestion.swing.utils.FormatUtils;
-import com.migestion.swing.view.editors.FloatEditor;
-import com.migestion.swing.view.editors.IntegerEditor;
 import com.migestion.ui.AppUtils;
-import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.renderers.VentaTableRenderer;
 

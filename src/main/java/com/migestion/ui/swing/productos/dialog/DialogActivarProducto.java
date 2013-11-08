@@ -5,9 +5,11 @@ import java.awt.Container;
 
 import com.migestion.model.Producto;
 import com.migestion.swing.controller.exception.ControllerException;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowUpdate;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.dialogs.DialogOkCancel;
+import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.productos.panel.ProductoPanel;
 import com.migestion.ui.swing.productos.panel.ProductoPanel2;
@@ -19,7 +21,7 @@ import com.migestion.ui.swing.productos.panel.ProductoPanel2;
  * @since 11/10/2013
  * 
  */
-public class DialogActivarProducto extends DialogOkCancel implements ILinkWindowUpdate{
+public class DialogActivarProducto extends DialogOkCancel implements ILinkWindowObjectOpen{
 
 	//producto que será activado
 	protected Producto producto = null;
@@ -104,6 +106,11 @@ public class DialogActivarProducto extends DialogOkCancel implements ILinkWindow
 
 	public Object getObjectUpdated() {
 		return this.producto;
+	}
+
+	public void addToJFrameContainer(JFrameContainer container) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

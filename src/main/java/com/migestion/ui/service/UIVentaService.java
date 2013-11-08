@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
+import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.EstadisticaVenta;
 import com.migestion.model.Venta;
 import com.migestion.services.ServiceFactory;
@@ -112,9 +113,16 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
 			throw new ControllerException( e.getMessage() );
 			
+		} catch (PersistenceContextException e) {
+			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -135,9 +143,16 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			AppContext.getInstance().getVentaObserver().objectUpdated( object );
 			
 		} catch (ServiceException e) {
-
-			PersistenceContext.getInstance().rollback();
 			
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 		
@@ -160,8 +175,15 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
 			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 	}
@@ -232,8 +254,15 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
 			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 	}

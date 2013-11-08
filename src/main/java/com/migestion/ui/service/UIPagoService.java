@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
+import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.EstadisticaPago;
 import com.migestion.model.Pago;
 import com.migestion.services.ServiceFactory;
@@ -112,9 +113,16 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
 			throw new ControllerException( e.getMessage() );
 			
+		} catch (PersistenceContextException e) {
+			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -135,9 +143,16 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			AppContext.getInstance().getPagoObserver().objectUpdated(object);
 			
 		} catch (ServiceException e) {
-
-			PersistenceContext.getInstance().rollback();
 			
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 		
@@ -157,10 +172,18 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			PersistenceContext.getInstance().commit();
 			
 			AppContext.getInstance().getPagoObserver().objectDeleted(object);
+
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
 			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 	}
@@ -231,8 +254,15 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
 			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 	}

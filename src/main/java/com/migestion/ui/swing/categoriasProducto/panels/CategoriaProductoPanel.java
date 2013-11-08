@@ -131,9 +131,7 @@ public class CategoriaProductoPanel extends JPanel implements ISkinForm,Serializ
 		findPadre = FinderFactory.getFindCategoriaProducto( new LinkFindObjectListener() {
 			
 			public void objectFound(Object objectFinded) {
-				if( objectFinded != null ){
-					categoriaProducto.setPadre((CategoriaProducto)objectFinded);
-				}
+				categoriaProducto.setPadre((CategoriaProducto)objectFinded);
 			}
 		});
 		findPadre.setFont(new Font("Verdana", Font.PLAIN, 14));
@@ -157,7 +155,9 @@ public class CategoriaProductoPanel extends JPanel implements ISkinForm,Serializ
 
 
 	private void initCategoriaProducto() {
+		
 		this.categoriaProducto = new CategoriaProducto();
+		
 	}
 
 
@@ -195,6 +195,7 @@ public class CategoriaProductoPanel extends JPanel implements ISkinForm,Serializ
 	}
 
 	public Container getInputPanel() {
+	
 		return this;
 	}
 
@@ -227,6 +228,7 @@ public class CategoriaProductoPanel extends JPanel implements ISkinForm,Serializ
 	}
 
 	public void clearInputs() {
+		initCategoriaProducto();
 		txtNombre.setText( "" );
 		txtDescripcion.setText( "" );
 		findPadre.objectFound(null);

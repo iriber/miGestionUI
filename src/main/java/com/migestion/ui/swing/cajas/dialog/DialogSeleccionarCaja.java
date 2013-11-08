@@ -470,7 +470,7 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
 			caja.setSucursal( (Sucursal) cmbSucursal.getSelectedItem() );
 			caja.setNumero( txtNumero.getText() );
 			caja.setFecha( pickerDate.getDate() );
-			caja.setSaldoInicial( Float.valueOf(txtSaldoInicial.getText()) );
+			caja.setSaldoInicial( ((Number)txtSaldoInicial.getValue()).floatValue() );
 			
 			UIServiceFactory.getUICajaService().addObject(caja);
 			

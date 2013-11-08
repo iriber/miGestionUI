@@ -3,15 +3,12 @@ package com.migestion.ui.swing.clientes;
 
 import java.util.Vector;
 
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import com.migestion.model.Cliente;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.view.dialogs.DialogMessage;
-import com.migestion.swing.view.editors.FloatEditor;
-import com.migestion.swing.view.editors.IntegerEditor;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -51,9 +51,9 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtBanco" max="32767" attributes="0"/>
                           <Component id="txtNumero" max="32767" attributes="0"/>
-                          <Component id="pickerFechaVencimiento" min="-2" max="-2" attributes="0"/>
                           <Component id="scrollObservaciones" pref="311" max="32767" attributes="0"/>
                           <Component id="txtMonto" max="32767" attributes="0"/>
+                          <Component id="pickerFechaVencimiento" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -171,6 +171,12 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JFormattedTextField" name="txtMonto">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.00" subtype="-1" type="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

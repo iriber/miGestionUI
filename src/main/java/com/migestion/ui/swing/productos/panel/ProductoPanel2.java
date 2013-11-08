@@ -8,8 +8,6 @@ package com.migestion.ui.swing.productos.panel;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +34,6 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.swing.finder.FinderFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.skin.ISkinForm;
-import com.migestion.ui.swing.skin.SkinDecorator;
 
 /**
  *
@@ -54,6 +51,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
      * Creates new form ProductoPanel2
      */
     public ProductoPanel2() {
+    	
     	initProducto();
     	
         initComponents();
@@ -120,31 +118,31 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrecio.setText("Precio");
 
-        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblIva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIva.setText("Iva");
 
-        txtIva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtIva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         txtIva.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStock.setText("Stock");
 
-        txtStock.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtStock.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtStock.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblStockMinimo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStockMinimo.setText("Mínimo");
 
-        txtStockMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtStockMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtStockMinimo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblStockMaximo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStockMaximo.setText("Máximo");
 
-        txtStockMaximo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtStockMaximo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtStockMaximo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lblCodigoBarras.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -281,7 +279,9 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 
 
 	private void initProducto() {
+		
 		this.producto = new Producto();
+		this.producto.setCategoria(AppContext.getInstance().getCategoriaProductoDefault());
 		
 	}
 
@@ -325,19 +325,19 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 		txtCodigoBarras.setText( producto.getCodigoBarras() );
 		
 		if( producto.getPrecio()!=null)
-			txtPrecio.setText( producto.getPrecio().toString() );
+			txtPrecio.setValue( producto.getPrecio() );
 		
 		if( producto.getIva()!=null)
-			txtIva.setText( producto.getIva().toString() );
+			txtIva.setValue( producto.getIva() );
 		
 		if( producto.getStockActual()!=null)
-			txtStock.setText( producto.getStockActual().toString() );
+			txtStock.setValue( producto.getStockActual() );
 		
 		if( producto.getStockMinimo()!=null)
-			txtStockMinimo.setText( producto.getStockMinimo().toString() );
+			txtStockMinimo.setValue( producto.getStockMinimo() );
 		
 		if( producto.getStockMaximo()!=null)
-			txtStockMaximo.setText( producto.getStockMaximo().toString() );
+			txtStockMaximo.setValue( producto.getStockMaximo() );
 		
 		
 		findCategoria.objectFound( producto.getCategoria() );
@@ -356,12 +356,12 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 		
 		//TODO chequear que sea un número.
 		if(txtPrecio.getText().length()>0)
-			producto.setPrecio( new Float(txtPrecio.getText()) );
+			producto.setPrecio( ((Number)txtPrecio.getValue()).floatValue() );
 		else
 			producto.setPrecio(null);
 		
 		if(txtIva.getText().length()>0)
-			producto.setIva( new Float(txtIva.getText()) );
+			producto.setIva( ((Number)txtIva.getValue()).floatValue() );
 		else
 			producto.setIva(null);
 
@@ -425,7 +425,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 
 	public void clearInputs() {
 		txtNombre.setText( "" );
-		txtIva.setText( "" );
+		txtIva.setValue( 21F );
 		txtDescripcion.setText( "" );
 		txtPrecio.setText( "" );
 		txtObservaciones.setText( "" );
@@ -433,8 +433,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 		txtStock.setText( "" );
 		txtStockMaximo.setText( "" );
 		txtStockMinimo.setText( "" );
-		findCategoria.objectFound(null);
-		
+		findCategoria.objectFound( AppContext.getInstance().getCategoriaProductoDefault());
 	}
 
 	public List<JComponent> getFormLabels(){

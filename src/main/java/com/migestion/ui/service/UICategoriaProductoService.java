@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
+import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.CategoriaProducto;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.CategoriaProductoCriteria;
@@ -100,13 +101,17 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e1.getMessage() );
+			}
 			
 			throw new ControllerException( e.getMessage() );
-		}
-		
+			
+		}		
 	}
 
 	/**
@@ -122,13 +127,17 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e1.getMessage() );
+			}
 			
 			throw new ControllerException( e.getMessage() );
+			
 		}
-		
 	}
 
 	/**
@@ -144,11 +153,16 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e1.getMessage() );
+			}
 			
 			throw new ControllerException( e.getMessage() );
+			
 		}
 	}
 

@@ -75,7 +75,7 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
     }
 
     private void clearInputs() {
-		txtMonto.setText("");
+		txtMonto.setValue(null);
 		txtNumero.setText("");
 		txtBanco.setText("");
 		txtObservaciones.setText("");
@@ -149,6 +149,9 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
         txtObservaciones.setRows(5);
         scrollObservaciones.setViewportView(txtObservaciones);
 
+        txtMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,9 +179,9 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtBanco)
                             .addComponent(txtNumero)
-                            .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scrollObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addComponent(txtMonto))
+                            .addComponent(txtMonto)
+                            .addComponent(pickerFechaVencimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -234,7 +237,7 @@ public class DialogAddFormaPagoCheque extends javax.swing.JDialog {
             cheque.setNumero( txtNumero.getText() );
             cheque.setFechaVencimiento( pickerFechaVencimiento.getDate() );
             cheque.setObservaciones( txtObservaciones.getText() );
-            cheque.setMonto( Float.parseFloat( txtMonto.getText() ) );
+            cheque.setMonto( ((Number)txtMonto.getValue()).floatValue()  );
             DetalleFormaPagoCheque detalle = new DetalleFormaPagoCheque();
             detalle.setMonto( cheque.getMonto() );
             detalle.setCheque(cheque);

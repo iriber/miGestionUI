@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
+import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.CuentaBancaria;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.CuentaBancariaCriteria;
@@ -102,9 +103,16 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
 			throw new ControllerException( e.getMessage() );
 			
+		} catch (PersistenceContextException e) {
+			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -123,9 +131,16 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			PersistenceContext.getInstance().commit();
 			
 		} catch (ServiceException e) {
-
-			PersistenceContext.getInstance().rollback();
 			
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
+			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 		
@@ -146,8 +161,15 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			
 		} catch (ServiceException e) {
 			
-			PersistenceContext.getInstance().rollback();
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e.getMessage() );
+			}
 			
+			throw new ControllerException( e.getMessage() );
+			
+		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
 		}
 	}
