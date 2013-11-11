@@ -56,6 +56,9 @@ public class AppContext {
 	
 	private ContextObserver<CuentaBancaria> cuentaBancariaObserver;
 	
+	private ContextObserver<CategoriaProducto> categoriaProductoObserver;
+	
+	
 //	/**
 //	 * observer para cliente.
 //	 */
@@ -94,6 +97,7 @@ public class AppContext {
 		pagoObserver = new PagoObserver();
 		productoObserver = new ProductoObserver();
 		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
+		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
 		
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
@@ -236,6 +240,10 @@ public class AppContext {
 
 	public ContextObserver<CuentaBancaria> getCuentaBancariaObserver() {
 		return cuentaBancariaObserver;
+	}
+
+	public ContextObserver<CategoriaProducto> getCategoriaProductoObserver() {
+		return categoriaProductoObserver;
 	}
 
 
