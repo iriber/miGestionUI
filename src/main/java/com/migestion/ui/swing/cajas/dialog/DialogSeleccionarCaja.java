@@ -95,7 +95,7 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
     	clearInputs();
     	
     	txtNumero.setText("1");
-    	txtSaldoInicial.setText( ValoresPredefinidos.CAJA_SALDO_INICIAL +"");
+    	txtSaldoInicial.setValue( ValoresPredefinidos.CAJA_SALDO_INICIAL);
     	
     	pack();
          
