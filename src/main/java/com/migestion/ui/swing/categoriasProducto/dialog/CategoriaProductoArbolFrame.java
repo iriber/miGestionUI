@@ -6,24 +6,29 @@
 
 package com.migestion.ui.swing.categoriasProducto.dialog;
 
-import java.util.Iterator;
-
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreePath;
 
 import com.migestion.model.CategoriaProducto;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.interfaces.ILinkWindowList;
+import com.migestion.swing.view.dialogs.DialogAddObject;
+import com.migestion.swing.view.dialogs.DialogDeleteObject;
+import com.migestion.swing.view.dialogs.DialogUpdateObject;
 import com.migestion.swing.view.frames.JFrameContainer;
+import com.migestion.ui.context.observers.listeners.ICategoriaProductoListener;
 import com.migestion.ui.criteria.UICategoriaProductoCriteria;
 import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.categoriasProducto.factories.WindowCategoriaProductoFactory;
 import com.migestion.ui.swing.categoriasProducto.panels.CategoriaProductoTree;
 
 /**
  *
  * @author bernardo
  */
-public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements ILinkWindowList{
+public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements ILinkWindowList, ICategoriaProductoListener{
 
     /**
      * Creates new form CategoriaProductoArbolFrame
@@ -32,6 +37,7 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
         
     	initComponents();
     	
+    	treePanel.populateTree();
     }
 
     /**
@@ -52,7 +58,7 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        populateTree(treePanel);
+        
         jScrollPane1.setViewportView(treePanel);
 
         btnAgregar.setText("Agregar");
@@ -120,17 +126,53 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
     	 
-    	treePanel.addObject("Nueva categoría");
-    	 
+    	//treePanel.addObject("Nueva categoría");
+    	
+    	//llamamos al dialog para crear una nueva categoría
+    	//pasándole el padre como parámetro.
+
+    	DialogAddObject dialogAdd =  WindowCategoriaProductoFactory.getWindowAdd();
+    	dialogAdd.open();
     	 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        
+    	TreePath currentSelection = treePanel.getTree().getSelectionPath();
+        if (currentSelection != null) {
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
+                         (currentSelection.getLastPathComponent());
+            
+            //TODO chequeamos que no sea el root
+            
+            CategoriaProducto categoriaProducto = (CategoriaProducto)currentNode.getUserObject();
+            
+            //dialog para modificar;
+            DialogUpdateObject dialogUpdate = WindowCategoriaProductoFactory.getWindowUpdate();
+            dialogUpdate.open( categoriaProducto );
+            
+        } 
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-    	treePanel.removeCurrentNode();
+    	
+    	TreePath currentSelection = treePanel.getTree().getSelectionPath();
+        if (currentSelection != null) {
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
+                         (currentSelection.getLastPathComponent());
+            
+            //TODO chequeamos que no sea el root
+            
+            CategoriaProducto categoriaProducto = (CategoriaProducto)currentNode.getUserObject();
+            
+            //dialog para eliminar;
+            DialogDeleteObject dialogDelete = WindowCategoriaProductoFactory.getWindowDelete();
+            dialogDelete.open( categoriaProducto );
+            
+        }
+    	
+    	
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -178,65 +220,6 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
     // End of variables declaration//GEN-END:variables
 
 
-    public void populateTreeChildren(CategoriaProductoTree treePanel, DefaultMutableTreeNode nodeParent) {
-    	
-    	CategoriaProducto padre = (CategoriaProducto)nodeParent.getUserObject();
-    	
-    	try {
-    		UICategoriaProductoCriteria criteria = new UICategoriaProductoCriteria();
-    		criteria.setPadre(padre);
-			UICollection categoriasHijas =  UIServiceFactory.getUICategoriaProductoService().list(criteria);
-			
-			for (Object categoriaHija : categoriasHijas.getElements()) {
-				DefaultMutableTreeNode node = treePanel.addObject(nodeParent, categoriaHija);
-				populateTreeChildren(treePanel, node);
-			}
-			
-		} catch (ControllerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    
-    public void populateTree(CategoriaProductoTree treePanel) {
-    	
-    	//recupero todas las categorías "padres"
-    	
-    	
-    	try {
-    		UICategoriaProductoCriteria criteria = new UICategoriaProductoCriteria();
-    		criteria.setSinPadre(true);
-			UICollection categorias =  UIServiceFactory.getUICategoriaProductoService().list(criteria);
-			
-			for (Object categoria : categorias.getElements()) {
-				DefaultMutableTreeNode node = treePanel.addObject(null, categoria);
-				populateTreeChildren(treePanel, node);
-			}
-			
-		} catch (ControllerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-//    	
-//    	
-//        String p1Name = new String("Parent 1");
-//        String p2Name = new String("Parent 2");
-//        String c1Name = new String("Child 1");
-//        String c2Name = new String("Child 2");
-//
-//        DefaultMutableTreeNode p1, p2;
-//
-//        p1 = treePanel.addObject(null, p1Name);
-//        p2 = treePanel.addObject(null, p2Name);
-//
-//        treePanel.addObject(p1, c1Name);
-//        treePanel.addObject(p1, c2Name);
-//
-//        treePanel.addObject(p2, c1Name);
-//        treePanel.addObject(p2, c2Name);
-    }
-
 	public void open() {
         
         setVisible(true);		
@@ -244,5 +227,36 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
 
 	public void addToJFrameContainer(JFrameContainer container) {
 		container.addToDesktop(this);
+	}
+
+	public void objectCreated(CategoriaProducto objectCreated) {
+
+		actualizarTree();
+	}
+
+	public void objectDeleted(CategoriaProducto objectDeleted) {
+		actualizarTree();
+	}
+
+	public void objectUpdated(CategoriaProducto objectUpdated) {
+		
+		actualizarTree();
+	}
+	
+	public void actualizarTree() {
+		
+		TreePath currentSelection = treePanel.getTree().getSelectionPath();
+		
+		if (currentSelection != null) {
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode)
+                         (currentSelection.getLastPathComponent());
+            currentNode.getDepth();
+            
+            
+		}
+	
+		treePanel.clear();
+		treePanel.populateTree();
+		
 	}
 }

@@ -1,6 +1,8 @@
 package com.migestion.ui.swing.categoriasProducto.factories;
 
 
+import java.awt.Frame;
+
 import javax.swing.ImageIcon;
 
 import com.migestion.swing.i18n.links.LinkImagesBundle;
@@ -17,7 +19,9 @@ import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.categoriasProducto.CategoriasProductoCRUDFrame;
 import com.migestion.ui.swing.categoriasProducto.dialog.CategoriaProductoArbolFrame;
 import com.migestion.ui.swing.categoriasProducto.dialog.DialogFindCategoriaProducto;
+import com.migestion.ui.swing.categoriasProducto.dialog.DialogSeleccionarCategoria;
 import com.migestion.ui.swing.categoriasProducto.panels.CategoriaProductoPanel;
+import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
@@ -80,7 +84,9 @@ public class WindowCategoriaProductoFactory {
 	 */
 	public static CategoriaProductoArbolFrame getWindowListTree(){
 		CategoriaProductoArbolFrame frame = new CategoriaProductoArbolFrame();
-		//AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		frame.setTitle(I18nMessages.CATEGORIA_PRODUCTO_FRAME_TITULO);
+		frame.setIconImage(new ImageIcon( I18nImages.CATEGORIAS_PRODUCTO_SMALL_ICON ).getImage() );
+		AppContext.getInstance().getCategoriaProductoObserver().addListener(frame);
 		return frame;
 	}
 	
@@ -90,6 +96,15 @@ public class WindowCategoriaProductoFactory {
 	 */
 	public static DialogFindCategoriaProducto getWindowFind() {
 		DialogFindCategoriaProducto dialog = new  DialogFindCategoriaProducto( I18nMessages.CATEGORIA_PRODUCTO_DIALOG_BUSCAR_TITULO );
+		return dialog;
+	}
+	
+	/**
+	 * ventana para buscar una categoría de producto en el árbol.
+	 */
+	public static DialogSeleccionarCategoria getWindowFindTree() {
+		DialogSeleccionarCategoria dialog = new  DialogSeleccionarCategoria( new Frame(),true );
+		dialog.setTitle(I18nMessages.CATEGORIA_PRODUCTO_DIALOG_BUSCAR_TITULO);
 		return dialog;
 	}
 	

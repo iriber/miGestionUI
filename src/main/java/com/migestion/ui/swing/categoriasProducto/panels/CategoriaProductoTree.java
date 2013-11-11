@@ -20,6 +20,8 @@ import javax.swing.event.TreeModelListener;
 
 import com.migestion.model.CategoriaProducto;
 import com.migestion.swing.controller.exception.ControllerException;
+import com.migestion.swing.model.UICollection;
+import com.migestion.ui.criteria.UICategoriaProductoCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -159,4 +161,50 @@ public class CategoriaProductoTree extends JPanel {
         	
         }
     }
+
+	public JTree getTree() {
+		return tree;
+	}
+	
+    public void populateTreeChildren(DefaultMutableTreeNode nodeParent) {
+    	
+    	CategoriaProducto padre = (CategoriaProducto)nodeParent.getUserObject();
+    	
+    	try {
+    		UICategoriaProductoCriteria criteria = new UICategoriaProductoCriteria();
+    		criteria.setPadre(padre);
+			UICollection categoriasHijas =  UIServiceFactory.getUICategoriaProductoService().list(criteria);
+			
+			for (Object categoriaHija : categoriasHijas.getElements()) {
+				DefaultMutableTreeNode node = this.addObject(nodeParent, categoriaHija, true);
+				populateTreeChildren(node);
+			}
+			
+		} catch (ControllerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void populateTree() {
+    	
+    	//recupero todas las categorías "padres"
+    	try {
+    		UICategoriaProductoCriteria criteria = new UICategoriaProductoCriteria();
+    		criteria.setSinPadre(true);
+			UICollection categorias =  UIServiceFactory.getUICategoriaProductoService().list(criteria);
+			
+			for (Object categoria : categorias.getElements()) {
+				DefaultMutableTreeNode node = this.addObject(null, categoria, true);
+				
+				populateTreeChildren(node);
+			}
+			
+		} catch (ControllerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
+
 }

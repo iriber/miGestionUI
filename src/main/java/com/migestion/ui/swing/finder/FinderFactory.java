@@ -73,7 +73,7 @@ public class FinderFactory {
         });
         
         //findobject.setTextWidth(200);
-        findobject.setWindowFindObject(WindowCategoriaProductoFactory.getWindowFind());
+        findobject.setWindowFindObject(WindowCategoriaProductoFactory.getWindowFindTree());
         findobject.setListener( listener );
         findobject.repaint();
         return findobject;

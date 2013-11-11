@@ -18,6 +18,7 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UICategoriaProductoCriteria;
 import com.migestion.ui.swing.categoriasProducto.UICategoriaProductoCollection;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -100,6 +101,8 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			ServiceFactory.getCategoriaProductoService().add( (CategoriaProducto)object );
 			
 			PersistenceContext.getInstance().commit();
+
+			AppContext.getInstance().getCategoriaProductoObserver().objectCreated((CategoriaProducto)object);
 			
 		} catch (Exception e) {
 			
@@ -127,6 +130,8 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			
 			PersistenceContext.getInstance().commit();
 			
+			AppContext.getInstance().getCategoriaProductoObserver().objectUpdated((CategoriaProducto)object);
+			
 		} catch (Exception e) {
 			
 			try {
@@ -152,6 +157,8 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			ServiceFactory.getCategoriaProductoService().delete( ((CategoriaProducto)object).getOid() );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getCategoriaProductoObserver().objectDeleted((CategoriaProducto)object);
 			
 		} catch (Exception e) {
 			

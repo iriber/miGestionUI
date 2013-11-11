@@ -9,6 +9,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 import com.migestion.swing.controller.IControllerList;
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkUpdateObject;
@@ -46,10 +47,12 @@ public class CategoriasProductoCRUDFrame extends CRUDFrame{
 	public void initLinks() {
 		
 		LinkUpdateObject linkUpdate  = LinkCategoriaProductoFactory.getLinkUpdate();
-		LinkAddObject linkAdd  = LinkCategoriaProductoFactory.getLinkAdd();
+		//LinkAddObject linkAdd  = LinkCategoriaProductoFactory.getLinkAdd();
+		Link linkAdd  = LinkProductoFactory.getLinkAdd();
 		LinkDeleteObject linkDelete  = LinkCategoriaProductoFactory.getLinkDelete();
 		
-		this.setLinkAdd( linkAdd, 0 );
+		//this.setLinkAdd( linkAdd, 0 );
+		this.addLinkToDefaultMenu( linkAdd, 0 );
 		this.setLinkUpdate( linkUpdate, 1 );
 		this.setLinkDelete( linkDelete, 2 );
 		
