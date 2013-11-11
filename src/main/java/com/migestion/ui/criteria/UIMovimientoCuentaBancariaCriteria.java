@@ -19,8 +19,9 @@ public class UIMovimientoCuentaBancariaCriteria extends UICustomCriteria{
 
 	private CuentaBancaria cuentaBancaria;
 	
-	private Date fecha;
-
+	private Date fechaDesde;
+	private Date fechaHasta;
+	
 	public UIMovimientoCuentaBancariaCriteria() {
 		
 	}
@@ -36,9 +37,6 @@ public class UIMovimientoCuentaBancariaCriteria extends UICustomCriteria{
 		if( getCuentaBancaria()!=null)
 			desc +=  " | " + I18nMessages.MOVIMIENTO_CUENTA_BANCARIA_CUENTA + ": '" + getCuentaBancaria().toString() ;//+ "' | " + I18nMessages.CAJA_SALDO_INICIAL + ":" + AppUtils.formatMoneda( getCuentaBancaria().getSaldoInicial());
 		
-		if( getFecha()!=null)
-			desc +=  " | " + I18nMessages.MOVIMIENTO_CUENTA_FECHA_HORA + ": '" + AppUtils.formatDate( getFecha());
-		
 		return desc;
 	}
 
@@ -48,7 +46,8 @@ public class UIMovimientoCuentaBancariaCriteria extends UICustomCriteria{
 		MovimientoCuentaBancariaCriteria criteria = new MovimientoCuentaBancariaCriteria();
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
-		criteria.setFecha(getFecha());
+		criteria.setFechaDesde(getFechaDesde());
+		criteria.setFechaHasta(getFechaHasta());
 		criteria.setCuentaBancaria(getCuentaBancaria());
 		criteria.orderByFechaHora( Criteria.ORDER_DESC );
 		
@@ -66,13 +65,23 @@ public class UIMovimientoCuentaBancariaCriteria extends UICustomCriteria{
 	}
 
 
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaDesde() {
+		return fechaDesde;
 	}
 
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+
+
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+
+
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
 	}
 
 
