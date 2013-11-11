@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
+import com.migestion.model.Balance;
 import com.migestion.model.EstadisticaCaja;
 import com.migestion.model.MovimientoCaja;
 import com.migestion.services.ServiceFactory;
@@ -53,7 +54,7 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 
 		uiList.setElements( new Vector<MovimientoCaja>() );
 
-		uiList.setEstadistica( new EstadisticaCaja() );
+		uiList.setBalance( new Balance() );
 		
 		return uiList;
 		
@@ -69,12 +70,12 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 		//invocar al servicio para obtener las entities.
 		List<MovimientoCaja> cajas;
 		Long totalSize;
-		EstadisticaCaja estadistica;
+		Balance balance = null;
 		try {
 			MovimientoCajaCriteria coreCriteria = ((UIMovimientoCajaCriteria)criteria).buildToService();
 			cajas = ServiceFactory.getMovimientoCajaService().list( coreCriteria );
 			//totalSize = ServiceFactory.getMovimientoCajaService().getListSize(coreCriteria);
-			estadistica = ServiceFactory.getMovimientoCajaService().getEstadisticaCaja(coreCriteria);
+			balance = ServiceFactory.getMovimientoCajaService().getBalance(coreCriteria);
 		} catch (ServiceException e) {
 
 			throw new ControllerException( e.getMessage() ); 
@@ -86,8 +87,8 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 		uiList.setElements( cajas );
 		
 		//uiList.setTotalSize( totalSize.intValue()  );
-		uiList.setEstadistica(estadistica);
-		uiList.setTotalSize( estadistica.getCantidad() );
+		uiList.setBalance(balance);
+		uiList.setTotalSize( balance.getCantidadMovimientos() );
 		return uiList;
 	}
 

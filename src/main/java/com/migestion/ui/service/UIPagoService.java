@@ -108,7 +108,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			PersistenceContext.getInstance().commit();
 			
 			//TODO avisar pagoobserver
-			AppContext.getInstance().getPagoObserver().objectCreated(object);
+			AppContext.getInstance().getPagoObserver().objectCreated((Pago)object);
 			AppContext.getInstance().getVentaObserver().pagoVentaCreado((Pago)object);
 			
 		} catch (ServiceException e) {
@@ -140,7 +140,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getPagoObserver().objectUpdated(object);
+			AppContext.getInstance().getPagoObserver().objectUpdated((Pago)object);
 			
 		} catch (ServiceException e) {
 			
@@ -171,7 +171,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getPagoObserver().objectDeleted(object);
+			AppContext.getInstance().getPagoObserver().objectDeleted((Pago)object);
 
 		} catch (ServiceException e) {
 			

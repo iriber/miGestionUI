@@ -37,9 +37,9 @@ public class UIProductoCriteria extends UICustomCriteria{
 	 * descripci�n del criteria
 	 */
 	public String getDescription() {
-		String desc = I18nMessages.PRODUCTOS + " | " + I18nMessages.PRODUCTO_NOMBRE + ": '" + getNombre() + "'";
-		if(StringUtils.isEmpty(getNombre()))
-			desc = I18nMessages.PRODUCTOS + " | TODOS";
+		String desc = I18nMessages.PRODUCTOS ;
+		if(!StringUtils.isEmpty(getNombre()))
+			desc +=  " | " + I18nMessages.PRODUCTO_NOMBRE + ": '" + getNombre() + "'";
 		return desc;
 	}
 	//-----------------------

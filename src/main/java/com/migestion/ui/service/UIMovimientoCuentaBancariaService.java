@@ -6,10 +6,10 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
-import com.migestion.model.EstadisticaVenta;
-import com.migestion.model.Venta;
+import com.migestion.model.Balance;
+import com.migestion.model.MovimientoCuentaBancaria;
 import com.migestion.services.ServiceFactory;
-import com.migestion.services.criteria.VentaCriteria;
+import com.migestion.services.criteria.MovimientoCuentaBancariaCriteria;
 import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
@@ -19,30 +19,29 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
-import com.migestion.ui.context.AppContext;
-import com.migestion.ui.criteria.UIVentaCriteria;
+import com.migestion.ui.criteria.UIMovimientoCuentaBancariaCriteria;
+import com.migestion.ui.swing.cuentasBancarias.movimientos.UIMovimientoCuentaBancariaCollection;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.operaciones.ventas.UIVentaCollection;
 
 /**
- * Controlador utilizado para las operaciones de los ventas.
+ * Controlador utilizado para las operaciones de movimientos de cuentas bancarias
  * 
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 17/10/2013
+ * @since 08/11/2013
  * 
  */
-public class UIVentaService implements IControllerList, IControllerAdd,
+public class UIMovimientoCuentaBancariaService implements IControllerList, IControllerAdd,
 		IControllerUpdate, IControllerDelete, IControllerView {
 
-	// instancia del servicio (lo hacemos singleton).
-	private static UIVentaService instance;
+	// instancia del manager (lo hacemos singleton).
+	private static UIMovimientoCuentaBancariaService instance;
 
 	
 	// pedimos la �nica instancia.
-	public static UIVentaService getInstance() {
+	public static UIMovimientoCuentaBancariaService getInstance() {
 		if (instance == null)
-			instance = new UIVentaService();
+			instance = new UIMovimientoCuentaBancariaService();
 		return instance;
 	}
 
@@ -50,50 +49,50 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 	public UICollection list() throws ControllerException {
 		
 		
-		UIVentaCollection uiList = new UIVentaCollection( I18nMessages.VENTAS);
+		UIMovimientoCuentaBancariaCollection uiList = new UIMovimientoCuentaBancariaCollection( I18nMessages.MOVIMIENTOS_CAJA);
 
-		uiList.setElements( new Vector<Venta>() );
-		uiList.setEstadistica(new EstadisticaVenta());
+		uiList.setElements( new Vector<MovimientoCuentaBancaria>() );
+
+		uiList.setBalance( new Balance() );
 		
 		return uiList;
 		
-		//return list(new UIVentaCriteria());
+		//return list(new UIMovimientoCuentaBancariaCriteria());
 	}
 
 	/**
-	 * se listan los ventas dado un criterio de búsqueda. (implementación de la
+	 * se listan los cajas dado un criterio de búsqueda. (implementación de la
 	 * interface IControllerList).
 	 */
 	public UICollection list(UICriteria criteria) throws ControllerException {
 		
 		//invocar al servicio para obtener las entities.
-		List<Venta> ventas;
+		List<MovimientoCuentaBancaria> movimientos;
 		Long totalSize;
-		EstadisticaVenta estadistica ;
+		Balance balance = null;
 		try {
-			VentaCriteria coreCriteria = ((UIVentaCriteria)criteria).buildToService();
-			ventas = ServiceFactory.getVentaService().list( coreCriteria );
-			//totalSize = ServiceFactory.getVentaService().getListSize(coreCriteria);
-			estadistica = ServiceFactory.getVentaService().getEstadisticaVenta(coreCriteria);
-			
+			MovimientoCuentaBancariaCriteria coreCriteria = ((UIMovimientoCuentaBancariaCriteria)criteria).buildToService();
+			movimientos = ServiceFactory.getMovimientoCuentaBancariaService().list( coreCriteria );
+			//totalSize = ServiceFactory.getMovimientoCuentaBancariaService().getListSize(coreCriteria);
+			balance = ServiceFactory.getMovimientoCuentaBancariaService().getBalance(coreCriteria);
 		} catch (ServiceException e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
 		
-		// creamos una ui collection con los ventas.
-		UIVentaCollection uiList = new UIVentaCollection( I18nMessages.VENTAS);
+		// creamos una ui collection con las cajas.
+		UIMovimientoCuentaBancariaCollection uiList = new UIMovimientoCuentaBancariaCollection( I18nMessages.MOVIMIENTOS_CUENTA_BANCARIA);
 
+		uiList.setElements( movimientos );
+		
 		//uiList.setTotalSize( totalSize.intValue()  );
-		uiList.setTotalSize( estadistica.getCantidad() );
-		uiList.setEstadistica(estadistica);
-		uiList.setElements( ventas );
-				
+		uiList.setBalance(balance);
+		uiList.setTotalSize( balance.getCantidadMovimientos() );
 		return uiList;
 	}
 
 	/**
-	 * se agrega un venta. (implementación de la interface IControllerAdd).
+	 * se agrega un sucursal. (implementación de la interface IControllerAdd).
 	 */
 	public void addObject(Object object) throws ControllerException {
 		
@@ -103,13 +102,9 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getVentaService().add( (Venta)object );
+			ServiceFactory.getMovimientoCuentaBancariaService().add( (MovimientoCuentaBancaria)object );
 			
 			PersistenceContext.getInstance().commit();
-			
-			AppContext.getInstance().getVentaObserver().objectCreated( (Venta)object );
-			
-			AppContext.getInstance().getProductoObserver().ventaChange( (Venta)object );
 			
 		} catch (ServiceException e) {
 			
@@ -123,12 +118,11 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 		} catch (PersistenceContextException e) {
 			throw new ControllerException( e.getMessage() );
-		}
-		
+		}		
 	}
 
 	/**
-	 * se modifica un venta. (implementación de la interface IControllerUpdate).
+	 * se modifica un sucursal. (implementación de la interface IControllerUpdate).
 	 */
 	public void updateObject(Object object) throws ControllerException {
 
@@ -136,11 +130,9 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getVentaService().update( (Venta)object );
+			ServiceFactory.getMovimientoCuentaBancariaService().update( (MovimientoCuentaBancaria)object );
 			
 			PersistenceContext.getInstance().commit();
-			
-			AppContext.getInstance().getVentaObserver().objectUpdated( (Venta)object );
 			
 		} catch (ServiceException e) {
 			
@@ -159,7 +151,7 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 	}
 
 	/**
-	 * se elimina un venta. (implementación de la interface IControllerDelete).
+	 * se elimina un sucursal. (implementación de la interface IControllerDelete).
 	 */
 	public void deleteObject(Object object) throws ControllerException {
 		
@@ -167,11 +159,9 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getVentaService().delete( ((Venta)object).getOid() );
+			ServiceFactory.getMovimientoCuentaBancariaService().delete( ((MovimientoCuentaBancaria)object).getOid() );
 			
 			PersistenceContext.getInstance().commit();
-			
-			AppContext.getInstance().getVentaObserver().objectDeleted( (Venta)object );
 			
 		} catch (ServiceException e) {
 			
@@ -189,14 +179,14 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 	}
 
 	/**
-	 * se obtiene un venta del modelo. (implementación de la interface
+	 * se obtiene un sucursal del modelo. (implementación de la interface
 	 * IControllerView).
 	 */
 	public Object getObject(Object object) throws ControllerException {
 		
 		try {
 			
-			object = ServiceFactory.getVentaService().get( ((Venta)object).getOid() );
+			object = ServiceFactory.getMovimientoCuentaBancariaService().get( ((MovimientoCuentaBancaria)object).getOid() );
 			
 		} catch (ServiceException e) {
 			
@@ -208,7 +198,7 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 	
 	public int totalSize() throws ControllerException {
 		
-		return totalSize(new UIVentaCriteria());
+		return totalSize(new UIMovimientoCuentaBancariaCriteria());
 	}
 
 	public int totalSize(UICriteria criteria) throws ControllerException {
@@ -220,8 +210,8 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 		
 		try {
 			
-			VentaCriteria coreCriteria = ((UIVentaCriteria)criteria).buildToService();
-			totalSize = ServiceFactory.getVentaService().getListSize(coreCriteria);
+			MovimientoCuentaBancariaCriteria coreCriteria = ((UIMovimientoCuentaBancariaCriteria)criteria).buildToService();
+			totalSize = ServiceFactory.getMovimientoCuentaBancariaService().getListSize(coreCriteria);
 			
 		} catch (ServiceException e) {
 			
@@ -236,35 +226,5 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 	}	
 
 	
-
-	/**
-	 * se anula una venta
-	 */
-	public void anularVenta(Venta venta) throws ControllerException {
-		
-		try {
-			
-			PersistenceContext.getInstance().beginTransaction();
-			
-			ServiceFactory.getVentaService().anularVenta( venta.getOid() );
-			
-			PersistenceContext.getInstance().commit();
-			
-			AppContext.getInstance().getVentaObserver().objectUpdated( venta );
-			
-		} catch (ServiceException e) {
-			
-			try {
-				PersistenceContext.getInstance().rollback();
-			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
-			}
-			
-			throw new ControllerException( e.getMessage() );
-			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
-		}
-	}
 
 }

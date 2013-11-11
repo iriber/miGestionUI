@@ -81,9 +81,9 @@ public class I18nImages {
 
 
   //movimientos de cuenta
-  public static URL MOVIMIENTOS_CAJA_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("movimientos_ctacte.icon") );
+  public static URL MOVIMIENTOS_CUENTA_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("movimientos_ctacte.icon") );
 		
-  public static URL MOVIMIENTOS_CAJA_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("movimientos_ctacte.small.icon") );
+  public static URL MOVIMIENTOS_CUENTA_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("movimientos_ctacte.small.icon") );
   
   //ventas
   public static URL VENTAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("ventas.icon") );

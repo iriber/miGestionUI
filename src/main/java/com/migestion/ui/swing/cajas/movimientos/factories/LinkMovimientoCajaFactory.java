@@ -24,7 +24,7 @@ public class LinkMovimientoCajaFactory {
 	 * @return
 	 */
 	public static LinkListCollection getLinkList(){
-		LinkListCollection link = new LinkListCollection(WindowMovimientoCajaFactory.getWindowList(), I18nMessages.MOVIMIENTO_CAJA_FRAME_TITULO, I18nImages.MOVIMIENTOS_CAJA_ICON);
+		LinkListCollection link = new LinkListCollection(WindowMovimientoCajaFactory.getWindowList(), I18nMessages.MOVIMIENTO_CAJA_FRAME_TITULO, I18nImages.MOVIMIENTOS_CUENTA_ICON);
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}

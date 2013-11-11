@@ -15,6 +15,7 @@ import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.categoriasProducto.CategoriasProductoCRUDFrame;
+import com.migestion.ui.swing.categoriasProducto.dialog.CategoriaProductoArbolFrame;
 import com.migestion.ui.swing.categoriasProducto.dialog.DialogFindCategoriaProducto;
 import com.migestion.ui.swing.categoriasProducto.panels.CategoriaProductoPanel;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -72,6 +73,17 @@ public class WindowCategoriaProductoFactory {
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}
+
+	/**
+	 * ventana para listar categorias de producto en forma de árbol.
+	 * @return
+	 */
+	public static CategoriaProductoArbolFrame getWindowListTree(){
+		CategoriaProductoArbolFrame frame = new CategoriaProductoArbolFrame();
+		//AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		return frame;
+	}
+	
 	
 	/**
 	 * ventana para buscar una categoría de producto.

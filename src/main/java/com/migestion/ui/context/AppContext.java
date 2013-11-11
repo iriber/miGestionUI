@@ -2,28 +2,20 @@ package com.migestion.ui.context;
 
 
 import java.awt.Component;
-import java.awt.EventQueue;
 
-import javax.swing.SwingWorker;
-import javax.swing.UIManager;
-
-import com.migestion.dao.PersistenceContext;
 import com.migestion.model.Caja;
 import com.migestion.model.CategoriaProducto;
 import com.migestion.model.Cliente;
 import com.migestion.model.ConceptoMovimiento;
-import com.migestion.model.Pago;
+import com.migestion.model.CuentaBancaria;
 import com.migestion.model.Sucursal;
-import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
-import com.migestion.model.Venta;
 import com.migestion.swing.context.ContextObserver;
-import com.migestion.swing.context.IContextListener;
-import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowList;
-import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.swing.view.frames.JFrameContainer;
-import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.context.observers.PagoObserver;
+import com.migestion.ui.context.observers.ProductoObserver;
+import com.migestion.ui.context.observers.VentaObserver;
 
 /**
  * En el contexto se guardará información
@@ -62,6 +54,8 @@ public class AppContext {
 	
 	private ProductoObserver productoObserver;
 	
+	private ContextObserver<CuentaBancaria> cuentaBancariaObserver;
+	
 //	/**
 //	 * observer para cliente.
 //	 */
@@ -99,6 +93,7 @@ public class AppContext {
 		ventaObserver = new VentaObserver();
 		pagoObserver = new PagoObserver();
 		productoObserver = new ProductoObserver();
+		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
 		
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
@@ -237,6 +232,10 @@ public class AppContext {
 
 	public VentaObserver getVentaObserver() {
 		return ventaObserver;
+	}
+
+	public ContextObserver<CuentaBancaria> getCuentaBancariaObserver() {
+		return cuentaBancariaObserver;
 	}
 
 

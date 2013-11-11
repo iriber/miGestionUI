@@ -98,6 +98,15 @@ public class UIServiceFactory {
 	}
 	
 	/**
+	 * servicio para movimientos de cuentas bancarias
+	 * @return
+	 */
+	public static UIMovimientoCuentaBancariaService getUIMovimientoCuentaBancariaService(){
+		return UIMovimientoCuentaBancariaService.getInstance();
+	}
+	
+	
+	/**
 	 * servicio para balances
 	 * @return
 	 */

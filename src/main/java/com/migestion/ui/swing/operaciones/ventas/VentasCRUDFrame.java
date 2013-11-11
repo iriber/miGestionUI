@@ -9,6 +9,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 import com.migestion.model.Pago;
+import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddRelatedObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
@@ -17,7 +18,7 @@ import com.migestion.swing.navigation.LinkViewObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.swing.view.frames.ICRUDFrame;
-import com.migestion.ui.context.IVentaListener;
+import com.migestion.ui.context.observers.listeners.IVentaListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
@@ -33,7 +34,7 @@ import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
  * @since 17/10/2013
  *
  */
-public class VentasCRUDFrame extends CRUDFrame implements IVentaListener{
+public class VentasCRUDFrame extends CRUDFrame<Venta> implements IVentaListener{
 
 	public VentasCRUDFrame(String title, IControllerList controller){
 		

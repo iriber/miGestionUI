@@ -1,4 +1,4 @@
-package com.migestion.ui.context;
+package com.migestion.ui.context.observers;
 
 import com.migestion.model.Pago;
 import com.migestion.model.Venta;

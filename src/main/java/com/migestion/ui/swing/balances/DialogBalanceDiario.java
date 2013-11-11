@@ -63,6 +63,10 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
         txtHaberTotales = new javax.swing.JLabel();
         txtSaldoTotales = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
+        lblCheque1 = new javax.swing.JLabel();
+        txtDebeNotaCredito = new javax.swing.JLabel();
+        txtHaberNotaCredito = new javax.swing.JLabel();
+        txtSaldoNotaCredito = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -146,18 +150,21 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
 
         jLabel2.setBackground(new java.awt.Color(236, 222, 174));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Debe");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel2.setOpaque(true);
 
         jLabel3.setBackground(new java.awt.Color(236, 222, 174));
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Haber");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel3.setOpaque(true);
 
         jLabel4.setBackground(new java.awt.Color(236, 222, 174));
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Saldo");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setOpaque(true);
@@ -191,6 +198,29 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
             }
         });
 
+        lblCheque1.setFont(new java.awt.Font("Ubuntu", 2, 15)); // NOI18N
+        lblCheque1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCheque1.setText("Notas de crédito");
+
+        txtDebeNotaCredito.setBackground(java.awt.Color.white);
+        txtDebeNotaCredito.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtDebeNotaCredito.setText("0.00");
+        txtDebeNotaCredito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDebeNotaCredito.setOpaque(true);
+
+        txtHaberNotaCredito.setBackground(java.awt.Color.white);
+        txtHaberNotaCredito.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtHaberNotaCredito.setText("0.00");
+        txtHaberNotaCredito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtHaberNotaCredito.setOpaque(true);
+
+        txtSaldoNotaCredito.setBackground(java.awt.Color.white);
+        txtSaldoNotaCredito.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        txtSaldoNotaCredito.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtSaldoNotaCredito.setText("0.00");
+        txtSaldoNotaCredito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtSaldoNotaCredito.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,7 +235,8 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
                             .addComponent(jLabel1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblFecha)
-                                .addComponent(lblCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCheque1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
@@ -213,17 +244,18 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
                             .addComponent(txtDebeBancos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDebeCaja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDebeTotales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pickerFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDebeNotaCredito, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(txtHaberBancos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSaldoBancos, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                .addComponent(txtSaldoBancos, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(txtHaberCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSaldoCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                .addComponent(txtSaldoCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
@@ -235,7 +267,11 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtHaberTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSaldoTotales, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
+                                .addComponent(txtSaldoTotales, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtHaberNotaCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSaldoNotaCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCerrar)))
@@ -271,13 +307,19 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
                     .addComponent(txtDebeCheque)
                     .addComponent(txtHaberCheques)
                     .addComponent(txtSaldoCheques))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCheque1)
+                    .addComponent(txtDebeNotaCredito)
+                    .addComponent(txtHaberNotaCredito)
+                    .addComponent(txtSaldoNotaCredito))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDebeTotales)
                     .addComponent(txtHaberTotales)
                     .addComponent(txtSaldoTotales))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnCerrar)
                 .addContainerGap())
         );
@@ -347,19 +389,23 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCaja;
     private javax.swing.JLabel lblCheque;
+    private javax.swing.JLabel lblCheque1;
     private javax.swing.JLabel lblFecha;
     private com.toedter.calendar.JDateChooser pickerFecha;
     private javax.swing.JLabel txtDebeBancos;
     private javax.swing.JLabel txtDebeCaja;
     private javax.swing.JLabel txtDebeCheque;
+    private javax.swing.JLabel txtDebeNotaCredito;
     private javax.swing.JLabel txtDebeTotales;
     private javax.swing.JLabel txtHaberBancos;
     private javax.swing.JLabel txtHaberCaja;
     private javax.swing.JLabel txtHaberCheques;
+    private javax.swing.JLabel txtHaberNotaCredito;
     private javax.swing.JLabel txtHaberTotales;
     private javax.swing.JLabel txtSaldoBancos;
     private javax.swing.JLabel txtSaldoCaja;
     private javax.swing.JLabel txtSaldoCheques;
+    private javax.swing.JLabel txtSaldoNotaCredito;
     private javax.swing.JLabel txtSaldoTotales;
     // End of variables declaration//GEN-END:variables
 
@@ -368,6 +414,7 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
     	Balance balanceCajas = new Balance();
     	Balance balanceBancos = new Balance();
     	Balance balanceCheques = new Balance();
+    	Balance balanceNotasCredito = new Balance();
     	Balance balanceTotales = new Balance();
     	
     	Date fecha = pickerFecha.getDate();
@@ -377,28 +424,51 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
     	try {
 			
     		balanceCajas = service.getBalanceCajas( fecha );
-
+    		balanceBancos = service.getBalanceBancos( fecha );
+    		balanceCheques = service.getBalanceCheques( fecha );
+    		balanceNotasCredito = service.getBalanceNotasCredito( fecha );
+    		
     	} catch (ControllerException e) {
 			
 			DialogMessage.showErrorMessage( getTitle() , "Error obteniendo balance diario");
 		}
     	
+    	balanceTotales.setCantidadMovimientos( 
+    			balanceBancos.getCantidadMovimientos()
+    			+ balanceCheques.getCantidadMovimientos()
+    			+ balanceCajas.getCantidadMovimientos()
+    			+ balanceNotasCredito.getCantidadMovimientos() );
     	
-    	DecimalFormat format = new java.text.DecimalFormat("#0.00");
+    	balanceTotales.setDebe( 
+    			balanceBancos.getDebe()
+    			+ balanceCheques.getDebe()
+    			+ balanceCajas.getDebe()
+    			+ balanceNotasCredito.getDebe() );
+    	
+    	balanceTotales.setHaber( 
+    			balanceBancos.getHaber()
+    			+ balanceCheques.getHaber()
+    			+ balanceCajas.getHaber()
+    			+ balanceNotasCredito.getHaber() );
+    	
+    	DecimalFormat format = new java.text.DecimalFormat("$#0.00");
 		
     	txtDebeCaja.setText(format.format( balanceCajas.getDebe() ));
     	txtDebeBancos.setText(format.format( balanceBancos.getDebe() ));
     	txtDebeCheque.setText(format.format( balanceCheques.getDebe() ));
+    	txtDebeNotaCredito.setText(format.format( balanceNotasCredito.getDebe() ));
     	txtDebeTotales.setText(format.format( balanceTotales.getDebe() ));
 
     	txtHaberCaja.setText(format.format( balanceCajas.getHaber() ));
     	txtHaberBancos.setText(format.format( balanceBancos.getHaber() ));
     	txtHaberCheques.setText(format.format( balanceCheques.getHaber() ));
+    	txtHaberNotaCredito.setText(format.format( balanceNotasCredito.getHaber() ));
     	txtHaberTotales.setText(format.format( balanceTotales.getHaber() ));
 
     	txtSaldoCaja.setText(format.format( balanceCajas.getSaldo() ));
     	txtSaldoBancos.setText(format.format( balanceBancos.getSaldo() ));
     	txtSaldoCheques.setText(format.format( balanceCheques.getSaldo() ));
+    	txtSaldoNotaCredito.setText(format.format( balanceNotasCredito.getSaldo() ));
     	txtSaldoTotales.setText(format.format( balanceTotales.getSaldo() ));
 
     }

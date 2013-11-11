@@ -102,14 +102,14 @@ public class UIProductoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getProductoObserver().objectCreated(object);
+			AppContext.getInstance().getProductoObserver().objectCreated((Producto)object);
 			
 		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
@@ -131,18 +131,18 @@ public class UIProductoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getProductoObserver().objectUpdated(object);
+			AppContext.getInstance().getProductoObserver().objectUpdated((Producto)object);
 			
 		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
-		
+			
 		}
 		
 	}
@@ -160,7 +160,7 @@ public class UIProductoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getProductoObserver().objectDeleted(object);
+			AppContext.getInstance().getProductoObserver().objectDeleted((Producto)object);
 			
 		} catch (Exception e) {
 			

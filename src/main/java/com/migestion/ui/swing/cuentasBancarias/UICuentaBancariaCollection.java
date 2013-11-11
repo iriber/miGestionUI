@@ -9,6 +9,7 @@ import com.migestion.model.CuentaBancaria;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.view.dialogs.DialogMessage;
+import com.migestion.ui.AppUtils;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -28,7 +29,7 @@ public class UICuentaBancariaCollection extends UICollection{
 	}
 
 	public int getColumnCount() {		
-		return 7;
+		return 8;
 	}
 
 	public Class getColumnClass(int columnIndex) {
@@ -48,6 +49,8 @@ public class UICuentaBancariaCollection extends UICollection{
 	    	   return String.class;
 	       case 6:
 	    	   return String.class;
+	       case 7:
+	    	   return Float.class;
 	        default:
 	             return Object.class;
 	     }
@@ -70,6 +73,8 @@ public class UICuentaBancariaCollection extends UICollection{
         	return I18nMessages.CUENTA_BANCARIA_TITULAR;
         case 6:
         	return I18nMessages.CUENTA_BANCARIA_CUIT;
+        case 7:
+        	return I18nMessages.CUENTA_BANCARIA_SALDO;
 		default:
 			return "";
         }
@@ -97,10 +102,26 @@ public class UICuentaBancariaCollection extends UICollection{
             	return cuentaBancaria.getTitular();
             case 6:
             	return cuentaBancaria.getCuit();
+            case 7:
+            	return cuentaBancaria.getSaldo();
             default:
                 return "";
         }
     }
+
+	public Object getValueAtShow(int rowIndex, int columnIndex) {
+
+		// Se obtiene el dato de la fila indicada
+		CuentaBancaria cuentaBancaria = (CuentaBancaria)(getElements().get(rowIndex));
+		
+		// Se obtiene el campo apropiado según el valor de columnIndex
+		switch (columnIndex) {
+			case 7:
+				return AppUtils.formatMoneda( cuentaBancaria.getSaldo() );
+		default:
+			return getValueAt(rowIndex, columnIndex);
+		}
+	}
 
     /**
      * redefinimos para que no haga nada, ya que
@@ -127,6 +148,8 @@ public class UICuentaBancariaCollection extends UICollection{
 			return SwingConstants.LEFT;
 		case 6:
 			return SwingConstants.LEFT;
+		case 7:
+			return SwingConstants.RIGHT;
 		default:
 			return SwingConstants.LEFT;
 		}
@@ -153,12 +176,15 @@ public class UICuentaBancariaCollection extends UICollection{
             	return true;
             case 6:
             	return true;
+            case 7:
+            	return false;
             default:
                 return false;
         }
     }
 
 
+	
     /**
      * setea el valor de un "campo" de la tabla.
      * (no se utilizar� este m�todo)

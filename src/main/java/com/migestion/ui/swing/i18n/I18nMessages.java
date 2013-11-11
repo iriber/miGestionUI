@@ -288,6 +288,8 @@ public class I18nMessages implements I18nLocale{
 	public static String CUENTA_BANCARIA_TITULAR = properties.getString("cuentaBancaria.titular");
 	public static String CUENTA_BANCARIA_CUIT = properties.getString("cuentaBancaria.cuit");
 	public static String CUENTA_BANCARIA_NRO_CUENTA = properties.getString("cuentaBancaria.nrocuenta");
+	public static String CUENTA_BANCARIA_SALDO_INICIAL = properties.getString("cuentaBancaria.saldoInicial");
+	public static String CUENTA_BANCARIA_SALDO = properties.getString("cuentaBancaria.saldo");
 	
 	public static String CUENTA_BANCARIA_FRAME_TITULO = properties.getString("cuentaBancaria.frame.titulo");
 	public static String CUENTA_BANCARIA_FRAME_MENUADMIN = properties.getString("cuentaBancaria.frame.menuadmin");
@@ -466,7 +468,17 @@ public class I18nMessages implements I18nLocale{
 	
 	public static String MOVIMIENTO_CAJA_FRAME_TITULO = properties.getString("movimientoCaja.frame.titulo");
 	public static String MOVIMIENTO_CAJA_FRAME_MENUADMIN = properties.getString("movimientoCaja.frame.menuadmin");
+
+
+	/**
+	 * movimientos de cuentas bancarias
+	 */		
+	public static String MOVIMIENTOS_CUENTA_BANCARIA = properties.getString("movimientosCuentaBancaria");
+	public static String MOVIMIENTO_CUENTA_BANCARIA_CUENTA = properties.getString("movimientoCuentaBancaria.cuentaBancaria");
 	
+	public static String MOVIMIENTO_CUENTA_BANCARIA_FRAME_TITULO = properties.getString("movimientoCuentaBancaria.frame.titulo");
+	public static String MOVIMIENTO_CUENTA_BANCARIA_FRAME_MENUADMIN = properties.getString("movimientoCuentaBancaria.frame.menuadmin");
+
 	/**
 	 * movimientos de cuenta
 	 */		

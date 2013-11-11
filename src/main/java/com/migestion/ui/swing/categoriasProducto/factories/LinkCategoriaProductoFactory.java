@@ -62,6 +62,16 @@ public class LinkCategoriaProductoFactory {
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}
+
+	/**
+	 * link para listar categorías de producto en forma de árbol.
+	 * @return
+	 */
+	public static LinkListCollection getLinkListTree(){
+		LinkListCollection link = new LinkListCollection(WindowCategoriaProductoFactory.getWindowListTree(), I18nMessages.CATEGORIA_PRODUCTO_ACCION_LISTAR, I18nImages.CATEGORIAS_PRODUCTO_ICON);
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		return link;
+	}
 	
 	
 //	/**

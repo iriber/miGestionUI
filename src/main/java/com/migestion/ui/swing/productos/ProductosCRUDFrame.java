@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Producto;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.Link;
@@ -18,7 +19,7 @@ import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.ui.context.IProductoListener;
+import com.migestion.ui.context.observers.listeners.IProductoListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
@@ -31,7 +32,7 @@ import com.migestion.ui.swing.productos.panel.UIProductoCriteriaPanel;
  * @since 10/10/2013
  *
  */
-public class ProductosCRUDFrame extends CRUDFrame implements IProductoListener{
+public class ProductosCRUDFrame extends CRUDFrame<Producto> implements IProductoListener{
 
 	
 	public ProductosCRUDFrame(String title, IControllerList controller){

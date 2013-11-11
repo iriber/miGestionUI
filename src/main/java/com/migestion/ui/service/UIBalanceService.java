@@ -44,4 +44,50 @@ public class UIBalanceService  {
 		}
 		
 	}
+	
+	public Balance getBalanceBancos(Date fecha) throws ControllerException{
+		
+		try {
+			
+			Balance balance = ServiceFactory.getBalanceService().getBalanceBancos(fecha);
+			
+			return balance;
+			
+		} catch (ServiceException e) {
+			
+			throw new ControllerException( e.getMessage() );
+		}
+		
+	}
+	
+	
+	public Balance getBalanceCheques(Date fecha) throws ControllerException{
+		
+		try {
+			
+			Balance balance = ServiceFactory.getBalanceService().getBalanceCheques(fecha);
+			
+			return balance;
+			
+		} catch (ServiceException e) {
+			
+			throw new ControllerException( e.getMessage() );
+		}
+		
+	}
+	
+	public Balance getBalanceNotasCredito(Date fecha) throws ControllerException{
+		
+		try {
+			
+			Balance balance = ServiceFactory.getBalanceService().getBalanceNotasCredito(fecha);
+			
+			return balance;
+			
+		} catch (ServiceException e) {
+			
+			throw new ControllerException( e.getMessage() );
+		}
+		
+	}
 }

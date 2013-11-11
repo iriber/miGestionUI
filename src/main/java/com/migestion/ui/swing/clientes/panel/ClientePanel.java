@@ -59,11 +59,11 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         
         initValidators();
         
-        SkinDecorator.getInstance().decorate(this);
-        
-        Dimension minimumSize = new Dimension(1200, 400);
-		setMinimumSize(minimumSize);
-		setPreferredSize(minimumSize);
+//        SkinDecorator.getInstance().decorate(this);
+//        
+//        Dimension minimumSize = new Dimension(1200, 400);
+//		setMinimumSize(minimumSize);
+//		setPreferredSize(minimumSize);
 		loadCombos();
 		
     }
@@ -521,8 +521,13 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 		
 		pickerNacimiento.setDate( cliente.getFechaNacimiento() );
 		
-		ComboEnumElement tipoDoc = new ComboEnumElement(cliente.getTipoDocumento(), I18nMessages.locale(cliente.getTipoDocumento().getNombre()));
-		cmbTipoDoc.setSelectedItem( tipoDoc );
+		
+		if(cliente.getTipoDocumento()!=null){
+			ComboEnumElement tipoDoc = new ComboEnumElement(cliente.getTipoDocumento(), I18nMessages.locale(cliente.getTipoDocumento().getNombre()));
+			cmbTipoDoc.setSelectedItem( tipoDoc );	
+		}
+		
+		
 		if( cliente.getNroDocumento()!=null)
 			txtNroDoc.setText( cliente.getNroDocumento().toString() );
 		else

@@ -56,12 +56,12 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
     	
         initComponents();
         
-//        Dimension minimumSize = new Dimension(700, 300);
+		initValidators();
+
+//      Dimension minimumSize = new Dimension(700, 300);
 //		setMinimumSize(minimumSize);
 //		
 //		SkinDecorator.getInstance().decorate(this);
-		
-		initValidators();
 
     }
 
@@ -424,6 +424,7 @@ public class ProductoPanel2 extends javax.swing.JPanel implements ISkinForm,Seri
 	}
 
 	public void clearInputs() {
+		initProducto();
 		txtNombre.setText( "" );
 		txtIva.setValue( 21F );
 		txtDescripcion.setText( "" );

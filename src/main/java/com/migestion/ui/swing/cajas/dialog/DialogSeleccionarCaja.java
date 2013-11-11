@@ -380,7 +380,7 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
 		try {
 			UICajaCriteria criteria = new UICajaCriteria();
 			criteria.addEstado( EstadoCaja.ABIERTA );
-			
+			criteria.setFecha( new Date() );
 			UICollection cajasAbiertas= UIServiceFactory.getUICajaService().list( criteria );
 			model.setElementos(cajasAbiertas.getElements());	
 		} catch (ControllerException e) {

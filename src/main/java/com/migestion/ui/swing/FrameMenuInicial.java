@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
 import javax.swing.SwingWorker;
 
@@ -23,6 +22,8 @@ import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFact
 import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
 import com.migestion.ui.swing.cheques.factories.LinkChequeFactory;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
+import com.migestion.ui.swing.cuentasBancarias.factories.LinkCuentaBancariaFactory;
+import com.migestion.ui.swing.cuentasBancarias.movimientos.factories.LinkMovimientoCuentaBancariaFactory;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.notasCredito.factories.LinkNotaCreditoFactory;
@@ -56,7 +57,8 @@ public class FrameMenuInicial extends JFrameContainer {
 	
 	private void inicializar() {
 
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		AppContext.getInstance().setMainContainer(this);
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -71,7 +73,7 @@ public class FrameMenuInicial extends JFrameContainer {
 					@Override
 					protected Object doInBackground() throws Exception {
 						int index = 0;
-						int cantidad = 15;
+						int cantidad = 17;
 						int incrementar = 100 / cantidad;
 						
 						setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
@@ -110,7 +112,7 @@ public class FrameMenuInicial extends JFrameContainer {
 
 						// link categorías de producto.
 						LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory
-								.getLinkList();
+								.getLinkListTree();
 						index += incrementar;
 						setProgress(index);
 
@@ -154,6 +156,17 @@ public class FrameMenuInicial extends JFrameContainer {
 						index += incrementar;
 						setProgress(index);
 						
+						// link cuentas bancarias.
+						LinkListCollection linkCuentasBancarias = LinkCuentaBancariaFactory.getLinkList();
+						index += incrementar;
+						setProgress(index);
+
+						// link movimientos de cuentas bancarias.
+						LinkListCollection linkMovimientosCuentaBancaria = LinkMovimientoCuentaBancariaFactory
+								.getLinkList();
+						index += incrementar;
+						setProgress(index);
+
 						// link exit.
 						Link linkExit = new LinkSystemExit();
 						linkExit.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -172,8 +185,10 @@ public class FrameMenuInicial extends JFrameContainer {
 						menuVentas.add(MenuFactory.getJMenuItem(linkVentas));
 						menuVentas.add(MenuFactory.getJMenuItem(linkPagos));
 						menuVentas.add(MenuFactory.getJMenuItem(linkCheques));
+						menuVentas.add(MenuFactory.getJMenuItem(linkCuentasBancarias));
 						menuVentas.add(MenuFactory.getJMenuItem(linkNotasCredito));
 						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCaja));
+						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCuentaBancaria));
 						menuVentas.add(MenuFactory.getJMenuItem(linkBalanceDiario));
 						index += incrementar;
 						setProgress(index);

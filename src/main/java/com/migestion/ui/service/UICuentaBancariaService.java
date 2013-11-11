@@ -18,9 +18,10 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UICuentaBancariaCriteria;
+import com.migestion.ui.swing.cuentasBancarias.UICuentaBancariaCollection;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.sucursales.UISucursalCollection;
 
 /**
  * Controlador utilizado para las operaciones de las cuentas bancarias
@@ -48,7 +49,7 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 	public UICollection list() throws ControllerException {
 		
 		
-		UISucursalCollection uiList = new UISucursalCollection( I18nMessages.PRODUCTOS);
+		UICuentaBancariaCollection uiList = new UICuentaBancariaCollection( I18nMessages.CUENTAS_BANCARIAS);
 
 		uiList.setElements( new Vector<CuentaBancaria>() );
 		
@@ -77,7 +78,7 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 		}
 		
 		// creamos una ui collection con los cuentasBancarias.
-		UISucursalCollection uiList = new UISucursalCollection( I18nMessages.PRODUCTOS);
+		UICuentaBancariaCollection uiList = new UICuentaBancariaCollection( I18nMessages.CUENTAS_BANCARIAS);
 
 		uiList.setElements( cuentasBancarias );
 		
@@ -101,18 +102,18 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getCuentaBancariaObserver().objectCreated((CuentaBancaria)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -130,18 +131,18 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getCuentaBancariaObserver().objectUpdated((CuentaBancaria)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -159,18 +160,18 @@ public class UICuentaBancariaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getCuentaBancariaObserver().objectDeleted((CuentaBancaria)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 

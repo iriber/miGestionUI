@@ -3,6 +3,7 @@ package com.migestion.ui.criteria;
 import org.apache.commons.lang3.StringUtils;
 
 import com.migestion.services.criteria.ClienteCriteria;
+import com.migestion.services.criteria.Criteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
@@ -41,6 +42,7 @@ public class UIClienteCriteria extends UIPersonaCriteria{
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
 		criteria.setNombre(getNombre());
+		criteria.orderByNombre(Criteria.ORDER_ASC);
 		return criteria;
 	}	
 }

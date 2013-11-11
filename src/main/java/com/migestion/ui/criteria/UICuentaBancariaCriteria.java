@@ -35,7 +35,7 @@ public class UICuentaBancariaCriteria extends UICustomCriteria{
 		
 		String desc = I18nMessages.CUENTAS_BANCARIAS ;
 		
-		if(StringUtils.isEmpty(getNombre()))
+		if(!StringUtils.isEmpty(getNombre()))
 			desc +=  " | " + I18nMessages.CUENTA_BANCARIA_BANCO + ": '" + getNombre() + "'";
 		
 		return desc;

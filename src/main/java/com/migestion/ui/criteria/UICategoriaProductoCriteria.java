@@ -2,6 +2,7 @@ package com.migestion.ui.criteria;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.migestion.model.CategoriaProducto;
 import com.migestion.services.criteria.CategoriaProductoCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -16,6 +17,10 @@ public class UICategoriaProductoCriteria extends UICustomCriteria{
 
 	//nombre de la categoria.
 	private String nombre;
+	
+	private Boolean sinPadre=null;
+	
+	private CategoriaProducto padre;
 	
 	//----------------------
 	//CONSTRUCTORES
@@ -62,6 +67,24 @@ public class UICategoriaProductoCriteria extends UICustomCriteria{
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
 		criteria.setNombre(getNombre());
+		criteria.setSinPadre(getSinPadre());
+		criteria.setPadre(getPadre());
 		return criteria;
+	}
+
+	public Boolean getSinPadre() {
+		return sinPadre;
+	}
+
+	public void setSinPadre(Boolean sinPadre) {
+		this.sinPadre = sinPadre;
+	}
+
+	public CategoriaProducto getPadre() {
+		return padre;
+	}
+
+	public void setPadre(CategoriaProducto padre) {
+		this.padre = padre;
 	}	
 }

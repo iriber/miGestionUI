@@ -415,13 +415,14 @@ public class DialogAddFormaPagoTarjeta extends javax.swing.JDialog {
 	private void initValidators() {
 		
 		required = new InputRequiredValidator(); 
-		required.put(lblTitular, pickerFechaVencimiento, new JDateChooserInspector());
-		required.put(lblBanco, txtBanco, new JTextFieldInspector());
+		
+		//required.put(lblBanco, txtBanco, new JTextFieldInspector());
 		required.put(lblTarjeta, txtTarjeta, new JTextFieldInspector());
 		required.put(lblNumero, txtNumero, new JTextFieldInspector());
 		required.put(lblMonto, txtMonto, new JTextFieldInspector());
+		required.put(lblTitular, txtTitular, new JTextFieldInspector());
 		required.put(lblDestino, cmbDestino, new JComboBoxInspector());
-		required.put(lblFechaVencimiento, txtMonto, new JTextFieldInspector());
+		//required.put(lblFechaVencimiento, txtMonto, new JTextFieldInspector());
 		required.setMessage(I18nMessages.INGRESE_REQUERIDOS);
 		required.initialize();
 		
