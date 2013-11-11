@@ -105,7 +105,21 @@ public class UIServiceFactory {
 		return UIMovimientoCuentaBancariaService.getInstance();
 	}
 	
+	/**
+	 * servicio para movimientos de cheques
+	 * @return
+	 */
+	public static UIMovimientoChequeService getUIMovimientoChequeService(){
+		return UIMovimientoChequeService.getInstance();
+	}
 	
+	/**
+	 * servicio para movimientos de notas de crédito
+	 * @return
+	 */
+	public static UIMovimientoNotaCreditoService getUIMovimientoNotaCreditoService(){
+		return UIMovimientoNotaCreditoService.getInstance();
+	}
 	/**
 	 * servicio para balances
 	 * @return

@@ -49,7 +49,7 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 	public UICollection list() throws ControllerException {
 		
 		
-		UIMovimientoCuentaBancariaCollection uiList = new UIMovimientoCuentaBancariaCollection( I18nMessages.MOVIMIENTOS_CAJA);
+		UIMovimientoCuentaBancariaCollection uiList = new UIMovimientoCuentaBancariaCollection( I18nMessages.MOVIMIENTOS_CUENTA_BANCARIA);
 
 		uiList.setElements( new Vector<MovimientoCuentaBancaria>() );
 
