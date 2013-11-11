@@ -26,8 +26,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cmbCuentas" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="pickerFecha" min="-2" pref="174" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
+                      <Component id="criteriaFechaRangoPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -43,9 +43,9 @@
                   <Component id="cmbCuentas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="pickerFecha" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFecha" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
+                  <Component id="criteriaFechaRangoPanel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -74,7 +74,7 @@
         <Property name="text" type="java.lang.String" value="Fecha"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="pickerFecha">
+    <Component class="com.migestion.swing.custom.CriteriaFechaRangoPanel" name="criteriaFechaRangoPanel">
     </Component>
   </SubComponents>
 </Form>

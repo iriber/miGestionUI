@@ -133,19 +133,19 @@ public class CategoriaProductoTree extends JPanel {
         	//TODO llamar al servicio
         	System.out.println("insert listener");
         	
-        	DefaultMutableTreeNode node;
-            node = (DefaultMutableTreeNode)(e.getTreePath().getLastPathComponent());
-
-            CategoriaProducto categoriaProducto = (CategoriaProducto)node.getUserObject();
-            
-            try {
-				
-            	UIServiceFactory.getUICategoriaProductoService().addObject(node.getUserObject());
-            	
-			} catch (ControllerException e1) {
-				
-				e1.printStackTrace();
-			}
+//        	DefaultMutableTreeNode node;
+//            node = (DefaultMutableTreeNode)(e.getTreePath().getLastPathComponent());
+//
+//            CategoriaProducto categoriaProducto = (CategoriaProducto)node.getUserObject();
+//            
+//            try {
+//				
+//            	UIServiceFactory.getUICategoriaProductoService().addObject(node.getUserObject());
+//            	
+//			} catch (ControllerException e1) {
+//				
+//				e1.printStackTrace();
+//			}
             
         	
         }

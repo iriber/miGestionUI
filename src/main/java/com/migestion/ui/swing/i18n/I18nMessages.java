@@ -480,6 +480,25 @@ public class I18nMessages implements I18nLocale{
 	public static String MOVIMIENTO_CUENTA_BANCARIA_FRAME_MENUADMIN = properties.getString("movimientoCuentaBancaria.frame.menuadmin");
 
 	/**
+	 * movimientos de cheques
+	 */		
+	public static String MOVIMIENTOS_CHEQUE = properties.getString("movimientosCheque");
+	public static String MOVIMIENTO_CHEQUE_CHEQUE = properties.getString("movimientoCheque.cheque");
+	
+	public static String MOVIMIENTO_CHEQUE_FRAME_TITULO = properties.getString("movimientoCheque.frame.titulo");
+	public static String MOVIMIENTO_CHEQUE_FRAME_MENUADMIN = properties.getString("movimientoCheque.frame.menuadmin");
+	
+
+	/**
+	 * movimientos de notas de crédito
+	 */		
+	public static String MOVIMIENTOS_NOTA_CREDITO = properties.getString("movimientosNotaCredito");
+	public static String MOVIMIENTO_NOTA_CREDITO_NOTA_CREDITO = properties.getString("movimientoNotaCredito.notaCredito");
+	
+	public static String MOVIMIENTO_NOTA_CREDITO_FRAME_TITULO = properties.getString("movimientoNotaCredito.frame.titulo");
+	public static String MOVIMIENTO_NOTA_CREDITO_FRAME_MENUADMIN = properties.getString("movimientoNotaCredito.frame.menuadmin");
+		
+	/**
 	 * movimientos de cuenta
 	 */		
 	public static String MOVIMIENTO_CUENTA_CODIGO = properties.getString("movimientoCuenta.codigo");

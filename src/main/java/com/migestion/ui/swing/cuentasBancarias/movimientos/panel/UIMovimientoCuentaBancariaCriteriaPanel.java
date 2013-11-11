@@ -6,6 +6,8 @@
 
 package com.migestion.ui.swing.cuentasBancarias.movimientos.panel;
 
+import java.util.Date;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.JPanel;
 
@@ -52,7 +54,7 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
         lblCuenta = new javax.swing.JLabel();
         cmbCuentas = new javax.swing.JComboBox();
         lblFecha = new javax.swing.JLabel();
-        pickerFecha = new com.toedter.calendar.JDateChooser();
+        criteriaFechaRangoPanel = new com.migestion.swing.custom.CriteriaFechaRangoPanel();
 
         lblCuenta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCuenta.setText("Cuenta bancaria");
@@ -75,8 +77,8 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbCuentas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 130, Short.MAX_VALUE)))
+                        .addComponent(criteriaFechaRangoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,9 +89,9 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
                     .addComponent(lblCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFecha))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFecha)
+                    .addComponent(criteriaFechaRangoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -97,9 +99,9 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cmbCuentas;
+    private com.migestion.swing.custom.CriteriaFechaRangoPanel criteriaFechaRangoPanel;
     private javax.swing.JLabel lblCuenta;
     private javax.swing.JLabel lblFecha;
-    private com.toedter.calendar.JDateChooser pickerFecha;
     // End of variables declaration//GEN-END:variables
 	
     
@@ -117,7 +119,9 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
 //			throw new ViewException("Debe seleccionar una fecha");
 		
 		criteria.setCuentaBancaria( cuentaBancaria );
-		criteria.setFecha( pickerFecha.getDate() );
+		Date[] fechas = criteriaFechaRangoPanel.getFechas();
+		criteria.setFechaDesde( fechas[0] );
+		criteria.setFechaHasta( fechas[1] );
 	
 		criteria.setPaginable(true);
 		return criteria;
@@ -127,7 +131,8 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
 	public void setCriteria(UICriteria criteria) {
 		
 		cmbCuentas.setSelectedItem( ((UIMovimientoCuentaBancariaCriteria)criteria).getCuentaBancaria() );
-		pickerFecha.setDate( ((UIMovimientoCuentaBancariaCriteria)criteria).getFecha() );
+		criteriaFechaRangoPanel.setFechaDesde( ((UIMovimientoCuentaBancariaCriteria)criteria).getFechaDesde() );
+		criteriaFechaRangoPanel.setFechaHasta( ((UIMovimientoCuentaBancariaCriteria)criteria).getFechaHasta() );
 		
 	}
 
