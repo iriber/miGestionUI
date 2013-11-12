@@ -143,4 +143,12 @@ public class UIServiceFactory {
 	public static UINotaCreditoService getUINotaCreditoService(){
 		return UINotaCreditoService.getInstance();
 	}
+
+	/**
+	 * servicio para gastos
+	 * @return
+	 */
+	public static UIGastoService getUIGastoService(){
+		return UIGastoService.getInstance();
+	}
 }

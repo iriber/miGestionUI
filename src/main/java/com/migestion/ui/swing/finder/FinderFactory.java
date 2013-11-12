@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 
 import com.migestion.model.Caja;
 import com.migestion.model.CategoriaProducto;
+import com.migestion.model.Cheque;
 import com.migestion.model.Cliente;
+import com.migestion.model.CuentaBancaria;
 import com.migestion.model.GenericEntity;
 import com.migestion.model.Producto;
 import com.migestion.model.Vendedor;
@@ -18,7 +20,9 @@ import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.cajas.factories.WindowCajaFactory;
 import com.migestion.ui.swing.categoriasProducto.factories.WindowCategoriaProductoFactory;
+import com.migestion.ui.swing.cheques.factories.WindowChequeFactory;
 import com.migestion.ui.swing.clientes.factories.WindowClienteFactory;
+import com.migestion.ui.swing.cuentasBancarias.factories.WindowCuentaBancariaFactory;
 import com.migestion.ui.swing.operaciones.ventas.factories.WindowVentaFactory;
 import com.migestion.ui.swing.productos.factories.WindowProductoFactory;
 import com.migestion.ui.swing.vendedores.factories.WindowVendedorFactory;
@@ -315,4 +319,101 @@ public class FinderFactory {
 
         return findobject;
 	}
+	
+	/**
+	 * construye un findobject panel para buscar un cheque.
+	 * @param listener listener para cuando se encuentra el objecto
+	 * @return
+	 */
+	public static JFindObjectPanel getFindCheque(LinkFindObjectListener listener){
+
+		JFindObjectPanel findobject = new JFindObjectPanel();
+		
+		findobject.setCodeWidth(50);
+		findobject.setFinderByCode(new IFinderObjectByCode() {
+            public Object getObject(String code) {
+                Object result = null;
+                try {
+                	Cheque cheque = new Cheque();
+                	cheque.setOid(Long.valueOf(code));
+                	result = UIServiceFactory.getUIChequeService().getObject(cheque);
+
+                } catch (ControllerException ex) {
+                    Logger.getLogger(FinderFactory.class.getName()).log(Level.SEVERE, null, ex);
+                }catch (Exception ex) {
+                    Logger.getLogger(FinderFactory.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return result;
+            }
+        });
+        
+        findobject.setInspector(new IObjectFoundInspector() {
+
+            public String getCode(Object object) {
+            	if( ((GenericEntity)object).getOid() != null )
+            		return ((GenericEntity)object).getOid() + "";
+            	else
+            		return "-";
+            }
+
+            public String getDescription(Object object) {
+            	if(object!=null)
+                return object.toString();
+            	else return "";
+            }
+        });
+        
+        findobject.setTextWidth(200);
+        findobject.setWindowFindObject(WindowChequeFactory.getWindowFind());
+        findobject.setListener( listener );
+
+        return findobject;
+	}	
+	
+	/**
+	 * construye un findobject panel para buscar una cuenta bancaria.
+	 * @param listener listener para cuando se encuentra el objecto
+	 * @return
+	 */
+	public static JFindObjectPanel getFindCuentaBancaria(LinkFindObjectListener listener){
+
+		JFindObjectPanel findobject = new JFindObjectPanel();
+		
+		findobject.setCodeWidth(50);
+		findobject.setFinderByCode(new IFinderObjectByCode() {
+            public Object getObject(String code) {
+                Object result = null;
+                try {
+                	CuentaBancaria cuentaBancaria = new CuentaBancaria();
+                	cuentaBancaria.setOid(Long.valueOf(code));
+                	result = UIServiceFactory.getUICuentaBancariaService().getObject(cuentaBancaria);
+
+                } catch (ControllerException ex) {
+                    Logger.getLogger(FinderFactory.class.getName()).log(Level.SEVERE, null, ex);
+                }catch (Exception ex) {
+                    Logger.getLogger(FinderFactory.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return result;
+            }
+        });
+        
+        findobject.setInspector(new IObjectFoundInspector() {
+
+            public String getCode(Object object) {
+                return ((GenericEntity)object).getOid() + "";
+            }
+
+            public String getDescription(Object object) {
+            	if(object!=null)
+                return object.toString();
+            	else return "";
+            }
+        });
+        
+        findobject.setTextWidth(200);
+        findobject.setWindowFindObject(WindowCuentaBancariaFactory.getWindowFind());
+        findobject.setListener( listener );
+
+        return findobject;
+	}	
 }

@@ -1,38 +1,38 @@
-package com.migestion.ui.swing.pagos;
+package com.migestion.ui.swing.gastos;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
-import javax.swing.table.TableCellRenderer;
 
-import com.migestion.model.EstadisticaPago;
-import com.migestion.model.Pago;
+import com.migestion.model.ConceptoMovimiento;
+import com.migestion.model.EstadisticaGasto;
+import com.migestion.model.FormaPago;
+import com.migestion.model.Gasto;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.model.UIFooterCollection;
 import com.migestion.ui.AppUtils;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.pagos.renderers.PagoTableRenderer;
 
 /**
- * UICollection para pagos.
+ * UICollection para gastos.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 15/10/2013
+ * @since 12/11/2013
  * 
  */
-public class UIPagoCollection extends UIFooterCollection {
+public class UIGastoCollection extends UIFooterCollection {
 
-	private EstadisticaPago estadistica;
+	private EstadisticaGasto estadistica;
 
-	public UIPagoCollection(String description) {
+	public UIGastoCollection(String description) {
 		super(description);
 		setElements(new Vector());
 	}
 
 	public int getColumnCount() {
-		return 4;
+		return 6;
 	}
 
 	public Class getColumnClass(int columnIndex) {
@@ -42,9 +42,13 @@ public class UIPagoCollection extends UIFooterCollection {
 		case 1:
 			return Date.class;
 		case 2:
-			return String.class;
+			return ConceptoMovimiento.class;
 		case 3:
 			return Float.class;
+		case 4:
+			return FormaPago.class;
+		case 5:
+			return String.class;
 		default:
 			return Object.class;
 		}
@@ -53,13 +57,17 @@ public class UIPagoCollection extends UIFooterCollection {
 	public String getColumnName(int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			return I18nMessages.PAGO_CODIGO;
+			return I18nMessages.GASTO_CODIGO;
 		case 1:
-			return I18nMessages.PAGO_FECHA;
+			return I18nMessages.GASTO_FECHA;
 		case 2:
-			return I18nMessages.PAGO_CLIENTE;
+			return I18nMessages.GASTO_CONCEPTO;
 		case 3:
-			return I18nMessages.PAGO_MONTO;
+			return I18nMessages.GASTO_MONTO;
+		case 4:
+			return I18nMessages.GASTO_FORMA_PAGO;
+		case 5:
+			return I18nMessages.GASTO_OBSERVACIONES;
 		default:
 			return "";
 		}
@@ -77,6 +85,10 @@ public class UIPagoCollection extends UIFooterCollection {
 			return SwingConstants.LEFT;
 		case 3:
 			return SwingConstants.RIGHT;
+		case 4:
+			return SwingConstants.LEFT;
+		case 5:
+			return SwingConstants.LEFT;
 		default:
 			return SwingConstants.LEFT;
 		}
@@ -89,9 +101,13 @@ public class UIPagoCollection extends UIFooterCollection {
 		case 1:
 			return 30;
 		case 2:
-			return 200;
+			return 150;
 		case 3:
 			return 100;
+		case 4:
+			return 70;
+		case 5:
+			return 200;
 		default:
 			return super.getColumnWidth(columnIndex);
 		}
@@ -109,6 +125,10 @@ public class UIPagoCollection extends UIFooterCollection {
 			return false;
 		case 3:
 			return false;
+		case 4:
+			return false;
+		case 5:
+			return false;
 		default:
 			return false;
 		}
@@ -117,20 +137,20 @@ public class UIPagoCollection extends UIFooterCollection {
 	@Override
 	protected void setEntityValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		Gasto gasto = (Gasto) (getElements().get(rowIndex));
 
 		// no es editable.
 	}
 
-
-	public TableCellRenderer getTableCellRenderer() {
-		return new PagoTableRenderer();
-	}
+//
+//	public TableCellRenderer getTableCellRenderer() {
+//		return new GastoTableRenderer();
+//	}
 
 	/**
 	 * @return the estadistica
 	 */
-	public EstadisticaPago getEstadistica() {
+	public EstadisticaGasto getEstadistica() {
 		return estadistica;
 	}
 
@@ -138,14 +158,14 @@ public class UIPagoCollection extends UIFooterCollection {
 	 * @param estadistica
 	 *            the estadistica to set
 	 */
-	public void setEstadistica(EstadisticaPago estadistica) {
+	public void setEstadistica(EstadisticaGasto estadistica) {
 		this.estadistica = estadistica;
 	}
 
 	@Override
 	protected void setFooter(UICollection items) {
 		
-		this.setEstadistica(((UIPagoCollection) items).getEstadistica());
+		this.setEstadistica(((UIGastoCollection) items).getEstadistica());
 		
 	}
 
@@ -167,6 +187,10 @@ public class UIPagoCollection extends UIFooterCollection {
 			return null;
 		case 3:
 			return AppUtils.formatMoneda( getEstadistica().getImporteTotal() );
+		case 4:
+			return null;
+		case 5:
+			return null;
 		default:
 			return "";
 		}
@@ -177,18 +201,22 @@ public class UIPagoCollection extends UIFooterCollection {
 	protected Object getEntityValueAt(int rowIndex, int columnIndex) {
 
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		Gasto gasto = (Gasto) (getElements().get(rowIndex));
 		
 		// Se obtiene el campo apropiado según el valor de columnIndex
 		switch (columnIndex) {
 		case 0:
-			return pago.getOid();
+			return gasto.getOid();
 		case 1:
-			return pago.getFecha();
+			return gasto.getFecha();
 		case 2:
-			return pago.getCliente();
+			return gasto.getMovimiento().getConcepto();
 		case 3:
-			return pago.getMonto();
+			return gasto.getMonto();
+		case 4:
+			return gasto.getFormaPago();
+		case 5:
+			return gasto.getObservaciones();
 		default:
 			return "";
 		}
@@ -198,18 +226,22 @@ public class UIPagoCollection extends UIFooterCollection {
 	protected Object getEntityValueAtShow(int rowIndex, int columnIndex) {
 
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		Gasto gasto = (Gasto) (getElements().get(rowIndex));
 		
 		// Se obtiene el campo apropiado según el valor de columnIndex
 		switch (columnIndex) {
 		case 0:
-			return pago.getOid();
+			return gasto.getOid();
 		case 1:
-			return AppUtils.formatDate( pago.getFecha() );
+			return AppUtils.formatDate( gasto.getFecha() );
 		case 2:
-			return pago.getCliente();
+			return gasto.getMovimiento().getConcepto().toString();
 		case 3:
-			return AppUtils.formatMoneda( pago.getMonto() );
+			return AppUtils.formatMoneda( gasto.getMonto() );
+		case 4:
+			return I18nMessages.locale( gasto.getFormaPago().getNombre() );
+		case 5:
+			return gasto.getObservaciones();
 		default:
 			return "";
 		}

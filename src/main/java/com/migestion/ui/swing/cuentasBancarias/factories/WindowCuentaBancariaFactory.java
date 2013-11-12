@@ -15,6 +15,7 @@ import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.cuentasBancarias.CuentasBancariasCRUDFrame;
+import com.migestion.ui.swing.cuentasBancarias.dialog.DialogFindCuentaBancaria;
 import com.migestion.ui.swing.cuentasBancarias.panel.CuentaBancariaPanel;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -75,5 +76,11 @@ public class WindowCuentaBancariaFactory {
 		return frame;
 	}
 
-
+	/**
+	 * ventana para buscar una cuenta bancaria.
+	 */
+	public static DialogFindCuentaBancaria getWindowFind() {
+		DialogFindCuentaBancaria dialog = new  DialogFindCuentaBancaria( I18nMessages.CUENTA_BANCARIA_DIALOG_BUSCAR_TITULO );
+		return dialog;
+	}
 }

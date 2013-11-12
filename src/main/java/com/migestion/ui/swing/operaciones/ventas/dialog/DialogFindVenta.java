@@ -1,17 +1,14 @@
 package com.migestion.ui.swing.operaciones.ventas.dialog;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
+import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
-import com.migestion.swing.factories.JTextFieldFactory;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
-import com.migestion.swing.view.inputs.PropertyInput;
 import com.migestion.ui.criteria.UIVentaCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -25,7 +22,7 @@ import com.migestion.ui.swing.operaciones.ventas.panel.UIVentaCriteriaPanel;
  * @since 17/10/2013
  *
  */
-public class DialogFindVenta extends DialogFindObject{
+public class DialogFindVenta extends DialogFindObject<Venta>{
 
 	
 	public DialogFindVenta(String title) {
@@ -76,7 +73,7 @@ public class DialogFindVenta extends DialogFindObject{
 	 * @see com.codnet.swing.view.dialogs.DialogFindObject#getController()
 	 */
 	protected IControllerList getController() {
-		return (IControllerList)UIServiceFactory.getUIClienteService();
+		return (IControllerList)UIServiceFactory.getUIVentaService();
 	}
 
 	/*
@@ -87,11 +84,10 @@ public class DialogFindVenta extends DialogFindObject{
 		return new UIVentaCollection( I18nMessages.VENTAS);
 	}
 
-//	private String getInputNombre(){
-//		return ((JTextField)getInput("Nombre")).getText();
-//	}
-
-
-	
+	@Override
+	protected LinkOpenDialog getLinkAdd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -39,12 +39,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 
-import com.migestion.model.ConceptoMovimiento;
 import com.migestion.model.DetalleFormaPago;
 import com.migestion.model.DetalleFormaPagoCheque;
 import com.migestion.model.DetalleFormaPagoEfectivo;
 import com.migestion.model.FormaPago;
-import com.migestion.model.MovimientoCaja;
 import com.migestion.model.Pago;
 import com.migestion.model.Sucursal;
 import com.migestion.model.Venta;
@@ -67,6 +65,7 @@ import com.migestion.ui.AppUtils;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UISucursalCriteria;
 import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.cheques.dialog.DialogAddCheque;
 import com.migestion.ui.swing.finder.FinderFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.UIDetalleFormaPagoCollection;
@@ -580,22 +579,8 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
            
            //vemos a cuál ventana llamar.
            if( formaPago.equals( FormaPago.EFECTIVO) ){
-           
-               //creamos la forma de pago efectivo con el monto que resta a pagar.
-               detalle = new DetalleFormaPagoEfectivo();
-               detalle.setMonto( montoRestaPagar );
-               ((DetalleFormaPagoEfectivo)detalle).setCaja( AppContext.getInstance().getCajaDefault() );
                
            }else if( formaPago.equals( FormaPago.CHEQUE) ){
-            
-               DialogAddFormaPagoCheque dialogFormaPagoCheque = new DialogAddFormaPagoCheque(new Frame(), true);
-               UbicacionVentana.centrar(dialogFormaPagoCheque, false);
-               dialogFormaPagoCheque.setVisible( true );               
-               if( dialogFormaPagoCheque.getReturnStatus() == DialogAddFormaPagoCheque.RET_OK ){
-               
-                   detalle = dialogFormaPagoCheque.getDetalleFormaPago();
-                		   
-               }
             
            }else if( formaPago.equals( FormaPago.TARJETA) ){
             
@@ -638,14 +623,17 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     		return;
     	}
 
-    	DialogAddFormaPagoCheque dialogFormaPagoCheque = new DialogAddFormaPagoCheque(new Frame(), true);
-        UbicacionVentana.centrar(dialogFormaPagoCheque, false);
-        dialogFormaPagoCheque.setVisible( true );               
-        if( dialogFormaPagoCheque.getReturnStatus() == DialogAddFormaPagoCheque.RET_OK ){
-        
-        	DetalleFormaPago detalle = dialogFormaPagoCheque.getDetalleFormaPago();
-        	Float monto = detalle.getMonto();
+    	DialogAddCheque dialogCheque = new DialogAddCheque(new Frame(), true);
+        UbicacionVentana.centrar(dialogCheque, false);
+        dialogCheque.setVisible( true );               
+        if( dialogCheque.getReturnStatus() == DialogAddCheque.RET_OK ){
+
+        	DetalleFormaPagoCheque detalle = new DetalleFormaPagoCheque();
+            detalle.setMonto( dialogCheque.getCheque().getMonto() );
+            detalle.setCheque(dialogCheque.getCheque());
+            Float monto = detalle.getMonto();
      	    detalle.buildMovimiento(AppContext.getInstance().getConceptoVenta(), monto);
+     	    
      	    detallesController.addElement(detalle);
          		   
         }
@@ -673,7 +661,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     	DialogAddFormaPagoTarjeta dialogFormaPagoTarjeta = new DialogAddFormaPagoTarjeta(new Frame(), true);
         UbicacionVentana.centrar(dialogFormaPagoTarjeta, false);
         dialogFormaPagoTarjeta.setVisible( true );               
-        if( dialogFormaPagoTarjeta.getReturnStatus() == DialogAddFormaPagoCheque.RET_OK ){
+        if( dialogFormaPagoTarjeta.getReturnStatus() == DialogAddCheque.RET_OK ){
         
             DetalleFormaPago detalle = dialogFormaPagoTarjeta.getDetalleFormaPago();
             Float monto = detalle.getMonto();

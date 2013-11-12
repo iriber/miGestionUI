@@ -374,15 +374,6 @@ public class I18nMessages implements I18nLocale{
 	public static String DETALLE_FORMA_PAGO_OBSERVACIONES = properties.getString("pago.detalleFormaPago.observaciones");
 	public static String DETALLE_FORMA_PAGO_FORMAPAGO = properties.getString("pago.detalleFormaPago.formaPago");
 	
-
-	public static String CHEQUES = properties.getString("cheques");
-	public static String CHEQUE_CODIGO = properties.getString("cheque.codigo");
-	public static String CHEQUE_BANCO = properties.getString("cheque.banco");
-	public static String CHEQUE_MONTO = properties.getString("cheque.monto");
-	public static String CHEQUE_FECHA_VENCIMIENTO = properties.getString("cheque.fechaVencimiento");
-	public static String CHEQUE_NUMERO = properties.getString("cheque.numero");
-	public static String CHEQUE_OBSERVACIONES = properties.getString("cheque.observaciones");
-	
 	public static String TARJETA_TARJETA = properties.getString("tarjeta.tarjeta");
 	public static String TARJETA_BANCO = properties.getString("tarjeta.banco");
 	public static String TARJETA_NUMERO = properties.getString("tarjeta.numero");
@@ -405,12 +396,26 @@ public class I18nMessages implements I18nLocale{
 	/**
 	 * cheques
 	 */
+	public static String CHEQUES = properties.getString("cheques");
+	public static String CHEQUE_CODIGO = properties.getString("cheque.codigo");
+	public static String CHEQUE_BANCO = properties.getString("cheque.banco");
+	public static String CHEQUE_MONTO = properties.getString("cheque.monto");
+	public static String CHEQUE_FECHA_VENCIMIENTO = properties.getString("cheque.fechaVencimiento");
+	public static String CHEQUE_NUMERO = properties.getString("cheque.numero");
+	public static String CHEQUE_OBSERVACIONES = properties.getString("cheque.observaciones");
+	
+	
 	public static String CHEQUE_FRAME_TITULO = properties.getString("cheque.frame.titulo");
 	public static String CHEQUE_FRAME_MENUADMIN = properties.getString("cheque.frame.menuadmin");
 	
+	public static String CHEQUE_DIALOG_AGREGAR_TITULO = properties.getString("cheque.dialog.agregar.titulo");
+	public static String CHEQUE_DIALOG_BUSCAR_TITULO = properties.getString("cheque.dialog.buscar.titulo");
+	
 	public static String CHEQUE_DIALOG_VER_TITULO = properties.getString("cheque.dialog.ver.titulo");
+	public static String CHEQUE_ACCION_AGREGAR = properties.getString("cheque.accion.agregar");
 	public static String CHEQUE_ACCION_VER = properties.getString("cheque.accion.ver");
 	public static String CHEQUE_ACCION_LISTAR = properties.getString("cheque.accion.listar");
+	
 	
 	/**
 	 * cajas
@@ -536,5 +541,36 @@ public class I18nMessages implements I18nLocale{
 	public static String NOTA_CREDITO_DIALOG_VER_TITULO = properties.getString("notaCredito.dialog.ver.titulo");
 	public static String NOTA_CREDITO_ACCION_VER = properties.getString("notaCredito.accion.ver");
 	public static String NOTA_CREDITO_ACCION_LISTAR = properties.getString("notaCredito.accion.listar");
+
+	/**
+	 * gastos
+	 */
+	public static String GASTOS = properties.getString("gastos");
+	public static String GASTO_FECHA = properties.getString("gasto.fecha");
+	public static String GASTO_CODIGO = properties.getString("gasto.codigo");
+	public static String GASTO_MONTO = properties.getString("gasto.monto");
+	public static String GASTO_SUCURSAL = properties.getString("gasto.sucursal");
+	public static String GASTO_VENDEDOR = properties.getString("gasto.vendedor");
+	public static String GASTO_OBSERVACIONES = properties.getString("gasto.observaciones");
+	public static String GASTO_FORMA_PAGO = properties.getString("gasto.formaPago");
+	public static String GASTO_CONCEPTO = properties.getString("gasto.concepto");
+	
+	public static String GASTO_FRAME_TITULO = properties.getString("gasto.frame.titulo");
+	public static String GASTO_FRAME_MENUADMIN = properties.getString("gasto.frame.menuadmin");
+	
+	public static String GASTO_DIALOG_AGREGAR_TITULO = properties.getString("gasto.dialog.agregar.titulo");
+	public static String GASTO_DIALOG_MODIFICAR_TITULO = properties.getString("gasto.dialog.modificar.titulo");
+	public static String GASTO_DIALOG_BUSCAR_TITULO = properties.getString("gasto.dialog.buscar.titulo");
+	public static String GASTO_DIALOG_ELIMINAR_TITULO = properties.getString("gasto.dialog.eliminar.titulo");
+	public static String GASTO_DIALOG_VER_TITULO = properties.getString("gasto.dialog.ver.titulo");
+	
+	public static String GASTO_ACCION_LISTAR = properties.getString("gasto.accion.listar");
+	public static String GASTO_ACCION_AGREGAR = properties.getString("gasto.accion.agregar");
+	public static String GASTO_ACCION_MODIFICAR = properties.getString("gasto.accion.modificar");
+	public static String GASTO_ACCION_ELIMINAR = properties.getString("gasto.accion.eliminar");
+	public static String GASTO_ACCION_BUSCAR = properties.getString("gasto.accion.buscar");
+	public static String GASTO_ACCION_VER = properties.getString("gasto.accion.ver");
+	
+	public static String GASTO_MSG_CONFIRMA_ELIMINAR = properties.getString("gasto.msg.confirma_eliminar");
 
 }

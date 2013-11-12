@@ -119,42 +119,38 @@ public class I18nImages {
 			+ properties.getString("facturas.small.icon") );
   
   
-  
-  
-  
-  
-  
-  //cuentas.
-  public static URL CUENTAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cuentas.icon") );
-  
-  public static URL CUENTAS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cuentas.small.icon") );
-  
+  public static URL GASTOS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.icon") );  
 
-  //facturadores
-  public static URL FACTURADORES_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
-			+ properties.getString("facturadores.icon") );
-		
-  public static URL FACTURADORES_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
-			+ properties.getString("facturadores.small.icon") );
+  public static URL GASTOS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("facturas.small.icon") );
 
-  //facturas
-  public static URL FACTURAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.icon") );
-		
-  public static URL FACTURAS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.small.icon") );
-
-
-
-
-  //formas de pago
-  public static URL FORMAS_PAGO_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
-			+ properties.getString("formaspago.icon") );
-		
-  public static URL FORMAS_PAGO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
-			+ properties.getString("formaspago.small.icon") );
-  
-  
   //balances
   public static URL BALANCE_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("balance.icon") );
+
+  
+  
+  
+  
+  
+//  //cuentas.
+//  public static URL CUENTAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cuentas.icon") );
+//  
+//  public static URL CUENTAS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cuentas.small.icon") );
+//  
+//
+//  //facturas
+//  public static URL FACTURAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.icon") );
+//		
+//  public static URL FACTURAS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.small.icon") );
+//
+//  //formas de pago
+//  public static URL FORMAS_PAGO_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+//			+ properties.getString("formaspago.icon") );
+//		
+//  public static URL FORMAS_PAGO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+//			+ properties.getString("formaspago.small.icon") );
+  
+  
   
   //frame gastos.
   /*

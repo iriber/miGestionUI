@@ -2,19 +2,14 @@ package com.migestion.ui.swing.categoriasProducto.dialog;
 
 
 
-import java.awt.BorderLayout;
-
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.migestion.swing.controller.IControllerList;
-import com.migestion.swing.factories.JTextFieldFactory;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
-import com.migestion.swing.view.inputs.PropertyInput;
-import com.migestion.ui.criteria.UICategoriaProductoCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.categoriasProducto.UICategoriaProductoCollection;
 import com.migestion.ui.swing.categoriasProducto.panels.UICategoriaProductoCriteriaPanel;
@@ -100,6 +95,13 @@ public class DialogFindCategoriaProducto extends DialogFindObject{
 	 */
 	protected UICollection getUICollectionDefault() {
 		return new UICategoriaProductoCollection( I18nMessages.CATEGORIAS_PRODUCTO);
+	}
+
+
+	@Override
+	protected LinkOpenDialog getLinkAdd() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

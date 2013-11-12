@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.factories.JTextFieldFactory;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.LinkOpenDialog;
+import com.migestion.swing.navigation.LinkOpenWindow;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
@@ -93,8 +95,12 @@ public class DialogFindVendedor extends DialogFindObject{
 	private String getInputNombre(){
 		return ((JTextField)getInput("Nombre")).getText();
 	}
-
-
+	
+	@Override
+	protected LinkOpenDialog getLinkAdd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

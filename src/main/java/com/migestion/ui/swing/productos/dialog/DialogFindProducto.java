@@ -7,9 +7,11 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.migestion.model.Producto;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.factories.JTextFieldFactory;
 import com.migestion.swing.model.UICollection;
+import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
@@ -18,6 +20,7 @@ import com.migestion.ui.criteria.UIProductoCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.UIProductoCollection;
+import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 
 /**
  * Diálogo para buscar un producto.
@@ -26,7 +29,7 @@ import com.migestion.ui.swing.productos.UIProductoCollection;
  * @since 10/10/2013
  *
  */
-public class DialogFindProducto extends DialogFindObject{
+public class DialogFindProducto extends DialogFindObject<Producto>{
 
 	//-----------------
 	// CONSTRUCTORES
@@ -102,6 +105,9 @@ public class DialogFindProducto extends DialogFindObject{
 	}
 
 
-	
+	@Override
+	protected LinkOpenDialog getLinkAdd() {
+		return (LinkOpenDialog)LinkProductoFactory.getLinkAdd();
+	}
 
 }

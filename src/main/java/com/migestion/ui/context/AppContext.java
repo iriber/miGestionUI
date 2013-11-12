@@ -8,6 +8,7 @@ import com.migestion.model.CategoriaProducto;
 import com.migestion.model.Cliente;
 import com.migestion.model.ConceptoMovimiento;
 import com.migestion.model.CuentaBancaria;
+import com.migestion.model.Gasto;
 import com.migestion.model.Sucursal;
 import com.migestion.model.Vendedor;
 import com.migestion.swing.context.ContextObserver;
@@ -58,6 +59,9 @@ public class AppContext {
 	
 	private ContextObserver<CategoriaProducto> categoriaProductoObserver;
 	
+	private ContextObserver<Gasto> gastoObserver;
+	
+	
 	
 //	/**
 //	 * observer para cliente.
@@ -98,6 +102,7 @@ public class AppContext {
 		productoObserver = new ProductoObserver();
 		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
 		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
+		gastoObserver = new ContextObserver<Gasto>();
 		
 //		clienteObserver = new ContextObserver<ICliente>();
 //		usuario = null;
@@ -244,6 +249,10 @@ public class AppContext {
 
 	public ContextObserver<CategoriaProducto> getCategoriaProductoObserver() {
 		return categoriaProductoObserver;
+	}
+
+	public ContextObserver<Gasto> getGastoObserver() {
+		return gastoObserver;
 	}
 
 

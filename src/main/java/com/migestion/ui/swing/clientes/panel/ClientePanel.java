@@ -59,11 +59,6 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         
         initValidators();
         
-//        SkinDecorator.getInstance().decorate(this);
-//        
-//        Dimension minimumSize = new Dimension(1200, 400);
-//		setMinimumSize(minimumSize);
-//		setPreferredSize(minimumSize);
 		loadCombos();
 		
     }

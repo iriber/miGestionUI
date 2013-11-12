@@ -6,9 +6,10 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
-import com.migestion.model.ConceptoMovimiento;
+import com.migestion.model.EstadisticaGasto;
+import com.migestion.model.Gasto;
 import com.migestion.services.ServiceFactory;
-import com.migestion.services.criteria.ConceptoMovimientoCriteria;
+import com.migestion.services.criteria.GastoCriteria;
 import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
@@ -18,29 +19,30 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
-import com.migestion.ui.criteria.UIConceptoMovimientoCriteria;
-import com.migestion.ui.swing.conceptosMovimiento.UIConceptoMovimientoCollection;
+import com.migestion.ui.context.AppContext;
+import com.migestion.ui.criteria.UIGastoCriteria;
+import com.migestion.ui.swing.gastos.UIGastoCollection;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
- * Controlador utilizado para las operaciones de los conceptos de caja.
+ * Controlador utilizado para las operaciones de los gastos.
  * 
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 25/10/2013
+ * @since 12/11/2013
  * 
  */
-public class UIConceptoMovimientoService implements IControllerList, IControllerAdd,
+public class UIGastoService implements IControllerList, IControllerAdd,
 		IControllerUpdate, IControllerDelete, IControllerView {
 
-	// instancia del manager (lo hacemos singleton).
-	private static UIConceptoMovimientoService instance;
+	// instancia del servicio (lo hacemos singleton).
+	private static UIGastoService instance;
 
 	
-	// pedimos la �nica instancia.
-	public static UIConceptoMovimientoService getInstance() {
+	// pedimos la única instancia.
+	public static UIGastoService getInstance() {
 		if (instance == null)
-			instance = new UIConceptoMovimientoService();
+			instance = new UIGastoService();
 		return instance;
 	}
 
@@ -48,46 +50,50 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	public UICollection list() throws ControllerException {
 		
 		
-		UIConceptoMovimientoCollection uiList = new UIConceptoMovimientoCollection( I18nMessages.PRODUCTOS);
+		UIGastoCollection uiList = new UIGastoCollection( I18nMessages.GASTOS);
 
-		uiList.setElements( new Vector<ConceptoMovimiento>() );
+		uiList.setElements( new Vector<Gasto>() );
+		//uiList.setEstadistica(new EstadisticaGasto());
 		
 		return uiList;
 		
-		//return list(new UIConceptoCajaCriteria());
+		//return list(new UIGastoCriteria());
 	}
 
 	/**
-	 * se listan los conceptos dado un criterio de búsqueda. (implementación de la
+	 * se listan los gastos dado un criterio de búsqueda. (implementación de la
 	 * interface IControllerList).
 	 */
 	public UICollection list(UICriteria criteria) throws ControllerException {
 		
 		//invocar al servicio para obtener las entities.
-		List<ConceptoMovimiento> conceptos;
+		List<Gasto> gastos;
 		Long totalSize;
+		EstadisticaGasto estadistica;
 		try {
-			ConceptoMovimientoCriteria coreCriteria = ((UIConceptoMovimientoCriteria)criteria).buildToService();
-			conceptos = ServiceFactory.getConceptoMovimientoService().list( coreCriteria );
-			totalSize = ServiceFactory.getConceptoMovimientoService().getListSize(coreCriteria);
+			GastoCriteria coreCriteria = ((UIGastoCriteria)criteria).buildToService();
+			gastos = ServiceFactory.getGastoService().list( coreCriteria );
+			totalSize = ServiceFactory.getGastoService().getListSize(coreCriteria);
+			estadistica = ServiceFactory.getGastoService().getEstadisticaGasto(coreCriteria);
 			
 		} catch (ServiceException e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
 		
-		// creamos una ui collection con los conceptos.
-		UIConceptoMovimientoCollection uiList = new UIConceptoMovimientoCollection( I18nMessages.CONCEPTOS_MOVIMIENTO);
+		// creamos una ui collection con los gastos.
+		UIGastoCollection uiList = new UIGastoCollection( I18nMessages.GASTOS);
 
-		uiList.setElements( conceptos );
-		
-		uiList.setTotalSize( totalSize.intValue()  );
-		
+		//uiList.setTotalSize( totalSize.intValue()  );
+		uiList.setTotalSize( estadistica.getCantidad() );
+		uiList.setEstadistica(estadistica);
+		uiList.setElements( gastos );
+				
 		return uiList;
 	}
 
 	/**
-	 * se agrega un concepto. (implementación de la interface IControllerAdd).
+	 * se agrega un gasto. (implementación de la interface IControllerAdd).
 	 */
 	public void addObject(Object object) throws ControllerException {
 		
@@ -97,9 +103,11 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getConceptoMovimientoService().add( (ConceptoMovimiento)object );
+			ServiceFactory.getGastoService().add( (Gasto)object );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getGastoObserver().objectCreated((Gasto)object);
 			
 		} catch (ServiceException e) {
 			
@@ -118,7 +126,7 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	}
 
 	/**
-	 * se modifica un concepto. (implementación de la interface IControllerUpdate).
+	 * se modifica un gasto. (implementación de la interface IControllerUpdate).
 	 */
 	public void updateObject(Object object) throws ControllerException {
 
@@ -126,9 +134,11 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getConceptoMovimientoService().update( (ConceptoMovimiento)object );
+			ServiceFactory.getGastoService().update( (Gasto)object );
 			
 			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getGastoObserver().objectUpdated((Gasto)object);
 			
 		} catch (ServiceException e) {
 			
@@ -147,7 +157,7 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	}
 
 	/**
-	 * se elimina un concepto. (implementación de la interface IControllerDelete).
+	 * se elimina un gasto. (implementación de la interface IControllerDelete).
 	 */
 	public void deleteObject(Object object) throws ControllerException {
 		
@@ -155,10 +165,12 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getConceptoMovimientoService().delete( ((ConceptoMovimiento)object).getOid() );
+			ServiceFactory.getGastoService().delete( ((Gasto)object).getOid() );
 			
 			PersistenceContext.getInstance().commit();
 			
+			AppContext.getInstance().getGastoObserver().objectDeleted((Gasto)object);
+
 		} catch (ServiceException e) {
 			
 			try {
@@ -175,14 +187,14 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	}
 
 	/**
-	 * se obtiene un concepto del modelo. (implementación de la interface
+	 * se obtiene un gasto del modelo. (implementación de la interface
 	 * IControllerView).
 	 */
 	public Object getObject(Object object) throws ControllerException {
 		
 		try {
 			
-			object = ServiceFactory.getConceptoMovimientoService().get( ((ConceptoMovimiento)object).getOid() );
+			object = ServiceFactory.getGastoService().get( ((Gasto)object).getOid() );
 			
 		} catch (ServiceException e) {
 			
@@ -194,7 +206,7 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	
 	public int totalSize() throws ControllerException {
 		
-		return totalSize(new UIConceptoMovimientoCriteria());
+		return totalSize(new UIGastoCriteria());
 	}
 
 	public int totalSize(UICriteria criteria) throws ControllerException {
@@ -206,8 +218,8 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 		
 		try {
 			
-			ConceptoMovimientoCriteria coreCriteria = ((UIConceptoMovimientoCriteria)criteria).buildToService();
-			totalSize = ServiceFactory.getConceptoMovimientoService().getListSize(coreCriteria);
+			GastoCriteria coreCriteria = ((UIGastoCriteria)criteria).buildToService();
+			totalSize = ServiceFactory.getGastoService().getListSize(coreCriteria);
 			
 		} catch (ServiceException e) {
 			
@@ -222,21 +234,5 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 	}	
 
 	
-	/**
-	 * se obtiene el concepto de caja utilizado para ventas.
-	 */
-	public ConceptoMovimiento getConceptoVentas() throws ControllerException {
-		ConceptoMovimiento concepto=null;
-		try {
-			
-			concepto = ServiceFactory.getConceptoMovimientoService().getConceptoVentas();
-			
-		} catch (ServiceException e) {
-			
-			throw new ControllerException( e.getMessage() );
-		}
-
-		return concepto;
-	}
 
 }

@@ -8,17 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Pago;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.navigation.LinkViewObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
-import com.migestion.ui.swing.pagos.links.LinkAddPago;
 import com.migestion.ui.swing.pagos.panel.UIPagoCriteriaPanel;
 
 /**
@@ -28,7 +26,7 @@ import com.migestion.ui.swing.pagos.panel.UIPagoCriteriaPanel;
  * @since 28/10/2013
  *
  */
-public class PagosCRUDFrame extends CRUDFrame{
+public class PagosCRUDFrame extends CRUDFrame<Pago>{
 
 	public PagosCRUDFrame(String title, IControllerList controller){
 		

@@ -1,7 +1,10 @@
-package com.migestion.ui.swing.cajas.dialog;
+package com.migestion.ui.swing.cuentasBancarias.dialog;
+
+
 
 import javax.swing.JPanel;
 
+import com.migestion.model.CuentaBancaria;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.LinkOpenDialog;
@@ -9,33 +12,34 @@ import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
 import com.migestion.ui.service.UIServiceFactory;
-import com.migestion.ui.swing.cajas.UICajaCollection;
-import com.migestion.ui.swing.cajas.panel.UICajaCriteriaPanel;
+import com.migestion.ui.swing.cuentasBancarias.UICuentaBancariaCollection;
+import com.migestion.ui.swing.cuentasBancarias.panel.UICuentaBancariaCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
- * Diálogo para buscar una caja.
+ * Diálogo para buscar una cuenta bancaria.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 30/10/2013
+ * @since 12/11/2013
  *
  */
-public class DialogFindCaja extends DialogFindObject{
+public class DialogFindCuentaBancaria extends DialogFindObject<CuentaBancaria>{
 
-	private UICajaCriteriaPanel buscarPanel;
+	private UICuentaBancariaCriteriaPanel criteriaPanel;
 	
-	
-	public DialogFindCaja(String title) {
+	public DialogFindCuentaBancaria(String title) {
 		super(title);
-		
 	}
 	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.codnet.swing.view.dialogs.DialogFindObject#getCriteriaFromUI()
 	 */
 	protected UICriteria getCriteriaFromUI() throws ViewException {
-		return buscarPanel.getCriteria();
+		//UIChequeCriteria criteria = new UIChequeCriteria();
+		//criteria.setPaginable(true);
+		return criteriaPanel.getCriteria();
 	}
 
 	/*
@@ -51,12 +55,10 @@ public class DialogFindCaja extends DialogFindObject{
 	 * @see com.ostrich.commonui.view.dialogs.DialogFindObject#createCriteriaPanel()
 	 */
 	protected JPanel createCriteriaPanel() {
-
+		if( criteriaPanel == null )
+		 criteriaPanel = new UICuentaBancariaCriteriaPanel();
 		
-		if(buscarPanel == null )
-			buscarPanel = new UICajaCriteriaPanel();
-		
-		return buscarPanel;
+		return criteriaPanel;
 		
 	}
 	
@@ -65,7 +67,7 @@ public class DialogFindCaja extends DialogFindObject{
 	 * @see com.codnet.swing.view.dialogs.DialogFindObject#getController()
 	 */
 	protected IControllerList getController() {
-		return (IControllerList)UIServiceFactory.getUICajaService();
+		return (IControllerList)UIServiceFactory.getUICuentaBancariaService();
 	}
 
 	/*
@@ -73,15 +75,13 @@ public class DialogFindCaja extends DialogFindObject{
 	 * @see com.codnet.swing.view.dialogs.DialogFindObject#getUICollectionDefault()
 	 */
 	protected UICollection getUICollectionDefault() {
-		return new UICajaCollection( I18nMessages.CAJAS);
+		return new UICuentaBancariaCollection( I18nMessages.CUENTAS_BANCARIAS);
 	}
 
 	@Override
 	protected LinkOpenDialog getLinkAdd() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
-
-	
 
 }

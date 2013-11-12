@@ -83,6 +83,7 @@ public class WindowProductoFactory {
 	 */
 	public static DialogFindProducto getWindowFind() {
 		DialogFindProducto dialog = new  DialogFindProducto( I18nMessages.PRODUCTO_DIALOG_BUSCAR_TITULO );
+		AppContext.getInstance().getProductoObserver().addListener( dialog );
 		return dialog;
 	}
 

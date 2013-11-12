@@ -25,6 +25,7 @@ import com.migestion.ui.swing.cheques.movimientos.factories.LinkMovimientoCheque
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
 import com.migestion.ui.swing.cuentasBancarias.factories.LinkCuentaBancariaFactory;
 import com.migestion.ui.swing.cuentasBancarias.movimientos.factories.LinkMovimientoCuentaBancariaFactory;
+import com.migestion.ui.swing.gastos.factories.LinkGastoFactory;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.notasCredito.factories.LinkNotaCreditoFactory;
@@ -75,7 +76,7 @@ public class FrameMenuInicial extends JFrameContainer {
 					@Override
 					protected Object doInBackground() throws Exception {
 						int index = 0;
-						int cantidad = 19;
+						int cantidad = 20;
 						int incrementar = 100 / cantidad;
 						
 						setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
@@ -181,6 +182,13 @@ public class FrameMenuInicial extends JFrameContainer {
 						index += incrementar;
 						setProgress(index);
 						
+						// link gastos
+						LinkListCollection linkGastos = LinkGastoFactory
+								.getLinkList();
+						index += incrementar;
+						setProgress(index);
+						
+						
 						// link exit.
 						Link linkExit = new LinkSystemExit();
 						linkExit.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -206,6 +214,7 @@ public class FrameMenuInicial extends JFrameContainer {
 						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCheque));
 						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosNotaCredito));
 						menuVentas.add(MenuFactory.getJMenuItem(linkBalanceDiario));
+						menuVentas.add(MenuFactory.getJMenuItem(linkGastos));
 						index += incrementar;
 						setProgress(index);
 						
