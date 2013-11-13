@@ -6,13 +6,11 @@ import java.awt.Container;
 import com.migestion.model.Producto;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
-import com.migestion.swing.navigation.interfaces.ILinkWindowUpdate;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.dialogs.DialogOkCancel;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.productos.panel.ProductoPanel;
-import com.migestion.ui.swing.productos.panel.ProductoPanel2;
 
 /**
  * Diálogo para activar un producto
@@ -26,7 +24,7 @@ public class DialogActivarProducto extends DialogOkCancel implements ILinkWindow
 	//producto que será activado
 	protected Producto producto = null;
 
-	private ProductoPanel2 panel;
+	private ProductoPanel panel;
 	
 	//----------------
 	// CONSTRUCTORES
@@ -87,7 +85,7 @@ public class DialogActivarProducto extends DialogOkCancel implements ILinkWindow
 	 */
 	protected Container createInfoPanel(){
 		
-		panel = new ProductoPanel2();
+		panel = new ProductoPanel();
 		return panel.getViewPanel();
 
 	}

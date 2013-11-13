@@ -33,15 +33,6 @@ import com.migestion.ui.context.observers.VentaObserver;
  */
 public class AppContext {
 
-	
-	public CategoriaProducto getCategoriaProductoDefault() {
-		return categoriaProductoDefault;
-	}
-
-	public void setCategoriaProductoDefault(
-			CategoriaProducto categoriaProductoDefault) {
-		this.categoriaProductoDefault = categoriaProductoDefault;
-	}
 
 	//singleton.
 	private static AppContext instance;
@@ -61,13 +52,8 @@ public class AppContext {
 	
 	private ContextObserver<Gasto> gastoObserver;
 	
+	private ContextObserver<Cliente> clienteObserver;
 	
-	
-//	/**
-//	 * observer para cliente.
-//	 */
-//	private ContextObserver<ICliente> clienteObserver;
-//
 //	/**
 //	 * usuario logueado.
 //	 */
@@ -103,8 +89,8 @@ public class AppContext {
 		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
 		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
 		gastoObserver = new ContextObserver<Gasto>();
-		
-//		clienteObserver = new ContextObserver<ICliente>();
+		clienteObserver = new ContextObserver<Cliente>();
+				
 //		usuario = null;
 
 //		try {
@@ -255,6 +241,19 @@ public class AppContext {
 		return gastoObserver;
 	}
 
+	
+	public CategoriaProducto getCategoriaProductoDefault() {
+		return categoriaProductoDefault;
+	}
+
+	public void setCategoriaProductoDefault(
+			CategoriaProducto categoriaProductoDefault) {
+		this.categoriaProductoDefault = categoriaProductoDefault;
+	}
+
+	public ContextObserver<Cliente> getClienteObserver() {
+		return clienteObserver;
+	}
 
 
 }

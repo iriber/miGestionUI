@@ -19,7 +19,7 @@ import com.migestion.ui.swing.productos.ProductosCRUDFrame;
 import com.migestion.ui.swing.productos.dialog.DialogActivarProducto;
 import com.migestion.ui.swing.productos.dialog.DialogDesactivarProducto;
 import com.migestion.ui.swing.productos.dialog.DialogFindProducto;
-import com.migestion.ui.swing.productos.panel.ProductoPanel2;
+import com.migestion.ui.swing.productos.panel.ProductoPanel;
 
 /**
  * Proporciona métodos para la creación de ventanas para productos.
@@ -36,7 +36,7 @@ public class WindowProductoFactory {
 	 */
 	public static DialogAddObject getWindowAdd(){			    
 
-		DialogAddObject dialog = new DialogAddAdapter(I18nMessages.PRODUCTO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel2() );
+		DialogAddObject dialog = new DialogAddAdapter(I18nMessages.PRODUCTO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Add ).getImage() );
 		return dialog;
 	}
@@ -46,7 +46,7 @@ public class WindowProductoFactory {
 	 */
 	public static DialogUpdateObject getWindowUpdate(){			    
 
-		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PRODUCTO_DIALOG_MODIFICAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel2() );
+		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PRODUCTO_DIALOG_MODIFICAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 		return dialog;
 
@@ -58,7 +58,7 @@ public class WindowProductoFactory {
 	public static DialogDeleteObject getWindowDelete(){			    
 		
 		
-		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PRODUCTO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel2());
+		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PRODUCTO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIProductoService(), new ProductoPanel());
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
 		return dialog;
 		

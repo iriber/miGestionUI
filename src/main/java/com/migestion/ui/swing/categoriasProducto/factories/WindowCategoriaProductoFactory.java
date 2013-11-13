@@ -1,6 +1,8 @@
 package com.migestion.ui.swing.categoriasProducto.factories;
 
 
+
+import java.awt.Component;
 import java.awt.Frame;
 
 import javax.swing.ImageIcon;
@@ -85,8 +87,8 @@ public class WindowCategoriaProductoFactory {
 	public static CategoriaProductoArbolFrame getWindowListTree(){
 		CategoriaProductoArbolFrame frame = new CategoriaProductoArbolFrame();
 		frame.setTitle(I18nMessages.CATEGORIA_PRODUCTO_FRAME_TITULO);
-		frame.setIconImage(new ImageIcon( I18nImages.CATEGORIAS_PRODUCTO_SMALL_ICON ).getImage() );
-		AppContext.getInstance().getCategoriaProductoObserver().addListener(frame);
+		frame.setFrameIcon( new ImageIcon( I18nImages.CATEGORIAS_PRODUCTO_SMALL_ICON )  );
+		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		return frame;
 	}
 	

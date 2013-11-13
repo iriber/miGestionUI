@@ -23,44 +23,30 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="scrollDetallesFormaPago" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblVenta" alignment="1" min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="lblFecha" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblFecha" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="lblSucursal" min="-2" pref="78" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="scrollObservaciones" min="-2" pref="426" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="pickerFecha" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblSucursal" min="-2" pref="286" max="-2" attributes="0"/>
+                                      <Component id="panelCenter" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="scrollObservaciones" min="-2" pref="426" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                                      <Component id="lblDebe" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="panelCenter" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                                              <Component id="lblDebe" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtDebe" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="cmbSucursal" alignment="1" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txtDebe" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -70,18 +56,27 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtTotalVenta" pref="116" max="32767" attributes="0"/>
+                                          <Component id="txtTotalVenta" pref="114" max="32767" attributes="0"/>
                                           <Component id="txtPagado" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="findVenta" min="-2" pref="302" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblCliente" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="txtCliente" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pickerFecha" pref="207" max="32767" attributes="0"/>
+                                  <Component id="cmbSucursal" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCliente" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="lblVenta" alignment="1" min="-2" pref="57" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCliente" max="32767" attributes="0"/>
+                                  <Component id="findVenta" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -110,7 +105,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,15 +116,15 @@
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="lblFecha" alignment="2" max="-2" attributes="0"/>
                   <Component id="pickerFecha" alignment="2" max="-2" attributes="0"/>
-                  <Component id="lblSucursal" alignment="2" max="-2" attributes="0"/>
-                  <Component id="cmbSucursal" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="lblVenta" alignment="2" max="-2" attributes="0"/>
+                  <Component id="findVenta" alignment="2" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="txtCliente" alignment="2" max="-2" attributes="0"/>
+                  <Component id="cmbSucursal" alignment="2" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="lblSucursal" alignment="2" max="-2" attributes="0"/>
                   <Component id="lblCliente" alignment="2" max="-2" attributes="0"/>
-                  <Component id="findVenta" alignment="2" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="lblVenta" alignment="2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -267,6 +262,7 @@
     </Component>
     <Component class="com.migestion.swing.custom.JFindObjectPanel" name="findVenta">
       <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[16, 28]"/>
         </Property>
@@ -388,7 +384,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnAceptar.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 10));&#xa;btnAceptar.setMinimumSize(new Dimension(100, 23));&#xa;btnAceptar.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);&#xa;&#x9;&#x9;&#xa;//btnAceptar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;btnAceptar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;&#x9;&#x9;&#xa;btnAceptar.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;btnAceptar.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//btnAceptar.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 10));&#xa;btnAceptar.setMinimumSize(new Dimension(100, 23));&#xa;btnAceptar.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);&#xa;&#x9;&#x9;&#xa;//btnAceptar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;btnAceptar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;&#x9;&#x9;&#xa;btnAceptar.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;btnAceptar.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
@@ -401,7 +397,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnCancelar.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 10));&#xa;btnCancelar.setMinimumSize(new Dimension(110, 23));&#xa;btnCancelar.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);&#xa;btnCancelar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));&#xa;btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;btnCancelar.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//btnCancelar.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 10));&#xa;btnCancelar.setMinimumSize(new Dimension(110, 23));&#xa;btnCancelar.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);&#xa;btnCancelar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));&#xa;btnCancelar.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;btnCancelar.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnAgregarEfectivo">

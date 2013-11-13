@@ -40,33 +40,33 @@ public class CajasCRUDFrame extends CRUDFrame{
 	}
 
 	public void initLinks() {
-		
-		LinkUpdateObject linkUpdate  = LinkClienteFactory.getLinkUpdate();
-		LinkAddObject linkAdd  = LinkClienteFactory.getLinkAdd();
-		LinkDeleteObject linkDelete  = LinkClienteFactory.getLinkDelete();
-		
-		this.setLinkAdd( linkAdd, 0 );
-		this.setLinkUpdate( linkUpdate, 1 );
-		this.setLinkDelete( linkDelete, 2 );
-		
-		
-		JPopupMenu rightClick = new JPopupMenu();
-		
-		rightClick.add(linkUpdate);
-		rightClick.add(linkDelete);
-		
-		this.setRightClickPopup(rightClick);
+//		
+//		LinkUpdateObject linkUpdate  = LinkClienteFactory.getLinkUpdate();
+//		LinkAddObject linkAdd  = LinkClienteFactory.getLinkAdd();
+//		LinkDeleteObject linkDelete  = LinkClienteFactory.getLinkDelete();
+//		
+//		this.setLinkAdd( linkAdd, 0 );
+//		this.setLinkUpdate( linkUpdate, 1 );
+//		this.setLinkDelete( linkDelete, 2 );
+//		
+//		
+//		JPopupMenu rightClick = new JPopupMenu();
+//		
+//		rightClick.add(linkUpdate);
+//		rightClick.add(linkDelete);
+//		
+//		this.setRightClickPopup(rightClick);
 	}
 
 	public String getMenuTitle() {
 		
-		return I18nMessages.CLIENTE_FRAME_MENUADMIN ;
+		return I18nMessages.CAJA_FRAME_MENUADMIN ;
 		
 	}
 
 	public URL getIcon() {
 		
-		return I18nImages.CLIENTES_SMALL_ICON;
+		return I18nImages.CAJAS_SMALL_ICON;
 		
 	}
 

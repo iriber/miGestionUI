@@ -7,6 +7,8 @@ import com.migestion.swing.i18n.links.LinkLabelsBundle;
 import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkListCollection;
 import com.migestion.swing.navigation.LinkOpenDialog;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -50,5 +52,25 @@ public class LinkGastoFactory {
 		
 	}
 
+
+	/**
+	 * link para eliminar un gasto.
+	 */
+	public static LinkOpenDialogWithSelected getLinkDelete(){			    
+		
+		
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.GASTO_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowGastoFactory.getWindowDelete();
+			}
+			
+		};
+		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		return link;
+		
+	}
 	
 }

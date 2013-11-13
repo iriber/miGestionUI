@@ -233,7 +233,7 @@ public class UIGastoCollection extends UIFooterCollection {
 		case 0:
 			return gasto.getOid();
 		case 1:
-			return AppUtils.formatDate( gasto.getFecha() );
+			return AppUtils.formatDatetime( gasto.getFecha() );
 		case 2:
 			return gasto.getMovimiento().getConcepto().toString();
 		case 3:

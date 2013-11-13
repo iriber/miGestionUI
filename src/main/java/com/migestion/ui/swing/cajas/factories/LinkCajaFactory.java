@@ -72,7 +72,7 @@ public class LinkCajaFactory {
 	 * @return
 	 */
 	public static LinkListCollection getLinkList(){
-		LinkListCollection link = new LinkListCollection(WindowCajaFactory.getWindowList(), I18nMessages.CAJA_ACCION_LISTAR, I18nImages.PRODUCTOS_ICON);
+		LinkListCollection link = new LinkListCollection(WindowCajaFactory.getWindowList(), I18nMessages.CAJA_ACCION_LISTAR, I18nImages.CAJAS_ICON);
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}

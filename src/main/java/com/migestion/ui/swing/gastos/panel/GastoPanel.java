@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.migestion.model.Caja;
 import com.migestion.model.Cheque;
 import com.migestion.model.ConceptoMovimiento;
 import com.migestion.model.CuentaBancaria;
@@ -26,11 +25,14 @@ import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.swing.view.dialogs.adapters.IDialogAddAdapter;
+import com.migestion.swing.view.dialogs.adapters.IDialogDeleteAdapter;
+import com.migestion.swing.view.dialogs.adapters.IDialogViewAdapter;
 import com.migestion.swing.view.exceptions.ViewException;
 import com.migestion.swing.view.inputs.InputRequiredValidator;
 import com.migestion.swing.view.inputs.InputValidator;
 import com.migestion.swing.view.inputs.JComboBoxInspector;
 import com.migestion.swing.view.inputs.JDateChooserInspector;
+import com.migestion.swing.view.inputs.JFindObjectInspector;
 import com.migestion.swing.view.inputs.JTextFieldInspector;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UIConceptoMovimientoCriteria;
@@ -43,7 +45,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  *
  * @author bernardo
  */
-public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
+public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter, IDialogViewAdapter, IDialogDeleteAdapter{
 
 	private InputRequiredValidator required;
     
@@ -96,25 +98,25 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
 		
 		this.gasto = new GastoEfectivo();
 		
-		if( rdBtnEfectivo.isSelected() ){
-			
-			this.gasto = new GastoEfectivo();
-	        findCuenta.setEditable(false);
-	        findCheque.setEditable(false);
-	        
-		}else if( rdBtnCuentaBancaria.isSelected() ){
-			
-			this.gasto = new GastoCuentaBancaria();
-	        findCuenta.setEditable(true);
-	        findCheque.setEditable(false);
-	        
-		}else if( rdBtnCheque.isSelected() ){
-			
-			this.gasto = new GastoCuentaBancaria();
-	        findCuenta.setEditable(false);
-	        findCheque.setEditable(true);
-	        
-		}
+//		if( rdBtnEfectivo.isSelected() ){
+//			
+//			this.gasto = new GastoEfectivo();
+//	        findCuenta.setEditable(false);
+//	        findCheque.setEditable(false);
+//	        
+//		}else if( rdBtnCuentaBancaria.isSelected() ){
+//			
+//			this.gasto = new GastoCuentaBancaria();
+//	        findCuenta.setEditable(true);
+//	        findCheque.setEditable(false);
+//	        
+//		}else if( rdBtnCheque.isSelected() ){
+//			
+//			this.gasto = new GastoCuentaBancaria();
+//	        findCuenta.setEditable(false);
+//	        findCheque.setEditable(true);
+//	        
+//		}
 	}
 
     /**
@@ -372,15 +374,15 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
 		
 		
 		if( rdBtnEfectivo.isSelected() ){
-			
+			gasto = new GastoEfectivo();
 			((GastoEfectivo)gasto).setCaja( AppContext.getInstance().getCajaDefault() );
 			
 		}else if( rdBtnCuentaBancaria.isSelected() ){
-			
+			gasto = new GastoCuentaBancaria();
 			((GastoCuentaBancaria)gasto).setCuentaBancaria( (CuentaBancaria)findCuenta.getObjectFound() );
 			
 		}else if( rdBtnCheque.isSelected() ){
-			
+			gasto = new GastoCheque();
 			((GastoCheque)gasto).setCheque( (Cheque)findCheque.getObjectFound() );
 			
 		}
@@ -396,7 +398,7 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
 
 	public List<InputValidator> getValidators() {
 
-		//initValidators();
+		initValidators();
 		
 		List<InputValidator> validators = new ArrayList<InputValidator>();
 		
@@ -410,11 +412,14 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
 		txtMonto.setValue(null);
 		txtObservaciones.setText("");
 		pickerFecha.setDate(new Date());
-		rdBtnEfectivo.setSelected(true);
+		//rdBtnEfectivo.setSelected(true);
 		
 	}
 
 	private void initValidators() {
+		
+		if( required!=null)
+			required.reset();
 		
 		required = new InputRequiredValidator(); 
 		required.put(lblFecha, pickerFecha, new JDateChooserInspector());
@@ -422,17 +427,75 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter{
 		required.put(lblConcepto, cmbConcepto, new JComboBoxInspector());
 		
 		if( rdBtnCheque.isSelected() ){
-			//TODO cheque required.put(lblConcepto, cmbConcepto, new JComboBoxInspector());
+			required.put(lblFormaPago, findCheque, new JFindObjectInspector());
 				
 		}
 		
 		if( rdBtnCuentaBancaria.isSelected() ){
-			//TODO cuenta required.put(lblConcepto, cmbConcepto, new JComboBoxInspector());
+			required.put(lblFormaPago, findCuenta, new JFindObjectInspector());
 				
 		}
 		
 		required.setMessage(I18nMessages.INGRESE_REQUERIDOS);
 		required.initialize();
 		
+	}
+
+	public Container getViewPanel() {
+		
+		setEditable(false);
+		return this;
+	}
+
+	public void setEditable( Boolean editable ){
+		
+		txtMonto.setEditable( false );
+		txtObservaciones.setEditable( false );
+		findCuenta.setEditable( false );
+		findCheque.setEditable( false );
+		findVendedor.setEditable( false );
+		cmbSucursal.setEditable( false );
+		pickerFecha.setEnabled( false );
+		cmbConcepto.setEditable( false );
+		rdBtnEfectivo.setEnabled( false );
+		rdBtnCuentaBancaria.setEnabled( false );
+		rdBtnCheque.setEnabled( false );
+		
+	}
+
+	public void showObject(Object object) {
+		
+		clearInputs();
+		
+		gasto = (Gasto)object;
+		
+		
+		txtMonto.setValue( gasto.getMonto() );
+		txtObservaciones.setText( gasto.getObservaciones() );
+		
+		rdBtnEfectivo.setSelected(true);
+		
+		try {
+			findCuenta.objectFound( ((GastoCuentaBancaria)gasto).getCuentaBancaria() );
+			rdBtnCuentaBancaria.setSelected(true);
+		} catch (Exception e) {
+		}
+
+		try{
+			findCheque.objectFound( ((GastoCheque)gasto).getCheque() );
+			rdBtnCheque.setSelected(true);
+		} catch (Exception e) {
+		}
+
+		
+		findVendedor.objectFound( gasto.getVendedor() );
+		cmbSucursal.setSelectedItem( gasto.getSucursal());
+		pickerFecha.setDate( gasto.getFecha() );
+		cmbConcepto.setSelectedItem( gasto.getMovimiento().getConcepto() );
+	}
+
+	public Container getDeleteMsgPanel() {
+		this.setEditable( false );
+		return this;
 	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Cliente;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
@@ -15,6 +16,7 @@ import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.swing.view.frames.ICRUDFrame;
+import com.migestion.ui.context.observers.listeners.IClienteListener;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
 import com.migestion.ui.swing.clientes.panel.UIClienteCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nImages;
@@ -27,7 +29,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 15/10/2013
  *
  */
-public class ClientesCRUDFrame extends CRUDFrame{
+public class ClientesCRUDFrame extends CRUDFrame<Cliente> implements IClienteListener{
 
 	public ClientesCRUDFrame(String title, IControllerList controller){
 		

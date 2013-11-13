@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.migestion.model.Producto;
+import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.factories.JTextFieldFactory;
 import com.migestion.swing.model.UICollection;
@@ -16,6 +17,7 @@ import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
 import com.migestion.swing.view.inputs.PropertyInput;
+import com.migestion.ui.context.observers.listeners.IProductoListener;
 import com.migestion.ui.criteria.UIProductoCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -29,7 +31,7 @@ import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
  * @since 10/10/2013
  *
  */
-public class DialogFindProducto extends DialogFindObject<Producto>{
+public class DialogFindProducto extends DialogFindObject<Producto> implements IProductoListener{
 
 	//-----------------
 	// CONSTRUCTORES
@@ -108,6 +110,12 @@ public class DialogFindProducto extends DialogFindObject<Producto>{
 	@Override
 	protected LinkOpenDialog getLinkAdd() {
 		return (LinkOpenDialog)LinkProductoFactory.getLinkAdd();
+	}
+
+
+	public void ventaChange(Venta venta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

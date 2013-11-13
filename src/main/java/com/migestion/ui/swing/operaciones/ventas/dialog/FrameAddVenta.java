@@ -48,6 +48,7 @@ import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
+import com.migestion.swing.i18n.links.LinkImagesBundle;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.exception.LinkException;
 import com.migestion.swing.navigation.listeners.LinkAddListener;
@@ -234,7 +235,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
                     .addComponent(scrollObservaciones)
                     .addGroup(panelDatosVentaLayout.createSequentialGroup()
                         .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(findCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                            .addComponent(findCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 446, Short.MAX_VALUE)
                             .addComponent(findVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGroup(panelDatosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelDatosVentaLayout.createSequentialGroup()
@@ -298,7 +299,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         panelFooter.add(txtTotal, java.awt.BorderLayout.CENTER);
 
         btnAceptar.setText(ButtonLabelsBundle.btn_Ok);
-        btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 10));
+        //btnAceptar.setFont(new Font("Dialog", Font.PLAIN, 10));
         btnAceptar.setMinimumSize(new Dimension(100, 23));
         btnAceptar.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);
 
@@ -315,7 +316,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         panelButtons.add(btnAceptar);
 
         btnCancelar.setText(ButtonLabelsBundle.btn_Cancel);
-        btnCancelar.setFont(new Font("Dialog", Font.PLAIN, 10));
+        //btnCancelar.setFont(new Font("Dialog", Font.PLAIN, 10));
         btnCancelar.setMinimumSize(new Dimension(110, 23));
         btnCancelar.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);
         btnCancelar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));
@@ -341,6 +342,11 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
         lblAgregarProducto.setText("Seleccione un producto");
 
         btnAgregar.setText("Agregarlo a la venta");
+        btnAgregar.setMinimumSize(new Dimension(110, 23));
+        btnAgregar.setToolTipText("Agregar el producto a la venta");
+        btnAgregar.setIcon(new ImageIcon(LinkImagesBundle.link_Add));
+        btnAgregar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAgregar.setMnemonic(java.awt.event.KeyEvent.VK_A);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -358,29 +364,27 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
             .addGroup(panelAddProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAddProductoLayout.createSequentialGroup()
-                        .addComponent(lblProductos)
-                        .addContainerGap(868, Short.MAX_VALUE))
+                    .addComponent(lblProductos)
                     .addGroup(panelAddProductoLayout.createSequentialGroup()
                         .addComponent(lblAgregarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAgregar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 463, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar)))
+                .addGap(163, 163, 163))
         );
         panelAddProductoLayout.setVerticalGroup(
             panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAddProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelAddProductoLayout.createSequentialGroup()
                         .addComponent(lblProductos)
                         .addGap(4, 4, 4)
-                        .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(lblAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAddProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAgregar)
+                        .addComponent(findProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

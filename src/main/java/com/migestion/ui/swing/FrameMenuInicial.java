@@ -18,6 +18,7 @@ import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.swing.balances.factories.LinkBalanceFactory;
+import com.migestion.ui.swing.cajas.factories.LinkCajaFactory;
 import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFactory;
 import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
 import com.migestion.ui.swing.cheques.factories.LinkChequeFactory;
@@ -49,7 +50,15 @@ public class FrameMenuInicial extends JFrameContainer {
 	protected JMenuBar menuBar;
 	
 	private JMenu menuAdmin;
+
+	private JMenu menuInventario;
 	
+	private JMenu menuEmpresa;
+
+	private JMenu menuMovimientos;
+
+	private JMenu menuContable;
+
 	private JMenu menuVentas;
 
 	public FrameMenuInicial() {
@@ -64,6 +73,8 @@ public class FrameMenuInicial extends JFrameContainer {
 
 		AppContext.getInstance().setMainContainer(this);
 		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 //				try {
@@ -76,7 +87,7 @@ public class FrameMenuInicial extends JFrameContainer {
 					@Override
 					protected Object doInBackground() throws Exception {
 						int index = 0;
-						int cantidad = 20;
+						int cantidad = 21;
 						int incrementar = 100 / cantidad;
 						
 						setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
@@ -90,8 +101,21 @@ public class FrameMenuInicial extends JFrameContainer {
 						menuAdmin = new JMenu("Administración");
 						menuBar.add(menuAdmin);
 						
+						menuInventario = new JMenu("Inventario");
+						menuBar.add(menuInventario);
+						
+						menuEmpresa = new JMenu("Empresa");
+						menuBar.add(menuEmpresa);
+
 						menuVentas = new JMenu("Ventas");
 						menuBar.add(menuVentas);
+						
+						menuContable = new JMenu("Contable");
+						menuBar.add(menuContable);
+
+						menuMovimientos = new JMenu("Movimientos");
+						menuBar.add(menuMovimientos);
+						
 						index += incrementar;
 						setProgress(index);
 						
@@ -188,6 +212,11 @@ public class FrameMenuInicial extends JFrameContainer {
 						index += incrementar;
 						setProgress(index);
 						
+						// link cajas
+						LinkListCollection linkCajas = LinkCajaFactory
+								.getLinkList();
+						index += incrementar;
+						setProgress(index);
 						
 						// link exit.
 						Link linkExit = new LinkSystemExit();
@@ -195,26 +224,41 @@ public class FrameMenuInicial extends JFrameContainer {
 						index += incrementar;
 						setProgress(index);
 						
-						menuAdmin.add(MenuFactory.getJMenuItem(linkProductos));
-						menuAdmin.add(MenuFactory.getJMenuItem(linkCategoriasProducto));
-						menuAdmin.add(MenuFactory.getJMenuItem(linkClientes));
-						menuAdmin.add(MenuFactory.getJMenuItem(linkVendedores));
+						
+						menuInventario.add(MenuFactory.getJMenuItem(linkProductos));
+						menuInventario.add(MenuFactory.getJMenuItem(linkCategoriasProducto));
+						
+						
+						menuEmpresa.add(MenuFactory.getJMenuItem(linkVendedores));
+						//TODO menuEmpresa.add(MenuFactory.getJMenuItem(linkSucursales));
+						menuEmpresa.addSeparator();
+						menuEmpresa.add(MenuFactory.getJMenuItem(linkCuentasBancarias));
+						menuEmpresa.addSeparator();
+						menuEmpresa.add(MenuFactory.getJMenuItem(linkClientes));
+						
 						menuAdmin.addSeparator();
 						menuAdmin.add(MenuFactory.getJMenuItem(linkExit));
+						
 						index += incrementar;
 						setProgress(index);
 						
 						menuVentas.add(MenuFactory.getJMenuItem(linkVentas));
 						menuVentas.add(MenuFactory.getJMenuItem(linkPagos));
-						menuVentas.add(MenuFactory.getJMenuItem(linkCheques));
-						menuVentas.add(MenuFactory.getJMenuItem(linkCuentasBancarias));
-						menuVentas.add(MenuFactory.getJMenuItem(linkNotasCredito));
-						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCaja));
-						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCuentaBancaria));
-						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosCheque));
-						menuVentas.add(MenuFactory.getJMenuItem(linkMovimientosNotaCredito));
-						menuVentas.add(MenuFactory.getJMenuItem(linkBalanceDiario));
-						menuVentas.add(MenuFactory.getJMenuItem(linkGastos));
+						
+						menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCaja));
+						menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCuentaBancaria));
+						menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCheque));
+						menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosNotaCredito));
+						menuMovimientos.addSeparator();
+						menuMovimientos.add(MenuFactory.getJMenuItem(linkBalanceDiario));
+						
+						menuContable.add(MenuFactory.getJMenuItem(linkCajas));
+						menuContable.addSeparator();
+						menuContable.add(MenuFactory.getJMenuItem(linkGastos));
+						menuContable.addSeparator();
+						menuContable.add(MenuFactory.getJMenuItem(linkNotasCredito));
+						menuContable.add(MenuFactory.getJMenuItem(linkCheques));
+						
 						index += incrementar;
 						setProgress(index);
 						
@@ -237,6 +281,20 @@ public class FrameMenuInicial extends JFrameContainer {
 			}
 
 		});
-
+//
+//		setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
+//		menuBar = new JMenuBar();
+//		setJMenuBar(menuBar);
+//		
+//		menuAdmin = new JMenu("Administración");
+//		menuBar.add(menuAdmin);
+//		Link linkExit = new LinkSystemExit();
+//		linkExit.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_DOWN_MASK));
+//		menuAdmin.add(MenuFactory.getJMenuItem(linkExit));		
+//		
+//		// link productos.
+//		LinkListCollection linkProductos = LinkProductoFactory
+//				.getLinkList();
+//		menuAdmin.add(MenuFactory.getJMenuItem(linkProductos));
 	}
 }

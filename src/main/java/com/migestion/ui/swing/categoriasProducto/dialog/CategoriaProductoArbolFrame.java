@@ -6,6 +6,7 @@
 
 package com.migestion.ui.swing.categoriasProducto.dialog;
 
+import javax.swing.JInternalFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -28,7 +29,7 @@ import com.migestion.ui.swing.categoriasProducto.panels.CategoriaProductoTree;
  *
  * @author bernardo
  */
-public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements ILinkWindowList, ICategoriaProductoListener{
+public class CategoriaProductoArbolFrame extends JInternalFrame implements ILinkWindowList, ICategoriaProductoListener{
 
     /**
      * Creates new form CategoriaProductoArbolFrame
@@ -38,6 +39,7 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
     	initComponents();
     	
     	treePanel.populateTree();
+    	
     }
 
     /**
@@ -56,9 +58,12 @@ public class CategoriaProductoArbolFrame extends javax.swing.JFrame implements I
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
-        
         jScrollPane1.setViewportView(treePanel);
 
         btnAgregar.setText("Agregar");

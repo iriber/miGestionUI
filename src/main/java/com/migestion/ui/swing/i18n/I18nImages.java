@@ -22,6 +22,7 @@ public class I18nImages {
 
   //botones comunes
   public static URL BOTON_LOGIN =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.login") ) ;
+
   /*
   public static URL BOTON_AGREGAR =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.agregar") ) ;
   public static URL BOTON_MODIFICAR =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.modificar") ) ;
@@ -50,6 +51,12 @@ public class I18nImages {
   
   public static URL BOTON_ANULAR =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.anular") ) ;
 
+  //cajas
+  public static URL CAJAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cajas.icon") );
+		
+  public static URL CAJAS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("cajas.small.icon") );
+  
   //productos
   public static URL PRODUCTOS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("productos.icon") );
 		
@@ -118,11 +125,11 @@ public class I18nImages {
   public static URL NOTAS_CREDITO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
 			+ properties.getString("facturas.small.icon") );
   
-  
-  public static URL GASTOS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("facturas.icon") );  
+  //gastos
+  public static URL GASTOS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("gastos.icon") );  
 
   public static URL GASTOS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
-			+ properties.getString("facturas.small.icon") );
+			+ properties.getString("gastos.small.icon") );
 
   //balances
   public static URL BALANCE_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("balance.icon") );

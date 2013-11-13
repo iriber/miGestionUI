@@ -18,6 +18,7 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UIClienteCriteria;
 import com.migestion.ui.swing.clientes.UIClienteCollection;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -101,19 +102,20 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getClienteObserver().objectCreated((Cliente)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
-		}		
+		}
+		
 	}
 
 	/**
@@ -129,19 +131,20 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getClienteObserver().objectUpdated((Cliente)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
-		}		
+		}
+		
 	}
 
 	/**
@@ -157,19 +160,20 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getClienteObserver().objectDeleted((Cliente)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
+
 		
 	}
 
