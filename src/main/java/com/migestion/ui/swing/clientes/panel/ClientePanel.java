@@ -7,9 +7,6 @@ package com.migestion.ui.swing.clientes.panel;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +19,7 @@ import com.migestion.model.Cliente;
 import com.migestion.model.CondicionIVA;
 import com.migestion.model.TipoCliente;
 import com.migestion.model.TipoDocumento;
+import com.migestion.services.impl.FocusPolicy;
 import com.migestion.swing.custom.ComboEnumElement;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.view.dialogs.adapters.IDialogAddAdapter;
@@ -33,10 +31,7 @@ import com.migestion.swing.view.inputs.InputRequiredValidator;
 import com.migestion.swing.view.inputs.InputValidator;
 import com.migestion.swing.view.inputs.JTextFieldInspector;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.i18n.utils.EnumUtils;
 import com.migestion.ui.swing.skin.ISkinForm;
-import com.migestion.ui.swing.skin.SkinDecorator;
-import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -61,6 +56,14 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         
 		loadCombos();
 		
+		FocusPolicy newPolicy = new FocusPolicy();
+		newPolicy.add(txtNombre);
+		newPolicy.add(txtTelefonoFijo);
+		//newPolicy.add(txtCelular);
+		//newPolicy.add(txtDomicilio);
+		newPolicy.add(txtNroDoc);
+		this.setFocusTraversalPolicy(newPolicy);
+
     }
 
     private void initCliente() {
@@ -78,8 +81,8 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelDatosPersonales = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
         lblFijo = new javax.swing.JLabel();
         txtTelefonoFijo = new javax.swing.JTextField();
         txtMovil = new javax.swing.JTextField();
@@ -107,6 +110,9 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         lblDomicilioFacturacion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDomicilioFacturacion = new javax.swing.JTextArea();
+        chkCuentaCorriente = new javax.swing.JCheckBox();
+        txtDescubierto = new javax.swing.JFormattedTextField();
+        lblDescubierto = new javax.swing.JLabel();
         jPanelSocial = new javax.swing.JPanel();
         lblFacebook = new javax.swing.JLabel();
         txtFacebook = new javax.swing.JTextField();
@@ -124,10 +130,10 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         setPreferredSize(new java.awt.Dimension(700, 450));
         setLayout(new java.awt.GridLayout(1, 0));
 
+        txtNombre.setText("jTextField1");
+
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
-
-        txtNombre.setText("jTextField1");
 
         lblFijo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFijo.setText("Teléfono");
@@ -186,47 +192,46 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
             .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addComponent(lblTipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cmbTipoCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addComponent(lblFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombre))
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEmail)
-                                .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                                    .addComponent(cmbTipoDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblNroDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNroDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addComponent(lblContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtContacto))
-                        .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                            .addComponent(lblFechaNacimiento)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(pickerNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblTipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbTipoCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombre))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail)
+                            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(cmbTipoDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNroDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNroDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtContacto))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblFechaNacimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pickerNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCelular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDomicilio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
                             .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,15 +252,15 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
                         .addGap(5, 5, 5)
                         .addComponent(lblFijo))
                     .addComponent(txtTelefonoFijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCelular))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(lblCelular))
-                    .addComponent(txtMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDomicilio)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDomicilio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNroDoc)
                     .addComponent(cmbTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,13 +310,20 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         txtDomicilioFacturacion.setRows(5);
         jScrollPane2.setViewportView(txtDomicilioFacturacion);
 
+        chkCuentaCorriente.setText("Permitir cuenta corriente");
+
+        txtDescubierto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtDescubierto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lblDescubierto.setText("Saldo al descubierto");
+
         javax.swing.GroupLayout jPanelFacturacionLayout = new javax.swing.GroupLayout(jPanelFacturacion);
         jPanelFacturacion.setLayout(jPanelFacturacionLayout);
         jPanelFacturacionLayout.setHorizontalGroup(
             jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelFacturacionLayout.createSequentialGroup()
                         .addComponent(lblCUIT, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -321,10 +333,18 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
                         .addGap(18, 18, 18)
                         .addComponent(cmbCondicionIVA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelFacturacionLayout.createSequentialGroup()
-                        .addComponent(lblDomicilioFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDomicilioFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDescubierto))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkCuentaCorriente)
+                                    .addComponent(txtDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanelFacturacionLayout.setVerticalGroup(
             jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +361,13 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
                 .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDomicilioFacturacion)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(190, 190, 190))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkCuentaCorriente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescubierto))
+                .addContainerGap())
         );
 
         jTabbedPane.addTab("Facturación", jPanelFacturacion);
@@ -371,19 +397,15 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
         jPanelSocialLayout.setHorizontalGroup(
             jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSocialLayout.createSequentialGroup()
-                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelSocialLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelSocialLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addComponent(txtTwitter)
                     .addComponent(txtWeb)
                     .addComponent(txtFacebook, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -396,10 +418,10 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
                 .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFacebook)
                     .addComponent(txtFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTwitter)
-                    .addComponent(txtTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTwitter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -432,6 +454,7 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox chkCuentaCorriente;
     private javax.swing.JComboBox cmbCondicionIVA;
     private javax.swing.JComboBox cmbTipoCliente;
     private javax.swing.JComboBox cmbTipoDoc;
@@ -447,6 +470,7 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
     private javax.swing.JLabel lblCelular;
     private javax.swing.JLabel lblCondicionIVA;
     private javax.swing.JLabel lblContacto;
+    private javax.swing.JLabel lblDescubierto;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblDomicilioFacturacion;
     private javax.swing.JLabel lblEmail;
@@ -463,6 +487,7 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
     private com.toedter.calendar.JDateChooser pickerNacimiento;
     private javax.swing.JTextField txtCUIT;
     private javax.swing.JTextField txtContacto;
+    private javax.swing.JFormattedTextField txtDescubierto;
     private javax.swing.JTextArea txtDomicilio;
     private javax.swing.JTextArea txtDomicilioFacturacion;
     private javax.swing.JTextField txtEmail;
@@ -516,6 +541,8 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 		
 		pickerNacimiento.setDate( cliente.getFechaNacimiento() );
 		
+		chkCuentaCorriente.setSelected( cliente.getTieneCtaCte() );
+		txtDescubierto.setValue( cliente.getDescubierto() );
 		
 		if(cliente.getTipoDocumento()!=null){
 			ComboEnumElement tipoDoc = new ComboEnumElement(cliente.getTipoDocumento(), I18nMessages.locale(cliente.getTipoDocumento().getNombre()));
@@ -565,6 +592,12 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 		
 		cliente.setCondicionIVA( (CondicionIVA)(((ComboEnumElement)cmbCondicionIVA.getSelectedItem()).getItem()) );
 		cliente.setCuit( txtCUIT.getText() );
+		cliente.setTieneCtaCte( chkCuentaCorriente.isSelected() );
+		
+		if( txtDescubierto.getValue()==null)
+			txtDescubierto.setValue(0F);
+			
+		cliente.setDescubierto( ((Number)txtDescubierto.getValue()).floatValue()  );
 		cliente.setDomicilioFacturacion( txtDomicilioFacturacion.getText() );
 		cliente.setObservaciones( txtObservaciones.getText() );
 		
@@ -653,7 +686,8 @@ public class ClientePanel extends javax.swing.JPanel  implements ISkinForm,Seria
 		txtLinkedin.setText( "" );
 		txtWeb.setText( "" );
 		pickerNacimiento.setDate( null );
-		
+		chkCuentaCorriente.setSelected(false);
+		txtDescubierto.setValue(0F);
 		jTabbedPane.setSelectedIndex(0);
 	}
 

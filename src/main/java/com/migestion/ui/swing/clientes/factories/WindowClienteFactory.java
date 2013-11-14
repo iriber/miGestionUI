@@ -51,7 +51,7 @@ public class WindowClienteFactory {
 	 */
 	public static DialogUpdateObject getWindowUpdate(){			    
 
-		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.CLIENTE_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIClienteService(), new ClientePanel() );
+		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.CLIENTE_DIALOG_MODIFICAR_TITULO, UIServiceFactory.getUIClienteService(), new ClientePanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 		return dialog;
 

@@ -6,11 +6,21 @@
 
 package com.migestion.ui.swing.balances;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+
 import com.migestion.model.Balance;
 import com.migestion.swing.controller.exception.ControllerException;
+import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.swing.utils.UbicacionVentana;
 import com.migestion.swing.view.dialogs.DialogMessage;
@@ -30,6 +40,17 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
     public DialogBalanceDiario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+     // Close the dialog when Esc is pressed
+        String cancelName = "cancel";
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
+        ActionMap actionMap = getRootPane().getActionMap();
+        actionMap.put(cancelName, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                doClose();
+            }
+        });
     }
 
     /**
@@ -192,6 +213,7 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
         txtSaldoTotales.setOpaque(true);
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Close));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -329,11 +351,15 @@ public class DialogBalanceDiario extends javax.swing.JDialog implements ILinkWin
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        dispose();
+        doClose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void pickerFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pickerFechaPropertyChange
+    private void doClose() {
+    	setVisible(false);
+        dispose();	
+	}
+
+	private void pickerFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pickerFechaPropertyChange
         // TODO add your handling code here:
         doCalcularSaldos();
     }//GEN-LAST:event_pickerFechaPropertyChange

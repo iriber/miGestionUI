@@ -30,9 +30,9 @@ public class UIClienteCriteria extends UIPersonaCriteria{
 	 * descripción del criteria
 	 */
 	public String getDescription() {
-		String desc = I18nMessages.CLIENTES + " | " + I18nMessages.CLIENTE_NOMBRE + ": '" + getNombre() + "'";
-		if(StringUtils.isEmpty(getNombre()))
-			desc = I18nMessages.CLIENTES + " | TODOS";
+		String desc = I18nMessages.CLIENTES ;
+//		if(!StringUtils.isEmpty(getNombre()))
+//			desc = I18nMessages.CLIENTES + " | " + I18nMessages.CLIENTE_NOMBRE + ": '" + getNombre() + "'";
 		return desc;
 	}
 
@@ -42,6 +42,7 @@ public class UIClienteCriteria extends UIPersonaCriteria{
 		criteria.setMaxResult(getMaxResult());
 		criteria.setOffset(getOffset());
 		criteria.setNombre(getNombre());
+		criteria.setNroDocumento(getNroDocumento());
 		criteria.orderByNombre(Criteria.ORDER_ASC);
 		return criteria;
 	}	

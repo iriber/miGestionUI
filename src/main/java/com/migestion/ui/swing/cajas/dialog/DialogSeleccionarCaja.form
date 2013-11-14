@@ -29,8 +29,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPane1" pref="0" max="32767" attributes="0"/>
-                  <Component id="jLabel1" pref="601" max="32767" attributes="0"/>
+                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jTabbedPane1" min="-2" pref="623" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -85,10 +88,10 @@
                               <Component id="cmbCajas" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="385" max="32767" attributes="0"/>
-                              <Component id="okButton" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cancelButton" min="-2" pref="92" max="-2" attributes="0"/>
+                              <EmptySpace pref="371" max="32767" attributes="0"/>
+                              <Component id="okButton" min="-2" pref="114" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cancelButton" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -126,22 +129,29 @@
             </Component>
             <Component class="javax.swing.JButton" name="okButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Aceptar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="ButtonLabelsBundle.btn_Ok" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="getRootPane().setDefaultButton(okButton);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="getRootPane().setDefaultButton(okButton);&#xa;okButton.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);&#xa;okButton.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;okButton.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="cancelButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cancelar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="ButtonLabelsBundle.btn_Cancel" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="cancelButton.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);&#xa;cancelButton.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));&#xa;cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;cancelButton.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -179,7 +189,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNumero" pref="197" max="32767" attributes="0"/>
+                              <Component id="txtNumero" max="32767" attributes="0"/>
                           </Group>
                           <Component id="cmbSucursal" max="32767" attributes="0"/>
                           <Component id="cmbCajero" max="32767" attributes="0"/>
@@ -188,11 +198,11 @@
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="390" max="-2" attributes="0"/>
-                      <Component id="btnAgregar" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="372" max="-2" attributes="0"/>
+                      <Component id="btnAgregar" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cancelButton1" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="cancelButton1" min="-2" pref="119" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -221,7 +231,7 @@
                           <Component id="lblSaldoInicial" min="-2" max="-2" attributes="0"/>
                           <Component id="txtSaldoInicial" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -307,19 +317,29 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAgregar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Aceptar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="ButtonLabelsBundle.btn_Ok" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btnAgregar.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);&#xa;btnAgregar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));&#xa;btnAgregar.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;btnAgregar.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="cancelButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cancelar"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="ButtonLabelsBundle.btn_Cancel" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButton1ActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="cancelButton1.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);&#xa;cancelButton1.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));&#xa;cancelButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));&#xa;cancelButton1.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

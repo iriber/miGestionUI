@@ -52,116 +52,116 @@ public class PanelMenuToolbar extends javax.swing.JPanel {
 
 		loadCombos();
 	}
-
-	private void initMenuInicio() {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-//				try {
-//					UIManager.setLookAndFeel(UIManager
-//							.getSystemLookAndFeelClassName());
-//				} catch (Exception ex) {
-//				}
-
-				SwingWorker worker = new SwingWorker() {
-					@Override
-					protected Object doInBackground() throws Exception {
-						int index = 0;
-						// link productos.
-						LinkListCollection linkProductos = LinkProductoFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link categorías de producto.
-						LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link clientes.
-						LinkListCollection linkClientes = LinkClienteFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link vendedores.
-						LinkListCollection linkVendedores = LinkVendedorFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link ventas.
-						LinkListCollection linkVentas = LinkVentaFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link pagos.
-						LinkListCollection linkPagos = LinkPagoFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link movimientos de caja.
-						LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory
-								.getLinkList();
-						index += 10;
-						setProgress(index);
-
-						// link exit.
-						Link linkExit = new LinkSystemExit();
-						index += 10;
-						setProgress(index);
-
-						menuInicioPopup = new JPopupMenu();
-
-						JMenu menuCuentas = new JMenu("Ingresos/Egresos");
-
-						menuInicioPopup.add(MenuFactory
-								.getJMenuItem(linkProductos));
-
-						menuInicioPopup.add(MenuFactory
-								.getJMenuItem(linkCategoriasProducto));
-						menuInicioPopup.add(MenuFactory
-								.getJMenuItem(linkClientes));
-						menuInicioPopup.add(MenuFactory
-								.getJMenuItem(linkVendedores));
-
-						menuInicioPopup.addSeparator();
-
-						menuCuentas.add(MenuFactory.getJMenuItem(linkVentas));
-						// menuCuentas.add(
-						// MenuFactory.getJMenuItem(linkAddVenta));
-						menuCuentas.add(MenuFactory.getJMenuItem(linkPagos));
-						// menuCuentas.add(
-						// MenuFactory.getJMenuItem(linkCajas));
-						menuCuentas.add(MenuFactory
-								.getJMenuItem(linkMovimientosCaja));
-						menuInicioPopup.add(menuCuentas);
-
-						menuInicioPopup.addSeparator();
-						menuInicioPopup.add(MenuFactory.getJMenuItem(linkExit));
-
-						setProgress(100);
-
-						return null;
-					}
-
-				};
-
-				ProgressDialog
-						.showProgress(null, worker, I18nMessages.TITULO_MAIN,
-								"Inicializando las ventanas...",
-								"Espere unos segundos");
-
-				// System.exit(0);
-
-			}
-
-		});
-
-	}
+//
+//	private void initMenuInicio() {
+//
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+////				try {
+////					UIManager.setLookAndFeel(UIManager
+////							.getSystemLookAndFeelClassName());
+////				} catch (Exception ex) {
+////				}
+//
+//				SwingWorker worker = new SwingWorker() {
+//					@Override
+//					protected Object doInBackground() throws Exception {
+//						int index = 0;
+//						// link productos.
+//						LinkListCollection linkProductos = LinkProductoFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link categorías de producto.
+//						LinkListCollection linkCategoriasProducto = LinkCategoriaProductoFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link clientes.
+//						LinkListCollection linkClientes = LinkClienteFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link vendedores.
+//						LinkListCollection linkVendedores = LinkVendedorFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link ventas.
+//						LinkListCollection linkVentas = LinkVentaFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link pagos.
+//						LinkListCollection linkPagos = LinkPagoFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link movimientos de caja.
+//						LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory
+//								.getLinkList();
+//						index += 10;
+//						setProgress(index);
+//
+//						// link exit.
+//						Link linkExit = new LinkSystemExit();
+//						index += 10;
+//						setProgress(index);
+//
+//						menuInicioPopup = new JPopupMenu();
+//
+//						JMenu menuCuentas = new JMenu("Ingresos/Egresos");
+//
+//						menuInicioPopup.add(MenuFactory
+//								.getJMenuItem(linkProductos));
+//
+//						menuInicioPopup.add(MenuFactory
+//								.getJMenuItem(linkCategoriasProducto));
+//						menuInicioPopup.add(MenuFactory
+//								.getJMenuItem(linkClientes));
+//						menuInicioPopup.add(MenuFactory
+//								.getJMenuItem(linkVendedores));
+//
+//						menuInicioPopup.addSeparator();
+//
+//						menuCuentas.add(MenuFactory.getJMenuItem(linkVentas));
+//						// menuCuentas.add(
+//						// MenuFactory.getJMenuItem(linkAddVenta));
+//						menuCuentas.add(MenuFactory.getJMenuItem(linkPagos));
+//						// menuCuentas.add(
+//						// MenuFactory.getJMenuItem(linkCajas));
+//						menuCuentas.add(MenuFactory
+//								.getJMenuItem(linkMovimientosCaja));
+//						menuInicioPopup.add(menuCuentas);
+//
+//						menuInicioPopup.addSeparator();
+//						menuInicioPopup.add(MenuFactory.getJMenuItem(linkExit));
+//
+//						setProgress(100);
+//
+//						return null;
+//					}
+//
+//				};
+//
+//				ProgressDialog
+//						.showProgress(null, worker, I18nMessages.TITULO_MAIN,
+//								"Inicializando las ventanas...",
+//								"Espere unos segundos");
+//
+//				// System.exit(0);
+//
+//			}
+//
+//		});
+//
+//	}
 
 	private void loadCombos() {
 		// try {

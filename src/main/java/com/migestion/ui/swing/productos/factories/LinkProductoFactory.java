@@ -108,53 +108,6 @@ public class LinkProductoFactory {
 		
 	}
 	
-//
-//	/**
-//	 * link para agregar un producto.
-//	 */
-//	public static LinkAddObject getLinkAdd(){			    
-//		//return LinkAddCuenta.getInstance();
-//		LinkAddObject link =  new LinkAddObject(WindowProductoFactory.getWindowAdd(), I18nMessages.PRODUCTO_ACCION_AGREGAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//		
-//	}
-//	/**
-//	 * link para activar un producto.
-//	 */
-//	public static LinkUpdateObject getLinkActivarProducto(){			    
-//		LinkUpdateObject link = new LinkActivarProducto(WindowProductoFactory.getWindowActivar(), I18nMessages.PRODUCTO_ACCION_ACTIVAR);
-//		return link;
-//	}	
-//
-//	/**
-//	 * link para desactivar un producto.
-//	 */
-//	public static LinkUpdateObject getLinkDesactivarProducto(){			    
-//		LinkUpdateObject link = new LinkDesactivarProducto(WindowProductoFactory.getWindowDesactivar(), I18nMessages.PRODUCTO_ACCION_DESACTIVAR);
-//		return link;
-//	}	
-//
-//	/**
-//	 * link para modificar un producto.
-//	 */
-//	public static LinkUpdateObject getLinkUpdate(){			    
-//		LinkUpdateObject link = new LinkUpdateObject(WindowProductoFactory.getWindowUpdate(), I18nMessages.PRODUCTO_ACCION_MODIFICAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//	}	
-	
-//	/**
-//	 * link para eliminar un producto.
-//	 */
-//	public static LinkDeleteObject getLinkDelete(){			    
-//		LinkDeleteObject link =  new LinkDeleteObject(WindowProductoFactory.getWindowDelete(), I18nMessages.PRODUCTO_ACCION_ELIMINAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
-//		return link;
-//	}
-//	
-	
 	/**
 	 * link para listar productos.
 	 * @return

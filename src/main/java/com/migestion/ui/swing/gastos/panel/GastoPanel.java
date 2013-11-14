@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.ComboBoxModel;
+
 import com.migestion.model.Cheque;
 import com.migestion.model.ConceptoMovimiento;
 import com.migestion.model.CuentaBancaria;
@@ -19,8 +21,10 @@ import com.migestion.model.GastoCheque;
 import com.migestion.model.GastoCuentaBancaria;
 import com.migestion.model.GastoEfectivo;
 import com.migestion.model.Sucursal;
+import com.migestion.model.TipoFactura;
 import com.migestion.model.Vendedor;
 import com.migestion.swing.controller.exception.ControllerException;
+import com.migestion.swing.custom.ComboEnumElement;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
@@ -91,6 +95,8 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 		} catch (ControllerException e) {
 			 e.printStackTrace();
 		}
+		 
+		 
 		 
 	}
 
@@ -163,6 +169,12 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 
             }
         });
+        lblIva = new javax.swing.JLabel();
+        txtIva = new javax.swing.JFormattedTextField();
+        lblRetencionIIBB = new javax.swing.JLabel();
+        txtRetencionIIBB = new javax.swing.JFormattedTextField();
+        lblTipoFactura = new javax.swing.JLabel();
+        cmbTipoFactura = new javax.swing.JComboBox();
 
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha.setText("Fecha");
@@ -232,12 +244,40 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 
         lblVendedor.setText("Vendedor");
 
+        lblIva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblIva.setText("Iva");
+
+        txtIva.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtIva.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lblRetencionIIBB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRetencionIIBB.setText("Retención IIBB");
+
+        txtRetencionIIBB.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtRetencionIIBB.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lblTipoFactura.setText("Tipo Factura");
+
+        cmbTipoFactura.setModel( getTipoFacturasModel());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdBtnCuentaBancaria)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rdBtnCheque)
+                                .addComponent(rdBtnEfectivo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(findCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(findCheque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -246,45 +286,56 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
                             .addComponent(lblConcepto)
                             .addComponent(lblFecha)
                             .addComponent(lblSucursal)
-                            .addComponent(lblVendedor))
+                            .addComponent(lblVendedor)
+                            .addComponent(lblMonto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblMonto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMonto))
-                            .addComponent(scrollObservaciones)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(findVendedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbSucursal, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbConcepto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(findVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(rdBtnCheque)
-                                    .addComponent(rdBtnEfectivo))
-                                .addGap(64, 64, 64)
-                                .addComponent(findCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(rdBtnCuentaBancaria)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(findCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(222, 222, 222))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblTipoFactura)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblIva, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblRetencionIIBB))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbTipoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRetencionIIBB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scrollObservaciones, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblFecha)
-                    .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblFecha))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbTipoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTipoFactura)))
+                    .addComponent(pickerFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMonto)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                    .addComponent(lblIva)
+                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRetencionIIBB)
+                    .addComponent(txtRetencionIIBB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConcepto)
                     .addComponent(cmbConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -305,7 +356,7 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdBtnEfectivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rdBtnCheque)
                     .addComponent(findCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,7 +367,22 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdBtnEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnEfectivoActionPerformed
+    private ComboBoxModel getTipoFacturasModel() {
+        //cargar tipos de facturas
+        List tipos = new ArrayList();
+       	for (TipoFactura object : TipoFactura.values()){
+       		
+       		ComboEnumElement tipo = new ComboEnumElement(object, I18nMessages.locale( object.getNombre() ));
+			tipos.add(tipo);	
+       	}
+       	
+        ComboModel model = new ComboModel();
+        model.setElementos(tipos);
+
+		return model;
+	}
+
+	private void rdBtnEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnEfectivoActionPerformed
         
     }//GEN-LAST:event_rdBtnEfectivoActionPerformed
 
@@ -345,23 +411,29 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
     private javax.swing.ButtonGroup buttonGroupFormaPago;
     private javax.swing.JComboBox cmbConcepto;
     private javax.swing.JComboBox cmbSucursal;
+    private javax.swing.JComboBox cmbTipoFactura;
     private com.migestion.swing.custom.JFindObjectPanel findCheque;
     private com.migestion.swing.custom.JFindObjectPanel findCuenta;
     private com.migestion.swing.custom.JFindObjectPanel findVendedor;
     private javax.swing.JLabel lblConcepto;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFormaPago;
+    private javax.swing.JLabel lblIva;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblObservaciones;
+    private javax.swing.JLabel lblRetencionIIBB;
     private javax.swing.JLabel lblSucursal;
+    private javax.swing.JLabel lblTipoFactura;
     private javax.swing.JLabel lblVendedor;
     private com.toedter.calendar.JDateChooser pickerFecha;
     private javax.swing.JRadioButton rdBtnCheque;
     private javax.swing.JRadioButton rdBtnCuentaBancaria;
     private javax.swing.JRadioButton rdBtnEfectivo;
     private javax.swing.JScrollPane scrollObservaciones;
+    private javax.swing.JFormattedTextField txtIva;
     private javax.swing.JFormattedTextField txtMonto;
     private javax.swing.JTextArea txtObservaciones;
+    private javax.swing.JFormattedTextField txtRetencionIIBB;
     // End of variables declaration//GEN-END:variables
     
 	public Container getInputPanel() {
@@ -412,7 +484,13 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 		txtMonto.setValue(null);
 		txtObservaciones.setText("");
 		pickerFecha.setDate(new Date());
+		
 		//rdBtnEfectivo.setSelected(true);
+		
+		cmbTipoFactura.setSelectedItem( TipoFactura.C );
+		
+		txtIva.setValue(21F);
+		txtRetencionIIBB.setValue(0F);
 		
 	}
 
@@ -425,6 +503,9 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 		required.put(lblFecha, pickerFecha, new JDateChooserInspector());
 		required.put(lblMonto, txtMonto, new JTextFieldInspector());
 		required.put(lblConcepto, cmbConcepto, new JComboBoxInspector());
+		required.put(lblRetencionIIBB, txtRetencionIIBB, new JTextFieldInspector());
+		required.put(lblIva, txtIva, new JTextFieldInspector());
+		required.put(lblTipoFactura, cmbTipoFactura, new JComboBoxInspector());
 		
 		if( rdBtnCheque.isSelected() ){
 			required.put(lblFormaPago, findCheque, new JFindObjectInspector());
@@ -450,6 +531,8 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 	public void setEditable( Boolean editable ){
 		
 		txtMonto.setEditable( false );
+		txtIva.setEditable( false );
+		txtRetencionIIBB.setEditable( false );
 		txtObservaciones.setEditable( false );
 		findCuenta.setEditable( false );
 		findCheque.setEditable( false );
@@ -471,6 +554,8 @@ public class GastoPanel extends javax.swing.JPanel implements IDialogAddAdapter,
 		
 		
 		txtMonto.setValue( gasto.getMonto() );
+		txtIva.setValue( gasto.getIva() );
+		txtRetencionIIBB.setValue( gasto.getRentencionIIBB() );
 		txtObservaciones.setText( gasto.getObservaciones() );
 		
 		rdBtnEfectivo.setSelected(true);

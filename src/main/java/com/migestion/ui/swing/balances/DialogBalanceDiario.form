@@ -450,6 +450,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnCerrar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Close));"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCheque1">
       <Properties>

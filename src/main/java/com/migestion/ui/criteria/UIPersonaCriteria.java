@@ -10,12 +10,10 @@ package com.migestion.ui.criteria;
  */
 public abstract class UIPersonaCriteria extends UICustomCriteria{
 
-	//nombre del cliente.
+	//nombre.
 	private String nombre;
-	
-	//----------------------
-	//CONSTRUCTORES
-	//----------------------
+
+	private Long nroDocumento;
 	
 	public UIPersonaCriteria() {
 		
@@ -25,14 +23,6 @@ public abstract class UIPersonaCriteria extends UICustomCriteria{
 		this.nombre = nombre;
 	}
 
-	//-----------------------
-	//M�TODOS P�BLICOS
-	//-----------------------
-	
-	//-----------------------
-	//GETTERS y SETTERS
-	//-----------------------
-
 
 	public String getNombre() {
 		return nombre;
@@ -41,6 +31,14 @@ public abstract class UIPersonaCriteria extends UICustomCriteria{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Long getNroDocumento() {
+		return nroDocumento;
+	}
+
+	public void setNroDocumento(Long nroDocumento) {
+		this.nroDocumento = nroDocumento;
 	}
 
 }

@@ -23,6 +23,22 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rdBtnCuentaBancaria" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="rdBtnCheque" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdBtnEfectivo" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="findCuenta" max="32767" attributes="0"/>
+                          <Component id="findCheque" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblFormaPago" min="-2" max="-2" attributes="0"/>
@@ -31,43 +47,42 @@
                           <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSucursal" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblVendedor" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMonto" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="pickerFecha" min="-2" pref="168" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblMonto" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMonto" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="scrollObservaciones" max="32767" attributes="0"/>
-                          <Component id="cmbConcepto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cmbSucursal" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="findVendedor" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="rdBtnCheque" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rdBtnEfectivo" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbSucursal" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbConcepto" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="pickerFecha" min="-2" pref="168" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="lblTipoFactura" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="txtMonto" min="-2" pref="168" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblIva" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtIva" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblRetencionIIBB" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                              <Component id="findCheque" pref="454" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cmbTipoFactura" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Component id="txtRetencionIIBB" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="rdBtnCuentaBancaria" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="findCuenta" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="scrollObservaciones" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,13 +90,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="lblFecha" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="pickerFecha" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblMonto" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtMonto" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="cmbTipoFactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTipoFactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="pickerFecha" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIva" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIva" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRetencionIIBB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRetencionIIBB" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -106,9 +137,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="rdBtnEfectivo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="rdBtnCheque" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="findCheque" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="rdBtnCheque" min="-2" max="-2" attributes="0"/>
+                  <Component id="findCheque" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
@@ -256,6 +287,46 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="FinderFactory.getFindVendedor( new LinkFindObjectListener() {&#xa;&#xa;            public void objectFound(Object objectFinded) {&#xa;                &#xa;            }&#xa;        })"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIva">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Iva"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtIva">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.00" subtype="-1" type="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRetencionIIBB">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Retenci&#xf3;n IIBB"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtRetencionIIBB">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#0.00" subtype="-1" type="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTipoFactura">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tipo Factura"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbTipoFactura">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code=" getTipoFacturasModel()" type="code"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

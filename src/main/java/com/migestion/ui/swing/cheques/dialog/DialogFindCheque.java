@@ -30,6 +30,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
 public class DialogFindCheque extends DialogFindObject<Cheque>{
 
 	private UIChequeCriteriaPanel criteriaPanel;
+	
 	public DialogFindCheque(String title) {
 		super(title);
 	}

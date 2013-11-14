@@ -53,7 +53,9 @@ public class AppContext {
 	private ContextObserver<Gasto> gastoObserver;
 	
 	private ContextObserver<Cliente> clienteObserver;
-	
+
+	private ContextObserver<Vendedor> vendedorObserver;
+
 //	/**
 //	 * usuario logueado.
 //	 */
@@ -90,6 +92,7 @@ public class AppContext {
 		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
 		gastoObserver = new ContextObserver<Gasto>();
 		clienteObserver = new ContextObserver<Cliente>();
+		vendedorObserver = new ContextObserver<Vendedor>();
 				
 //		usuario = null;
 
@@ -253,6 +256,10 @@ public class AppContext {
 
 	public ContextObserver<Cliente> getClienteObserver() {
 		return clienteObserver;
+	}
+
+	public ContextObserver<Vendedor> getVendedorObserver() {
+		return vendedorObserver;
 	}
 
 

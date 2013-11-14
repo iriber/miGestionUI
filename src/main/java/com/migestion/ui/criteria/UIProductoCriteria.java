@@ -2,6 +2,7 @@ package com.migestion.ui.criteria;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.migestion.model.CategoriaProducto;
 import com.migestion.services.criteria.ProductoCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -17,9 +18,7 @@ public class UIProductoCriteria extends UICustomCriteria{
 	//nombre del producto.
 	private String nombre;
 	
-	//----------------------
-	//CONSTRUCTORES
-	//----------------------
+	private CategoriaProducto categoriaProducto;
 	
 	public UIProductoCriteria() {
 		
@@ -29,22 +28,14 @@ public class UIProductoCriteria extends UICustomCriteria{
 		this.nombre = nombre;
 	}
 
-	//-----------------------
-	//M�TODOS P�BLICOS
-	//-----------------------
 	
 	/**
 	 * descripci�n del criteria
 	 */
 	public String getDescription() {
 		String desc = I18nMessages.PRODUCTOS ;
-		if(!StringUtils.isEmpty(getNombre()))
-			desc +=  " | " + I18nMessages.PRODUCTO_NOMBRE + ": '" + getNombre() + "'";
 		return desc;
 	}
-	//-----------------------
-	//GETTERS y SETTERS
-	//-----------------------
 
 
 	public String getNombre() {
@@ -60,8 +51,17 @@ public class UIProductoCriteria extends UICustomCriteria{
 		
 		ProductoCriteria criteria = new ProductoCriteria();
 		criteria.setMaxResult(getMaxResult());
+		criteria.setCategoriaProducto(getCategoriaProducto());
 		criteria.setOffset(getOffset());
 		criteria.setNombre(getNombre());
 		return criteria;
+	}
+
+	public CategoriaProducto getCategoriaProducto() {
+		return categoriaProducto;
+	}
+
+	public void setCategoriaProducto(CategoriaProducto categoriaProducto) {
+		this.categoriaProducto = categoriaProducto;
 	}	
 }

@@ -6,6 +6,8 @@
 
 package com.migestion.ui.swing.cajas.dialog;
 
+import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.ComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -26,6 +29,8 @@ import com.migestion.model.ValoresPredefinidos;
 import com.migestion.model.Vendedor;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.ComboModel;
+import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
+import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.exceptions.ViewException;
@@ -204,14 +209,14 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
             }
         });
 
-        okButton.setText("Aceptar");
+        okButton.setText(ButtonLabelsBundle.btn_Ok);
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Cancelar");
+        cancelButton.setText(ButtonLabelsBundle.btn_Cancel);
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -228,10 +233,10 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
                         .addGap(32, 32, 32)
                         .addComponent(cmbCajas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(385, Short.MAX_VALUE)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(371, Short.MAX_VALUE)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -247,6 +252,14 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
         );
 
         getRootPane().setDefaultButton(okButton);
+        okButton.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);
+        okButton.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
+        okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        okButton.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);
+        cancelButton.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);
+        cancelButton.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));
+        cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        cancelButton.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);
 
         jTabbedPane1.addTab("Cajas abiertas", jPanel2);
 
@@ -276,14 +289,14 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
         txtSaldoInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtSaldoInicial.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        btnAgregar.setText("Aceptar");
+        btnAgregar.setText(ButtonLabelsBundle.btn_Ok);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
 
-        cancelButton1.setText("Cancelar");
+        cancelButton1.setText(ButtonLabelsBundle.btn_Cancel);
         cancelButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButton1ActionPerformed(evt);
@@ -308,17 +321,17 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNumero)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
+                        .addComponent(txtNumero))
                     .addComponent(cmbSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbCajero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSaldoInicial))
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(372, 372, 372)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(41, 41, 41))
+                .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,12 +354,21 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblSaldoInicial)
                     .addComponent(txtSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(cancelButton1))
                 .addContainerGap())
         );
+
+        btnAgregar.setToolTipText(ButtonLabelsBundle.btn_Ok_ToolTipText);
+        btnAgregar.setIcon(new ImageIcon(ButtonImagesBundle.btn_Ok));
+        btnAgregar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAgregar.setMnemonic(java.awt.event.KeyEvent.VK_ENTER);
+        cancelButton1.setToolTipText(ButtonLabelsBundle.btn_Cancel_ToolTipText);
+        cancelButton1.setIcon(new ImageIcon(ButtonImagesBundle.btn_Cancel));
+        cancelButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        cancelButton1.setMnemonic(java.awt.event.KeyEvent.VK_ESCAPE);
 
         jTabbedPane1.addTab("Nueva caja", jPanel1);
 
@@ -357,8 +379,10 @@ public class DialogSeleccionarCaja extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

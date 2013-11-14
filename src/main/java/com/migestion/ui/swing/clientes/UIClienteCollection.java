@@ -6,9 +6,11 @@ import java.util.Vector;
 import javax.swing.SwingConstants;
 
 import com.migestion.model.Cliente;
+import com.migestion.model.Producto;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.view.dialogs.DialogMessage;
+import com.migestion.ui.AppUtils;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -28,7 +30,7 @@ public class UIClienteCollection extends UICollection{
 	}
 
 	public int getColumnCount() {		
-		return 6;
+		return 7;
 	}
 
 	public Class getColumnClass(int columnIndex) {
@@ -46,7 +48,9 @@ public class UIClienteCollection extends UICollection{
 	    	   return String.class;
 	       case 5:
 	    	   return String.class;
-	        default:
+	       case 6:
+	    	   return Float.class;
+	       default:
 	             return Object.class;
 	     }
 	}
@@ -66,11 +70,28 @@ public class UIClienteCollection extends UICollection{
         	return I18nMessages.CLIENTE_TELEFONO_CELULAR;
         case 5:
         	return I18nMessages.CLIENTE_EMAIL;
+        case 6:
+        	return I18nMessages.CLIENTE_SALDO;
 		default:
 			return "";
         }
     }
 
+	public Object getValueAtShow(int rowIndex, int columnIndex) {
+        
+		// Se obtiene el dato de la fila indicada
+		Cliente cliente = (Cliente)(getElements().get(rowIndex));
+
+        // Se obtiene el campo apropiado según el valor de columnIndex
+        switch (columnIndex)
+        {
+        	case 6:
+        		return AppUtils.formatMoneda( cliente.getSaldo() );
+            default:
+                return getValueAt(rowIndex, columnIndex);
+        }
+    }
+	
 	public Object getValueAt(int rowIndex, int columnIndex) {
         
 		// Se obtiene el dato de la fila indicada
@@ -91,6 +112,8 @@ public class UIClienteCollection extends UICollection{
 	        	return cliente.getTelefonoMovil();
 	        case 5:
 	        	return cliente.getEmail();
+	        case 6:
+	        	return cliente.getSaldo();
             default:
                 return "";
         }
@@ -119,6 +142,8 @@ public class UIClienteCollection extends UICollection{
 			return SwingConstants.LEFT;
 		case 5:
 			return SwingConstants.LEFT;
+		case 6:
+			return SwingConstants.RIGHT;
 		default:
 			return SwingConstants.LEFT;
 		}
@@ -218,6 +243,7 @@ public class UIClienteCollection extends UICollection{
 		        case 5:
 		        	cliente.setEmail( (String)aValue );
 		        	cambio = true;break;
+		        
 	            default:
 	            	break;
 	        }

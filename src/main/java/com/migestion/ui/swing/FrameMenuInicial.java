@@ -1,6 +1,7 @@
 package com.migestion.ui.swing;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -97,7 +98,7 @@ public class FrameMenuInicial extends JFrameContainer {
 
 						menuBar = new JMenuBar();
 						setJMenuBar(menuBar);
-						
+						menuBar.setForeground( Color.WHITE );
 						menuAdmin = new JMenu("Administración");
 						menuBar.add(menuAdmin);
 						
@@ -274,7 +275,7 @@ public class FrameMenuInicial extends JFrameContainer {
 				ProgressDialog
 						.showProgress(null, worker, I18nMessages.TITULO_MAIN,
 								"Inicializando las ventanas...",
-								"Espere unos segundos");
+								"Espere unos segundos", new ImageIcon(I18nImages.LOGO_ICON).getImage());
 
 				// System.exit(0);
 

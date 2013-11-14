@@ -34,7 +34,7 @@ public class TestProgressDialog {
 
                 };
 
-                ProgressDialog.showProgress(null, worker, I18nMessages.TITULO_MAIN,  "Inicializando el sistema", "Espere unos minutos");
+                ProgressDialog.showProgress(null, worker, I18nMessages.TITULO_MAIN,  "Inicializando el sistema", "Espere unos minutos",null);
 
                 System.exit(0);
 

@@ -10,8 +10,10 @@ import javax.swing.SwingConstants;
 
 import com.migestion.model.Cliente;
 import com.migestion.swing.controller.IControllerList;
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
@@ -21,6 +23,7 @@ import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
 import com.migestion.ui.swing.clientes.panel.UIClienteCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
+import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 
 /**
  * Frame para clientes
@@ -43,13 +46,18 @@ public class ClientesCRUDFrame extends CRUDFrame<Cliente> implements IClienteLis
 
 	public void initLinks() {
 		
-		LinkUpdateObject linkUpdate  = LinkClienteFactory.getLinkUpdate();
-		LinkAddObject linkAdd  = LinkClienteFactory.getLinkAdd();
-		LinkDeleteObject linkDelete  = LinkClienteFactory.getLinkDelete();
 		
-		this.setLinkAdd( linkAdd, 0 );
-		this.setLinkUpdate( linkUpdate, 1 );
-		this.setLinkDelete( linkDelete, 2 );
+		Link linkAdd  = LinkClienteFactory.getLinkAdd();
+		
+		LinkOpenDialogWithSelected linkUpdate  = LinkClienteFactory.getLinkUpdate();
+		this.addElementsListener(linkUpdate);
+		
+		LinkOpenDialogWithSelected linkDelete  = LinkClienteFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
+		
+		this.addLinkToDefaultMenu( linkAdd, 0 );
+		this.addLinkToDefaultMenu( linkUpdate, 1 );
+		this.addLinkToDefaultMenu( linkDelete, 2 );
 		
 		
 		JPopupMenu rightClick = new JPopupMenu();

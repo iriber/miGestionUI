@@ -144,6 +144,9 @@ public class I18nMessages implements I18nLocale{
 	public static String CLIENTE_TIPO_DOCUMENTO = properties.getString("cliente.tipo_documento");
 	public static String CLIENTE_CONDICION_IVA = properties.getString("cliente.condicion_iva");
 	public static String CLIENTE_TIPO_CLIENTE = properties.getString("cliente.tipoCliente");
+	public static String CLIENTE_SALDO = properties.getString("cliente.saldo");
+	public static String CLIENTE_SALDO_DESCUBIERTO = properties.getString("cliente.saldo.descubierto");
+	public static String CLIENTE_TIENE_CTA_CTE = properties.getString("cliente.tiene.ctaCte");
 	
 	public static String CLIENTE_FRAME_TITULO = properties.getString("cliente.frame.titulo");
 	public static String CLIENTE_FRAME_MENUADMIN = properties.getString("cliente.frame.menuadmin");

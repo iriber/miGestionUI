@@ -8,17 +8,17 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Vendedor;
 import com.migestion.swing.controller.IControllerList;
-import com.migestion.swing.navigation.LinkAddObject;
-import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkUpdateObject;
+import com.migestion.swing.navigation.Link;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
-import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
-import com.migestion.ui.swing.vendedores.panel.UIVendedorCriteriaPanel;
+import com.migestion.ui.context.observers.listeners.IVendedorListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
+import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
+import com.migestion.ui.swing.vendedores.panel.UIVendedorCriteriaPanel;
 
 /**
  * Frame para vendedores
@@ -27,7 +27,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 15/10/2013
  *
  */
-public class VendedoresCRUDFrame extends CRUDFrame{
+public class VendedoresCRUDFrame extends CRUDFrame<Vendedor> implements IVendedorListener{
 
 	public VendedoresCRUDFrame(String title, IControllerList controller){
 		
@@ -41,13 +41,17 @@ public class VendedoresCRUDFrame extends CRUDFrame{
 
 	public void initLinks() {
 		
-		LinkUpdateObject linkUpdate  = LinkVendedorFactory.getLinkUpdate();
-		LinkAddObject linkAdd  = LinkVendedorFactory.getLinkAdd();
-		LinkDeleteObject linkDelete  = LinkVendedorFactory.getLinkDelete();
+		Link linkAdd  = LinkVendedorFactory.getLinkAdd();
 		
-		this.setLinkAdd( linkAdd, 0 );
-		this.setLinkUpdate( linkUpdate, 1 );
-		this.setLinkDelete( linkDelete, 2 );
+		LinkOpenDialogWithSelected linkUpdate  = LinkVendedorFactory.getLinkUpdate();
+		this.addElementsListener(linkUpdate);
+		
+		LinkOpenDialogWithSelected linkDelete  = LinkVendedorFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
+		
+		this.addLinkToDefaultMenu( linkAdd, 0 );
+		this.addLinkToDefaultMenu( linkUpdate, 1 );
+		this.addLinkToDefaultMenu( linkDelete, 2 );
 		
 		
 		JPopupMenu rightClick = new JPopupMenu();

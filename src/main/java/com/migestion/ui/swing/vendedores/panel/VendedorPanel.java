@@ -7,9 +7,6 @@ package com.migestion.ui.swing.vendedores.panel;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ import com.migestion.model.CondicionIVA;
 import com.migestion.model.TipoCliente;
 import com.migestion.model.TipoDocumento;
 import com.migestion.model.Vendedor;
+import com.migestion.services.impl.FocusPolicy;
 import com.migestion.swing.custom.ComboEnumElement;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.view.dialogs.adapters.IDialogAddAdapter;
@@ -35,7 +33,6 @@ import com.migestion.swing.view.inputs.InputValidator;
 import com.migestion.swing.view.inputs.JTextFieldInspector;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.skin.ISkinForm;
-import com.migestion.ui.swing.skin.SkinDecorator;
 
 /**
  *
@@ -58,11 +55,6 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
         
         initValidators();
         
-        SkinDecorator.getInstance().decorate(this);
-        
-        Dimension minimumSize = new Dimension(700, 400);
-		setMinimumSize(minimumSize);
-		
 		loadCombos();
 		
     }
@@ -79,12 +71,11 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanelDatosPersonales = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
         lblFijo = new javax.swing.JLabel();
         txtTelefonoFijo = new javax.swing.JTextField();
         txtMovil = new javax.swing.JTextField();
@@ -98,11 +89,7 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
         txtNroDoc = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        lblContacto = new javax.swing.JLabel();
-        txtContacto = new javax.swing.JTextField();
         lblFechaNacimiento = new javax.swing.JLabel();
-        lblTipoCliente = new javax.swing.JLabel();
-        cmbTipoCliente = new javax.swing.JComboBox();
         pickerNacimiento = new com.toedter.calendar.JDateChooser();
         jPanelFacturacion = new javax.swing.JPanel();
         lblCUIT = new javax.swing.JLabel();
@@ -112,6 +99,9 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
         lblDomicilioFacturacion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDomicilioFacturacion = new javax.swing.JTextArea();
+        chkCuentaCorriente = new javax.swing.JCheckBox();
+        txtDescubierto = new javax.swing.JFormattedTextField();
+        lblDescubierto = new javax.swing.JLabel();
         jPanelSocial = new javax.swing.JPanel();
         lblFacebook = new javax.swing.JLabel();
         txtFacebook = new javax.swing.JTextField();
@@ -129,201 +119,146 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
         setPreferredSize(new java.awt.Dimension(700, 450));
         setLayout(new java.awt.GridLayout(1, 0));
 
-        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWidths = new int[] {20, 50, 334, 20};
-        jPanelDatosPersonales.setLayout(jPanel1Layout);
+        txtNombre.setText("jTextField1");
 
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNombre.setText("Nombre");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        jPanelDatosPersonales.add(lblNombre, gridBagConstraints);
-
-        txtNombre.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtNombre, gridBagConstraints);
 
         lblFijo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFijo.setText("Teléfono");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblFijo, gridBagConstraints);
 
         txtTelefonoFijo.setText("jTextField2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtTelefonoFijo, gridBagConstraints);
 
         txtMovil.setText("jTextField3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtMovil, gridBagConstraints);
 
         lblCelular.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCelular.setText("Celular");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblCelular, gridBagConstraints);
 
         lblDomicilio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDomicilio.setText("Domicilio");
         lblDomicilio.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weighty = 0.4;
-        jPanelDatosPersonales.add(lblDomicilio, gridBagConstraints);
 
         txtDomicilio.setColumns(20);
         txtDomicilio.setRows(5);
         jScrollPane1.setViewportView(txtDomicilio);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.weighty = 0.4;
-        jPanelDatosPersonales.add(jScrollPane1, gridBagConstraints);
-
         lblTipoDoc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipoDoc.setText("Tipo documento");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblTipoDoc, gridBagConstraints);
 
         cmbTipoDoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbTipoDoc.setMinimumSize(new java.awt.Dimension(50, 28));
         cmbTipoDoc.setPreferredSize(new java.awt.Dimension(50, 28));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(cmbTipoDoc, gridBagConstraints);
 
         lblNroDoc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNroDoc.setText("Nro Documento");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblNroDoc, gridBagConstraints);
+        lblNroDoc.setText("Nro");
 
         txtNroDoc.setText("jTextField1");
         txtNroDoc.setMinimumSize(new java.awt.Dimension(100, 28));
         txtNroDoc.setPreferredSize(new java.awt.Dimension(100, 28));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtNroDoc, gridBagConstraints);
 
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblEmail.setText("Email");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblEmail, gridBagConstraints);
 
         txtEmail.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtEmail, gridBagConstraints);
-
-        lblContacto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblContacto.setText("Contacto");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblContacto, gridBagConstraints);
-
-        txtContacto.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(txtContacto, gridBagConstraints);
 
         lblFechaNacimiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaNacimiento.setText("Fecha de nacimiento");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblFechaNacimiento, gridBagConstraints);
 
-        lblTipoCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTipoCliente.setText("Tipo de cliente");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(lblTipoCliente, gridBagConstraints);
-
-        cmbTipoCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(cmbTipoCliente, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelDatosPersonales.add(pickerNacimiento, gridBagConstraints);
+        javax.swing.GroupLayout jPanelDatosPersonalesLayout = new javax.swing.GroupLayout(jPanelDatosPersonales);
+        jPanelDatosPersonales.setLayout(jPanelDatosPersonalesLayout);
+        jPanelDatosPersonalesLayout.setHorizontalGroup(
+            jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombre))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail)
+                            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(cmbTipoDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNroDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNroDoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(lblFechaNacimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pickerNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCelular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDomicilio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+                            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelefonoFijo)
+                                    .addComponent(txtMovil))))))
+                .addContainerGap())
+        );
+        jPanelDatosPersonalesLayout.setVerticalGroup(
+            jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDatosPersonalesLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(lblFijo))
+                    .addComponent(txtTelefonoFijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCelular))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDomicilio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNroDoc)
+                    .addComponent(cmbTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNroDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTipoDoc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblFechaNacimiento)
+                    .addComponent(pickerNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         jTabbedPane.addTab("Datos personales", jPanelDatosPersonales);
 
-        java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
-        jPanel3Layout.columnWidths = new int[] {20, 137, 334, 20};
-        jPanelFacturacion.setLayout(jPanel3Layout);
+        jPanelFacturacion.setEnabled(false);
 
         lblCUIT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCUIT.setText("CUIT");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(lblCUIT, gridBagConstraints);
 
         txtCUIT.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(txtCUIT, gridBagConstraints);
 
         lblCondicionIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCondicionIVA.setText("Condición IVA");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(lblCondicionIVA, gridBagConstraints);
 
         cmbCondicionIVA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbCondicionIVA.addActionListener(new java.awt.event.ActionListener() {
@@ -331,96 +266,136 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
                 cmbCondicionIVAActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(cmbCondicionIVA, gridBagConstraints);
 
         lblDomicilioFacturacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDomicilioFacturacion.setText("Domicilio");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(lblDomicilioFacturacion, gridBagConstraints);
 
         txtDomicilioFacturacion.setColumns(20);
         txtDomicilioFacturacion.setRows(5);
         jScrollPane2.setViewportView(txtDomicilioFacturacion);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelFacturacion.add(jScrollPane2, gridBagConstraints);
+        chkCuentaCorriente.setText("Permitir cuenta corriente");
+
+        txtDescubierto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtDescubierto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lblDescubierto.setText("Saldo al descubierto");
+
+        javax.swing.GroupLayout jPanelFacturacionLayout = new javax.swing.GroupLayout(jPanelFacturacion);
+        jPanelFacturacion.setLayout(jPanelFacturacionLayout);
+        jPanelFacturacionLayout.setHorizontalGroup(
+            jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                        .addComponent(lblCUIT, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCUIT))
+                    .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                        .addComponent(lblCondicionIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbCondicionIVA, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                        .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDomicilioFacturacion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDescubierto))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                            .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkCuentaCorriente)
+                                    .addComponent(txtDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        jPanelFacturacionLayout.setVerticalGroup(
+            jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFacturacionLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCUIT)
+                    .addComponent(txtCUIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCondicionIVA)
+                    .addComponent(cmbCondicionIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDomicilioFacturacion)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkCuentaCorriente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescubierto))
+                .addContainerGap())
+        );
 
         jTabbedPane.addTab("Facturación", jPanelFacturacion);
 
-        java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
-        jPanel2Layout.columnWidths = new int[] {20, 137, 334, 20};
-        jPanelSocial.setLayout(jPanel2Layout);
-
         lblFacebook.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFacebook.setText("Facebook");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(lblFacebook, gridBagConstraints);
 
         txtFacebook.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(txtFacebook, gridBagConstraints);
 
         lblWeb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblWeb.setText("Página web");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(lblWeb, gridBagConstraints);
 
         txtWeb.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(txtWeb, gridBagConstraints);
 
         txtTwitter.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(txtTwitter, gridBagConstraints);
 
         txtLinkedin.setText("jTextField1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(txtLinkedin, gridBagConstraints);
 
         lblTwitter.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTwitter.setText("Twitter");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(lblTwitter, gridBagConstraints);
 
         lblLinkedin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblLinkedin.setText("Linkedin");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelSocial.add(lblLinkedin, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanelSocialLayout = new javax.swing.GroupLayout(jPanelSocial);
+        jPanelSocial.setLayout(jPanelSocialLayout);
+        jPanelSocialLayout.setHorizontalGroup(
+            jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSocialLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addComponent(txtTwitter)
+                    .addComponent(txtWeb)
+                    .addComponent(txtFacebook, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanelSocialLayout.setVerticalGroup(
+            jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSocialLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFacebook)
+                    .addComponent(txtFacebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTwitter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTwitter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLinkedin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeb))
+                .addGap(278, 278, 278))
+        );
 
         jTabbedPane.addTab("Social media", jPanelSocial);
 
@@ -443,8 +418,8 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox chkCuentaCorriente;
     private javax.swing.JComboBox cmbCondicionIVA;
-    private javax.swing.JComboBox cmbTipoCliente;
     private javax.swing.JComboBox cmbTipoDoc;
     private javax.swing.JPanel jPanelDatosPersonales;
     private javax.swing.JPanel jPanelFacturacion;
@@ -457,7 +432,7 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
     private javax.swing.JLabel lblCUIT;
     private javax.swing.JLabel lblCelular;
     private javax.swing.JLabel lblCondicionIVA;
-    private javax.swing.JLabel lblContacto;
+    private javax.swing.JLabel lblDescubierto;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblDomicilioFacturacion;
     private javax.swing.JLabel lblEmail;
@@ -467,13 +442,12 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
     private javax.swing.JLabel lblLinkedin;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNroDoc;
-    private javax.swing.JLabel lblTipoCliente;
     private javax.swing.JLabel lblTipoDoc;
     private javax.swing.JLabel lblTwitter;
     private javax.swing.JLabel lblWeb;
     private com.toedter.calendar.JDateChooser pickerNacimiento;
     private javax.swing.JTextField txtCUIT;
-    private javax.swing.JTextField txtContacto;
+    private javax.swing.JFormattedTextField txtDescubierto;
     private javax.swing.JTextArea txtDomicilio;
     private javax.swing.JTextArea txtDomicilioFacturacion;
     private javax.swing.JTextField txtEmail;
@@ -518,18 +492,30 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		txtDomicilio.setText( vendedor.getDomicilio() );
 		txtEmail.setText( vendedor.getEmail() );
 
+		
 		txtTelefonoFijo.setText( vendedor.getTelefonoFijo() );
 		txtMovil.setText( vendedor.getTelefonoMovil() );
 		
 		pickerNacimiento.setDate( vendedor.getFechaNacimiento() );
 		
-		ComboEnumElement tipoDoc = new ComboEnumElement(vendedor.getTipoDocumento(), I18nMessages.locale(vendedor.getTipoDocumento().getNombre()));
-		cmbTipoDoc.setSelectedItem( tipoDoc );
+//		chkCuentaCorriente.setSelected( vendedor.getTieneCtaCte() );
+//		txtDescubierto.setValue( vendedor.getDescubierto() );
+//		
+		if(vendedor.getTipoDocumento()!=null){
+			ComboEnumElement tipoDoc = new ComboEnumElement(vendedor.getTipoDocumento(), I18nMessages.locale(vendedor.getTipoDocumento().getNombre()));
+			cmbTipoDoc.setSelectedItem( tipoDoc );	
+		}
+		
+		
 		if( vendedor.getNroDocumento()!=null)
 			txtNroDoc.setText( vendedor.getNroDocumento().toString() );
 		else
 			txtNroDoc.setText("");
 
+//		txtCUIT.setText( vendedor.getCuit() );
+//		ComboEnumElement condicion = new ComboEnumElement(vendedor.getCondicionIVA(), I18nMessages.locale(vendedor.getCondicionIVA().getNombre()));
+//		cmbCondicionIVA.setSelectedItem( condicion );
+//		txtDomicilioFacturacion.setText( vendedor.getDomicilioFacturacion() );
 		txtObservaciones.setText( vendedor.getObservaciones() );
 		
 		txtFacebook.setText( vendedor.getFacebook() );
@@ -550,6 +536,7 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		vendedor.setTelefonoFijo( txtTelefonoFijo.getText() );
 		vendedor.setTelefonoMovil( txtMovil.getText() );
 		vendedor.setDomicilio( txtDomicilio.getText() );
+//		vendedor.setContacto( txtContacto.getText() );
 		vendedor.setEmail( txtEmail.getText() );
 		
 		//TODO chequear que sea un número.
@@ -559,6 +546,15 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		vendedor.setTipoDocumento( (TipoDocumento)(((ComboEnumElement)cmbTipoDoc.getSelectedItem()).getItem()) );
 		vendedor.setFechaNacimiento( pickerNacimiento.getDate() );
 		
+//		vendedor.setCondicionIVA( (CondicionIVA)(((ComboEnumElement)cmbCondicionIVA.getSelectedItem()).getItem()) );
+//		vendedor.setCuit( txtCUIT.getText() );
+//		vendedor.setTieneCtaCte( chkCuentaCorriente.isSelected() );
+		
+		if( txtDescubierto.getValue()==null)
+			txtDescubierto.setValue(0F);
+			
+//		vendedor.setDescubierto( ((Number)txtDescubierto.getValue()).floatValue()  );
+//		vendedor.setDomicilioFacturacion( txtDomicilioFacturacion.getText() );
 		vendedor.setObservaciones( txtObservaciones.getText() );
 		
 		vendedor.setFacebook( txtFacebook.getText() );
@@ -591,6 +587,12 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
        	
        	}
        	
+        model = new ComboModel();
+        model.setElementos(condiciones);
+        cmbCondicionIVA.setModel(model);
+        cmbCondicionIVA.setSelectedIndex(0);
+
+
 
     }
 	private void initValidators() {
@@ -619,7 +621,6 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		txtMovil.setText( "" );
 		txtNroDoc.setText( "" );
 		txtEmail.setText( "" );
-		txtContacto.setText( "" );
 		txtCUIT.setText( "" );
 		txtDomicilioFacturacion.setText( "" );
 		txtObservaciones.setText( "" );
@@ -628,7 +629,8 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		txtLinkedin.setText( "" );
 		txtWeb.setText( "" );
 		pickerNacimiento.setDate( null );
-		
+		chkCuentaCorriente.setSelected(false);
+		txtDescubierto.setValue(0F);
 		jTabbedPane.setSelectedIndex(0);
 	}
 
@@ -642,10 +644,8 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		labels.add(lblTipoDoc);
 		labels.add(lblNroDoc);
 		labels.add(lblEmail);
-		labels.add(lblTipoCliente);
 		labels.add(lblFechaNacimiento);
 		labels.add(lblCondicionIVA);
-		labels.add(lblContacto);
 		labels.add(lblCUIT);
 		labels.add(lblDomicilioFacturacion);
 		labels.add(lblFacebook);
@@ -669,7 +669,6 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		inputs.add(txtNroDoc);
 		inputs.add(txtEmail);
 		inputs.add(cmbCondicionIVA);
-		inputs.add(txtContacto);
 		inputs.add(txtCUIT);
 		inputs.add(txtDomicilioFacturacion);
 		inputs.add(txtFacebook);
@@ -677,7 +676,6 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		inputs.add(txtLinkedin);
 		inputs.add(txtWeb);
 		inputs.add(pickerNacimiento);
-		inputs.add(cmbTipoCliente);
 		
 		
 		return inputs;
@@ -686,7 +684,7 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 
 	public void setPadding(JComponent component, Insets padding) {
 	
-		
+		/*
 		GridBagConstraints gbc = ((GridBagLayout)jPanelDatosPersonales.getLayout()).getConstraints(component);
 		gbc.insets = padding;
 		((GridBagLayout)jPanelDatosPersonales.getLayout()).setConstraints(component, gbc);
@@ -698,7 +696,7 @@ public class VendedorPanel extends javax.swing.JPanel  implements ISkinForm,Seri
 		
 		gbc = ((GridBagLayout)jPanelSocial.getLayout()).getConstraints(component);
 		gbc.insets = padding;
-		((GridBagLayout)jPanelSocial.getLayout()).setConstraints(component, gbc);
+		((GridBagLayout)jPanelSocial.getLayout()).setConstraints(component, gbc);*/
 	}
 
 	public void setFormBackground(Color bg) {

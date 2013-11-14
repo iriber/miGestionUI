@@ -3,6 +3,7 @@ package com.migestion.ui;
 import java.awt.EventQueue;
 import java.awt.Frame;
 
+import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
@@ -21,6 +22,7 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UICajaCriteria;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.cajas.dialog.DialogSeleccionarCaja;
+import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 public class MiGestionApp {
@@ -31,10 +33,11 @@ public class MiGestionApp {
 	public static void main(String[] args) {
 		 EventQueue.invokeLater(new Runnable() {
 	            public void run() {
-//	                try {
-//	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-//	                } catch (Exception ex) {
-//	                }
+	                try {
+	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//	                	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	                } catch (Exception ex) {
+	                }
 
 	                SwingWorker worker = new SwingWorker() {
 	                    @Override
@@ -90,12 +93,13 @@ public class MiGestionApp {
 
 	                };
 
-	                ProgressDialog.showProgress(null, worker,I18nMessages.TITULO_MAIN, "Inicializando el sistema...", "Espere unos segundos");
+	                ProgressDialog.showProgress(null, worker,I18nMessages.TITULO_MAIN, "Inicializando el sistema...", "Espere unos segundos", new ImageIcon(I18nImages.LOGO_ICON).getImage());
 
 	                //System.exit(0);
 
 	                DialogSeleccionarCaja dialogCaja = new DialogSeleccionarCaja(new Frame(), true);
-            		UbicacionVentana.centrar(dialogCaja, false);
+	                dialogCaja.setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
+	                UbicacionVentana.centrar(dialogCaja, false);
             		dialogCaja.setVisible(true);
 	            }
 

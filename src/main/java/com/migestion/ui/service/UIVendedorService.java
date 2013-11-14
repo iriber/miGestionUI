@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
+import com.migestion.model.Cliente;
 import com.migestion.model.Vendedor;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.VendedorCriteria;
@@ -18,6 +19,7 @@ import com.migestion.swing.controller.IControllerView;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
+import com.migestion.ui.context.AppContext;
 import com.migestion.ui.criteria.UIVendedorCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.vendedores.UIVendedorCollection;
@@ -101,18 +103,18 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getVendedorObserver().objectCreated((Vendedor)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -129,19 +131,19 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			ServiceFactory.getVendedorService().update( (Vendedor)object );
 			
 			PersistenceContext.getInstance().commit();
+
+			AppContext.getInstance().getVendedorObserver().objectUpdated((Vendedor)object);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -159,18 +161,18 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+			AppContext.getInstance().getVendedorObserver().objectDeleted((Vendedor)object);
+			
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 
