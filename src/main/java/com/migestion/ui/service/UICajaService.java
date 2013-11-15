@@ -9,7 +9,6 @@ import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.Caja;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.CajaCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -71,7 +70,7 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			cajas = ServiceFactory.getCajaService().list( coreCriteria );
 			totalSize = ServiceFactory.getCajaService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -101,18 +100,16 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}		
 	}
 
@@ -129,18 +126,16 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}		
 	}
 
@@ -157,18 +152,16 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -183,7 +176,7 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getCajaService().get( ((Caja)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -208,7 +201,7 @@ public class UICajaService implements IControllerList, IControllerAdd,
 			CajaCriteria coreCriteria = ((UICajaCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getCajaService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

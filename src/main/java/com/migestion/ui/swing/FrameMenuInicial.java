@@ -35,6 +35,7 @@ import com.migestion.ui.swing.notasCredito.movimientos.factories.LinkMovimientoN
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
+import com.migestion.ui.swing.proveedores.factories.LinkProveedorFactory;
 import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
 
 /**
@@ -88,7 +89,7 @@ public class FrameMenuInicial extends JFrameContainer {
 					@Override
 					protected Object doInBackground() throws Exception {
 						int index = 0;
-						int cantidad = 21;
+						int cantidad = 22;
 						int incrementar = 100 / cantidad;
 						
 						setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
@@ -146,6 +147,12 @@ public class FrameMenuInicial extends JFrameContainer {
 
 						// link clientes.
 						LinkListCollection linkClientes = LinkClienteFactory
+								.getLinkList();
+						index += incrementar;
+						setProgress(index);
+
+						// link proveedores.
+						LinkListCollection linkProveedores = LinkProveedorFactory
 								.getLinkList();
 						index += incrementar;
 						setProgress(index);
@@ -228,7 +235,8 @@ public class FrameMenuInicial extends JFrameContainer {
 						
 						menuInventario.add(MenuFactory.getJMenuItem(linkProductos));
 						menuInventario.add(MenuFactory.getJMenuItem(linkCategoriasProducto));
-						
+						menuInventario.addSeparator();
+						menuInventario.add(MenuFactory.getJMenuItem(linkProveedores));
 						
 						menuEmpresa.add(MenuFactory.getJMenuItem(linkVendedores));
 						//TODO menuEmpresa.add(MenuFactory.getJMenuItem(linkSucursales));

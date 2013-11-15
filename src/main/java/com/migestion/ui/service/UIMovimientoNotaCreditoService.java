@@ -8,7 +8,6 @@ import com.migestion.model.Balance;
 import com.migestion.model.MovimientoNotaCredito;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.MovimientoNotaCreditoCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
@@ -62,14 +61,14 @@ public class UIMovimientoNotaCreditoService implements IControllerList {
 		
 		//invocar al servicio para obtener las entities.
 		List<MovimientoNotaCredito> movimientos;
-		Long totalSize;
+//		Long totalSize;
 		Balance balance = null;
 		try {
 			MovimientoNotaCreditoCriteria coreCriteria = ((UIMovimientoNotaCreditoCriteria)criteria).buildToService();
 			movimientos = ServiceFactory.getMovimientoNotaCreditoService().list( coreCriteria );
 			//totalSize = ServiceFactory.getMovimientoNotaCreditoService().getListSize(coreCriteria);
 			balance = ServiceFactory.getMovimientoNotaCreditoService().getBalance(coreCriteria);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -96,7 +95,7 @@ public class UIMovimientoNotaCreditoService implements IControllerList {
 			
 			object = ServiceFactory.getMovimientoNotaCreditoService().get( ((MovimientoNotaCredito)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -121,7 +120,7 @@ public class UIMovimientoNotaCreditoService implements IControllerList {
 			MovimientoNotaCreditoCriteria coreCriteria = ((UIMovimientoNotaCreditoCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getMovimientoNotaCreditoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

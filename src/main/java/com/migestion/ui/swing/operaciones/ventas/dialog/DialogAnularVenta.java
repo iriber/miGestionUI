@@ -5,9 +5,10 @@ import java.awt.Container;
 
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.exception.ControllerException;
-import com.migestion.swing.navigation.interfaces.ILinkWindowUpdate;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.dialogs.DialogOkCancel;
+import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.operaciones.ventas.panel.VentaPanel;
 
@@ -18,7 +19,7 @@ import com.migestion.ui.swing.operaciones.ventas.panel.VentaPanel;
  * @since 24/10/2013
  * 
  */
-public class DialogAnularVenta extends DialogOkCancel implements ILinkWindowUpdate{
+public class DialogAnularVenta extends DialogOkCancel implements  ILinkWindowObjectOpen{
 
 	//venta que será anulada
 	protected Venta venta= null;
@@ -94,11 +95,15 @@ public class DialogAnularVenta extends DialogOkCancel implements ILinkWindowUpda
 		
 		panel.showObject(this.venta);
 		
-		
 	}
 
 	public Object getObjectUpdated() {
 		return this.venta;
+	}
+
+	public void addToJFrameContainer(JFrameContainer container) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

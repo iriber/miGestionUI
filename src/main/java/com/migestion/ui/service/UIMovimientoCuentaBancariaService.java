@@ -10,7 +10,6 @@ import com.migestion.model.Balance;
 import com.migestion.model.MovimientoCuentaBancaria;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.MovimientoCuentaBancariaCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -68,14 +67,14 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 		
 		//invocar al servicio para obtener las entities.
 		List<MovimientoCuentaBancaria> movimientos;
-		Long totalSize;
+//		Long totalSize;
 		Balance balance = null;
 		try {
 			MovimientoCuentaBancariaCriteria coreCriteria = ((UIMovimientoCuentaBancariaCriteria)criteria).buildToService();
 			movimientos = ServiceFactory.getMovimientoCuentaBancariaService().list( coreCriteria );
 			//totalSize = ServiceFactory.getMovimientoCuentaBancariaService().getListSize(coreCriteria);
 			balance = ServiceFactory.getMovimientoCuentaBancariaService().getBalance(coreCriteria);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -106,18 +105,16 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}		
 	}
 
@@ -134,18 +131,16 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -163,18 +158,16 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 
@@ -188,7 +181,7 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 			
 			object = ServiceFactory.getMovimientoCuentaBancariaService().get( ((MovimientoCuentaBancaria)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -213,7 +206,7 @@ public class UIMovimientoCuentaBancariaService implements IControllerList, ICont
 			MovimientoCuentaBancariaCriteria coreCriteria = ((UIMovimientoCuentaBancariaCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getMovimientoCuentaBancariaService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

@@ -10,7 +10,6 @@ import com.migestion.model.EstadisticaGasto;
 import com.migestion.model.Gasto;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.GastoCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -68,15 +67,15 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 		
 		//invocar al servicio para obtener las entities.
 		List<Gasto> gastos;
-		Long totalSize;
+		//Long totalSize=0L;
 		EstadisticaGasto estadistica;
 		try {
 			GastoCriteria coreCriteria = ((UIGastoCriteria)criteria).buildToService();
 			gastos = ServiceFactory.getGastoService().list( coreCriteria );
-			totalSize = ServiceFactory.getGastoService().getListSize(coreCriteria);
+			//totalSize = ServiceFactory.getGastoService().getListSize(coreCriteria);
 			estadistica = ServiceFactory.getGastoService().getEstadisticaGasto(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -109,20 +108,17 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getGastoObserver().objectCreated((Gasto)object);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
-		}
-		
+		}		
 	}
 
 	/**
@@ -140,20 +136,17 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getGastoObserver().objectUpdated((Gasto)object);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
-		
 	}
 
 	/**
@@ -171,18 +164,16 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getGastoObserver().objectDeleted((Gasto)object);
 
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 
@@ -196,7 +187,7 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getGastoService().get( ((Gasto)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -221,7 +212,7 @@ public class UIGastoService implements IControllerList, IControllerAdd,
 			GastoCriteria coreCriteria = ((UIGastoCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getGastoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

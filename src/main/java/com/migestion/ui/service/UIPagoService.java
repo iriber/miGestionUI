@@ -10,7 +10,6 @@ import com.migestion.model.EstadisticaPago;
 import com.migestion.model.Pago;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.PagoCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -68,15 +67,15 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 		
 		//invocar al servicio para obtener las entities.
 		List<Pago> pagos;
-		Long totalSize;
+//		Long totalSize;
 		EstadisticaPago estadistica;
 		try {
 			PagoCriteria coreCriteria = ((UIPagoCriteria)criteria).buildToService();
 			pagos = ServiceFactory.getPagoService().list( coreCriteria );
-			totalSize = ServiceFactory.getPagoService().getListSize(coreCriteria);
+//			totalSize = ServiceFactory.getPagoService().getListSize(coreCriteria);
 			estadistica = ServiceFactory.getPagoService().getEstadisticaPago(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -111,18 +110,16 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			AppContext.getInstance().getPagoObserver().objectCreated((Pago)object);
 			AppContext.getInstance().getVentaObserver().pagoVentaCreado((Pago)object);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -142,20 +139,17 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getPagoObserver().objectUpdated((Pago)object);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
-		
 	}
 
 	/**
@@ -173,18 +167,16 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getPagoObserver().objectDeleted((Pago)object);
 
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 
@@ -198,7 +190,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getPagoService().get( ((Pago)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -223,7 +215,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			PagoCriteria coreCriteria = ((UIPagoCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getPagoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			
@@ -252,18 +244,16 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			AppContext.getInstance().getPagoObserver().objectUpdated(pago);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 

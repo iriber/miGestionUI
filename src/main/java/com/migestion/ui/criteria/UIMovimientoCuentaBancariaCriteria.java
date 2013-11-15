@@ -5,7 +5,6 @@ import java.util.Date;
 import com.migestion.model.CuentaBancaria;
 import com.migestion.services.criteria.Criteria;
 import com.migestion.services.criteria.MovimientoCuentaBancariaCriteria;
-import com.migestion.ui.AppUtils;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**

@@ -10,6 +10,7 @@ import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -38,6 +39,7 @@ public class LinkCuentaBancariaFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
@@ -48,7 +50,7 @@ public class LinkCuentaBancariaFactory {
 	 */
 	public static LinkOpenDialogWithSelected getLinkUpdate(){			    
 		//return LinkAddCuenta.getInstance();
-		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CUENTA_BANCARIA_ACCION_MODIFICAR,LinkImagesBundle.link_Update, LinkLabelsBundle.link_Update_KeyStroke) {
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CUENTA_BANCARIA_ACCION_MODIFICAR,LinkImagesBundle.link_Update) {
 			
 			@Override
 			protected ILinkWindowObjectOpen getDialog() {
@@ -57,6 +59,7 @@ public class LinkCuentaBancariaFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_UPDATE_KEY_STROKE );
 		return link;
 		
 	}
@@ -78,7 +81,7 @@ public class LinkCuentaBancariaFactory {
 			}
 			
 		};
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		link.setKeyStroke( LinkHelper.LINK_DELETE_KEY_STROKE );
 		return link;
 		
 	}
@@ -89,7 +92,7 @@ public class LinkCuentaBancariaFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowCuentaBancariaFactory.getWindowList(), I18nMessages.CUENTA_BANCARIA_ACCION_LISTAR, I18nImages.CUENTAS_BANCARIAS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_CUENTAS_BANCARIAS_KEY_STROKE );
 		return link;
 	}
 	

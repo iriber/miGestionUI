@@ -8,7 +8,6 @@ package com.migestion.ui.swing;
 
 import com.migestion.model.Caja;
 import com.migestion.model.EstadoCaja;
-import com.migestion.model.Vendedor;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.model.UICollection;

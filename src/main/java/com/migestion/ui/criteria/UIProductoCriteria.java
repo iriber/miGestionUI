@@ -1,7 +1,5 @@
 package com.migestion.ui.criteria;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.migestion.model.CategoriaProducto;
 import com.migestion.services.criteria.ProductoCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;

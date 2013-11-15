@@ -576,4 +576,43 @@ public class I18nMessages implements I18nLocale{
 	
 	public static String GASTO_MSG_CONFIRMA_ELIMINAR = properties.getString("gasto.msg.confirma_eliminar");
 
+	
+	/**
+	 * proveedores
+	 */
+	public static String PROVEEDORES = properties.getString("proveedores");
+	public static String PROVEEDOR_NOMBRE = properties.getString("proveedor.nombre");
+	public static String PROVEEDOR_CODIGO = properties.getString("proveedor.codigo");
+	public static String PROVEEDOR_OBSERVACIONES = properties.getString("proveedor.observaciones");
+	public static String PROVEEDOR_FECHA_CUMPLEANIOS = properties.getString("proveedor.fecha.nacimiento");
+	public static String PROVEEDOR_DOMICILIO_FACTURACION = properties.getString("proveedor.domicilio.facturacion");
+	public static String PROVEEDOR_TELEFONO_FIJO = properties.getString("proveedor.telefono.fijo");
+	public static String PROVEEDOR_TELEFONO_CELULAR = properties.getString("proveedor.telefono.celular");
+	public static String PROVEEDOR_EMAIL = properties.getString("proveedor.email");
+	public static String PROVEEDOR_CONTACTO = properties.getString("proveedor.contacto");
+	public static String PROVEEDOR_CUIT = properties.getString("proveedor.cuit");
+	public static String PROVEEDOR_DOMICILIO = properties.getString("proveedor.domicilio");
+	public static String PROVEEDOR_NRO_DOCUMENTO = properties.getString("proveedor.nro_documento");
+	public static String PROVEEDOR_TIPO_DOCUMENTO = properties.getString("proveedor.tipo_documento");
+	public static String PROVEEDOR_CONDICION_IVA = properties.getString("proveedor.condicion_iva");
+	public static String PROVEEDOR_SALDO = properties.getString("proveedor.saldo");
+	public static String PROVEEDOR_SALDO_DESCUBIERTO = properties.getString("proveedor.saldo.descubierto");
+	public static String PROVEEDOR_TIENE_CTA_CTE = properties.getString("proveedor.tiene.ctaCte");
+	
+	public static String PROVEEDOR_FRAME_TITULO = properties.getString("proveedor.frame.titulo");
+	public static String PROVEEDOR_FRAME_MENUADMIN = properties.getString("proveedor.frame.menuadmin");
+	
+	public static String PROVEEDOR_DIALOG_AGREGAR_TITULO = properties.getString("proveedor.dialog.agregar.titulo");
+	public static String PROVEEDOR_DIALOG_MODIFICAR_TITULO = properties.getString("proveedor.dialog.modificar.titulo");
+	public static String PROVEEDOR_DIALOG_BUSCAR_TITULO = properties.getString("proveedor.dialog.buscar.titulo");
+	public static String PROVEEDOR_DIALOG_ELIMINAR_TITULO = properties.getString("proveedor.dialog.eliminar.titulo");
+	
+	public static String PROVEEDOR_ACCION_LISTAR = properties.getString("proveedor.accion.listar");
+	public static String PROVEEDOR_ACCION_AGREGAR = properties.getString("proveedor.accion.agregar");
+	public static String PROVEEDOR_ACCION_MODIFICAR = properties.getString("proveedor.accion.modificar");
+	public static String PROVEEDOR_ACCION_ELIMINAR = properties.getString("proveedor.accion.eliminar");
+	public static String PROVEEDOR_ACCION_BUSCAR = properties.getString("proveedor.accion.buscar");
+	
+	public static String PROVEEDOR_MSG_CONFIRMA_ELIMINAR = properties.getString("proveedor.msg.confirma_eliminar");
+
 }

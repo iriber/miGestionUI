@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.migestion.model.EstadoCaja;
-import com.migestion.model.EstadoVenta;
 import com.migestion.services.criteria.CajaCriteria;
 import com.migestion.services.criteria.Criteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -89,9 +86,6 @@ public class UICajaCriteria extends UICustomCriteria{
 	public String getDescription() {
 		
 		String desc = I18nMessages.CAJAS ;
-		
-		if(StringUtils.isEmpty(getNumero()))
-			desc +=  " | " + I18nMessages.CAJA_NUMERO + ": '" + getNumero() + "'";
 		
 		return desc;
 	}

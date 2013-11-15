@@ -9,7 +9,6 @@ import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.Cliente;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.ClienteCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -72,7 +71,7 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			clientes = ServiceFactory.getClienteService().list( coreCriteria );
 			totalSize = ServiceFactory.getClienteService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -187,7 +186,7 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getClienteService().get( ((Cliente)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -212,7 +211,7 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			ClienteCriteria coreCriteria = ((UIClienteCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getClienteService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			
@@ -234,7 +233,7 @@ public class UIClienteService implements IControllerList, IControllerAdd,
 			
 			cliente = ServiceFactory.getClienteService().getClienteMostrador();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}

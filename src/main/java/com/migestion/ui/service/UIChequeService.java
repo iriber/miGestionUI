@@ -9,7 +9,6 @@ import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.Cheque;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.ChequeCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -71,7 +70,7 @@ public class UIChequeService implements IControllerList, IControllerAdd,
 			cheques = ServiceFactory.getChequeService().list( coreCriteria );
 			totalSize = ServiceFactory.getChequeService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -129,19 +128,17 @@ public class UIChequeService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
-		}		
+		}
 	}
 
 	/**
@@ -183,7 +180,7 @@ public class UIChequeService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getChequeService().get( ((Cheque)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch( Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -208,7 +205,7 @@ public class UIChequeService implements IControllerList, IControllerAdd,
 			ChequeCriteria coreCriteria = ((UIChequeCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getChequeService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

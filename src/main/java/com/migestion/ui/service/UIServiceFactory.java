@@ -151,4 +151,12 @@ public class UIServiceFactory {
 	public static UIGastoService getUIGastoService(){
 		return UIGastoService.getInstance();
 	}
+
+	/**
+	 * servicio para proveedores
+	 * @return
+	 */
+	public static UIProveedorService getUIProveedorService(){
+		return UIProveedorService.getInstance();
+	}
 }

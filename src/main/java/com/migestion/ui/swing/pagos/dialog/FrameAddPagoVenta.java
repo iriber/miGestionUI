@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -51,12 +50,13 @@ import com.migestion.swing.custom.ComboModel;
 import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
 import com.migestion.swing.model.UICollection;
-import com.migestion.swing.navigation.interfaces.ILinkWindowAddRelated;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.listeners.LinkAddListener;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.swing.utils.UbicacionVentana;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.exceptions.ViewException;
+import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.swing.view.inputs.InputRequiredValidator;
 import com.migestion.swing.view.inputs.InputValidator;
 import com.migestion.swing.view.inputs.JDateChooserInspector;
@@ -70,7 +70,6 @@ import com.migestion.ui.swing.finder.FinderFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.UIDetalleFormaPagoCollection;
 import com.migestion.ui.swing.pagos.panel.detalles.DetalleFormaPagoTableController;
-import com.migestion.ui.swing.skin.ISkinForm;
 import com.migestion.ui.swing.skin.SkinDecorator;
 
 /**
@@ -80,7 +79,7 @@ import com.migestion.ui.swing.skin.SkinDecorator;
  * @since 29/10/2013
  * 
  */
-public class FrameAddPagoVenta extends JInternalFrame implements  TableModelListener, ISkinForm, ListSelectionListener, ILinkWindowAddRelated{
+public class FrameAddPagoVenta extends JInternalFrame implements  TableModelListener, ILinkWindowObjectOpen, ListSelectionListener{
 
 	private InputRequiredValidator required;
     
@@ -111,8 +110,6 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     	
     	initValidators();
          
-        SkinDecorator.getInstance().decorate(this);
-        
  		loadCombos();
  		
  		initTableDetalles();
@@ -737,40 +734,6 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
     // End of variables declaration//GEN-END:variables
 
 
-    public List<JComponent> getFormLabels() {
-		List<JComponent> labels = new Vector<JComponent>();
-		labels.add(lblFecha);
-		labels.add(lblCliente);
-		labels.add(lblVenta);
-		labels.add(lblObservaciones);
-		
-		//TODO
-		return labels;
-	}
-
-	public List<JComponent> getFormInputs() {
-		List<JComponent> inputs = new Vector<JComponent>();
-		
-		inputs.add(txtObservaciones);
-		inputs.add(findVenta);
-		inputs.add(txtCliente);
-		inputs.add(txtObservaciones);
-		inputs.add(txtTotalVenta);
-		inputs.add(pickerFecha);
-		inputs.add(findVenta);
-		//TODO
-		return inputs;
-	}
-	public void setPadding(JComponent component, Insets padding) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setFormBackground(Color bg) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void tableChanged(TableModelEvent arg0) {
 		
 		montoRestaPagar = ventaPagar.getMontoDebe();
@@ -1024,5 +987,10 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
    	   detallesController.addElement(detalle);
    	   
     }
+
+	public void addToJFrameContainer(JFrameContainer container) {
+		// TODO Auto-generated method stub
+		container.addToDesktop(this);
+	}
 
 }

@@ -38,8 +38,8 @@ public class WindowVentaFactory {
 		//dialog.setResizable(true);
 		dialog.setFrameIcon(new ImageIcon( LinkImagesBundle.link_Add ) );
 		//AppContext.getInstance().addToContainer(dialog);
-		AppContext.getInstance().getMainContainer().addToDesktop(dialog);
-		
+		//AppContext.getInstance().getMainContainer().addToDesktop(dialog);
+		dialog.addToJFrameContainer(AppContext.getInstance().getMainContainer());
 		return dialog;		
 	}
 

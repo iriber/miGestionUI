@@ -1,10 +1,9 @@
-package com.migestion.ui.swing.operaciones.ventas.factories;
+package com.migestion.ui.swing.proveedores.factories;
 
 import javax.swing.KeyStroke;
 
 import com.migestion.swing.i18n.links.LinkImagesBundle;
 import com.migestion.swing.i18n.links.LinkLabelsBundle;
-import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkExportCollectionToExcel;
 import com.migestion.swing.navigation.LinkListCollection;
 import com.migestion.swing.navigation.LinkOpenDialog;
@@ -14,30 +13,28 @@ import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.operaciones.ventas.links.LinkAnularVenta;
 
 
 /**
- * Proporciona métodos para la construcción de links para ventas.
+ * Proporciona métodos para la construcción de links para proveedores.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 17/10/2013
+ * @since 15/10/2013
  *
  */
-public class LinkVentaFactory {
-
+public class LinkProveedorFactory {
 
 
 	/**
-	 * link para agregar una venta.
+	 * link para agregar un proveedor.
 	 */
-	public static Link getLinkAdd(){			    
-		LinkOpenDialog link =  new LinkOpenDialog(I18nMessages.VENTA_ACCION_AGREGAR,LinkImagesBundle.link_Add, LinkLabelsBundle.link_Add_KeyStroke) {
+	public static LinkOpenDialog getLinkAdd(){			    
+		LinkOpenDialog link =  new LinkOpenDialog(I18nMessages.PROVEEDOR_ACCION_AGREGAR,LinkImagesBundle.link_Add, LinkLabelsBundle.link_Add_KeyStroke) {
 			
 			@Override
 			protected ILinkWindowOpen getDialog() {
 				
-				return WindowVentaFactory.getWindowAdd();
+				return WindowProveedorFactory.getWindowAdd();
 			}
 			
 		};
@@ -45,18 +42,16 @@ public class LinkVentaFactory {
 		
 	}
 
-	
 	/**
-	 * link para visualizar una venta.
+	 * link para modificar un proveedor.
 	 */
-	public static LinkOpenDialogWithSelected getLinkView(){			    
-		
-		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.VENTA_ACCION_VER,LinkImagesBundle.link_View, LinkLabelsBundle.link_View_KeyStroke) {
+	public static LinkOpenDialogWithSelected getLinkUpdate(){			    
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PROVEEDOR_ACCION_MODIFICAR,LinkImagesBundle.link_Update, LinkLabelsBundle.link_Update_KeyStroke) {
 			
 			@Override
 			protected ILinkWindowObjectOpen getDialog() {
 				
-				return WindowVentaFactory.getWindowView();
+				return WindowProveedorFactory.getWindowUpdate();
 			}
 			
 		};
@@ -64,21 +59,17 @@ public class LinkVentaFactory {
 		
 	}
 	
-	
-	
-
 	/**
-	 * link para eliminar una venta.
+	 * link para eliminar un proveedor.
 	 */
 	public static LinkOpenDialogWithSelected getLinkDelete(){			    
 		
-		
-		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.VENTA_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PROVEEDOR_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
 			
 			@Override
 			protected ILinkWindowObjectOpen getDialog() {
 				
-				return WindowVentaFactory.getWindowDelete();
+				return WindowProveedorFactory.getWindowDelete();
 			}
 			
 		};
@@ -86,28 +77,21 @@ public class LinkVentaFactory {
 		return link;
 		
 	}
+		
 	
 	/**
-	 * link para anular una venta
-	 */
-	public static LinkOpenDialogWithSelected getLinkAnularVenta(){			    
-		LinkOpenDialogWithSelected link = new LinkAnularVenta();
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
-		return link;
-	}	
-	
-	/**
-	 * link para listar ventas.
+	 * link para listar proveedores.
 	 * @return
 	 */
 	public static LinkListCollection getLinkList(){
-		LinkListCollection link = new LinkListCollection(WindowVentaFactory.getWindowList(), I18nMessages.VENTA_ACCION_LISTAR, I18nImages.VENTAS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		LinkListCollection link = new LinkListCollection(WindowProveedorFactory.getWindowList(), I18nMessages.PROVEEDOR_ACCION_LISTAR, I18nImages.PROVEEDORES_ICON);
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}
 	
+	
 	/**
-	 * link imprimir.
+	 * link imprimir
 	 */
 	public static LinkPrintCollection getLinkPrintCollection(){			    
 		LinkPrintCollection linkPrint = new LinkPrintCollection();

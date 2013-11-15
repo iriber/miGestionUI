@@ -43,8 +43,8 @@ public class LinkPagoFactory {
 	 */
 	public static LinkPagarVenta getLinkPagarVenta(){			    
 		//return LinkAddCuenta.getInstance();
-		LinkPagarVenta link =  new LinkPagarVenta(WindowPagoFactory.getWindowPagarVenta() );
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+		LinkPagarVenta link =  new LinkPagarVenta();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 		
 	}

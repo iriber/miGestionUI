@@ -7,7 +7,6 @@ import java.util.Vector;
 import com.migestion.model.NotaCredito;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.NotaCreditoCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -69,7 +68,7 @@ public class UINotaCreditoService implements IControllerList, IControllerAdd,
 			notasCredito = ServiceFactory.getNotaCreditoService().list( coreCriteria );
 			totalSize = ServiceFactory.getNotaCreditoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -181,7 +180,7 @@ public class UINotaCreditoService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getNotaCreditoService().get( ((NotaCredito)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -206,7 +205,7 @@ public class UINotaCreditoService implements IControllerList, IControllerAdd,
 			NotaCreditoCriteria coreCriteria = ((UINotaCreditoCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getNotaCreditoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

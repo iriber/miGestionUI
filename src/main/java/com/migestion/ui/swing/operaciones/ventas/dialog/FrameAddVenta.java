@@ -6,12 +6,10 @@
 
 package com.migestion.ui.swing.operaciones.ventas.dialog;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -26,7 +24,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
@@ -49,11 +46,13 @@ import com.migestion.swing.i18n.buttons.ButtonImagesBundle;
 import com.migestion.swing.i18n.buttons.ButtonLabelsBundle;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.navigation.exception.LinkException;
+import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.swing.navigation.listeners.LinkAddListener;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.swing.utils.UbicacionVentana;
 import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.exceptions.ViewException;
+import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.swing.view.inputs.InputRequiredValidator;
 import com.migestion.swing.view.inputs.InputValidator;
 import com.migestion.swing.view.inputs.JDateChooserInspector;
@@ -69,7 +68,6 @@ import com.migestion.ui.swing.operaciones.ventas.panel.detalles.DetalleVentaTabl
 import com.migestion.ui.swing.pagos.dialog.DialogSeleccionarFormaPago;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
-import com.migestion.ui.swing.skin.ISkinForm;
 
 /**
  * Ventana para agregar una venta.
@@ -78,7 +76,7 @@ import com.migestion.ui.swing.skin.ISkinForm;
  * @since 18/10/2013
  * 
  */
-public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableModelListener, ISkinForm, ListSelectionListener{
+public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableModelListener, ILinkWindowOpen, ListSelectionListener{
 
 	//variable para determinar si el usuario aceptó o canceló
 	//la operación
@@ -568,7 +566,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 		    if( dialogRegistrarPago.getReturnStatus() == DialogSeleccionarFormaPago.RET_OK ){
 		    	
 		    	LinkPagarVenta link = LinkPagoFactory.getLinkPagarVenta();
-		    	link.setRelatedObject( venta );
+		    	link.setObject( venta );
 		    	link.doExecute();
 		    	
 		    }
@@ -711,53 +709,7 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 		});
 		
     }
-
-    public List<JComponent> getFormLabels() {
-		List<JComponent> labels = new Vector<JComponent>();
-		labels.add(lblFecha);
-		labels.add(lblCliente);
-		labels.add(lblVendedor);
-		labels.add(lblObservaciones);
-		labels.add(lblAgregarProducto);
-		
-		//TODO
-		return labels;
-	}
-
-	public List<JComponent> getFormInputs() {
-		List<JComponent> inputs = new Vector<JComponent>();
-		
-		inputs.add(txtObservaciones);
-		inputs.add(findVendedor);
-		inputs.add(findCliente);
-		inputs.add(findProducto);
-		inputs.add(txtObservaciones);
-		inputs.add(txtTotal);
-		inputs.add(pickerFecha);
-		inputs.add(findCliente);
-		inputs.add(findVendedor);
-		//TODO
-		return inputs;
-	}
-
-	public void setPadding(JComponent component, Insets padding) {
-		/*
-		GridBagConstraints gbc = ((GridBagLayout)getLayout()).getConstraints(component);
-		gbc.insets = padding;
-		((GridBagLayout)getLayout()).setConstraints(component, gbc);
-		*/
-	}
-
-	public void setFormBackground(Color bg) {
-		this.setBackground(bg);
-		panelDatosVenta.setBackground(bg);
-		panelCenter.setBackground(bg);
-		panelAddProducto.setBackground(bg);
-    	panelHeader.setBackground(bg);
-    	//panelTitulo.setBackground(bg);
-    	
-	}
-
+    
 	public void tableChanged(TableModelEvent arg0) {
 		
 		//actualizamos los totales.
@@ -904,6 +856,10 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 			LinkAddListener element = (LinkAddListener) iter.next();
 			element.objectCreated( getVenta() );			
 		}
+	}
+
+	public void addToJFrameContainer(JFrameContainer container) {
+		container.addToDesktop(this);
 	}
 
 

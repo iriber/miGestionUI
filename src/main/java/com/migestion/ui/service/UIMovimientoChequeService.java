@@ -8,7 +8,6 @@ import com.migestion.model.Balance;
 import com.migestion.model.MovimientoCheque;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.MovimientoChequeCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
@@ -62,14 +61,14 @@ public class UIMovimientoChequeService implements IControllerList {
 		
 		//invocar al servicio para obtener las entities.
 		List<MovimientoCheque> movimientos;
-		Long totalSize;
+//		Long totalSize;
 		Balance balance = null;
 		try {
 			MovimientoChequeCriteria coreCriteria = ((UIMovimientoChequeCriteria)criteria).buildToService();
 			movimientos = ServiceFactory.getMovimientoChequeService().list( coreCriteria );
 			//totalSize = ServiceFactory.getMovimientoChequeService().getListSize(coreCriteria);
 			balance = ServiceFactory.getMovimientoChequeService().getBalance(coreCriteria);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -96,7 +95,7 @@ public class UIMovimientoChequeService implements IControllerList {
 			
 			object = ServiceFactory.getMovimientoChequeService().get( ((MovimientoCheque)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -121,7 +120,7 @@ public class UIMovimientoChequeService implements IControllerList {
 			MovimientoChequeCriteria coreCriteria = ((UIMovimientoChequeCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getMovimientoChequeService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

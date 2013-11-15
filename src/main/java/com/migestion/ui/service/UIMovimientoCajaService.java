@@ -7,11 +7,9 @@ import java.util.Vector;
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.Balance;
-import com.migestion.model.EstadisticaCaja;
 import com.migestion.model.MovimientoCaja;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.MovimientoCajaCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -69,14 +67,14 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 		
 		//invocar al servicio para obtener las entities.
 		List<MovimientoCaja> cajas;
-		Long totalSize;
+//		Long totalSize;
 		Balance balance = null;
 		try {
 			MovimientoCajaCriteria coreCriteria = ((UIMovimientoCajaCriteria)criteria).buildToService();
 			cajas = ServiceFactory.getMovimientoCajaService().list( coreCriteria );
 			//totalSize = ServiceFactory.getMovimientoCajaService().getListSize(coreCriteria);
 			balance = ServiceFactory.getMovimientoCajaService().getBalance(coreCriteria);
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -107,18 +105,16 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}		
 	}
 
@@ -135,18 +131,16 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 		
 	}
@@ -164,18 +158,16 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().commit();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			try {
 				PersistenceContext.getInstance().rollback();
 			} catch (PersistenceContextException e1) {
-				throw new ControllerException( e.getMessage() );
+				throw new ControllerException( e1.getMessage() );
 			}
 			
 			throw new ControllerException( e.getMessage() );
 			
-		} catch (PersistenceContextException e) {
-			throw new ControllerException( e.getMessage() );
 		}
 	}
 
@@ -189,7 +181,7 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getMovimientoCajaService().get( ((MovimientoCaja)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -214,7 +206,7 @@ public class UIMovimientoCajaService implements IControllerList, IControllerAdd,
 			MovimientoCajaCriteria coreCriteria = ((UIMovimientoCajaCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getMovimientoCajaService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

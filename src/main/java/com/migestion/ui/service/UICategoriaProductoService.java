@@ -9,7 +9,6 @@ import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.CategoriaProducto;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.CategoriaProductoCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -72,7 +71,7 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			categorias = ServiceFactory.getCategoriaProductoService().list( coreCriteria );
 			totalSize = ServiceFactory.getCategoriaProductoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -183,7 +182,7 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			
 			object = ServiceFactory.getCategoriaProductoService().get( ((CategoriaProducto)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -208,7 +207,7 @@ public class UICategoriaProductoService implements IControllerList, IControllerA
 			CategoriaProductoCriteria coreCriteria = ((UICategoriaProductoCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getCategoriaProductoService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			

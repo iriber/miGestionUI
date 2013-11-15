@@ -135,7 +135,14 @@ public class I18nImages {
   public static URL BALANCE_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("balance.icon") );
 
   
-  
+  //proveedores
+  public static URL PROVEEDORES_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("proveedores.icon") );
+		
+  public static URL PROVEEDORES_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("proveedores.small.icon") );
+
+
   
   
   

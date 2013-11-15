@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.migestion.model.Balance;
 import com.migestion.services.ServiceFactory;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.exception.ControllerException;
 
 
@@ -38,7 +37,7 @@ public class UIBalanceService  {
 			
 			return balance;
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -53,7 +52,7 @@ public class UIBalanceService  {
 			
 			return balance;
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -69,7 +68,7 @@ public class UIBalanceService  {
 			
 			return balance;
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -84,7 +83,7 @@ public class UIBalanceService  {
 			
 			return balance;
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}

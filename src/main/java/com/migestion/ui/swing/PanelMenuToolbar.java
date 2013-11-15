@@ -6,35 +6,16 @@
 
 package com.migestion.ui.swing;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JMenu;
 import javax.swing.JPopupMenu;
-import javax.swing.SwingWorker;
-import javax.swing.UIManager;
 
 import com.migestion.model.Caja;
 import com.migestion.model.Sucursal;
 import com.migestion.model.Vendedor;
 import com.migestion.swing.custom.ComboModel;
-import com.migestion.swing.factories.MenuFactory;
-import com.migestion.swing.navigation.Link;
-import com.migestion.swing.navigation.LinkListCollection;
-import com.migestion.swing.navigation.LinkSystemExit;
-import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.ui.context.AppContext;
-import com.migestion.ui.swing.cajas.factories.LinkCajaFactory;
-import com.migestion.ui.swing.cajas.movimientos.factories.LinkMovimientoCajaFactory;
-import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
-import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
-import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
-import com.migestion.ui.swing.operaciones.ventas.links.LinkAddVenta;
-import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
-import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
-import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
 
 /**
  * 

@@ -12,6 +12,7 @@ import com.migestion.swing.view.dialogs.adapters.DialogViewAdapter;
 import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
+import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.PagosCRUDFrame;
 import com.migestion.ui.swing.pagos.dialog.FrameAddPagoVenta;
@@ -34,10 +35,10 @@ public class WindowPagoFactory {
 
 		FrameAddPagoVenta dialog = new FrameAddPagoVenta( );
 		//dialog.setResizable(true);
-		dialog.setFrameIcon(new ImageIcon( LinkImagesBundle.link_Add ) );
+		dialog.setFrameIcon(new ImageIcon( I18nImages.BOTON_PAGAR ) );
 		//AppContext.getInstance().addToContainer(dialog);
-		AppContext.getInstance().getMainContainer().addToDesktop(dialog);
-		
+		//AppContext.getInstance().getMainContainer().addToDesktop(dialog);
+		dialog.addToJFrameContainer(AppContext.getInstance().getMainContainer());		
 		return dialog;		
 	}
 

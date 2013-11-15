@@ -6,11 +6,9 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
-import com.migestion.model.Cliente;
 import com.migestion.model.Vendedor;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.VendedorCriteria;
-import com.migestion.services.exception.ServiceException;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -73,7 +71,7 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			vendedores = ServiceFactory.getVendedorService().list( coreCriteria );
 			totalSize = ServiceFactory.getVendedorService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 
 			throw new ControllerException( e.getMessage() ); 
 		}
@@ -186,7 +184,7 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			
 			object = ServiceFactory.getVendedorService().get( ((Vendedor)object).getOid() );
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}
@@ -211,7 +209,7 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			VendedorCriteria coreCriteria = ((UIVendedorCriteria)criteria).buildToService();
 			totalSize = ServiceFactory.getVendedorService().getListSize(coreCriteria);
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 			
@@ -233,7 +231,7 @@ public class UIVendedorService implements IControllerList, IControllerAdd,
 			
 			vendedor = ServiceFactory.getVendedorService().getTitularComercio();
 			
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			
 			throw new ControllerException( e.getMessage() );
 		}

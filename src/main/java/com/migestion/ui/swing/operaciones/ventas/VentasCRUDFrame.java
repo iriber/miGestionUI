@@ -11,8 +11,10 @@ import javax.swing.SwingConstants;
 import com.migestion.model.Pago;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkAddRelatedObject;
 import com.migestion.swing.navigation.LinkDeleteObject;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.navigation.LinkViewObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
@@ -26,6 +28,7 @@ import com.migestion.ui.swing.operaciones.ventas.links.LinkAddVenta;
 import com.migestion.ui.swing.operaciones.ventas.panel.UIVentaCriteriaPanel;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
+import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 
 /**
  * Frame para ventas
@@ -48,31 +51,30 @@ public class VentasCRUDFrame extends CRUDFrame<Venta> implements IVentaListener{
 
 	public void initLinks() {
 		
-		//LinkUpdateObject linkUpdate  = LinkVentaFactory.getLinkUpdate();
 		
-		LinkAddVenta linkAdd  = LinkVentaFactory.getLinkAddVenta();
-		//linkAdd.addListener( this );
+		Link linkAdd  = LinkVentaFactory.getLinkAdd();
 		
-		LinkViewObject linkView = LinkVentaFactory.getLinkView();
+		LinkOpenDialogWithSelected linkView = LinkVentaFactory.getLinkView();
+		this.addElementsListener(linkView);
+
+		LinkOpenDialogWithSelected linkAnular = LinkVentaFactory.getLinkAnularVenta();
+		this.addElementsListener(linkAnular);
+
+		LinkOpenDialogWithSelected linkDelete  = LinkProductoFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
 
 		LinkPagarVenta linkPagarVenta = LinkPagoFactory.getLinkPagarVenta();
 		this.addElementsListener(linkPagarVenta);
-		linkPagarVenta.addListener(this);
 
-		LinkUpdateObject linkAnular = LinkVentaFactory.getLinkAnularVenta();
-
-		LinkDeleteObject linkDelete  = LinkVentaFactory.getLinkDelete();
+		//this.setLinkAdd( linkAdd, 0 );
+		//this.setLinkUpdate( linkUpdate, 1 );
 		
-		this.addLinkToDefaultMenu(linkAdd, 0 );
-		this.setLinkView( linkView, 1 );
-
-		this.addElementsListener(linkAnular);
-		linkAnular.addListener(this);
+		this.addLinkToDefaultMenu( linkAdd, 0 );
+		this.addLinkToDefaultMenu( linkView, 1 );
 		this.addLinkToDefaultMenu( linkAnular, 2 );
-		
-		this.setLinkDelete( linkDelete, 3 );
-		
-		this.addLinkToDefaultMenu(linkPagarVenta, 4 );
+		this.addLinkToDefaultMenu( linkPagarVenta, 3 );
+		this.addLinkToDefaultMenu( linkDelete, 4 );
+
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		

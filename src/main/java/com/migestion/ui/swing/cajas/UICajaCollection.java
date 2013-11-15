@@ -28,7 +28,7 @@ public class UICajaCollection extends UICollection{
 	}
 
 	public int getColumnCount() {		
-		return 5;
+		return 6;
 	}
 
 	public Class getColumnClass(int columnIndex) {
@@ -43,6 +43,8 @@ public class UICajaCollection extends UICollection{
 	       case 3:
 	    	   return Vendedor.class;
 	       case 4:
+	    	   return Float.class;
+	       case 5:
 	    	   return Float.class;
 	        default:
 	             return Object.class;
@@ -61,6 +63,8 @@ public class UICajaCollection extends UICollection{
         case 3:
         	return I18nMessages.CAJA_CAJERO;
         case 4:
+        	return I18nMessages.CAJA_SALDO_INICIAL;
+        case 5:
         	return I18nMessages.CAJA_SALDO;
 		default:
 			return "";
@@ -87,6 +91,8 @@ public class UICajaCollection extends UICollection{
             case 3:
             	return caja.getCajero();
             case 4:
+            	return caja.getSaldoInicial();
+            case 5:
             	return caja.getSaldo();
             default:
                 return "";
@@ -111,6 +117,8 @@ public class UICajaCollection extends UICollection{
             case 3:
             	return caja.getCajero().toString();
             case 4:
+            	return AppUtils.formatMoneda( caja.getSaldoInicial() );
+            case 5:
             	return AppUtils.formatMoneda( caja.getSaldo() );
             default:
                 return "";
@@ -136,6 +144,8 @@ public class UICajaCollection extends UICollection{
 			return SwingConstants.LEFT;
 		case 4:
 			return SwingConstants.RIGHT;
+		case 5:
+			return SwingConstants.RIGHT;
 		default:
 			return SwingConstants.LEFT;
 		}
@@ -157,6 +167,8 @@ public class UICajaCollection extends UICollection{
             case 3:
             	return false;
             case 4:
+            	return false;
+            case 5:
             	return false;
             default:
                 return false;
