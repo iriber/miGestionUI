@@ -100,7 +100,8 @@ public class LinkProductoFactory {
 			}
 			
 		};
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+//		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 		
 	}

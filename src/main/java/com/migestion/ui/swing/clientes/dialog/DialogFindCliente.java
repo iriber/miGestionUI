@@ -11,6 +11,7 @@ import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.DialogFindObject;
 import com.migestion.swing.view.exceptions.ViewException;
+import com.migestion.ui.context.observers.listeners.IClienteListener;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.clientes.UIClienteCollection;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
@@ -77,8 +78,5 @@ public class DialogFindCliente extends DialogFindObject<Cliente>{
 		
 		return LinkClienteFactory.getLinkAdd();
 	}
-
-
-	
 
 }

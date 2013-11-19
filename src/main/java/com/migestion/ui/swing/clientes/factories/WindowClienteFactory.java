@@ -88,7 +88,11 @@ public class WindowClienteFactory {
 	 * ventana para buscar un cliente.
 	 */
 	public static DialogFindCliente getWindowFind() {
+		
 		DialogFindCliente dialog = new  DialogFindCliente( I18nMessages.CLIENTE_DIALOG_BUSCAR_TITULO );
+		
+		AppContext.getInstance().getClienteObserver().addListener( dialog );
+		
 		return dialog;
 	}
 

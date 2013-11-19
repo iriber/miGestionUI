@@ -12,23 +12,16 @@ import com.migestion.model.Pago;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.Link;
-import com.migestion.swing.navigation.LinkAddRelatedObject;
-import com.migestion.swing.navigation.LinkDeleteObject;
 import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
-import com.migestion.swing.navigation.LinkUpdateObject;
-import com.migestion.swing.navigation.LinkViewObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
 import com.migestion.ui.context.observers.listeners.IVentaListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
-import com.migestion.ui.swing.operaciones.ventas.links.LinkAddVenta;
 import com.migestion.ui.swing.operaciones.ventas.panel.UIVentaCriteriaPanel;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
-import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 
 /**
  * Frame para ventas
@@ -60,7 +53,7 @@ public class VentasCRUDFrame extends CRUDFrame<Venta> implements IVentaListener{
 		LinkOpenDialogWithSelected linkAnular = LinkVentaFactory.getLinkAnularVenta();
 		this.addElementsListener(linkAnular);
 
-		LinkOpenDialogWithSelected linkDelete  = LinkProductoFactory.getLinkDelete();
+		LinkOpenDialogWithSelected linkDelete  = LinkVentaFactory.getLinkDelete();
 		this.addElementsListener(linkDelete);
 
 		LinkPagarVenta linkPagarVenta = LinkPagoFactory.getLinkPagarVenta();

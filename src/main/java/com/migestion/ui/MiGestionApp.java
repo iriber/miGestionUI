@@ -34,7 +34,7 @@ public class MiGestionApp {
 		 EventQueue.invokeLater(new Runnable() {
 	            public void run() {
 	                try {
-	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+	                	UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 //	                	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	                } catch (Exception ex) {
 	                }
@@ -101,6 +101,9 @@ public class MiGestionApp {
 	                dialogCaja.setIconImage(new ImageIcon(I18nImages.LOGO_ICON).getImage());
 	                UbicacionVentana.centrar(dialogCaja, false);
             		dialogCaja.setVisible(true);
+            		
+            		
+
 	            }
 
 	        });

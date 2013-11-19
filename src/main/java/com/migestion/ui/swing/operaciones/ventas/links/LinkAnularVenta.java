@@ -1,5 +1,6 @@
 package com.migestion.ui.swing.operaciones.ventas.links;
 
+import com.migestion.model.EstadoVenta;
 import com.migestion.model.Venta;
 import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
@@ -29,7 +30,10 @@ public class LinkAnularVenta extends  LinkOpenDialogWithSelected{
 			
 			Venta venta = (Venta)selectedObject;
 			
-			setEnabled( venta.getEstadoVenta().podesAnularte() );
+			EstadoVenta estado = venta.getEstadoVenta();
+			setEnabled(!estado.equals(EstadoVenta.ANULADA));
+			
+//			setEnabled( estado.podesAnularte() );
 			
 		}
 		

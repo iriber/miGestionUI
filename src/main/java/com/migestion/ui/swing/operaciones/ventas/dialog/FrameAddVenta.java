@@ -35,6 +35,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 
 import com.migestion.model.Cliente;
+import com.migestion.model.DetalleOperacion;
 import com.migestion.model.DetalleVenta;
 import com.migestion.model.Producto;
 import com.migestion.model.Sucursal;
@@ -600,6 +601,8 @@ public class FrameAddVenta extends javax.swing.JInternalFrame implements  TableM
 		
 		venta.setFecha( pickerFecha.getDate() );
 		venta.setObservaciones( txtObservaciones.getText() );
+		
+		venta.setDetalles( new ArrayList<DetalleOperacion>() );
 		
 		for (DetalleVenta detalle: detallesController.getDetalles()) {
 			

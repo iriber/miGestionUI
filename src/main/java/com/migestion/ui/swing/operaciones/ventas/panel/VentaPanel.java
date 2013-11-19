@@ -427,7 +427,10 @@ public class VentaPanel extends javax.swing.JPanel implements ISkinForm,Serializ
 		if(venta.getVendedor() != null)
 			txtVendedor.setText( venta.getVendedor().toString() );
 		
-		txtSucursal.setText( "" ) ;
+		
+		if(venta.getSucursal() != null)
+			txtSucursal.setText( venta.getSucursal().toString() ) ;
+			
 		txtFormaEntrega.setText( "" ) ;
 		txtObservaciones.setText( venta.getObservaciones() ) ;
 		

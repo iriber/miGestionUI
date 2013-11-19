@@ -60,7 +60,7 @@ public class UIMovimientoCuentaBancariaCriteriaPanel extends javax.swing.JPanel 
         lblCuenta.setText("Cuenta bancaria");
 
         cmbCuentas.setModel( getCuentasBancariasModel() );
-        cmbCuentas.setSelectedIndex(0);
+//        cmbCuentas.setSelectedIndex(0);
 
         lblFecha.setText("Fecha");
 

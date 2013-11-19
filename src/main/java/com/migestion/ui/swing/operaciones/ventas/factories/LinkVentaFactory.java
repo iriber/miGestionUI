@@ -15,6 +15,7 @@ import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ventas.links.LinkAnularVenta;
+import com.migestion.ui.swing.operaciones.ventas.links.LinkEliminarVenta;
 
 
 /**
@@ -73,16 +74,8 @@ public class LinkVentaFactory {
 	public static LinkOpenDialogWithSelected getLinkDelete(){			    
 		
 		
-		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.VENTA_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
-			
-			@Override
-			protected ILinkWindowObjectOpen getDialog() {
-				
-				return WindowVentaFactory.getWindowDelete();
-			}
-			
-		};
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		LinkOpenDialogWithSelected link = new LinkEliminarVenta();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 		
 	}
