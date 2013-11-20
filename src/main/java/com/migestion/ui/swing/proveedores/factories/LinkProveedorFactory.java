@@ -11,6 +11,7 @@ import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -38,6 +39,7 @@ public class LinkProveedorFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
@@ -55,6 +57,7 @@ public class LinkProveedorFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_UPDATE_KEY_STROKE );
 		return link;
 		
 	}
@@ -73,7 +76,7 @@ public class LinkProveedorFactory {
 			}
 			
 		};
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		link.setKeyStroke( LinkHelper.LINK_DELETE_KEY_STROKE );
 		return link;
 		
 	}
@@ -85,7 +88,7 @@ public class LinkProveedorFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowProveedorFactory.getWindowList(), I18nMessages.PROVEEDOR_ACCION_LISTAR, I18nImages.PROVEEDORES_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_PROVEEDORES_KEY_STROKE );
 		return link;
 	}
 	

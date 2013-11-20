@@ -1,8 +1,11 @@
 package com.migestion.ui.swing.pagos.links;
 
 import com.migestion.model.Pago;
-import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.interfaces.ILinkWindowDelete;
+import com.migestion.swing.i18n.links.LinkImagesBundle;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
+import com.migestion.ui.swing.i18n.I18nMessages;
+import com.migestion.ui.swing.pagos.factories.WindowPagoFactory;
 
 /**
  * Link para eliminar una pago
@@ -11,11 +14,11 @@ import com.migestion.swing.navigation.interfaces.ILinkWindowDelete;
  * @since 24/10/2013
  *
  */
-public class LinkEliminarPago extends LinkDeleteObject{
+public class LinkEliminarPago extends  LinkOpenDialogWithSelected{
 
 
-	public LinkEliminarPago(ILinkWindowDelete dialog, String title){
-		super(dialog, title);
+	public LinkEliminarPago(){
+		super(I18nMessages.PAGO_ACCION_ELIMINAR, LinkImagesBundle.link_Delete);
 	}
 	
 	public void valueSelectedChange(Object selectedObject) {
@@ -30,5 +33,10 @@ public class LinkEliminarPago extends LinkDeleteObject{
 			
 		}
 		
+	}
+
+	@Override
+	protected ILinkWindowObjectOpen getDialog() {
+		return WindowPagoFactory.getWindowDelete();
 	}
 }

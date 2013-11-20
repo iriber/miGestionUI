@@ -3,6 +3,7 @@ package com.migestion.ui.swing.notasCredito.factories;
 import javax.swing.KeyStroke;
 
 import com.migestion.swing.navigation.LinkListCollection;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -23,7 +24,7 @@ public class LinkNotaCreditoFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowNotaCreditoFactory.getWindowList(), I18nMessages.NOTA_CREDITO_ACCION_LISTAR, I18nImages.NOTAS_CREDITO_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_NOTAS_CREDITO_KEY_STROKE );
 		return link;
 	}
 	

@@ -43,12 +43,6 @@ public class CuentasBancariasCRUDFrame extends CRUDFrame<CuentaBancaria> impleme
 
 	public void initLinks() {
 		
-		//LinkUpdateObject linkUpdate  = LinkCuentaBancariaFactory.getLinkUpdate();
-		//LinkAddObject linkAdd  = LinkCuentaBancariaFactory.getLinkAdd();
-//		LinkDeleteObject linkDelete  = LinkCuentaBancariaFactory.getLinkDelete();
-//		LinkUpdateObject linkActivar = LinkCuentaBancariaFactory.getLinkActivarCuentaBancaria();
-//		LinkUpdateObject linkDesactivar = LinkCuentaBancariaFactory.getLinkDesactivarCuentaBancaria();
-		
 		Link linkAdd  = LinkCuentaBancariaFactory.getLinkAdd();
 		
 		LinkOpenDialogWithSelected linkUpdate  = LinkCuentaBancariaFactory.getLinkUpdate();
@@ -56,9 +50,6 @@ public class CuentasBancariasCRUDFrame extends CRUDFrame<CuentaBancaria> impleme
 		
 		LinkOpenDialogWithSelected linkDelete  = LinkCuentaBancariaFactory.getLinkDelete();
 		this.addElementsListener(linkDelete);
-		
-		//this.setLinkAdd( linkAdd, 0 );
-		//this.setLinkUpdate( linkUpdate, 1 );
 		
 		this.addLinkToDefaultMenu( linkAdd, 0 );
 		this.addLinkToDefaultMenu( linkUpdate, 1 );

@@ -12,6 +12,7 @@ import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.links.LinkActivarProducto;
@@ -42,6 +43,7 @@ public class LinkProductoFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
@@ -61,6 +63,7 @@ public class LinkProductoFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_UPDATE_KEY_STROKE );
 		return link;
 		
 	}
@@ -101,7 +104,7 @@ public class LinkProductoFactory {
 			
 		};
 //		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_DELETE_KEY_STROKE );
 		return link;
 		
 	}
@@ -112,7 +115,7 @@ public class LinkProductoFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowProductoFactory.getWindowList(), I18nMessages.PRODUCTO_ACCION_LISTAR, I18nImages.PRODUCTOS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_PRODUCTOS_KEY_STROKE );
 		return link;
 	}
 	

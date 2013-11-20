@@ -6,6 +6,7 @@ import com.migestion.swing.i18n.links.LinkLabelsBundle;
 import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -34,7 +35,7 @@ public class LinkBalanceFactory {
 			}
 			
 		};
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_BALANCE_DIARIO_KEY_STROKE );
 		return link;
 		
 	}

@@ -1,9 +1,14 @@
 package com.migestion.ui.swing.pagos.links;
 
 import com.migestion.model.Pago;
+import com.migestion.swing.i18n.links.LinkImagesBundle;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.LinkUpdateObject;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowUpdate;
 import com.migestion.ui.swing.i18n.I18nImages;
+import com.migestion.ui.swing.i18n.I18nMessages;
+import com.migestion.ui.swing.pagos.factories.WindowPagoFactory;
 
 /**
  * Link para anular una pago
@@ -12,11 +17,11 @@ import com.migestion.ui.swing.i18n.I18nImages;
  * @since 28/10/2013
  *
  */
-public class LinkAnularPago extends LinkUpdateObject{
+public class LinkAnularPago extends  LinkOpenDialogWithSelected{
 
 
-	public LinkAnularPago(ILinkWindowUpdate dialog, String title){
-		super(dialog, title, I18nImages.BOTON_ANULAR);
+	public LinkAnularPago(){
+		super(I18nMessages.PAGO_ACCION_ANULAR, I18nImages.BOTON_ANULAR);
 	}
 	
 	public void valueSelectedChange(Object selectedObject) {
@@ -31,5 +36,10 @@ public class LinkAnularPago extends LinkUpdateObject{
 			
 		}
 		
+	}
+	
+	@Override
+	protected ILinkWindowObjectOpen getDialog() {
+		return WindowPagoFactory.getWindowAnular();
 	}
 }

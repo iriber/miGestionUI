@@ -10,10 +10,10 @@ import javax.swing.SwingConstants;
 
 import com.migestion.model.Pago;
 import com.migestion.swing.controller.IControllerList;
-import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkViewObject;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
+import com.migestion.ui.context.observers.listeners.IPagoListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
@@ -26,7 +26,7 @@ import com.migestion.ui.swing.pagos.panel.UIPagoCriteriaPanel;
  * @since 28/10/2013
  *
  */
-public class PagosCRUDFrame extends CRUDFrame<Pago>{
+public class PagosCRUDFrame extends CRUDFrame<Pago> implements IPagoListener{
 
 	public PagosCRUDFrame(String title, IControllerList controller){
 		
@@ -40,31 +40,25 @@ public class PagosCRUDFrame extends CRUDFrame<Pago>{
 
 	public void initLinks() {
 		
-		//LinkUpdateObject linkUpdate  = LinkPagoFactory.getLinkUpdate();
 		
-//		LinkAddPago linkAdd  = LinkPagoFactory.getLinkAddPago();
-//		linkAdd.addListener( frame );
-		
-		LinkViewObject linkView = LinkPagoFactory.getLinkView();
+		LinkOpenDialogWithSelected linkView = LinkPagoFactory.getLinkView();
+		this.addElementsListener(linkView);
 
-//		LinkUpdateObject linkAnular = LinkPagoFactory.getLinkAnularPago();
+		LinkOpenDialogWithSelected linkAnular = LinkPagoFactory.getLinkAnular();
+		this.addElementsListener(linkAnular);
 
-		LinkDeleteObject linkDelete  = LinkPagoFactory.getLinkDelete();
+		LinkOpenDialogWithSelected linkDelete  = LinkPagoFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
 		
-//		frame.addLinkToDefaultMenu(linkAdd, 0 );
-		this.setLinkView( linkView, 1 );
+		this.addLinkToDefaultMenu( linkView, 0 );
+		this.addLinkToDefaultMenu( linkAnular, 1 );
+		this.addLinkToDefaultMenu( linkDelete, 2 );
 
-//		this.addElementsListener(linkAnular);
-//		linkAnular.addListener(this);
-//		this.addLinkToDefaultMenu( linkAnular, 2 );
-		
-		this.setLinkDelete( linkDelete, 3 );
-		
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		
 		rightClick.add(linkView);
-//		rightClick.add(linkAnular);
+		rightClick.add(linkAnular);
 		rightClick.add(linkDelete);
 		
 		this.setRightClickPopup(rightClick);

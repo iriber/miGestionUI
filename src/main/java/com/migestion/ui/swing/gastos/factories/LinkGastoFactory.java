@@ -10,6 +10,7 @@ import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -30,7 +31,7 @@ public class LinkGastoFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowGastoFactory.getWindowList(), I18nMessages.GASTO_ACCION_LISTAR, I18nImages.GASTOS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_GASTOS_KEY_STROKE );
 		return link;
 	}
 	
@@ -48,6 +49,7 @@ public class LinkGastoFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
@@ -68,7 +70,7 @@ public class LinkGastoFactory {
 			}
 			
 		};
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+		link.setKeyStroke( LinkHelper.LINK_DELETE_KEY_STROKE );
 		return link;
 		
 	}

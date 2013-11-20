@@ -10,18 +10,13 @@ import javax.swing.SwingConstants;
 
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.Link;
-import com.migestion.swing.navigation.LinkAddObject;
-import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkUpdateObject;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.swing.view.frames.ICRUDFrame;
 import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProductoFactory;
 import com.migestion.ui.swing.categoriasProducto.panels.UICategoriaProductoCriteriaPanel;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
-import com.migestion.ui.swing.productos.panel.UIProductoCriteriaPanel;
 
 /**
  * Frame para categorías de producto
@@ -46,16 +41,17 @@ public class CategoriasProductoCRUDFrame extends CRUDFrame{
 
 	public void initLinks() {
 		
-		LinkUpdateObject linkUpdate  = LinkCategoriaProductoFactory.getLinkUpdate();
-		//LinkAddObject linkAdd  = LinkCategoriaProductoFactory.getLinkAdd();
-		Link linkAdd  = LinkProductoFactory.getLinkAdd();
-		LinkDeleteObject linkDelete  = LinkCategoriaProductoFactory.getLinkDelete();
+		Link linkAdd  = LinkCategoriaProductoFactory.getLinkAdd();
 		
-		//this.setLinkAdd( linkAdd, 0 );
+		LinkOpenDialogWithSelected linkUpdate  = LinkCategoriaProductoFactory.getLinkUpdate();
+		this.addElementsListener(linkUpdate);
+		
+		LinkOpenDialogWithSelected linkDelete  = LinkCategoriaProductoFactory.getLinkDelete();
+		this.addElementsListener(linkDelete);
+		
 		this.addLinkToDefaultMenu( linkAdd, 0 );
-		this.setLinkUpdate( linkUpdate, 1 );
-		this.setLinkDelete( linkDelete, 2 );
-		
+		this.addLinkToDefaultMenu( linkUpdate, 1 );
+		this.addLinkToDefaultMenu( linkDelete, 2 );
 		
 		
 		JPopupMenu rightClick = new JPopupMenu();

@@ -1,7 +1,5 @@
 package com.migestion.ui.swing.cuentasBancarias.factories;
 
-import javax.swing.KeyStroke;
-
 import com.migestion.swing.i18n.links.LinkImagesBundle;
 import com.migestion.swing.i18n.links.LinkLabelsBundle;
 import com.migestion.swing.navigation.Link;
@@ -29,7 +27,6 @@ public class LinkCuentaBancariaFactory {
 	 * link para agregar un cuentaBancaria.
 	 */
 	public static Link getLinkAdd(){			    
-		//return LinkAddCuenta.getInstance();
 		Link link =  new LinkOpenDialog(I18nMessages.CUENTA_BANCARIA_ACCION_AGREGAR,LinkImagesBundle.link_Add, LinkLabelsBundle.link_Add_KeyStroke) {
 			
 			@Override
@@ -49,7 +46,6 @@ public class LinkCuentaBancariaFactory {
 	 * link para modificar un cuentaBancaria.
 	 */
 	public static LinkOpenDialogWithSelected getLinkUpdate(){			    
-		//return LinkAddCuenta.getInstance();
 		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CUENTA_BANCARIA_ACCION_MODIFICAR,LinkImagesBundle.link_Update) {
 			
 			@Override
@@ -70,8 +66,6 @@ public class LinkCuentaBancariaFactory {
 	 */
 	public static LinkOpenDialogWithSelected getLinkDelete(){			    
 		
-		
-		//return LinkAddCuenta.getInstance();
 		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CUENTA_BANCARIA_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
 			
 			@Override

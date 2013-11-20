@@ -9,6 +9,7 @@ import com.migestion.swing.navigation.LinkListCollection;
 import com.migestion.swing.navigation.LinkOpenDialog;
 import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
 import com.migestion.swing.view.frames.JFrameContainer;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.productos.factories.WindowProductoFactory;
@@ -37,6 +38,7 @@ public class LinkChequeFactory {
 			}
 			
 		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
@@ -47,7 +49,7 @@ public class LinkChequeFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowChequeFactory.getWindowList(), I18nMessages.CHEQUE_ACCION_LISTAR, I18nImages.CHEQUES_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_CHEQUES_KEY_STROKE );
 		return link;
 	}
 	

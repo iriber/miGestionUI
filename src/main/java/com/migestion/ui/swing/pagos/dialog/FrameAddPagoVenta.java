@@ -6,12 +6,10 @@
 
 package com.migestion.ui.swing.pagos.dialog;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,12 +19,12 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -41,6 +39,7 @@ import javax.swing.table.TableCellRenderer;
 import com.migestion.model.DetalleFormaPago;
 import com.migestion.model.DetalleFormaPagoCheque;
 import com.migestion.model.DetalleFormaPagoEfectivo;
+import com.migestion.model.DetallePago;
 import com.migestion.model.FormaPago;
 import com.migestion.model.Pago;
 import com.migestion.model.Sucursal;
@@ -70,7 +69,6 @@ import com.migestion.ui.swing.finder.FinderFactory;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.UIDetalleFormaPagoCollection;
 import com.migestion.ui.swing.pagos.panel.detalles.DetalleFormaPagoTableController;
-import com.migestion.ui.swing.skin.SkinDecorator;
 
 /**
  * Ventana para agregar un pago de venta.
@@ -910,10 +908,14 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
 	private Pago getObjectFromUI() {
 		
+		pago.setDetallesPago( new HashSet<DetallePago>() );
+		pago.setDetallesFormaPago( new HashSet<DetalleFormaPago>() );
+		
 		pago.setFecha( pickerFecha.getDate() );
 		pago.setObservaciones( txtObservaciones.getText() );
 		
 		//agregamos los detalles de forma de pago.
+		
 		Float monto = 0F;
 		for (DetalleFormaPago detalle: detallesController.getDetalles()) {
 			monto += detalle.getMonto();

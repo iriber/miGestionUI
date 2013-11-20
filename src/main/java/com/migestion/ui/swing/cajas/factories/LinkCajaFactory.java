@@ -1,11 +1,14 @@
 package com.migestion.ui.swing.cajas.factories;
 
-import javax.swing.KeyStroke;
-
-import com.migestion.swing.navigation.LinkAddObject;
-import com.migestion.swing.navigation.LinkDeleteObject;
+import com.migestion.swing.i18n.links.LinkImagesBundle;
+import com.migestion.swing.i18n.links.LinkLabelsBundle;
+import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkListCollection;
-import com.migestion.swing.navigation.LinkUpdateObject;
+import com.migestion.swing.navigation.LinkOpenDialog;
+import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
+import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
+import com.migestion.swing.navigation.interfaces.ILinkWindowOpen;
+import com.migestion.ui.swing.LinkHelper;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -23,46 +26,57 @@ public class LinkCajaFactory {
 	/**
 	 * link para agregar una caja.
 	 */
-	public static LinkAddObject getLinkAdd(){			    
-		//return LinkAddCuenta.getInstance();
-		LinkAddObject link =  new LinkAddObject(WindowCajaFactory.getWindowAdd(), I18nMessages.CAJA_ACCION_AGREGAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+	/**
+	 * link para agregar una categoría de producto.
+	 */
+	public static Link getLinkAdd(){			    
+		Link link =  new LinkOpenDialog(I18nMessages.CAJA_ACCION_AGREGAR,LinkImagesBundle.link_Add, LinkLabelsBundle.link_Add_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowOpen getDialog() {
+				
+				return WindowCajaFactory.getWindowAdd();
+			}
+			
+		};
+		link.setKeyStroke( LinkHelper.LINK_ADD_KEY_STROKE );
 		return link;
 		
 	}
-//
-//	/**
-//	 * link para activar un caja.
-//	 */
-//	public static LinkUpdateObject getLinkActivarCaja(){			    
-//		LinkUpdateObject link = new LinkActivarCaja(WindowCajaFactory.getWindowActivar(), I18nMessages.CAJA_ACCION_ACTIVAR);
-//		return link;
-//	}	
-//
-//	/**
-//	 * link para desactivar un caja.
-//	 */
-//	public static LinkUpdateObject getLinkDesactivarCaja(){			    
-//		LinkUpdateObject link = new LinkDesactivarCaja(WindowCajaFactory.getWindowDesactivar(), I18nMessages.CAJA_ACCION_DESACTIVAR);
-//		return link;
-//	}	
-//
+	
 	/**
 	 * link para modificar un caja.
 	 */
-	public static LinkUpdateObject getLinkUpdate(){			    
-		LinkUpdateObject link = new LinkUpdateObject(WindowCajaFactory.getWindowUpdate(), I18nMessages.CAJA_ACCION_MODIFICAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
+	public static LinkOpenDialogWithSelected getLinkUpdate(){			    
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CAJA_ACCION_MODIFICAR,LinkImagesBundle.link_Update) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowCajaFactory.getWindowUpdate();
+			}
+			
+		};
+		link.setKeyStroke( LinkHelper.LINK_UPDATE_KEY_STROKE );
 		return link;
-	}	
+		
+	}
 	
 	/**
 	 * link para eliminar un caja.
 	 */
-	public static LinkDeleteObject getLinkDelete(){			    
-		LinkDeleteObject link =  new LinkDeleteObject(WindowCajaFactory.getWindowDelete(), I18nMessages.CAJA_ACCION_ELIMINAR);
-		//link.addListener(AppContext.getInstance().getCuentaObserver());
-		link.setKeyStroke(KeyStroke.getKeyStroke("DELETE"));
+	public static LinkOpenDialogWithSelected getLinkDelete(){
+		
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.CAJA_ACCION_ELIMINAR,LinkImagesBundle.link_Delete, LinkLabelsBundle.link_Delete_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowCajaFactory.getWindowDelete();
+			}
+			
+		};
+		link.setKeyStroke( LinkHelper.LINK_DELETE_KEY_STROKE );
 		return link;
 	}
 	
@@ -73,7 +87,7 @@ public class LinkCajaFactory {
 	 */
 	public static LinkListCollection getLinkList(){
 		LinkListCollection link = new LinkListCollection(WindowCajaFactory.getWindowList(), I18nMessages.CAJA_ACCION_LISTAR, I18nImages.CAJAS_ICON);
-		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		link.setKeyStroke( LinkHelper.LINK_CAJAS_KEY_STROKE);
 		return link;
 	}
 //	

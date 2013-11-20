@@ -15,6 +15,7 @@ import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.PagosCRUDFrame;
+import com.migestion.ui.swing.pagos.dialog.DialogAnularPago;
 import com.migestion.ui.swing.pagos.dialog.FrameAddPagoVenta;
 import com.migestion.ui.swing.pagos.panel.PagoPanel;
 
@@ -43,32 +44,6 @@ public class WindowPagoFactory {
 	}
 
 
-	
-//	/**
-//	 * pagona para agregar un pago.
-//	 */
-//	public static FrameAddPago getWindowAdd(){			    
-//
-//		FrameAddPago dialog = new FrameAddPago( );
-//		//dialog.setResizable(true);
-//		dialog.setFrameIcon(new ImageIcon( LinkImagesBundle.link_Add ) );
-//		//AppContext.getInstance().addToContainer(dialog);
-//		AppContext.getInstance().getMainContainer().addToDesktop(dialog);
-//		
-//		return dialog;		
-//	}
-
-//	/**
-//	 * pagona para modificar un pago.
-//	 */
-//	public static DialogUpdateObject getWindowUpdate(){			    
-//
-//		DialogUpdateObject dialog = new DialogUpdateAdapter(I18nMessages.PAGO_DIALOG_AGREGAR_TITULO, UIServiceFactory.getUIPagoService(), new PagoPanel() );
-//		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
-//		return dialog;
-//
-//	}
-		
 	/**
 	 * pagona para eliminar un pago.
 	 */
@@ -81,16 +56,17 @@ public class WindowPagoFactory {
 		
 	}
 
-//	/**
-//	 * pagona para anular una pago.
-//	 */
-//	public static DialogAnularPago getWindowAnular(){			    
-//
-//		DialogAnularPago dialog = new DialogAnularPago(I18nMessages.PAGO_DIALOG_ANULAR_TITULO);
-//		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
-//		return dialog;
-//
-//	}	
+	/**
+	 * pagona para anular una pago.
+	 */
+	public static DialogAnularPago getWindowAnular(){			    
+
+		DialogAnularPago dialog = new DialogAnularPago(I18nMessages.PAGO_DIALOG_ANULAR_TITULO);
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
+		return dialog;
+
+	}	
+	
 	/**
 	 * pagona para listar pagos.
 	 * @return
@@ -99,9 +75,9 @@ public class WindowPagoFactory {
 		PagosCRUDFrame frame = new PagosCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
-		//AppContext.getInstance().getPagoObserver().addListener( frame );
+		AppContext.getInstance().getPagoObserver().addListener( frame );
 		
-		//AppContext.getInstance().addPagoListener( frame );
+//		AppContext.getInstance().addPagoListener( frame );
 		
 		return frame;
 	}
