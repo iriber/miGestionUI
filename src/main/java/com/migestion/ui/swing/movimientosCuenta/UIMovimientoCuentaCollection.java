@@ -31,7 +31,7 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 	}
 
 	public int getColumnCount() {
-		return 6;
+		return 7;
 	}
 
 	public Class getColumnClass(int columnIndex) {
@@ -43,10 +43,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return ConceptoMovimiento.class;
 		case 3:
-			return Float.class;
+			return String.class;
 		case 4:
 			return Float.class;
 		case 5:
+			return Float.class;
+		case 6:
 			return Float.class;
 		default:
 			return Object.class;
@@ -62,10 +64,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return I18nMessages.MOVIMIENTO_CUENTA_CONCEPTO;
 		case 3:
-			return I18nMessages.MOVIMIENTO_CUENTA_HABER;
+			return I18nMessages.MOVIMIENTO_CUENTA_DESCRIPCION;
 		case 4:
-			return I18nMessages.MOVIMIENTO_CUENTA_DEBE;
+			return I18nMessages.MOVIMIENTO_CUENTA_HABER;
 		case 5:
+			return I18nMessages.MOVIMIENTO_CUENTA_DEBE;
+		case 6:
 			return I18nMessages.MOVIMIENTO_CUENTA_SALDO;
 		default:
 			return "";
@@ -83,10 +87,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return SwingConstants.LEFT;
 		case 3:
-			return SwingConstants.RIGHT;
+			return SwingConstants.LEFT;
 		case 4:
 			return SwingConstants.RIGHT;
 		case 5:
+			return SwingConstants.RIGHT;
+		case 6:
 			return SwingConstants.RIGHT;
 		default:
 			return SwingConstants.LEFT;
@@ -102,10 +108,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return 200;
 		case 3:
-			return 100;
+			return 200;
 		case 4:
 			return 100;
 		case 5:
+			return 100;
+		case 6:
 			return 100;
 		default:
 			return super.getColumnWidth(columnIndex);
@@ -127,6 +135,8 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 4:
 			return false;
 		case 5:
+			return false;
+		case 6:
 			return false;
 		default:
 			return false;
@@ -169,10 +179,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return null;
 		case 3:
-			return AppUtils.formatMoneda( getBalance().getHaber() );
+			return null;
 		case 4:
-			return AppUtils.formatMoneda( getBalance().getDebe() );
+			return AppUtils.formatMoneda( getBalance().getHaber() );
 		case 5:
+			return AppUtils.formatMoneda( getBalance().getDebe() );
+		case 6:
 			return AppUtils.formatMoneda( getBalance().getSaldo() );
 		default:
 			return "";
@@ -195,10 +207,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return movimiento.getConcepto();
 		case 3:
-			return movimiento.getHaber();
+			return movimiento.getDescripcion();
 		case 4:
-			return movimiento.getDebe();
+			return movimiento.getHaber();
 		case 5:
+			return movimiento.getDebe();
+		case 6:
 			return movimiento.getSaldo();
 		default:
 			return "";
@@ -220,10 +234,12 @@ public class UIMovimientoCuentaCollection extends UIFooterCollection {
 		case 2:
 			return movimiento.getConcepto().toString();
 		case 3:
-			return AppUtils.formatMoneda( movimiento.getHaber() );
+			return movimiento.getDescripcion();
 		case 4:
-			return AppUtils.formatMoneda( movimiento.getDebe() );
+			return AppUtils.formatMoneda( movimiento.getHaber() );
 		case 5:
+			return AppUtils.formatMoneda( movimiento.getDebe() );
+		case 6:
 			return AppUtils.formatMoneda( movimiento.getSaldo() );
 		default:
 			return "";

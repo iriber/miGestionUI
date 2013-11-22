@@ -142,6 +142,14 @@ public class I18nImages {
   public static URL PROVEEDORES_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
 			+ properties.getString("proveedores.small.icon") );
 
+  
+  //órdenes de compra
+  public static URL ORDENES_COMPRA_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("ordenesCompra.icon") );
+		
+  public static URL ORDENES_COMPRA_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/"
+			+ properties.getString("ordenesCompra.small.icon") );
+
 
   
   

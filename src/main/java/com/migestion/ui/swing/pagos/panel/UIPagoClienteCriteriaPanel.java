@@ -22,7 +22,7 @@ import com.migestion.ui.swing.finder.FinderFactory;
  *
  * @author bernardo
  */
-public class UIPagoCriteriaPanel extends javax.swing.JPanel  implements ICriteriaPanel{
+public class UIPagoClienteCriteriaPanel extends javax.swing.JPanel  implements ICriteriaPanel{
 
 	private Cliente cliente;
 	private Vendedor vendedor;
@@ -30,7 +30,7 @@ public class UIPagoCriteriaPanel extends javax.swing.JPanel  implements ICriteri
     /**
      * Creates new form UIPagoCriteriaPanel
      */
-    public UIPagoCriteriaPanel() {
+    public UIPagoClienteCriteriaPanel() {
         initComponents();
     }
 

@@ -3,13 +3,14 @@ package com.migestion.ui.criteria;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.migestion.model.Cliente;
 import com.migestion.model.EstadoVenta;
 import com.migestion.services.criteria.Criteria;
 import com.migestion.services.criteria.VentaCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 /**
- * Criteria de clientes para construir los filtros desde la ui.
+ * Criteria de ventas para construir los filtros desde la ui.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
  * @since 15/10/2013
@@ -26,6 +27,12 @@ public class UIVentaCriteria extends UIOperacionCriteria{
 	 * estados de venta a excluir
 	 */
 	private Collection<EstadoVenta> estadosExcluir;
+
+	/**
+	 * cliente
+	 */
+	private Cliente cliente;
+	
 
 	
 	public UIVentaCriteria() {
@@ -83,6 +90,21 @@ public class UIVentaCriteria extends UIOperacionCriteria{
 	public void setEstados(Collection<EstadoVenta> estados) {
 		this.estados = estados;
 	}
+
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	/**
+	 * @param cliente the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 
 	public VentaCriteria buildToService(){
 		

@@ -82,6 +82,7 @@ public class MiGestionApp {
 	                            setProgress(index);
 
 	                            AppContext.getInstance().setConceptoVenta( UIServiceFactory.getUIConceptoMovimientoService().getConceptoVentas() );
+	                            AppContext.getInstance().setConceptoOrdenCompra( UIServiceFactory.getUIConceptoMovimientoService().getConceptoOrdenCompra() );
 	                            index += 10;
 	                            setProgress(index);
 	                            setProgress(100);

@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.OrdenCompra;
 import com.migestion.model.Producto;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
@@ -113,6 +114,12 @@ public class ProductosCRUDFrame extends CRUDFrame<Producto> implements IProducto
 	public void ventaChange(Venta venta) {
 		if( isVisible() )
 		refreshTable();
+	}
+
+
+	public void ordenCompraChange(OrdenCompra ordenCompra) {
+		if( isVisible() )
+			refreshTable();
 	}
 
 }

@@ -15,7 +15,9 @@ import com.migestion.model.Vendedor;
 import com.migestion.swing.context.ContextObserver;
 import com.migestion.swing.navigation.interfaces.ILinkWindowList;
 import com.migestion.swing.view.frames.JFrameContainer;
+import com.migestion.ui.context.observers.OrdenCompraObserver;
 import com.migestion.ui.context.observers.PagoClienteObserver;
+import com.migestion.ui.context.observers.PagoProveedorObserver;
 import com.migestion.ui.context.observers.ProductoObserver;
 import com.migestion.ui.context.observers.VentaObserver;
 
@@ -44,6 +46,8 @@ public class AppContext {
 	private VentaObserver ventaObserver;
 
 	private PagoClienteObserver pagoClienteObserver;
+
+	private PagoProveedorObserver pagoProveedorObserver;
 	
 	private ProductoObserver productoObserver;
 	
@@ -58,7 +62,9 @@ public class AppContext {
 	private ContextObserver<Vendedor> vendedorObserver;
 
 	private ContextObserver<Proveedor> proveedorObserver;
-	
+
+	private OrdenCompraObserver ordenCompraObserver;
+
 //	/**
 //	 * usuario logueado.
 //	 */
@@ -75,7 +81,9 @@ public class AppContext {
 	private CategoriaProducto categoriaProductoDefault;
 
 	private ConceptoMovimiento conceptoVenta;
-	
+
+	private ConceptoMovimiento conceptoOrdenCompra;
+
 	/**
 	 * vendedor, sucursal y caja deberíamos
 	 * setearlo en una pantalla inicial (login)
@@ -90,6 +98,7 @@ public class AppContext {
 		//inicializamos los listeners
 		ventaObserver = new VentaObserver();
 		pagoClienteObserver = new PagoClienteObserver();
+		pagoProveedorObserver = new PagoProveedorObserver();
 		productoObserver = new ProductoObserver();
 		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
 		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
@@ -97,6 +106,9 @@ public class AppContext {
 		clienteObserver = new ContextObserver<Cliente>();
 		vendedorObserver = new ContextObserver<Vendedor>();
 		proveedorObserver = new ContextObserver<Proveedor>();
+		ordenCompraObserver = new OrdenCompraObserver();
+		
+		
 //		usuario = null;
 
 //		try {
@@ -119,6 +131,10 @@ public class AppContext {
 		return pagoClienteObserver;
 	}
 
+	public PagoProveedorObserver getPagoProveedorObserver() {
+		return pagoProveedorObserver;
+	}
+	
 	public static AppContext getInstance(){
 		if(instance==null)
 			instance = new AppContext();
@@ -267,6 +283,27 @@ public class AppContext {
 
 	public ContextObserver<Proveedor> getProveedorObserver() {
 		return proveedorObserver;
+	}
+
+	/**
+	 * @return the ordenCompraObserver
+	 */
+	public OrdenCompraObserver getOrdenCompraObserver() {
+		return ordenCompraObserver;
+	}
+
+	/**
+	 * @return the conceptoOrdenCompra
+	 */
+	public ConceptoMovimiento getConceptoOrdenCompra() {
+		return conceptoOrdenCompra;
+	}
+
+	/**
+	 * @param conceptoOrdenCompra the conceptoOrdenCompra to set
+	 */
+	public void setConceptoOrdenCompra(ConceptoMovimiento conceptoOrdenCompra) {
+		this.conceptoOrdenCompra = conceptoOrdenCompra;
 	}
 
 

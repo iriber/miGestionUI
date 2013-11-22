@@ -30,6 +30,9 @@ public interface LinkHelper {
 	public KeyStroke LINK_MOVIMIENTOS_CAJA_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	public KeyStroke LINK_MOVIMIENTOS_CUENTA_BANCARIA_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	public KeyStroke LINK_MOVIMIENTOS_NOTA_CREDITO_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_MOVIMIENTOS_CHEQUE_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_MOVIMIENTOS_CUENTA_CLIENTE_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_MOVIMIENTOS_CUENTA_PROVEEDOR_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	
 	public KeyStroke LINK_NOTAS_CREDITO_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	
@@ -40,4 +43,5 @@ public interface LinkHelper {
 	public KeyStroke LINK_PAGOS_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	public KeyStroke LINK_PRODUCTOS_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	public KeyStroke LINK_PROVEEDORES_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_ORDENES_COMPRA_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.ALT_DOWN_MASK);
 }

@@ -106,6 +106,22 @@ public class UIServiceFactory {
 	}
 	
 	/**
+	 * servicio para movimientos de cuentas de proveedores
+	 * @return
+	 */
+	public static UIMovimientoCuentaProveedorService getUIMovimientoCuentaProveedorService(){
+		return UIMovimientoCuentaProveedorService.getInstance();
+	}
+	
+	/**
+	 * servicio para movimientos de cuentas de clientes
+	 * @return
+	 */
+	public static UIMovimientoCuentaClienteService getUIMovimientoCuentaClienteService(){
+		return UIMovimientoCuentaClienteService.getInstance();
+	}
+
+	/**
 	 * servicio para movimientos de cheques
 	 * @return
 	 */
@@ -159,4 +175,21 @@ public class UIServiceFactory {
 	public static UIProveedorService getUIProveedorService(){
 		return UIProveedorService.getInstance();
 	}
+
+	/**
+	 * servicio para órdenes de compra
+	 * @return
+	 */
+	public static UIOrdenCompraService getUIOrdenCompraService(){
+		return UIOrdenCompraService.getInstance();
+	}
+	
+	/**
+	 * servicio para pagos a proveedores
+	 * @return
+	 */
+	public static UIPagoProveedorService getUIPagoProveedorService(){
+		return UIPagoProveedorService.getInstance();
+	}
+
 }

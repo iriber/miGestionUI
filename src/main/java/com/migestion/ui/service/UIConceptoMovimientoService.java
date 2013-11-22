@@ -231,4 +231,22 @@ public class UIConceptoMovimientoService implements IControllerList, IController
 		return concepto;
 	}
 
+	/**
+	 * se obtiene el concepto de caja utilizado para órdenes de compra.
+	 */
+	public ConceptoMovimiento getConceptoOrdenCompra() throws ControllerException {
+		ConceptoMovimiento concepto=null;
+		try {
+			
+			concepto = ServiceFactory.getConceptoMovimientoService().getConceptoOrdenCompra();
+			
+		} catch (Exception e) {
+			
+			throw new ControllerException( e.getMessage() );
+		}
+
+		return concepto;
+	}
+
+
 }

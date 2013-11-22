@@ -26,11 +26,6 @@ public abstract class UIOperacionCriteria extends UICustomCriteria{
 	private Date fechaHasta;
 
 	/**
-	 * cliente
-	 */
-	private Cliente cliente;
-	
-	/**
 	 * vendedor
 	 */
 	private Vendedor vendedor;
@@ -67,20 +62,6 @@ public abstract class UIOperacionCriteria extends UICustomCriteria{
 	 */
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
-	}
-
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	/**

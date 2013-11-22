@@ -16,8 +16,9 @@ import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.PagosCRUDFrame;
 import com.migestion.ui.swing.pagos.dialog.DialogAnularPago;
+import com.migestion.ui.swing.pagos.dialog.FrameAddPagoOrdenCompra;
 import com.migestion.ui.swing.pagos.dialog.FrameAddPagoVenta;
-import com.migestion.ui.swing.pagos.panel.PagoPanel;
+import com.migestion.ui.swing.pagos.panel.PagoClientePanel;
 
 /**
  * Proporciona métodos para la creación de pagonas para pagos.
@@ -43,6 +44,19 @@ public class WindowPagoFactory {
 		return dialog;		
 	}
 
+	/**
+	 * para pagar una orden de compra.
+	 */
+	public static FrameAddPagoOrdenCompra getWindowPagarOrdenCompra(){			    
+
+		FrameAddPagoOrdenCompra dialog = new FrameAddPagoOrdenCompra( );
+		//dialog.setResizable(true);
+		dialog.setFrameIcon(new ImageIcon( I18nImages.BOTON_PAGAR ) );
+		//AppContext.getInstance().addToContainer(dialog);
+		//AppContext.getInstance().getMainContainer().addToDesktop(dialog);
+		dialog.addToJFrameContainer(AppContext.getInstance().getMainContainer());		
+		return dialog;		
+	}
 
 	/**
 	 * pagona para eliminar un pago.
@@ -50,7 +64,7 @@ public class WindowPagoFactory {
 	public static DialogDeleteObject getWindowDelete(){			    
 		
 		
-		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoPanel());
+		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoClientePanel());
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
 		return dialog;
 		
@@ -89,7 +103,7 @@ public class WindowPagoFactory {
 	 */
 	public static DialogViewObject getWindowView(){			    
 	
-		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoPanel() );
+		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoClientePanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_View).getImage() );
 		return dialog;
 	

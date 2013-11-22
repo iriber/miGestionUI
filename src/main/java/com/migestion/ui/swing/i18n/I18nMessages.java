@@ -222,7 +222,6 @@ public class I18nMessages implements I18nLocale{
 	public static String OPERACION_DESCRIPCION = properties.getString("operacion.descripcion");
 	public static String OPERACION_MONTO_TOTAL = properties.getString("operacion.monto.total");
 	public static String OPERACION_TODAS = properties.getString("operacion.todas");
-	public static String OPERACION_CLIENTE = properties.getString("operacion.cliente");
 	public static String OPERACION_VENDEDOR = properties.getString("operacion.vendedor");
 	public static String OPERACION_OBSERVACIONES = properties.getString("operacion.observaciones");
 	public static String OPERACION_DETALLES = properties.getString("operacion.detalles");
@@ -240,6 +239,7 @@ public class I18nMessages implements I18nLocale{
 	public static String VENTAS = properties.getString("ventas");
 	public static String VENTA_MONTO_PAGADO = properties.getString("venta.montoPagado");
 	public static String VENTA_MONTO_DEBE = properties.getString("venta.montoDebe");
+	public static String VENTA_CLIENTE = properties.getString("venta.cliente");
 	
 	public static String VENTA_ESTADO = properties.getString("venta.estado");
 	//public static String VENTA_PAGADAS = properties.getString("venta.pagadas");
@@ -347,7 +347,10 @@ public class I18nMessages implements I18nLocale{
 	public static String PAGO_OBSERVACIONES = properties.getString("pago.observaciones");
 	public static String PAGO_VENTA = properties.getString("pago.venta");
 	public static String PAGO_VENTAS_IMPAGAS = properties.getString("pago.ventas.impagas");
-
+	
+	public static String PAGO_PROVEEDOR = properties.getString("pago.proveedor");
+	public static String PAGO_ORDEN_COMPRA = properties.getString("pago.ordenCompra");
+	
 	public static String PAGO_FRAME_TITULO = properties.getString("pago.frame.titulo");
 	public static String PAGO_FRAME_MENUADMIN = properties.getString("pago.frame.menuadmin");
 	
@@ -505,12 +508,31 @@ public class I18nMessages implements I18nLocale{
 	
 	public static String MOVIMIENTO_NOTA_CREDITO_FRAME_TITULO = properties.getString("movimientoNotaCredito.frame.titulo");
 	public static String MOVIMIENTO_NOTA_CREDITO_FRAME_MENUADMIN = properties.getString("movimientoNotaCredito.frame.menuadmin");
-		
+
+	/**
+	 * movimientos de proveedores
+	 */		
+	public static String MOVIMIENTOS_CUENTA_PROVEEDOR = properties.getString("movimientosCuentaProveedor");
+	public static String MOVIMIENTO_CUENTA_PROVEEDOR_PROVEEDOR = properties.getString("movimientoCuentaProveedor.proveedor");
+	
+	public static String MOVIMIENTO_CUENTA_PROVEEDOR_FRAME_TITULO = properties.getString("movimientoCuentaProveedor.frame.titulo");
+	public static String MOVIMIENTO_CUENTA_PROVEEDOR_FRAME_MENUADMIN = properties.getString("movimientoCuentaProveedor.frame.menuadmin");
+
+	/**
+	 * movimientos de clientes
+	 */		
+	public static String MOVIMIENTOS_CUENTA_CLIENTE = properties.getString("movimientosCuentaCliente");
+	public static String MOVIMIENTO_CUENTA_CLIENTE_CLIENTE = properties.getString("movimientoCuentaCliente.cliente");
+	
+	public static String MOVIMIENTO_CUENTA_CLIENTE_FRAME_TITULO = properties.getString("movimientoCuentaCliente.frame.titulo");
+	public static String MOVIMIENTO_CUENTA_CLIENTE_FRAME_MENUADMIN = properties.getString("movimientoCuentaCliente.frame.menuadmin");
+
 	/**
 	 * movimientos de cuenta
 	 */		
 	public static String MOVIMIENTO_CUENTA_CODIGO = properties.getString("movimientoCuenta.codigo");
 	public static String MOVIMIENTO_CUENTA_CONCEPTO = properties.getString("movimientoCuenta.concepto");
+	public static String MOVIMIENTO_CUENTA_DESCRIPCION = properties.getString("movimientoCuenta.descripcion");
 	public static String MOVIMIENTO_CUENTA_FECHA_HORA = properties.getString("movimientoCuenta.fechaHora");
 	public static String MOVIMIENTO_CUENTA_DEBE = properties.getString("movimientoCuenta.debe");
 	public static String MOVIMIENTO_CUENTA_HABER = properties.getString("movimientoCuenta.haber");
@@ -614,5 +636,47 @@ public class I18nMessages implements I18nLocale{
 	public static String PROVEEDOR_ACCION_BUSCAR = properties.getString("proveedor.accion.buscar");
 	
 	public static String PROVEEDOR_MSG_CONFIRMA_ELIMINAR = properties.getString("proveedor.msg.confirma_eliminar");
+
+	
+	/**
+	 * órdenes de compra 
+	 */
+	public static String ORDENES_COMPRA = properties.getString("ordenesCompra");
+	public static String ORDEN_COMPRA_MONTO_PAGADO = properties.getString("ordenCompra.montoPagado");
+	public static String ORDEN_COMPRA_MONTO_DEBE = properties.getString("ordenCompra.montoDebe");
+	public static String ORDEN_COMPRA_PROVEEDOR = properties.getString("ordenCompra.proveedor");
+	public static String ORDEN_COMPRA_ESTADO = properties.getString("ordenCompra.estado");
+	//public static String ORDEN_COMPRA_PAGADAS = properties.getString("ordenCompra.pagadas");
+	//public static String ORDEN_COMPRA_IMPAGAS = properties.getString("ordenCompra.impagas");
+	
+	public static String ORDEN_COMPRA_FRAME_TITULO = properties.getString("ordenCompra.frame.titulo");
+	public static String ORDEN_COMPRA_FRAME_MENUADMIN = properties.getString("ordenCompra.frame.menuadmin");
+	
+	public static String ORDEN_COMPRA_DIALOG_AGREGAR_TITULO = properties.getString("ordenCompra.dialog.agregar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_MODIFICAR_TITULO = properties.getString("ordenCompra.dialog.modificar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_BUSCAR_TITULO = properties.getString("ordenCompra.dialog.buscar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_ELIMINAR_TITULO = properties.getString("ordenCompra.dialog.eliminar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_VER_TITULO = properties.getString("ordenCompra.dialog.ver.titulo");
+	public static String ORDEN_COMPRA_DIALOG_FACTURAR_TITULO = properties.getString("ordenCompra.dialog.facturar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_PAGAR_TITULO = properties.getString("ordenCompra.dialog.pagar.titulo");
+	public static String ORDEN_COMPRA_DIALOG_ANULAR_TITULO = properties.getString("ordenCompra.dialog.anular.titulo");
+	
+	public static String ORDEN_COMPRA_ACCION_LISTAR = properties.getString("ordenCompra.accion.listar");
+	public static String ORDEN_COMPRA_ACCION_AGREGAR = properties.getString("ordenCompra.accion.agregar");
+	public static String ORDEN_COMPRA_ACCION_MODIFICAR = properties.getString("ordenCompra.accion.modificar");
+	public static String ORDEN_COMPRA_ACCION_ELIMINAR = properties.getString("ordenCompra.accion.eliminar");
+	public static String ORDEN_COMPRA_ACCION_ANULAR = properties.getString("ordenCompra.accion.anular");
+	public static String ORDEN_COMPRA_ACCION_BUSCAR = properties.getString("ordenCompra.accion.buscar");
+	public static String ORDEN_COMPRA_ACCION_VER = properties.getString("ordenCompra.accion.ver");
+	public static String ORDEN_COMPRA_ACCION_FACTURAR = properties.getString("ordenCompra.accion.facturar");
+	public static String ORDEN_COMPRA_ACCION_PAGAR = properties.getString("ordenCompra.accion.pagar");
+	
+	public static String ORDEN_COMPRA_ACCION_AGREGAR_DETALLE = properties.getString("ordenCompra.accion.agregar.detalle");
+	public static String ORDEN_COMPRA_ACCION_ELIMINAR_DETALLE = properties.getString("ordenCompra.accion.eliminar.detalle");
+	
+	public static String ORDEN_COMPRA_MSG_CONFIRMA_ELIMINAR = properties.getString("ordenCompra.msg.confirma_eliminar");
+	
+	public static String ORDEN_COMPRA_AGREGAR_DETALLE_REQUERIDOS = properties.getString("ordenCompra.msg.agregar.detalle.requeridos");
+	public static String ORDEN_COMPRA_AGREGAR_DETALLE_DATOS_INVALIDOS = properties.getString("ordenCompra.msg.agregar.detalle.datos.invalidos");
 
 }

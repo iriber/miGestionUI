@@ -5,17 +5,13 @@ import java.net.URL;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
+import com.migestion.model.Caja;
 import com.migestion.swing.controller.IControllerList;
-import com.migestion.swing.navigation.LinkAddObject;
-import com.migestion.swing.navigation.LinkDeleteObject;
-import com.migestion.swing.navigation.LinkUpdateObject;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
 import com.migestion.ui.swing.cajas.panel.UICajaCriteriaPanel;
-import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -26,7 +22,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 04/11/2013
  *
  */
-public class CajasCRUDFrame extends CRUDFrame{
+public class CajasCRUDFrame extends CRUDFrame<Caja>{
 
 	public CajasCRUDFrame(String title, IControllerList controller){
 		

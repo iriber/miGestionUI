@@ -2,20 +2,17 @@ package com.migestion.ui.swing;
 
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
-import javax.swing.SwingWorker;
 
 import com.migestion.swing.factories.MenuFactory;
 import com.migestion.swing.navigation.Link;
 import com.migestion.swing.navigation.LinkListCollection;
 import com.migestion.swing.navigation.LinkSystemExit;
-import com.migestion.swing.view.dialogs.ProgressDialog;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.context.AppContext;
 import com.migestion.ui.swing.balances.factories.LinkBalanceFactory;
@@ -25,6 +22,7 @@ import com.migestion.ui.swing.categoriasProducto.factories.LinkCategoriaProducto
 import com.migestion.ui.swing.cheques.factories.LinkChequeFactory;
 import com.migestion.ui.swing.cheques.movimientos.factories.LinkMovimientoChequeFactory;
 import com.migestion.ui.swing.clientes.factories.LinkClienteFactory;
+import com.migestion.ui.swing.clientes.movimientos.factories.LinkMovimientoCuentaClienteFactory;
 import com.migestion.ui.swing.cuentasBancarias.factories.LinkCuentaBancariaFactory;
 import com.migestion.ui.swing.cuentasBancarias.movimientos.factories.LinkMovimientoCuentaBancariaFactory;
 import com.migestion.ui.swing.gastos.factories.LinkGastoFactory;
@@ -32,10 +30,12 @@ import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.notasCredito.factories.LinkNotaCreditoFactory;
 import com.migestion.ui.swing.notasCredito.movimientos.factories.LinkMovimientoNotaCreditoFactory;
+import com.migestion.ui.swing.operaciones.ordenesCompra.factories.LinkOrdenCompraFactory;
 import com.migestion.ui.swing.operaciones.ventas.factories.LinkVentaFactory;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.productos.factories.LinkProductoFactory;
 import com.migestion.ui.swing.proveedores.factories.LinkProveedorFactory;
+import com.migestion.ui.swing.proveedores.movimientos.factories.LinkMovimientoCuentaProveedorFactory;
 import com.migestion.ui.swing.vendedores.factories.LinkVendedorFactory;
 
 /**
@@ -374,6 +374,11 @@ public class FrameMenuInicial extends JFrameContainer {
 		LinkListCollection linkPagos = LinkPagoFactory
 				.getLinkList();
 
+
+		// link órdenes de compra.
+		LinkListCollection linkOrdenesCompra = LinkOrdenCompraFactory
+				.getLinkList();
+
 		// link movimientos de caja.
 		LinkListCollection linkMovimientosCaja = LinkMovimientoCajaFactory
 				.getLinkList();
@@ -398,7 +403,16 @@ public class FrameMenuInicial extends JFrameContainer {
 		// link movimientos de notas de crédito.
 		LinkListCollection linkMovimientosNotaCredito = LinkMovimientoNotaCreditoFactory
 				.getLinkList();
+
+
+		// link movimientos de clientes
+		LinkListCollection linkMovimientosCliente = LinkMovimientoCuentaClienteFactory
+				.getLinkList();
 		
+		// link movimientos de proveedores.
+		LinkListCollection linkMovimientosProveedor = LinkMovimientoCuentaProveedorFactory
+				.getLinkList();
+
 //		// link gastos
 		LinkListCollection linkGastos = LinkGastoFactory
 				.getLinkList();
@@ -438,11 +452,16 @@ public class FrameMenuInicial extends JFrameContainer {
 ////		
 		menuVentas.add(MenuFactory.getJMenuItem(linkVentas));
 		menuVentas.add(MenuFactory.getJMenuItem(linkPagos));
+		menuVentas.addSeparator();
+		menuVentas.add(MenuFactory.getJMenuItem(linkOrdenesCompra));
 		
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCaja));
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCuentaBancaria));
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCheque));
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosNotaCredito));
+		menuMovimientos.addSeparator();
+		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCliente));
+		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosProveedor));
 		menuMovimientos.addSeparator();
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkBalanceDiario));
 		

@@ -4,6 +4,7 @@ package com.migestion.ui.swing.productos.dialog;
 
 import javax.swing.JPanel;
 
+import com.migestion.model.OrdenCompra;
 import com.migestion.model.Producto;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.IControllerList;
@@ -87,6 +88,13 @@ public class DialogFindProducto extends DialogFindObject<Producto> implements IP
 
 
 	public void ventaChange(Venta venta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void ordenCompraChange(OrdenCompra ordenCompra) {
 		// TODO Auto-generated method stub
 		
 	}

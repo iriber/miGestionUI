@@ -4,6 +4,7 @@ package com.migestion.ui.swing.i18n.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.migestion.model.EstadoOrdenCompra;
 import com.migestion.model.EstadoProducto;
 import com.migestion.model.EstadoVenta;
 import com.migestion.ui.swing.i18n.I18nMessages;
@@ -44,4 +45,9 @@ public class EnumUtils {
 		return I18nMessages.locale( estado.getNombre() );
 	}
 
+
+	public static String getLabelFor(EstadoOrdenCompra estado) {
+		
+		return I18nMessages.locale( estado.getNombre() );
+	}
 }

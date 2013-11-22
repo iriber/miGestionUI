@@ -61,7 +61,7 @@ public class UIVentaCollection extends UIFooterCollection {
 		case 1:
 			return I18nMessages.OPERACION_FECHA;
 		case 2:
-			return I18nMessages.OPERACION_CLIENTE;
+			return I18nMessages.VENTA_CLIENTE;
 		case 3:
 			return I18nMessages.VENTA_MONTO_PAGADO;
 		case 4:

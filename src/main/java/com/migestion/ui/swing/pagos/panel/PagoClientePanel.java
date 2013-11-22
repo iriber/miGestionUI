@@ -37,7 +37,7 @@ import com.migestion.ui.swing.skin.SkinDecorator;
  *
  * @author bernardo
  */
-public class PagoPanel extends javax.swing.JPanel implements ISkinForm,Serializable, IDialogViewAdapter, IDialogDeleteAdapter, TableModelListener{
+public class PagoClientePanel extends javax.swing.JPanel implements ISkinForm,Serializable, IDialogViewAdapter, IDialogDeleteAdapter, TableModelListener{
 
 	private InputRequiredValidator required;
     
@@ -49,7 +49,7 @@ public class PagoPanel extends javax.swing.JPanel implements ISkinForm,Serializa
     /**
      * Creates new form RemitoPanel
      */
-    public PagoPanel() {
+    public PagoClientePanel() {
     	
     	initPago();
     	

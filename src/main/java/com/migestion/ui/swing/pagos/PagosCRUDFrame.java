@@ -17,7 +17,7 @@ import com.migestion.ui.context.observers.listeners.IPagoClienteListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
-import com.migestion.ui.swing.pagos.panel.UIPagoCriteriaPanel;
+import com.migestion.ui.swing.pagos.panel.UIPagoClienteCriteriaPanel;
 
 /**
  * Frame para pagos de clientes
@@ -35,7 +35,7 @@ public class PagosCRUDFrame extends CRUDFrame<PagoCliente> implements IPagoClien
 	}
 
 	public ICriteriaPanel buildUICriteriaPanel() {
-		return new UIPagoCriteriaPanel();
+		return new UIPagoClienteCriteriaPanel();
 	}
 
 	public void initLinks() {

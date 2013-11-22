@@ -10,7 +10,7 @@ import com.migestion.swing.view.dialogs.DialogMessage;
 import com.migestion.swing.view.dialogs.DialogOkCancel;
 import com.migestion.swing.view.frames.JFrameContainer;
 import com.migestion.ui.service.UIServiceFactory;
-import com.migestion.ui.swing.pagos.panel.PagoPanel;
+import com.migestion.ui.swing.pagos.panel.PagoClientePanel;
 
 /**
  * Diálogo para anular un pago
@@ -24,7 +24,7 @@ public class DialogAnularPago extends DialogOkCancel implements  ILinkWindowObje
 	//pago que será anulado
 	protected PagoCliente pago= null;
 
-	private PagoPanel panel;
+	private PagoClientePanel panel;
 	
 	/**
 	 * 
@@ -81,7 +81,7 @@ public class DialogAnularPago extends DialogOkCancel implements  ILinkWindowObje
 	 */
 	protected Container createInfoPanel(){
 		
-		panel = new PagoPanel();
+		panel = new PagoClientePanel();
 		return panel.getViewPanel();
 
 	}

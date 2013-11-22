@@ -1,5 +1,6 @@
 package com.migestion.ui.context.observers;
 
+import com.migestion.model.OrdenCompra;
 import com.migestion.model.Producto;
 import com.migestion.model.Venta;
 import com.migestion.swing.context.ContextObserver;
@@ -18,6 +19,14 @@ public class ProductoObserver extends ContextObserver<Producto>{
 		for (IContextListener listener : listeners) {
 			
 			((IProductoListener)listener).ventaChange(venta);
+		}
+	}
+
+	public void ordenCompraChange(OrdenCompra ordenCompra) {
+
+		for (IContextListener listener : listeners) {
+			
+			((IProductoListener)listener).ordenCompraChange(ordenCompra);
 		}
 	}
 
