@@ -8,25 +8,25 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
-import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.swing.controller.IControllerList;
 import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
 import com.migestion.swing.view.frames.CRUDFrame;
-import com.migestion.ui.context.observers.listeners.IPagoListener;
+import com.migestion.ui.context.observers.listeners.IPagoClienteListener;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.factories.LinkPagoFactory;
 import com.migestion.ui.swing.pagos.panel.UIPagoCriteriaPanel;
 
 /**
- * Frame para pagos
+ * Frame para pagos de clientes
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
  * @since 28/10/2013
  *
  */
-public class PagosCRUDFrame extends CRUDFrame<Pago> implements IPagoListener{
+public class PagosCRUDFrame extends CRUDFrame<PagoCliente> implements IPagoClienteListener{
 
 	public PagosCRUDFrame(String title, IControllerList controller){
 		

@@ -7,7 +7,7 @@ import java.util.Vector;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
-import com.migestion.model.EstadisticaVenta;
+import com.migestion.model.EstadisticaOperacion;
 import com.migestion.model.Venta;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.model.UIFooterCollection;
@@ -24,7 +24,7 @@ import com.migestion.ui.swing.operaciones.ventas.renderers.VentaTableRenderer;
  */
 public class UIVentaCollection extends UIFooterCollection {
 
-	private EstadisticaVenta estadistica;
+	private EstadisticaOperacion estadistica;
 
 	public UIVentaCollection(String description) {
 		super(description);
@@ -192,7 +192,7 @@ public class UIVentaCollection extends UIFooterCollection {
 	/**
 	 * @return the estadistica
 	 */
-	public EstadisticaVenta getEstadistica() {
+	public EstadisticaOperacion getEstadistica() {
 		return estadistica;
 	}
 
@@ -200,7 +200,7 @@ public class UIVentaCollection extends UIFooterCollection {
 	 * @param estadistica
 	 *            the estadistica to set
 	 */
-	public void setEstadistica(EstadisticaVenta estadistica) {
+	public void setEstadistica(EstadisticaOperacion estadistica) {
 		this.estadistica = estadistica;
 	}
 

@@ -7,9 +7,9 @@ import java.util.Vector;
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
 import com.migestion.model.EstadisticaPago;
-import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.services.ServiceFactory;
-import com.migestion.services.criteria.PagoCriteria;
+import com.migestion.services.criteria.PagoClienteCriteria;
 import com.migestion.swing.controller.IControllerAdd;
 import com.migestion.swing.controller.IControllerDelete;
 import com.migestion.swing.controller.IControllerList;
@@ -19,9 +19,9 @@ import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.ui.context.AppContext;
-import com.migestion.ui.criteria.UIPagoCriteria;
+import com.migestion.ui.criteria.UIPagoClienteCriteria;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.pagos.UIPagoCollection;
+import com.migestion.ui.swing.pagos.UIPagoClienteCollection;
 
 /**
  * Controlador utilizado para las operaciones de los pagos.
@@ -31,17 +31,17 @@ import com.migestion.ui.swing.pagos.UIPagoCollection;
  * @since 28/10/2013
  * 
  */
-public class UIPagoService implements IControllerList, IControllerAdd,
+public class UIPagoClienteService implements IControllerList, IControllerAdd,
 		IControllerUpdate, IControllerDelete, IControllerView {
 
 	// instancia del servicio (lo hacemos singleton).
-	private static UIPagoService instance;
+	private static UIPagoClienteService instance;
 
 	
 	// pedimos la �nica instancia.
-	public static UIPagoService getInstance() {
+	public static UIPagoClienteService getInstance() {
 		if (instance == null)
-			instance = new UIPagoService();
+			instance = new UIPagoClienteService();
 		return instance;
 	}
 
@@ -49,9 +49,9 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 	public UICollection list() throws ControllerException {
 		
 		
-		UIPagoCollection uiList = new UIPagoCollection( I18nMessages.PAGOS);
+		UIPagoClienteCollection uiList = new UIPagoClienteCollection( I18nMessages.PAGOS);
 
-		uiList.setElements( new Vector<Pago>() );
+		uiList.setElements( new Vector<PagoCliente>() );
 		//uiList.setEstadistica(new EstadisticaPago());
 		
 		return uiList;
@@ -66,14 +66,14 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 	public UICollection list(UICriteria criteria) throws ControllerException {
 		
 		//invocar al servicio para obtener las entities.
-		List<Pago> pagos;
+		List<PagoCliente> pagos;
 //		Long totalSize;
 		EstadisticaPago estadistica;
 		try {
-			PagoCriteria coreCriteria = ((UIPagoCriteria)criteria).buildToService();
-			pagos = ServiceFactory.getPagoService().list( coreCriteria );
-//			totalSize = ServiceFactory.getPagoService().getListSize(coreCriteria);
-			estadistica = ServiceFactory.getPagoService().getEstadisticaPago(coreCriteria);
+			PagoClienteCriteria coreCriteria = ((UIPagoClienteCriteria)criteria).buildToService();
+			pagos = ServiceFactory.getPagoClienteService().list( coreCriteria );
+//			totalSize = ServiceFactory.getPagoClienteService().getListSize(coreCriteria);
+			estadistica = ServiceFactory.getPagoClienteService().getEstadisticaPago(coreCriteria);
 			
 		} catch (Exception e) {
 
@@ -81,7 +81,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 		}
 		
 		// creamos una ui collection con los pagos.
-		UIPagoCollection uiList = new UIPagoCollection( I18nMessages.PAGOS);
+		UIPagoClienteCollection uiList = new UIPagoClienteCollection( I18nMessages.PAGOS);
 
 		//uiList.setTotalSize( totalSize.intValue()  );
 		uiList.setTotalSize( estadistica.getCantidad() );
@@ -102,13 +102,13 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getPagoService().add( (Pago)object );
+			ServiceFactory.getPagoClienteService().add( (PagoCliente)object );
 			
 			PersistenceContext.getInstance().commit();
 			
 			//TODO avisar pagoobserver
-			AppContext.getInstance().getPagoObserver().objectCreated((Pago)object);
-			AppContext.getInstance().getVentaObserver().pagoVentaCreado((Pago)object);
+			AppContext.getInstance().getPagoClienteObserver().objectCreated((PagoCliente)object);
+			AppContext.getInstance().getVentaObserver().pagoVentaCreado((PagoCliente)object);
 			
 		} catch (Exception e) {
 			
@@ -133,11 +133,11 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getPagoService().update( (Pago)object );
+			ServiceFactory.getPagoClienteService().update( (PagoCliente)object );
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getPagoObserver().objectUpdated((Pago)object);
+			AppContext.getInstance().getPagoClienteObserver().objectUpdated((PagoCliente)object);
 			
 		} catch (Exception e) {
 			
@@ -161,11 +161,11 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getPagoService().delete( ((Pago)object).getOid() );
+			ServiceFactory.getPagoClienteService().delete( ((PagoCliente)object).getOid() );
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getPagoObserver().objectDeleted((Pago)object);
+			AppContext.getInstance().getPagoClienteObserver().objectDeleted((PagoCliente)object);
 
 		} catch (Exception e) {
 			
@@ -188,7 +188,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 		
 		try {
 			
-			object = ServiceFactory.getPagoService().get( ((Pago)object).getOid() );
+			object = ServiceFactory.getPagoClienteService().get( ((PagoCliente)object).getOid() );
 			
 		} catch (Exception e) {
 			
@@ -200,7 +200,7 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 	
 	public int totalSize() throws ControllerException {
 		
-		return totalSize(new UIPagoCriteria());
+		return totalSize(new UIPagoClienteCriteria());
 	}
 
 	public int totalSize(UICriteria criteria) throws ControllerException {
@@ -212,8 +212,8 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 		
 		try {
 			
-			PagoCriteria coreCriteria = ((UIPagoCriteria)criteria).buildToService();
-			totalSize = ServiceFactory.getPagoService().getListSize(coreCriteria);
+			PagoClienteCriteria coreCriteria = ((UIPagoClienteCriteria)criteria).buildToService();
+			totalSize = ServiceFactory.getPagoClienteService().getListSize(coreCriteria);
 			
 		} catch (Exception e) {
 			
@@ -232,17 +232,17 @@ public class UIPagoService implements IControllerList, IControllerAdd,
 	/**
 	 * se anula una pago
 	 */
-	public void anularPago(Pago pago) throws ControllerException {
+	public void anularPago(PagoCliente pago) throws ControllerException {
 		
 		try {
 			
 			PersistenceContext.getInstance().beginTransaction();
 			
-			ServiceFactory.getPagoService().anularPago( pago.getOid() );
+			ServiceFactory.getPagoClienteService().anularPago( pago.getOid() );
 			
 			PersistenceContext.getInstance().commit();
 			
-			AppContext.getInstance().getPagoObserver().objectUpdated(pago);
+			AppContext.getInstance().getPagoClienteObserver().objectUpdated(pago);
 			
 		} catch (Exception e) {
 			

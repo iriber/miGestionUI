@@ -7,16 +7,12 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.SwingConstants;
-import javax.swing.table.TableCellRenderer;
 
 import com.migestion.model.Cliente;
-import com.migestion.model.DetalleFormaPago;
 import com.migestion.model.DetallePago;
-import com.migestion.model.DetalleVenta;
-import com.migestion.model.Operacion;
+import com.migestion.model.Venta;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.model.UIFooterCollection;
-import com.migestion.swing.view.renderers.EntityTableRenderer;
 import com.migestion.ui.AppUtils;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
@@ -97,7 +93,7 @@ public class UIDetallePagoCollection extends UIFooterCollection{
 	        case 2:
 	        	return detalle.getOperacion().getDescripcion();
 	        case 3:
-	        	return detalle.getOperacion().getCliente();
+	        	return ((Venta)detalle.getOperacion()).getCliente();
 	        case 4:
 	        	return detalle.getMonto();
             default:
@@ -120,7 +116,7 @@ public class UIDetallePagoCollection extends UIFooterCollection{
 	        case 2:
 	            return I18nMessages.locale( detalle.getOperacion().getDescripcion() ) ;
 	        case 3:
-	            return detalle.getOperacion().getCliente() ;
+	        	return ((Venta)detalle.getOperacion()).getCliente();
 	        case 4:
 	        	return AppUtils.formatMoneda( detalle.getMonto() );
             default:

@@ -42,6 +42,7 @@ import com.migestion.model.DetalleFormaPagoEfectivo;
 import com.migestion.model.DetallePago;
 import com.migestion.model.FormaPago;
 import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.model.Sucursal;
 import com.migestion.model.Venta;
 import com.migestion.swing.controller.exception.ControllerException;
@@ -81,7 +82,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 
 	private InputRequiredValidator required;
     
-    private Pago pago;
+    private PagoCliente pago;
 
     private Venta ventaPagar;
     
@@ -216,7 +217,7 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 	
 	private void initPago() {
     		
-    	pago = new Pago();
+    	pago = new PagoCliente();
     	
     	pickerFecha.setDateFormatString( I18nMessages.FORMATO_DATE );
     	pickerFecha.setDate( new Date() );
@@ -875,9 +876,9 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 			validateInput();
 			
 			//creamos el objeto con la info de la ui.
-			Pago pago = getObjectFromUI();
+			PagoCliente pago = getObjectFromUI();
 			
-			UIServiceFactory.getUIPagoService().addObject(pago);
+			UIServiceFactory.getUIPagoClienteService().addObject(pago);
 			
 			alertListeners();
 			
@@ -904,9 +905,13 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 			if( !validator.validate() )				
 				throw new ViewException( validator.getMessage() );
 		}
+		
+		
 	}
 
-	private Pago getObjectFromUI() {
+	private PagoCliente getObjectFromUI() throws ControllerException {
+		
+		pago = new PagoCliente();
 		
 		pago.setDetallesPago( new HashSet<DetallePago>() );
 		pago.setDetallesFormaPago( new HashSet<DetalleFormaPago>() );
@@ -925,6 +930,15 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 		pago.setSucursal( (Sucursal)cmbSucursal.getSelectedItem() );
 		pago.setCliente( ventaPagar.getCliente() );
 		pago.setMonto( monto );
+		
+		//volvemos a recuperar la venta.
+		ventaPagar = (Venta) UIServiceFactory.getUIVentaService().getObject(ventaPagar);
+
+		//chequeamos que el monto no supere la deuda.
+		if( ventaPagar.getMontoDebe() < pago.getMonto() ){
+			
+			throw new ControllerException("El pago no puede superar el monto adeudado");
+		}
 		
 		//agregamos el detalle del pago con la venta a pagar.
 		pago.addDetalle( ventaPagar.pagate( monto ) );
@@ -965,14 +979,14 @@ public class FrameAddPagoVenta extends JInternalFrame implements  TableModelList
 	/**
 	 * @return the pago
 	 */
-	public Pago getPago() {
+	public PagoCliente getPago() {
 		return pago;
 	}
 
 	/**
 	 * @param pago the pago to set
 	 */
-	public void setPago(Pago pago) {
+	public void setPago(PagoCliente pago) {
 		this.pago = pago;
 	}
 	

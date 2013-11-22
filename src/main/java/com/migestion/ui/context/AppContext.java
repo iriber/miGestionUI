@@ -15,7 +15,7 @@ import com.migestion.model.Vendedor;
 import com.migestion.swing.context.ContextObserver;
 import com.migestion.swing.navigation.interfaces.ILinkWindowList;
 import com.migestion.swing.view.frames.JFrameContainer;
-import com.migestion.ui.context.observers.PagoObserver;
+import com.migestion.ui.context.observers.PagoClienteObserver;
 import com.migestion.ui.context.observers.ProductoObserver;
 import com.migestion.ui.context.observers.VentaObserver;
 
@@ -43,7 +43,7 @@ public class AppContext {
 	 */
 	private VentaObserver ventaObserver;
 
-	private PagoObserver pagoObserver;
+	private PagoClienteObserver pagoClienteObserver;
 	
 	private ProductoObserver productoObserver;
 	
@@ -89,7 +89,7 @@ public class AppContext {
 	private AppContext(){
 		//inicializamos los listeners
 		ventaObserver = new VentaObserver();
-		pagoObserver = new PagoObserver();
+		pagoClienteObserver = new PagoClienteObserver();
 		productoObserver = new ProductoObserver();
 		cuentaBancariaObserver = new ContextObserver<CuentaBancaria>();
 		categoriaProductoObserver = new ContextObserver<CategoriaProducto>();
@@ -115,8 +115,8 @@ public class AppContext {
 		return productoObserver;
 	}
 
-	public PagoObserver getPagoObserver() {
-		return pagoObserver;
+	public PagoClienteObserver getPagoClienteObserver() {
+		return pagoClienteObserver;
 	}
 
 	public static AppContext getInstance(){

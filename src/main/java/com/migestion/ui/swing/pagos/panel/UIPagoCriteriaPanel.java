@@ -15,7 +15,7 @@ import com.migestion.model.Vendedor;
 import com.migestion.swing.navigation.listeners.LinkFindObjectListener;
 import com.migestion.swing.search.criteria.UICriteria;
 import com.migestion.swing.view.dialogs.ICriteriaPanel;
-import com.migestion.ui.criteria.UIPagoCriteria;
+import com.migestion.ui.criteria.UIPagoClienteCriteria;
 import com.migestion.ui.swing.finder.FinderFactory;
 
 /**
@@ -93,7 +93,7 @@ public class UIPagoCriteriaPanel extends javax.swing.JPanel  implements ICriteri
     
 	public UICriteria getCriteria() {
 		
-		UIPagoCriteria criteria = new UIPagoCriteria();
+		UIPagoClienteCriteria criteria = new UIPagoClienteCriteria();
 
 		Date[] fechas = criteriaFechaPanel.getFechas();
 		criteria.setFechaDesde( fechas[0] );

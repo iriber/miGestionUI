@@ -17,7 +17,6 @@ import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.gastos.GastosCRUDFrame;
 import com.migestion.ui.swing.gastos.panel.GastoPanel;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.productos.panel.ProductoPanel;
 
 /**
  * Proporciona métodos para la creación de ventanas para gastos.

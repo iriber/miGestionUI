@@ -3,7 +3,7 @@ package com.migestion.ui.swing.pagos.dialog;
 
 import java.awt.Container;
 
-import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.view.dialogs.DialogMessage;
@@ -22,7 +22,7 @@ import com.migestion.ui.swing.pagos.panel.PagoPanel;
 public class DialogAnularPago extends DialogOkCancel implements  ILinkWindowObjectOpen{
 
 	//pago que será anulado
-	protected Pago pago= null;
+	protected PagoCliente pago= null;
 
 	private PagoPanel panel;
 	
@@ -52,7 +52,7 @@ public class DialogAnularPago extends DialogOkCancel implements  ILinkWindowObje
 	 * se abre el diálogo centrado en la pantalla.
 	 */
 	public void open(Object object) {
-		this.pago = (Pago)object;
+		this.pago = (PagoCliente)object;
 		showPago();
 		open();
 	}
@@ -65,7 +65,7 @@ public class DialogAnularPago extends DialogOkCancel implements  ILinkWindowObje
 	 */
 	protected void doOk(){		
 		try {			
-			UIServiceFactory.getUIPagoService().anularPago(this.pago);
+			UIServiceFactory.getUIPagoClienteService().anularPago(this.pago);
 			this.accepted = true;
 			this.dispose();
 		} catch (ControllerException e) {

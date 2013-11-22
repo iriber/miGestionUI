@@ -1,7 +1,5 @@
 package com.migestion.ui.swing.gastos.factories;
 
-import javax.swing.KeyStroke;
-
 import com.migestion.swing.i18n.links.LinkImagesBundle;
 import com.migestion.swing.i18n.links.LinkLabelsBundle;
 import com.migestion.swing.navigation.Link;

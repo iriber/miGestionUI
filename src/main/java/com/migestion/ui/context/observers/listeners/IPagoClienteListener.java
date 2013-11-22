@@ -1,6 +1,6 @@
 package com.migestion.ui.context.observers.listeners;
 
-import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.swing.context.IContextListener;
 
 /**
@@ -9,7 +9,7 @@ import com.migestion.swing.context.IContextListener;
  * @author bernardo
  *
  */
-public interface IPagoListener extends IContextListener<Pago>{
+public interface IPagoClienteListener extends IContextListener<PagoCliente>{
 
 	
 	

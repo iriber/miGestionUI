@@ -67,11 +67,11 @@ public class UIServiceFactory {
 	}
 	
 	/**
-	 * servicio para pagos
+	 * servicio para pagos de clientes
 	 * @return
 	 */
-	public static UIPagoService getUIPagoService(){
-		return UIPagoService.getInstance();
+	public static UIPagoClienteService getUIPagoClienteService(){
+		return UIPagoClienteService.getInstance();
 	}
 	
 	/**

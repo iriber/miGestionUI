@@ -15,7 +15,7 @@ import com.migestion.ui.swing.i18n.I18nMessages;
  * @since 28/10/2013
  *
  */
-public class UIPagoCriteria extends UICustomCriteria{
+public abstract class UIPagoCriteria extends UICustomCriteria{
 
 	/**
 	 * fecha desde
@@ -26,19 +26,8 @@ public class UIPagoCriteria extends UICustomCriteria{
 	 * fecha hasta
 	 */
 	private Date fechaHasta;
-
-	/**
-	 * cliente
-	 */
-	private Cliente cliente;
 	
 
-
-	public UIPagoCriteria() {
-		
-	}
-
-	
 	/**
 	 * @return the fechaDesde
 	 */
@@ -65,43 +54,5 @@ public class UIPagoCriteria extends UICustomCriteria{
 	 */
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
-	}
-
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	/**
-	 * descripción del criteria
-	 */
-	public String getDescription() {
-		
-		String desc = I18nMessages.PAGOS;
-		return desc;
-	}	
-	
-
-	public PagoCriteria buildToService(){
-		
-		PagoCriteria criteria = new PagoCriteria();
-		
-		criteria.setCliente( getCliente() );
-		criteria.setFechaDesde( getFechaDesde() );
-		criteria.setFechaHasta( getFechaHasta() );
-		criteria.setMaxResult(getMaxResult());
-		criteria.setOffset(getOffset());
-		criteria.orderByFecha( Criteria.ORDER_DESC );
-		criteria.orderByCodigo( Criteria.ORDER_DESC );
-		return criteria;
 	}
 }

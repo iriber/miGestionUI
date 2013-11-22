@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
 import com.migestion.model.EstadisticaPago;
-import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.swing.model.UICollection;
 import com.migestion.swing.model.UIFooterCollection;
 import com.migestion.ui.AppUtils;
@@ -16,17 +16,17 @@ import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.pagos.renderers.PagoTableRenderer;
 
 /**
- * UICollection para pagos.
+ * UICollection para pagos de clientes.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
  * @since 15/10/2013
  * 
  */
-public class UIPagoCollection extends UIFooterCollection {
+public class UIPagoClienteCollection extends UIFooterCollection {
 
 	private EstadisticaPago estadistica;
 
-	public UIPagoCollection(String description) {
+	public UIPagoClienteCollection(String description) {
 		super(description);
 		setElements(new Vector());
 	}
@@ -117,7 +117,7 @@ public class UIPagoCollection extends UIFooterCollection {
 	@Override
 	protected void setEntityValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		PagoCliente pago = (PagoCliente) (getElements().get(rowIndex));
 
 		// no es editable.
 	}
@@ -145,7 +145,7 @@ public class UIPagoCollection extends UIFooterCollection {
 	@Override
 	protected void setFooter(UICollection items) {
 		
-		this.setEstadistica(((UIPagoCollection) items).getEstadistica());
+		this.setEstadistica(((UIPagoClienteCollection) items).getEstadistica());
 		
 	}
 
@@ -177,7 +177,7 @@ public class UIPagoCollection extends UIFooterCollection {
 	protected Object getEntityValueAt(int rowIndex, int columnIndex) {
 
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		PagoCliente pago = (PagoCliente) (getElements().get(rowIndex));
 		
 		// Se obtiene el campo apropiado según el valor de columnIndex
 		switch (columnIndex) {
@@ -198,7 +198,7 @@ public class UIPagoCollection extends UIFooterCollection {
 	protected Object getEntityValueAtShow(int rowIndex, int columnIndex) {
 
 		// Se obtiene el dato de la fila indicada
-		Pago pago = (Pago) (getElements().get(rowIndex));
+		PagoCliente pago = (PagoCliente) (getElements().get(rowIndex));
 		
 		// Se obtiene el campo apropiado según el valor de columnIndex
 		switch (columnIndex) {

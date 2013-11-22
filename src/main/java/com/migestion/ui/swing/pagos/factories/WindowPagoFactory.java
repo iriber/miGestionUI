@@ -50,7 +50,7 @@ public class WindowPagoFactory {
 	public static DialogDeleteObject getWindowDelete(){			    
 		
 		
-		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoService(), new PagoPanel());
+		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoPanel());
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
 		return dialog;
 		
@@ -72,10 +72,10 @@ public class WindowPagoFactory {
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
-		PagosCRUDFrame frame = new PagosCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoService());
+		PagosCRUDFrame frame = new PagosCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoClienteService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
-		AppContext.getInstance().getPagoObserver().addListener( frame );
+		AppContext.getInstance().getPagoClienteObserver().addListener( frame );
 		
 //		AppContext.getInstance().addPagoListener( frame );
 		
@@ -89,7 +89,7 @@ public class WindowPagoFactory {
 	 */
 	public static DialogViewObject getWindowView(){			    
 	
-		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoService(), new PagoPanel() );
+		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoPanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_View).getImage() );
 		return dialog;
 	

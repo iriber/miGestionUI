@@ -20,6 +20,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 
 import com.migestion.model.Pago;
+import com.migestion.model.PagoCliente;
 import com.migestion.swing.view.dialogs.adapters.IDialogDeleteAdapter;
 import com.migestion.swing.view.dialogs.adapters.IDialogViewAdapter;
 import com.migestion.swing.view.inputs.InputRequiredValidator;
@@ -40,7 +41,7 @@ public class PagoPanel extends javax.swing.JPanel implements ISkinForm,Serializa
 
 	private InputRequiredValidator required;
     
-    private Pago pago;
+    private PagoCliente pago;
 
     private DetallePagoTableController controllerDetallePago;
     private DetalleFormaPagoTableController controllerDetalleFormaPago;
@@ -67,7 +68,7 @@ public class PagoPanel extends javax.swing.JPanel implements ISkinForm,Serializa
 
     private void initPago() {
 		
-    	pago = new Pago();
+    	pago = new PagoCliente();
     	
 	}
     
@@ -404,11 +405,13 @@ public class PagoPanel extends javax.swing.JPanel implements ISkinForm,Serializa
 
 		clearInputs();
 		
-		pago = (Pago)object;
+		pago = (PagoCliente)object;
 		txtFecha.setText( AppUtils.formatDate( pago.getFecha() ) );
 		txtCliente.setText( pago.getCliente().toString() );
 		
-		txtSucursal.setText( "" ) ;
+		if(pago.getSucursal() != null)
+			txtSucursal.setText( pago.getSucursal().toString() ) ;
+		
 		txtObservaciones.setText( pago.getObservaciones() ) ;
 		
 		txtTotal.setText(AppUtils.formatMoneda( pago.getMonto() ) );

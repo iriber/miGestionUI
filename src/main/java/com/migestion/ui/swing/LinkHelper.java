@@ -7,9 +7,10 @@ public interface LinkHelper {
 	/**
 	 * key stroke genéricos
 	 */
-	public KeyStroke LINK_ADD_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_DOWN_MASK);
-	public KeyStroke LINK_UPDATE_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_ADD_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_UPDATE_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	public KeyStroke LINK_DELETE_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK);
+	public KeyStroke LINK_VIEW_KEY_STROKE = KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.ALT_DOWN_MASK);
 	
 	/**
 	 * key stroke para los listados

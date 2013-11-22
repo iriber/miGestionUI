@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import com.migestion.dao.PersistenceContext;
 import com.migestion.dao.exception.PersistenceContextException;
-import com.migestion.model.EstadisticaVenta;
+import com.migestion.model.EstadisticaOperacion;
 import com.migestion.model.Venta;
 import com.migestion.services.ServiceFactory;
 import com.migestion.services.criteria.VentaCriteria;
@@ -52,7 +52,7 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 		UIVentaCollection uiList = new UIVentaCollection( I18nMessages.VENTAS);
 
 		uiList.setElements( new Vector<Venta>() );
-		uiList.setEstadistica(new EstadisticaVenta());
+		uiList.setEstadistica(new EstadisticaOperacion());
 		
 		return uiList;
 		
@@ -68,12 +68,12 @@ public class UIVentaService implements IControllerList, IControllerAdd,
 		//invocar al servicio para obtener las entities.
 		List<Venta> ventas;
 //		Long totalSize;
-		EstadisticaVenta estadistica ;
+		EstadisticaOperacion estadistica ;
 		try {
 			VentaCriteria coreCriteria = ((UIVentaCriteria)criteria).buildToService();
 			ventas = ServiceFactory.getVentaService().list( coreCriteria );
 			//totalSize = ServiceFactory.getVentaService().getListSize(coreCriteria);
-			estadistica = ServiceFactory.getVentaService().getEstadisticaVenta(coreCriteria);
+			estadistica = ServiceFactory.getVentaService().getEstadistica(coreCriteria);
 			
 		} catch (Exception e) {
 
