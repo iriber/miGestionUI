@@ -11,8 +11,10 @@ import com.migestion.swing.navigation.LinkPrintCollection;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.pagos.links.LinkAnularPago;
-import com.migestion.ui.swing.pagos.links.LinkEliminarPago;
+import com.migestion.ui.swing.pagos.links.LinkAnularPagoCliente;
+import com.migestion.ui.swing.pagos.links.LinkAnularPagoProveedor;
+import com.migestion.ui.swing.pagos.links.LinkEliminarPagoCliente;
+import com.migestion.ui.swing.pagos.links.LinkEliminarPagoProveedor;
 import com.migestion.ui.swing.pagos.links.LinkPagarOrdenCompra;
 import com.migestion.ui.swing.pagos.links.LinkPagarVenta;
 
@@ -29,17 +31,6 @@ public class LinkPagoFactory {
 
 
 	/**
-	 * link para agregar un pago.
-	 */
-//	public static LinkAddPago getLinkAddPago(){			    
-//		//return LinkAddCuenta.getInstance();
-//		LinkAddPago link =  new LinkAddPago(WindowPagoFactory.getWindowAdd() );
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//		
-//	}
-
-	/**
 	 * link para pagar una venta.
 	 */
 	public static LinkPagarVenta getLinkPagarVenta(){			    
@@ -50,17 +41,19 @@ public class LinkPagoFactory {
 		
 	}
 
+
+
 	/**
-	 * link para visualizar una pago.
+	 * link para visualizar un pago de cliente.
 	 */
-	public static LinkOpenDialogWithSelected getLinkView(){			    
+	public static LinkOpenDialogWithSelected getLinkViewPagoCliente(){			    
 		
 		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PAGO_ACCION_VER,LinkImagesBundle.link_View, LinkLabelsBundle.link_View_KeyStroke) {
 			
 			@Override
 			protected ILinkWindowObjectOpen getDialog() {
 				
-				return WindowPagoFactory.getWindowView();
+				return WindowPagoFactory.getWindowViewPagoCliente();
 			}
 			
 		};
@@ -68,52 +61,34 @@ public class LinkPagoFactory {
 
 	}	
 	
-	
-//	/**
-//	 * link para modificar un pago.
-//	 */
-//	public static LinkUpdateObject getLinkUpdate(){			    
-//		LinkUpdateObject link = new LinkUpdateObject(WindowPagoFactory.getWindowUpdate(), I18nMessages.PAGO_ACCION_MODIFICAR);
-//		//link.addListener(AppContext.getInstance().getCuentaObserver());
-//		return link;
-//	}	
-	
 	/**
-	 * link para eliminar un pago.
+	 * link para eliminar un pago de cliente
 	 */
-	public static LinkOpenDialogWithSelected getLinkDelete(){			    
+	public static LinkOpenDialogWithSelected getLinkDeletePagoCliente(){			    
 		
-		LinkOpenDialogWithSelected link = new LinkEliminarPago();
+		LinkOpenDialogWithSelected link = new LinkEliminarPagoCliente();
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 
 	}
 	
 	/**
-	 * link para anular un pago.
+	 * link para anular un pago de cliente
 	 */
-	public static LinkOpenDialogWithSelected getLinkAnular(){			    
+	public static LinkOpenDialogWithSelected getLinkAnularPagoCliente(){			    
 		
-		LinkOpenDialogWithSelected link = new LinkAnularPago();
+		LinkOpenDialogWithSelected link = new LinkAnularPagoCliente();
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 
 	}
 	
-//	/**
-//	 * link para anular una pago
-//	 */
-//	public static LinkUpdateObject getLinkAnularPago(){			    
-//		LinkUpdateObject link = new LinkAnularPago(WindowPagoFactory.getWindowAnular(), I18nMessages.PAGO_ACCION_ANULAR);
-//		return link;
-//	}	
-	
 	/**
 	 * link para listar pagos.
 	 * @return
 	 */
-	public static LinkListCollection getLinkList(){
-		LinkListCollection link = new LinkListCollection(WindowPagoFactory.getWindowList(), I18nMessages.PAGO_ACCION_LISTAR, I18nImages.PAGOS_ICON);
+	public static LinkListCollection getLinkPagosCliente(){
+		LinkListCollection link = new LinkListCollection(WindowPagoFactory.getWindowListPagoCliente(), I18nMessages.PAGO_ACCION_LISTAR, I18nImages.PAGOS_ICON);
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}
@@ -123,19 +98,11 @@ public class LinkPagoFactory {
 	 * @return
 	 */
 	public static LinkListCollection getLinkPagosProveedor(){
-		LinkListCollection link = new LinkListCollection(WindowPagoFactory.getWindowList(), I18nMessages.PAGO_ACCION_LISTAR, I18nImages.PAGOS_ICON);
+		LinkListCollection link = new LinkListCollection(WindowPagoFactory.getWindowListPagoProveedor(), I18nMessages.PAGO_PROVEEDOR_ACCION_LISTAR, I18nImages.PAGOS_ICON);
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}
 
-	/**
-	 * link para ingresar el criterio de búsqueda de pagos.
-	 *
-	public static LinkCreateCriteria getLinkCreateCriteria(){			    
-		LinkCreateCriteria link = new LinkCreateCriteria(WindowPagoFactory.getWindowCreateCriteria(), I18nMessages.PAGO_ACCION_BUSCAR);
-	    return link;
-	}*/
-	
 	/**
 	 * link imprimir cuentas.
 	 */
@@ -163,6 +130,47 @@ public class LinkPagoFactory {
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 		
+	}
+
+
+	/**
+	 * link para visualizar un pago a proveedor.
+	 */
+	public static LinkOpenDialogWithSelected getLinkViewPagoProveedor(){			    
+		
+		LinkOpenDialogWithSelected link =  new LinkOpenDialogWithSelected(I18nMessages.PAGO_ACCION_VER,LinkImagesBundle.link_View, LinkLabelsBundle.link_View_KeyStroke) {
+			
+			@Override
+			protected ILinkWindowObjectOpen getDialog() {
+				
+				return WindowPagoFactory.getWindowViewPagoProveedor();
+			}
+			
+		};
+		return link;
+
+	}	
+	
+	/**
+	 * link para eliminar un pago a proveedor
+	 */
+	public static LinkOpenDialogWithSelected getLinkDeletePagoProveedor(){			    
+		
+		LinkOpenDialogWithSelected link = new LinkEliminarPagoProveedor();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		return link;
+
+	}
+	
+	/**
+	 * link para anular un pago a proveedor.
+	 */
+	public static LinkOpenDialogWithSelected getLinkAnularPagoProveedor(){			    
+		
+		LinkOpenDialogWithSelected link = new LinkAnularPagoProveedor();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		return link;
+
 	}
 
 }

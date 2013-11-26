@@ -354,6 +354,8 @@ public class I18nMessages implements I18nLocale{
 	public static String PAGO_FRAME_TITULO = properties.getString("pago.frame.titulo");
 	public static String PAGO_FRAME_MENUADMIN = properties.getString("pago.frame.menuadmin");
 	
+	public static String PAGO_PROVEEDOR_FRAME_TITULO = properties.getString("pago.proveedor.frame.titulo");
+	
 	public static String PAGO_DIALOG_AGREGAR_TITULO = properties.getString("pago.dialog.agregar.titulo");
 	public static String PAGO_DIALOG_MODIFICAR_TITULO = properties.getString("pago.dialog.modificar.titulo");
 	public static String PAGO_DIALOG_BUSCAR_TITULO = properties.getString("pago.dialog.buscar.titulo");
@@ -371,6 +373,7 @@ public class I18nMessages implements I18nLocale{
 	
 	public static String PAGO_MSG_CONFIRMA_ELIMINAR = properties.getString("pago.msg.confirma_eliminar");
 
+	public static String PAGO_PROVEEDOR_ACCION_LISTAR = properties.getString("pago.proveedor.accion.listar");
 
 	public static String DETALLEPAGO_MONTO = properties.getString("pago.detalle.monto");
 	public static String DETALLEPAGO_OPERACION = properties.getString("pago.detalle.operacion");

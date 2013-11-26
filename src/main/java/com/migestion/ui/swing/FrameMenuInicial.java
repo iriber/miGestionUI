@@ -335,7 +335,7 @@ public class FrameMenuInicial extends JFrameContainer {
 		menuBar.add(menuContable);
 
 		menuMovimientos = new JMenu("Movimientos");
-		menuBar.add(menuMovimientos);
+		//menuBar.add(menuMovimientos);
 		
 		
 		PanelMenuToolbar toolbar = new PanelMenuToolbar();
@@ -370,10 +370,13 @@ public class FrameMenuInicial extends JFrameContainer {
 		LinkListCollection linkVentas = LinkVentaFactory
 				.getLinkList();
 
-		// link pagos.
-		LinkListCollection linkPagos = LinkPagoFactory
-				.getLinkList();
+		// link pagos de clientes.
+		LinkListCollection linkPagosCliente = LinkPagoFactory
+				.getLinkPagosCliente();
 
+		// link pagos a proveedores.
+		LinkListCollection linkPagosProveedor = LinkPagoFactory
+				.getLinkPagosProveedor();
 
 		// link órdenes de compra.
 		LinkListCollection linkOrdenesCompra = LinkOrdenCompraFactory
@@ -436,6 +439,8 @@ public class FrameMenuInicial extends JFrameContainer {
 		menuInventario.add(MenuFactory.getJMenuItem(linkCategoriasProducto));
 		menuInventario.addSeparator();
 		menuInventario.add(MenuFactory.getJMenuItem(linkProveedores));
+		menuInventario.add(MenuFactory.getJMenuItem(linkOrdenesCompra));
+		menuInventario.add(MenuFactory.getJMenuItem(linkPagosProveedor));
 		
 		menuEmpresa.add(MenuFactory.getJMenuItem(linkVendedores));
 		//TODO menuEmpresa.add(MenuFactory.getJMenuItem(linkSucursales));
@@ -451,9 +456,8 @@ public class FrameMenuInicial extends JFrameContainer {
 ////		setProgress(index);
 ////		
 		menuVentas.add(MenuFactory.getJMenuItem(linkVentas));
-		menuVentas.add(MenuFactory.getJMenuItem(linkPagos));
+		menuVentas.add(MenuFactory.getJMenuItem(linkPagosCliente));
 		menuVentas.addSeparator();
-		menuVentas.add(MenuFactory.getJMenuItem(linkOrdenesCompra));
 		
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCaja));
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCuentaBancaria));
@@ -471,7 +475,9 @@ public class FrameMenuInicial extends JFrameContainer {
 		menuContable.addSeparator();
 		menuContable.add(MenuFactory.getJMenuItem(linkNotasCredito));
 		menuContable.add(MenuFactory.getJMenuItem(linkCheques));
-//		
+		menuContable.addSeparator();
+		menuContable.add( menuMovimientos );
+		
 ////		index += incrementar;
 ////		setProgress(index);
 ////		

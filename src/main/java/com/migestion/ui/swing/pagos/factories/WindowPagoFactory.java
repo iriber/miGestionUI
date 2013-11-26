@@ -14,11 +14,13 @@ import com.migestion.ui.context.AppContext;
 import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.pagos.PagosCRUDFrame;
+import com.migestion.ui.swing.pagos.PagosClienteCRUDFrame;
+import com.migestion.ui.swing.pagos.PagosProveedorCRUDFrame;
 import com.migestion.ui.swing.pagos.dialog.DialogAnularPago;
 import com.migestion.ui.swing.pagos.dialog.FrameAddPagoOrdenCompra;
 import com.migestion.ui.swing.pagos.dialog.FrameAddPagoVenta;
 import com.migestion.ui.swing.pagos.panel.PagoClientePanel;
+import com.migestion.ui.swing.pagos.panel.PagoProveedorPanel;
 
 /**
  * Proporciona métodos para la creación de pagonas para pagos.
@@ -59,9 +61,9 @@ public class WindowPagoFactory {
 	}
 
 	/**
-	 * pagona para eliminar un pago.
+	 * ventana para eliminar un pago de cliente.
 	 */
-	public static DialogDeleteObject getWindowDelete(){			    
+	public static DialogDeleteObject getWindowDeletePagoCliente(){			    
 		
 		
 		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoClientePanel());
@@ -71,22 +73,45 @@ public class WindowPagoFactory {
 	}
 
 	/**
-	 * pagona para anular una pago.
+	 * ventana para eliminar un pago a proveedor.
 	 */
-	public static DialogAnularPago getWindowAnular(){			    
+	public static DialogDeleteObject getWindowDeletePagoProveedor(){			    
+		
+		
+		DialogDeleteObject dialog = new DialogDeleteAdapter( I18nMessages.PAGO_DIALOG_ELIMINAR_TITULO, UIServiceFactory.getUIPagoProveedorService(), new PagoProveedorPanel());
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Delete ).getImage() );
+		return dialog;
+		
+	}
+
+	/**
+	 * ventana para anular un pago de cliente.
+	 */
+	public static DialogAnularPago getWindowAnularPagoCliente(){			    
 
 		DialogAnularPago dialog = new DialogAnularPago(I18nMessages.PAGO_DIALOG_ANULAR_TITULO);
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
 		return dialog;
 
 	}	
-	
+
 	/**
-	 * pagona para listar pagos.
+	 * ventana para anular un pago a proveedor.
+	 */
+	public static DialogAnularPago getWindowAnularPagoProveedor(){			    
+
+		DialogAnularPago dialog = new DialogAnularPago(I18nMessages.PAGO_DIALOG_ANULAR_TITULO);
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
+		return dialog;
+
+	}	
+
+	/**
+	 * ventana para listar pagos de clientes.
 	 * @return
 	 */
-	public static CRUDFrame getWindowList(){
-		PagosCRUDFrame frame = new PagosCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoClienteService());
+	public static CRUDFrame getWindowListPagoCliente(){
+		PagosClienteCRUDFrame frame = new PagosClienteCRUDFrame(I18nMessages.PAGO_FRAME_TITULO, UIServiceFactory.getUIPagoClienteService());
 		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
 		
 		AppContext.getInstance().getPagoClienteObserver().addListener( frame );
@@ -97,11 +122,24 @@ public class WindowPagoFactory {
 	}
 	
 
+	/**
+	 * ventana para listar pagos a proveedores.
+	 * @return
+	 */
+	public static CRUDFrame getWindowListPagoProveedor(){
+		PagosProveedorCRUDFrame frame = new PagosProveedorCRUDFrame(I18nMessages.PAGO_PROVEEDOR_FRAME_TITULO, UIServiceFactory.getUIPagoProveedorService());
+		AppContext.getInstance().addToContainer((ILinkWindowList)frame);
+		
+		AppContext.getInstance().getPagoProveedorObserver().addListener( frame );
+		
+		return frame;
+	}
+	
 	
 	/**
-	 * pagona para visualizar una pago.
+	 * ventana para visualizar una pago de cliente.
 	 */
-	public static DialogViewObject getWindowView(){			    
+	public static DialogViewObject getWindowViewPagoCliente(){			    
 	
 		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoClienteService(), new PagoClientePanel() );
 		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_View).getImage() );
@@ -109,4 +147,15 @@ public class WindowPagoFactory {
 	
 	}
 
+	
+	/**
+	 * ventana para visualizar una pago a proveedor.
+	 */
+	public static DialogViewObject getWindowViewPagoProveedor(){			    
+	
+		DialogViewObject dialog = new DialogViewAdapter(I18nMessages.PAGO_DIALOG_VER_TITULO, UIServiceFactory.getUIPagoProveedorService(), new PagoProveedorPanel() );
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_View).getImage() );
+		return dialog;
+	
+	}
 }
