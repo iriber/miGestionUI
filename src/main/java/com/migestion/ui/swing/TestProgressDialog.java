@@ -2,10 +2,12 @@ package com.migestion.ui.swing;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 import com.migestion.swing.view.dialogs.ProgressDialog;
+import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 
 public class TestProgressDialog {
@@ -34,7 +36,7 @@ public class TestProgressDialog {
 
                 };
 
-                ProgressDialog.showProgress(null, worker, I18nMessages.TITULO_MAIN,  "Inicializando el sistema", "Espere unos minutos",null);
+                ProgressDialog.showProgress(null, worker, I18nMessages.TITULO_MAIN,  "Inicializando el sistema", "Espere unos minutos",null, new ImageIcon(I18nImages.LOGO_JAVA), 128);
 
                 System.exit(0);
 

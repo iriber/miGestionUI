@@ -320,21 +320,27 @@ public class FrameMenuInicial extends JFrameContainer {
 		setJMenuBar(menuBar);
 		menuBar.setForeground( Color.WHITE );
 		menuAdmin = new JMenu("Administración");
+		menuAdmin.setIcon( new ImageIcon(I18nImages.MENU_ADMINISTRACION_ICON) );
 		menuBar.add(menuAdmin);
 		
 		menuInventario = new JMenu("Inventario");
+		menuInventario.setIcon( new ImageIcon(I18nImages.MENU_INVENTARIO_ICON) );
 		menuBar.add(menuInventario);
 		
 		menuEmpresa = new JMenu("Empresa");
+		menuEmpresa.setIcon( new ImageIcon(I18nImages.MENU_EMPRESA_ICON) );		
 		menuBar.add(menuEmpresa);
 
 		menuVentas = new JMenu("Ventas");
+		menuVentas.setIcon( new ImageIcon(I18nImages.MENU_VENTA_ICON) );
 		menuBar.add(menuVentas);
 		
 		menuContable = new JMenu("Contable");
+		menuContable.setIcon( new ImageIcon(I18nImages.MENU_CONTABLE_ICON) );
 		menuBar.add(menuContable);
 
 		menuMovimientos = new JMenu("Movimientos");
+		menuMovimientos .setIcon( new ImageIcon(I18nImages.MENU_MOVIMIENTOS_ICON) );
 		//menuBar.add(menuMovimientos);
 		
 		
@@ -370,6 +376,8 @@ public class FrameMenuInicial extends JFrameContainer {
 		LinkListCollection linkVentas = LinkVentaFactory
 				.getLinkList();
 
+		Link linkAddVenta = LinkVentaFactory
+				.getLinkAdd();
 		// link pagos de clientes.
 		LinkListCollection linkPagosCliente = LinkPagoFactory
 				.getLinkPagosCliente();
@@ -456,6 +464,7 @@ public class FrameMenuInicial extends JFrameContainer {
 ////		setProgress(index);
 ////		
 		menuVentas.add(MenuFactory.getJMenuItem(linkVentas));
+		menuVentas.add(MenuFactory.getJMenuItem(linkAddVenta));
 		menuVentas.add(MenuFactory.getJMenuItem(linkPagosCliente));
 		menuVentas.addSeparator();
 		
@@ -466,8 +475,7 @@ public class FrameMenuInicial extends JFrameContainer {
 		menuMovimientos.addSeparator();
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosCliente));
 		menuMovimientos.add(MenuFactory.getJMenuItem(linkMovimientosProveedor));
-		menuMovimientos.addSeparator();
-		menuMovimientos.add(MenuFactory.getJMenuItem(linkBalanceDiario));
+		
 		
 		menuContable.add(MenuFactory.getJMenuItem(linkCajas));
 		menuContable.addSeparator();
@@ -477,6 +485,8 @@ public class FrameMenuInicial extends JFrameContainer {
 		menuContable.add(MenuFactory.getJMenuItem(linkCheques));
 		menuContable.addSeparator();
 		menuContable.add( menuMovimientos );
+		menuContable.addSeparator();
+		menuContable.add(MenuFactory.getJMenuItem(linkBalanceDiario));
 		
 ////		index += incrementar;
 ////		setProgress(index);

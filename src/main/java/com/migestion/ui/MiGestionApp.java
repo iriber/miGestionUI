@@ -94,7 +94,7 @@ public class MiGestionApp {
 
 	                };
 
-	                ProgressDialog.showProgress(null, worker,I18nMessages.TITULO_MAIN, "Inicializando el sistema...", "Espere unos segundos", new ImageIcon(I18nImages.LOGO_ICON).getImage());
+	                ProgressDialog.showProgress(null, worker,I18nMessages.TITULO_MAIN, "Inicializando el sistema...", "Espere unos segundos", new ImageIcon(I18nImages.LOGO_ICON).getImage(), new ImageIcon(I18nImages.LOGO_JAVA), 128);
 
 	                //System.exit(0);
 

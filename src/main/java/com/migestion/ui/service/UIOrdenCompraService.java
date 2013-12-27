@@ -263,4 +263,33 @@ public class UIOrdenCompraService implements IControllerList, IControllerAdd,
 		
 	}
 
+	/**
+	 * se recibe una ordenCompra
+	 */
+	public void recibirOrdenCompra(OrdenCompra ordenCompra) throws ControllerException {
+		
+		try {
+			
+			PersistenceContext.getInstance().beginTransaction();
+			
+			ServiceFactory.getOrdenCompraService().recibirOrdenCompra( ordenCompra );
+			
+			PersistenceContext.getInstance().commit();
+			
+			AppContext.getInstance().getOrdenCompraObserver().objectUpdated( ordenCompra );
+			
+		} catch (Exception e) {
+			
+			try {
+				PersistenceContext.getInstance().rollback();
+			} catch (PersistenceContextException e1) {
+				throw new ControllerException( e1.getMessage() );
+			}
+			
+			throw new ControllerException( e.getMessage() );
+			
+		}
+		
+	}
+
 }

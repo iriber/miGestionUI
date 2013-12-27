@@ -17,6 +17,7 @@ import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ordenesCompra.links.LinkAnularOrdenCompra;
 import com.migestion.ui.swing.operaciones.ordenesCompra.links.LinkEliminarOrdenCompra;
+import com.migestion.ui.swing.operaciones.ordenesCompra.links.LinkRecibirOrdenCompra;
 
 
 /**
@@ -90,7 +91,16 @@ public class LinkOrdenCompraFactory {
 		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK));
 		return link;
 	}	
-	
+
+	/**
+	 * link para recibir una ordenCompra
+	 */
+	public static LinkOpenDialogWithSelected getLinkRecibirOrdenCompra(){			    
+		LinkOpenDialogWithSelected link = new LinkRecibirOrdenCompra();
+		link.setKeyStroke(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+		return link;
+	}	
+
 	/**
 	 * link para listar ordenCompras.
 	 * @return

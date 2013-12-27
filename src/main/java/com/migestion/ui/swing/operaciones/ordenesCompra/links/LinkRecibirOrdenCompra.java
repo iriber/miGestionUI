@@ -1,4 +1,4 @@
-package com.migestion.ui.swing.pagos.links;
+package com.migestion.ui.swing.operaciones.ordenesCompra.links;
 
 import com.migestion.model.EstadoOrdenCompra;
 import com.migestion.model.OrdenCompra;
@@ -6,20 +6,21 @@ import com.migestion.swing.navigation.LinkOpenDialogWithSelected;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.ui.swing.i18n.I18nImages;
 import com.migestion.ui.swing.i18n.I18nMessages;
-import com.migestion.ui.swing.pagos.factories.WindowPagoFactory;
+import com.migestion.ui.swing.operaciones.ordenesCompra.factories.WindowOrdenCompraFactory;
 
 /**
- * Link para pagar una orden de compra.
+ * Link para recibir una orden de compra
  * 
- * @author Bernardo Iribarne
+ * @author Bernardo Iribarne (ber.iribarne@gmail.com)
+ * @since 01/12/2013
  *
  */
-public class LinkPagarOrdenCompra extends  LinkOpenDialogWithSelected{
+public class LinkRecibirOrdenCompra extends  LinkOpenDialogWithSelected{
 
 
-	public LinkPagarOrdenCompra(){
-		super(I18nMessages.ORDEN_COMPRA_ACCION_PAGAR, I18nImages.BOTON_PAGAR);
-	} 
+	public LinkRecibirOrdenCompra(){
+		super(I18nMessages.ORDEN_COMPRA_ACCION_RECIBIR, I18nImages.BOTON_RECIBIR);
+	}
 	
 	public void valueSelectedChange(Object selectedObject) {
 		
@@ -27,21 +28,17 @@ public class LinkPagarOrdenCompra extends  LinkOpenDialogWithSelected{
 		
 		if( selectedObject!=null && selectedObject instanceof OrdenCompra){
 			
-
 			OrdenCompra ordenCompra = (OrdenCompra)selectedObject;
 			
 			EstadoOrdenCompra estado = ordenCompra.getEstadoOrdenCompra();
-			setEnabled(estado.podesPagarte());
+			setEnabled( estado.podesEntregarte() );
 			
-		}else{
-			setEnabled(false);
 		}
 		
 	}
 
 	@Override
 	protected ILinkWindowObjectOpen getDialog() {
-		return WindowPagoFactory.getWindowPagarOrdenCompra();
+		return WindowOrdenCompraFactory.getWindowRecibir();
 	}
-
 }

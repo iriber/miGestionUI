@@ -50,6 +50,9 @@ public class OrdenesCompraCRUDFrame extends CRUDFrame<OrdenCompra> implements IO
 		LinkOpenDialogWithSelected linkView = LinkOrdenCompraFactory.getLinkView();
 		this.addElementsListener(linkView);
 
+		LinkOpenDialogWithSelected linkRecibir = LinkOrdenCompraFactory.getLinkRecibirOrdenCompra();
+		this.addElementsListener(linkRecibir);
+
 		LinkOpenDialogWithSelected linkAnular = LinkOrdenCompraFactory.getLinkAnularOrdenCompra();
 		this.addElementsListener(linkAnular);
 
@@ -64,14 +67,16 @@ public class OrdenesCompraCRUDFrame extends CRUDFrame<OrdenCompra> implements IO
 		
 		this.addLinkToDefaultMenu( linkAdd, 0 );
 		this.addLinkToDefaultMenu( linkView, 1 );
-		this.addLinkToDefaultMenu( linkAnular, 2 );
+		this.addLinkToDefaultMenu( linkRecibir, 2 );
 		this.addLinkToDefaultMenu( linkPagarOrdenCompra, 3 );
-		this.addLinkToDefaultMenu( linkDelete, 4 );
+		this.addLinkToDefaultMenu( linkAnular, 4 );
+		this.addLinkToDefaultMenu( linkDelete, 5 );
 
 		
 		JPopupMenu rightClick = new JPopupMenu();
 		
 		rightClick.add(linkView);
+		rightClick.add(linkRecibir);
 		rightClick.add(linkPagarOrdenCompra);
 		rightClick.add(linkAnular);
 		rightClick.add(linkDelete);

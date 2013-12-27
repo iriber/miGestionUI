@@ -16,11 +16,12 @@ import com.migestion.ui.swing.i18n.I18nMessages;
 import com.migestion.ui.swing.operaciones.ordenesCompra.OrdenesCompraCRUDFrame;
 import com.migestion.ui.swing.operaciones.ordenesCompra.dialog.DialogAnularOrdenCompra;
 import com.migestion.ui.swing.operaciones.ordenesCompra.dialog.DialogFindOrdenCompra;
+import com.migestion.ui.swing.operaciones.ordenesCompra.dialog.DialogRecibirOrdenCompra;
 import com.migestion.ui.swing.operaciones.ordenesCompra.dialog.FrameAddOrdenCompra;
 import com.migestion.ui.swing.operaciones.ordenesCompra.panel.OrdenCompraPanel;
 
 /**
- * Proporciona métodos para la creación de ordenCompranas para órdenes de compra.
+ * Proporciona métodos para la creación de ventanas para órdenes de compra.
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
  * @since 22/11/2013
@@ -30,7 +31,7 @@ public class WindowOrdenCompraFactory {
 
 	
 	/**
-	 * ordenComprana para agregar un ordenCompra.
+	 * ventana para agregar un ordenCompra.
 	 */
 	public static FrameAddOrdenCompra getWindowAdd(){			    
 
@@ -44,7 +45,7 @@ public class WindowOrdenCompraFactory {
 	}
 
 //	/**
-//	 * ordenComprana para modificar un ordenCompra.
+//	 * ventana para modificar un ordenCompra.
 //	 */
 //	public static DialogUpdateObject getWindowUpdate(){			    
 //
@@ -55,7 +56,7 @@ public class WindowOrdenCompraFactory {
 //	}
 		
 	/**
-	 * ordenComprana para eliminar un ordenCompra.
+	 * ventana para eliminar un ordenCompra.
 	 */
 	public static DialogDeleteObject getWindowDelete(){			    
 		
@@ -67,7 +68,7 @@ public class WindowOrdenCompraFactory {
 	}
 
 	/**
-	 * ordenComprana para anular una ordenCompra.
+	 * ventana para anular una ordenCompra.
 	 */
 	public static DialogAnularOrdenCompra getWindowAnular(){			    
 
@@ -77,7 +78,7 @@ public class WindowOrdenCompraFactory {
 
 	}	
 	/**
-	 * ordenComprana para listar ordenCompras.
+	 * ventana para listar ordenCompras.
 	 * @return
 	 */
 	public static CRUDFrame getWindowList(){
@@ -90,7 +91,7 @@ public class WindowOrdenCompraFactory {
 	}
 	
 	/**
-	 * ordenComprana para buscar un ordenCompra.
+	 * ventana para buscar un ordenCompra.
 	 */
 	public static DialogFindOrdenCompra getWindowFind() {
 		DialogFindOrdenCompra dialog = new  DialogFindOrdenCompra( I18nMessages.ORDEN_COMPRA_DIALOG_BUSCAR_TITULO );
@@ -99,7 +100,7 @@ public class WindowOrdenCompraFactory {
 
 	
 	/**
-	 * ordenComprana para visualizar una ordenCompra.
+	 * ventana para visualizar una ordenCompra.
 	 */
 	public static DialogViewObject getWindowView(){			    
 	
@@ -108,5 +109,16 @@ public class WindowOrdenCompraFactory {
 		return dialog;
 	
 	}
+
+	/**
+	 * ventana para recibir una ordenCompra.
+	 */
+	public static DialogRecibirOrdenCompra getWindowRecibir(){			    
+
+		DialogRecibirOrdenCompra dialog = new DialogRecibirOrdenCompra(I18nMessages.ORDEN_COMPRA_DIALOG_RECIBIR_TITULO);
+		dialog.setIconImage(new ImageIcon( LinkImagesBundle.link_Update ).getImage() );
+		return dialog;
+
+	}	
 
 }

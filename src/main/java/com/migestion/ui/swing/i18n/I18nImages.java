@@ -19,7 +19,8 @@ public class I18nImages {
   //logos
   public static URL LOGO = I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("logo") );
   public static URL LOGO_ICON = I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("logo.icon") );
-
+  public static URL LOGO_JAVA = I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("logo.java") );
+  
   //botones comunes
   public static URL BOTON_LOGIN =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.login") ) ;
 
@@ -51,6 +52,27 @@ public class I18nImages {
   
   public static URL BOTON_ANULAR =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.anular") ) ;
 
+  public static URL BOTON_RECIBIR =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("boton.recibir") ) ;
+  
+  //menú
+  public static URL MENU_ADMINISTRACION_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.administracion.icon") );
+  public static URL MENU_ADMINISTRACION_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.administracion.small.icon") );
+  
+  public static URL MENU_INVENTARIO_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.inventario.icon") );
+  public static URL MENU_INVENTARIO_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.inventario.small.icon") );
+  
+  public static URL MENU_VENTA_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.venta.icon") );
+  public static URL MENU_VENTA_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.venta.small.icon") );
+  
+  public static URL MENU_EMPRESA_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.empresa.icon") );
+  public static URL MENU_EMPRESA_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.empresa.small.icon") );
+  
+  public static URL MENU_CONTABLE_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.contable.icon") );
+  public static URL MENU_CONTABLE_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.contable.small.icon") );
+  
+  public static URL MENU_MOVIMIENTOS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.movimientos.icon") );
+  public static URL MENU_MOVIMIENTOS_SMALL_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("menu.movimientos.small.icon") );
+  
   //cajas
   public static URL CAJAS_ICON =  I18nImages.class.getResource( PATH_IMAGES + "/" + properties.getString("cajas.icon") );
 		

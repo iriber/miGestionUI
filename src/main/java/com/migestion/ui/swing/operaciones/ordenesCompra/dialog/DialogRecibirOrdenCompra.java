@@ -3,7 +3,10 @@ package com.migestion.ui.swing.operaciones.ordenesCompra.dialog;
 
 import java.awt.Container;
 
+import com.migestion.model.DetalleOperacion;
+import com.migestion.model.DetalleOrdenCompra;
 import com.migestion.model.OrdenCompra;
+import com.migestion.services.ServiceFactory;
 import com.migestion.swing.controller.exception.ControllerException;
 import com.migestion.swing.navigation.interfaces.ILinkWindowObjectOpen;
 import com.migestion.swing.view.dialogs.DialogMessage;
@@ -13,15 +16,15 @@ import com.migestion.ui.service.UIServiceFactory;
 import com.migestion.ui.swing.operaciones.ordenesCompra.panel.OrdenCompraPanel;
 
 /**
- * Diálogo para anular una orden de compra
+ * Diálogo para recibir una orden de compra
  * 
  * @author Bernardo Iribarne (ber.iribarne@gmail.com)
- * @since 22/11/2013
+ * @since 01/12/2013
  * 
  */
-public class DialogAnularOrdenCompra extends DialogOkCancel implements  ILinkWindowObjectOpen{
+public class DialogRecibirOrdenCompra extends DialogOkCancel implements  ILinkWindowObjectOpen{
 
-	//ordenCompra que será anulada
+	//ordenCompra que será recibida
 	protected OrdenCompra ordenCompra= null;
 
 	private OrdenCompraPanel panel;
@@ -29,7 +32,7 @@ public class DialogAnularOrdenCompra extends DialogOkCancel implements  ILinkWin
 	/**
 	 * 
 	 */
-	public DialogAnularOrdenCompra(String title) {
+	public DialogRecibirOrdenCompra(String title) {
 
 		super(title);
 	
@@ -40,7 +43,7 @@ public class DialogAnularOrdenCompra extends DialogOkCancel implements  ILinkWin
 	 * @param title
 	 * @param controller
 	 */
-	public DialogAnularOrdenCompra(String title, String pathImage) {
+	public DialogRecibirOrdenCompra(String title, String pathImage) {
 		
 		super(title, pathImage);
 		
@@ -64,8 +67,14 @@ public class DialogAnularOrdenCompra extends DialogOkCancel implements  ILinkWin
 	 * cierra la ventana.
 	 */
 	protected void doOk(){		
-		try {			
-			UIServiceFactory.getUIOrdenCompraService().anularOrdenCompra(this.ordenCompra);
+		try {
+			
+			//marcamos como recibidos todos los productos
+			for (DetalleOperacion detalle : this.ordenCompra.getDetalles() ) {
+				((DetalleOrdenCompra)detalle).setCantidadEntregada( detalle.getCantidad()  );
+			}
+			
+			UIServiceFactory.getUIOrdenCompraService().recibirOrdenCompra(this.ordenCompra);
 			this.accepted = true;
 			this.dispose();
 		} catch (ControllerException e) {

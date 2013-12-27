@@ -663,6 +663,7 @@ public class I18nMessages implements I18nLocale{
 	public static String ORDEN_COMPRA_DIALOG_FACTURAR_TITULO = properties.getString("ordenCompra.dialog.facturar.titulo");
 	public static String ORDEN_COMPRA_DIALOG_PAGAR_TITULO = properties.getString("ordenCompra.dialog.pagar.titulo");
 	public static String ORDEN_COMPRA_DIALOG_ANULAR_TITULO = properties.getString("ordenCompra.dialog.anular.titulo");
+	public static String ORDEN_COMPRA_DIALOG_RECIBIR_TITULO = properties.getString("ordenCompra.dialog.recibir.titulo");
 	
 	public static String ORDEN_COMPRA_ACCION_LISTAR = properties.getString("ordenCompra.accion.listar");
 	public static String ORDEN_COMPRA_ACCION_AGREGAR = properties.getString("ordenCompra.accion.agregar");
@@ -673,6 +674,7 @@ public class I18nMessages implements I18nLocale{
 	public static String ORDEN_COMPRA_ACCION_VER = properties.getString("ordenCompra.accion.ver");
 	public static String ORDEN_COMPRA_ACCION_FACTURAR = properties.getString("ordenCompra.accion.facturar");
 	public static String ORDEN_COMPRA_ACCION_PAGAR = properties.getString("ordenCompra.accion.pagar");
+	public static String ORDEN_COMPRA_ACCION_RECIBIR = properties.getString("ordenCompra.accion.recibir");
 	
 	public static String ORDEN_COMPRA_ACCION_AGREGAR_DETALLE = properties.getString("ordenCompra.accion.agregar.detalle");
 	public static String ORDEN_COMPRA_ACCION_ELIMINAR_DETALLE = properties.getString("ordenCompra.accion.eliminar.detalle");
